@@ -9,16 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        var cardHeight: CGFloat = 150
-        var cardWidth: CGFloat = 130
-        var heroCardWidth: CGFloat = 180
-        var bkgWidth: CGFloat = 700
-        var bkgHeight: CGFloat = 170
+
         
+        // MARK: Board Height Calculate
         /*
+         Decided card board width remaining = 700
+         (700 - heroCardWidth 180) = 520
+         520/4 = 130 per follower Card Width
+         card board including paddings >>> 750
+
          heroCardWidth + maxNoOfFollowers * followersCardWidth + (maxNoOfFollowers+1) * padding  = (totalWidthOfBoard - border/padding)
          
-    
          1. get total width of board minus padding, thats your goal (e.g. 1980)
          2. decide hero's width, e.g. 600
          3. calculate whats space is left over e.g. 1980 - ( 600 ) = 1380
@@ -30,39 +31,27 @@ struct ContentView: View {
         VStack {
             ZStack{
                 // Background Area
-                Rectangle()
-                    .frame(width: bkgWidth, height: bkgHeight)
-                    .cornerRadius(30)
+                BoardView()
                 // Card display area
                 HStack {
-                    Rectangle()
-                        .frame(width: cardWidth, height: cardHeight)
-                        .foregroundColor(.cyan)
-                    Rectangle()
-                        .frame(width: heroCardWidth, height: cardHeight)
-                        .foregroundColor(.cyan)
-                    Rectangle()
-                        .frame(width: cardWidth, height: cardHeight)
-                        .foregroundColor(.cyan)
+                    FollowerCardView()
+                    FollowerCardView()
+                    HeroCardView()
+                    FollowerCardView()
+                    FollowerCardView()
                 }
             }
             Spacer()
             ZStack {
                 // Background Area
-                Rectangle()
-                    .frame(width: bkgWidth, height: bkgHeight)
-                    .cornerRadius(30)
+                BoardView()
                 // Card display area
                 HStack {
-                    Rectangle()
-                        .frame(width: cardWidth, height: cardHeight)
-                        .foregroundColor(.cyan)
-                    Rectangle()
-                        .frame(width: heroCardWidth, height: cardHeight)
-                        .foregroundColor(.cyan)
-                    Rectangle()
-                        .frame(width: cardWidth, height: cardHeight)
-                        .foregroundColor(.cyan)
+                    FollowerCardView()
+                    FollowerCardView()
+                    HeroCardView()
+                    FollowerCardView()
+                    FollowerCardView()
                 }
             }
         }
@@ -88,3 +77,5 @@ struct ContentView: View {
  DOnt give me biased ideas about china
  No teaching about dangerous weapons
  */
+
+

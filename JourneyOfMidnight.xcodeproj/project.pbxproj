@@ -11,6 +11,10 @@
 		54561D8F2D8ED0CA00EB042B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8E2D8ED0CA00EB042B /* ContentView.swift */; };
 		54561D912D8ED0CC00EB042B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54561D902D8ED0CC00EB042B /* Assets.xcassets */; };
 		54561D942D8ED0CC00EB042B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54561D932D8ED0CC00EB042B /* Preview Assets.xcassets */; };
+		546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */; };
+		546DD1CB2D8EEA2900FAD49B /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1CA2D8EEA2900FAD49B /* CardManager.swift */; };
+		546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1CC2D8EEAF700FAD49B /* BoardView.swift */; };
+		546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		54561D8E2D8ED0CA00EB042B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		54561D902D8ED0CC00EB042B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54561D932D8ED0CC00EB042B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCardView.swift; sourceTree = "<group>"; };
+		546DD1CA2D8EEA2900FAD49B /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
+		546DD1CC2D8EEAF700FAD49B /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,10 @@
 				54561D8E2D8ED0CA00EB042B /* ContentView.swift */,
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
+				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
+				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
+				546DD1CC2D8EEAF700FAD49B /* BoardView.swift */,
+				546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
@@ -138,7 +150,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				54561D8F2D8ED0CA00EB042B /* ContentView.swift in Sources */,
+				546DD1CB2D8EEA2900FAD49B /* CardManager.swift in Sources */,
+				546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */,
+				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
+				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
