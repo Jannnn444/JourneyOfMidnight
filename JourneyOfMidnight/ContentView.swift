@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-
-        
         // MARK: Board Height Calculate
         /*
          Decided card board width remaining = 700
          (700 - heroCardWidth 180) = 520
          520/4 = 130 per follower Card Width
          card board including paddings >>> 750
-
+         
          heroCardWidth + maxNoOfFollowers * followersCardWidth + (maxNoOfFollowers+1) * padding  = (totalWidthOfBoard - border/padding)
          
          1. get total width of board minus padding, thats your goal (e.g. 1980)
@@ -28,32 +27,15 @@ struct ContentView: View {
          */
         
         Text("Journey of midnight")
+            .foregroundStyle(.lightBlue)
+        
         VStack {
-            ZStack{
-                // Background Area
-                BoardView()
-                // Card display area
-                HStack {
-                    FollowerCardView()
-                    FollowerCardView()
-                    HeroCardView()
-                    FollowerCardView()
-                    FollowerCardView()
-                }
-            }
+            BoardView()
             Spacer()
-            ZStack {
-                // Background Area
-                BoardView()
-                // Card display area
-                HStack {
-                    FollowerCardView()
-                    FollowerCardView()
-                    HeroCardView()
-                    FollowerCardView()
-                    FollowerCardView()
-                }
-            }
+            BoardView(characterContent: [
+                Character(name: "JanMan", type: .hero),
+                Character(name: "KranMan", type: .follower)
+            ])
         }
         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
     }

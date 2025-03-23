@@ -10,11 +10,12 @@ import SwiftUI
 
 struct HeroCardView: View {
     @ObservedObject var cardManager = CardManager.shared
+    
     var body: some View {
         Rectangle()
             .frame(width: cardManager.heroCardWidth, height: cardManager.heroCarHeight)
             .foregroundColor(.cyan)
-            .cornerRadius(20)
+            .cornerRadius(30)
     }
 }
 

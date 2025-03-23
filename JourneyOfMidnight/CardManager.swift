@@ -22,3 +22,14 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     let followerCardHeight: CGFloat = 150
     private init() {}
 }
+
+struct Character: Identifiable {
+    var id = UUID()
+    var name: String
+    var type: CharacterType
+}
+
+enum CharacterType {
+    case hero
+    case follower
+}
