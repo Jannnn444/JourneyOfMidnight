@@ -18,14 +18,28 @@ struct BoardView: View {
                 .frame(width: cardManager.boardWidth, height: cardManager.boardHeight)
                 .foregroundColor(.lightBlue)
                 .cornerRadius(30)
+            // MARK: Ｗhen we use this BoardView object >>> Shows view depends on the CharacterContent
+            
+            /*
+             BoardView(characterContent: [
+                 Character(name: "JanMan", type: .hero),
+                 Character(name: "KranMan", type: .follower)
+             ]
+             */
+            
             HStack {
-                HeroCardView()
                 if let characterContent = characterContent {
                     ForEach(characterContent) { character in
                         if character.type == .hero {
-                            Text("Hero \(character.name)")
+                            VStack{
+                                HeroCardView()
+                                Text("Hero \(character.name)")
+                            }
                         } else {
-                            Text("Follower \(character.name)")
+                            VStack{
+                                FollowerCardView()
+                                Text("Follower \(character.name)")
+                            }
                         }
                     }
                 }

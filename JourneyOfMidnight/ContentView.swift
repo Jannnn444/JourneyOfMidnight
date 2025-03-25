@@ -33,8 +33,8 @@ struct ContentView: View {
             BoardView()
             Spacer()
             BoardView(characterContent: [
-                Character(name: "JanMan", type: .hero),
-                Character(name: "KranMan", type: .follower)
+                Character(name: "JanMeow", type: .hero),
+                Character(name: "KranWolf", type: .follower)
             ])
         }
         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
