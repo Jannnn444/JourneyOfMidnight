@@ -33,12 +33,12 @@ struct BoardView: View {
                         if character.type == .hero {
                             VStack{
                                 HeroCardView()
-                                Text("Hero \(character.name)")
+//                                Text("Hero \(character.name)")
                             }
                         } else {
                             VStack{
                                 FollowerCardView()
-                                Text("Follower \(character.name)")
+//                                Text("Follower \(character.name)")
                             }
                         }
                     }

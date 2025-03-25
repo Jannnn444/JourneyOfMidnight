@@ -64,8 +64,8 @@
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
 				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
-				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
 				546DD1CC2D8EEAF700FAD49B /* BoardView.swift */,
+				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
 				546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */,
 			);
 			path = JourneyOfMidnight;

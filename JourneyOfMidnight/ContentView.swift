@@ -30,9 +30,14 @@ struct ContentView: View {
             .foregroundStyle(.lightBlue)
         
         VStack {
-            BoardView()
+            BoardView(characterContent: [
+                Character(name: "WolfGuardiance", type: .follower),
+                Character(name: "KiityEnemy", type: .hero),
+                Character(name: "WolfGuardiance", type: .follower)
+            ])
             Spacer()
             BoardView(characterContent: [
+                Character(name: "KranWolf", type: .follower),
                 Character(name: "JanMeow", type: .hero),
                 Character(name: "KranWolf", type: .follower)
             ])
