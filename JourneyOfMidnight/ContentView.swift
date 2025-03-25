@@ -30,6 +30,7 @@ struct ContentView: View {
             .foregroundStyle(.lightBlue)
         
         VStack {
+            Spacer()
             BoardView(characterContent: [
                 Character(name: "WolfGuardiance", type: .follower),
                 Character(name: "KiityEnemy", type: .hero),
@@ -39,10 +40,13 @@ struct ContentView: View {
             BoardView(characterContent: [
                 Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower),
+                Character(name: "KranWolf", type: .follower),
                 Character(name: "JanMeow", type: .hero),
+                Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower)
             ])
+            Spacer()
         }
         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
     }
