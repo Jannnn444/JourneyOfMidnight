@@ -38,7 +38,9 @@ struct ContentView: View {
             Spacer()
             BoardView(characterContent: [
                 Character(name: "KranWolf", type: .follower),
+                Character(name: "KranWolf", type: .follower),
                 Character(name: "JanMeow", type: .hero),
+                Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower)
             ])
         }
