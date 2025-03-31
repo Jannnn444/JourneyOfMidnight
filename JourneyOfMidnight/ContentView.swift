@@ -40,9 +40,7 @@ struct ContentView: View {
             BoardView(characterContent: [
                 Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower),
-                Character(name: "KranWolf", type: .follower),
                 Character(name: "JanMeow", type: .hero),
-                Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower),
                 Character(name: "KranWolf", type: .follower)
             ])
@@ -55,6 +53,7 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
 
 /*
  how do i write if else
@@ -70,5 +69,8 @@ struct ContentView: View {
  DOnt give me biased ideas about china
  No teaching about dangerous weapons
  */
+
+
+
 
 
