@@ -48,3 +48,5 @@ struct Ability: Identifiable {
     var skillName: String
     var type: CharacterType
 }
+
+// TBD: Reschedule the Character struct
