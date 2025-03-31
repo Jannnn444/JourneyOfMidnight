@@ -11,7 +11,7 @@ import SwiftUI
 struct BoardView: View {
     @ObservedObject var cardManager = CardManager.shared
     var characterContent: [Character]?
-//    var abilityContent: [Ability]?
+    var abilityContent: [Ability]?
     
     var body: some View {
         ZStack{
@@ -24,63 +24,58 @@ struct BoardView: View {
             
             /*
              BoardView(characterContent: [
-                 Character(name: "JanMan", type: .hero),
-                 Character(name: "KranMan", type: .follower)
+             Character(name: "JanMan", type: .hero),
+             Character(name: "KranMan", type: .follower)
              ]
              */
-//            HStack{
-//                if let abilityContent = abilityContent {
-//                    ForEach(abilityContent) { ability in
-//                        if ability.type == .hero {
-//                            VStack{
-//                                AbilityBoxView()
-//                            }
-//                        } else {
-//                            VStack{
-//                                AbilityBoxView()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-    
+            //            HStack{
+            //                if let abilityContent = abilityContent {
+            //                    ForEach(abilityContent) { ability in
+            //                        if ability.type == .hero {
+            //                            VStack{
+            //                                AbilityBoxView()
+            //                            }
+            //                        } else {
+            //                            VStack{
+            //                                AbilityBoxView()
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //            }
+            
             HStack {
                 if let characterContent = characterContent {
                     ForEach(characterContent) { character in
                         if character.type == .hero {
                             VStack{
                                 HStack{
-//                                    if let abilityContent = abilityContent {
-//                                        ForEach(abilityContent) { ability in
-//                                            if ability.type == .hero {
-//                                                AbilityBoxView()
-//                                            } else {
-//                                                AbilityBoxView()
-//                                            }
-//                                            
-//                                        }
-//                                    }
+                                    ForEach(0..<character.ability, id: \.self) { _ in
+                                        AbilityBoxView()
+                                    }
+                                 
                                 }
                                 HeroCardView()
-//                                Text("Hero \(character.name)")
+                                //                                Text("Hero \(character.name)")
+                                Spacer()
                             }
                         } else {
                             VStack{
                                 HStack{
-//                                    if let abilityContent = abilityContent {
-//                                        ForEach(abilityContent) { ability in
-//                                            AbilityBoxView()
-//                                        }
-//                                    }
+                                    ForEach(0..<character.ability, id: \.self) { _ in
+                                        AbilityBoxView()
+                                    }
+                                   
                                 }
+                                
                                 FollowerCardView().padding(.trailing)
-//                                Text("Follower \(character.name)")
+                                //                                Text("Follower \(character.name)")
+                                Spacer()
                             }
                         }
                     }
                 }
             }
-    
         }
     }
 }

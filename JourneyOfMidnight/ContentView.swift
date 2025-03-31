@@ -34,7 +34,7 @@ struct ContentView: View {
             Spacer()
             BoardView(characterContent: tempPlayer1)
             Spacer()
-            BoardView(characterContent: tempPlayer2/*, abilityContent: abilityFollowerTemp*/)
+            BoardView(characterContent: tempPlayer2)
             Spacer()
         }
         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding

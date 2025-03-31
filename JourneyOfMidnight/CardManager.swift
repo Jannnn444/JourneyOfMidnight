@@ -34,7 +34,8 @@ struct Character: Identifiable {
     var id = UUID()
     var name: String
     var type: CharacterType
-    var ability: [Ability]
+//  var ability: [Ability]
+    var ability: Int
 }
 
 enum CharacterType {
@@ -42,7 +43,6 @@ enum CharacterType {
     case follower
 }
 
-// MARK: Build Ability
 struct Ability: Identifiable {
     var id = UUID()
     var skillName: String
