@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct AbilityView: View {
+struct AbilityBoxView: View {
     @ObservedObject var cardmanager = CardManager.shared
     var body: some View {
         Rectangle()
@@ -20,5 +20,5 @@ struct AbilityView: View {
 
 
 #Preview {
-    AbilityView(cardmanager: CardManager.shared)
+    AbilityBoxView(cardmanager: CardManager.shared)
 }

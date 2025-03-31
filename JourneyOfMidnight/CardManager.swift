@@ -24,7 +24,7 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     
     // MARK: 🎲 Ability Box Width/Height
     let abilityBoxWidth: CGFloat =  20
-    let abilityBoxHeight: CGFloat = 30
+    let abilityBoxHeight: CGFloat = 15
     
     private init() {} 
 }

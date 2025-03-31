@@ -33,11 +33,20 @@ struct BoardView: View {
                     ForEach(characterContent) { character in
                         if character.type == .hero {
                             VStack{
+                                HStack {
+                                 AbilityBoxView()
+                                 AbilityBoxView()
+                                 AbilityBoxView()
+                                }.padding(.bottom, -5).padding(.trailing)
                                 HeroCardView()
 //                                Text("Hero \(character.name)")
                             }
                         } else {
                             VStack{
+                                HStack {
+                                 AbilityBoxView()
+                                 AbilityBoxView()
+                                }.padding(.bottom, -5).padding(.trailing)
                                 FollowerCardView()
 //                                Text("Follower \(character.name)")
                             }
