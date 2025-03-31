@@ -18,7 +18,6 @@ struct AbilityBoxView: View {
     }
 }
 
-
 #Preview {
     AbilityBoxView(cardmanager: CardManager.shared)
 }

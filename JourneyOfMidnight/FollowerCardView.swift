@@ -11,6 +11,7 @@ import SwiftUI
 struct FollowerCardView: View {
     @ObservedObject var cardManager = CardManager.shared
     var body: some View {
+        
         Rectangle()
             .frame(width: cardManager.followerCardWidth, height: cardManager.followerCardHeight)
             .foregroundColor(.cyan)

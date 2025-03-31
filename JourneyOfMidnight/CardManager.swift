@@ -29,10 +29,12 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     private init() {} 
 }
 
+// MARK: Build Character
 struct Character: Identifiable {
     var id = UUID()
     var name: String
     var type: CharacterType
+    var ability: [Ability]
 }
 
 enum CharacterType {
@@ -40,3 +42,9 @@ enum CharacterType {
     case follower
 }
 
+// MARK: Build Ability
+struct Ability: Identifiable {
+    var id = UUID()
+    var skillName: String
+    var type: CharacterType
+}
