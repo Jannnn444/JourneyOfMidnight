@@ -14,6 +14,7 @@ struct BoardView: View {
     
     var body: some View {
         ZStack{
+            // MARK: Game Board
             Rectangle()
                 .frame(width: cardManager.boardWidth, height: cardManager.boardHeight)
                 .foregroundColor(.lightBlue)

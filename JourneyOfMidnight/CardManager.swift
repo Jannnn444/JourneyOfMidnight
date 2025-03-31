@@ -11,16 +11,22 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     static let shared = CardManager()
     
     // MARK: 📦 Board Width/Height
-    let boardWidth: CGFloat = 700
+    let boardWidth: CGFloat = 500
     let boardHeight: CGFloat = 130
     
     // MARK: 🃏 Card Width/Height
     let heroCardWidth: CGFloat = 120
     let heroCarHeight: CGFloat = 100
     
+    // MARK: 🦸🏻 Hero Width/ Height
     let followerCardWidth: CGFloat = 80
     let followerCardHeight: CGFloat = 100
-    private init() {}
+    
+    // MARK: 🎲 Ability Box Width/Height
+    let abilityBoxWidth: CGFloat =  20
+    let abilityBoxHeight: CGFloat = 30
+    
+    private init() {} 
 }
 
 struct Character: Identifiable {
@@ -33,3 +39,4 @@ enum CharacterType {
     case hero
     case follower
 }
+

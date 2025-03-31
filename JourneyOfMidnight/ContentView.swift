@@ -8,7 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    var tempPlayer1 = [
+        Character(name: "WolfGuardiance", type: .follower),
+        Character(name: "KiityEnemy", type: .hero),
+        Character(name: "WolfGuardiance", type: .follower)
+    ]
+    var tempPlayer2 = [
+        Character(name: "Meowster", type: .follower),
+        Character(name: "Meowster", type: .follower),
+        Character(name: "WolfCommander", type: .hero),
+        Character(name: "Meowster", type: .follower),
+        Character(name: "Meowster", type: .follower)
+    ]
     var body: some View {
         // MARK: Board Height Calculate
         /*
@@ -17,7 +28,8 @@ struct ContentView: View {
          520/4 = 130 per follower Card Width
          card board including paddings >>> 750
          
-         heroCardWidth + maxNoOfFollowers * followersCardWidth + (maxNoOfFollowers+1) * padding  = (totalWidthOfBoard - border/padding)
+         heroCardWidth + maxNoOfFollowers * followersCardWidth + (maxNoOfFollowers+1) * padding 
+         = (totalWidthOfBoard - border/padding)
          
          1. get total width of board minus padding, thats your goal (e.g. 1980)
          2. decide hero's width, e.g. 600
@@ -31,19 +43,9 @@ struct ContentView: View {
         
         VStack {
             Spacer()
-            BoardView(characterContent: [
-                Character(name: "WolfGuardiance", type: .follower),
-                Character(name: "KiityEnemy", type: .hero),
-                Character(name: "WolfGuardiance", type: .follower)
-            ])
+            BoardView(characterContent: tempPlayer1)
             Spacer()
-            BoardView(characterContent: [
-                Character(name: "KranWolf", type: .follower),
-                Character(name: "KranWolf", type: .follower),
-                Character(name: "JanMeow", type: .hero),
-                Character(name: "KranWolf", type: .follower),
-                Character(name: "KranWolf", type: .follower)
-            ])
+            BoardView(characterContent: tempPlayer2)
             Spacer()
         }
         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
