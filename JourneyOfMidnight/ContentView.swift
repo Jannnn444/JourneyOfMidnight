@@ -8,18 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var tempPlayer1 = [
-        Character(name: "WolfGuardiance", type: .follower),
-        Character(name: "KiityEnemy", type: .hero),
-        Character(name: "WolfGuardiance", type: .follower)
-    ]
-    var tempPlayer2 = [
-        Character(name: "Meowster", type: .follower),
-        Character(name: "Meowster", type: .follower),
-        Character(name: "WolfCommander", type: .hero),
-        Character(name: "Meowster", type: .follower),
-        Character(name: "Meowster", type: .follower)
-    ]
+
     var body: some View {
         // MARK: Board Height Calculate
         /*
