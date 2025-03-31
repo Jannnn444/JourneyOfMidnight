@@ -32,9 +32,9 @@ struct ContentView: View {
         
         VStack {
             Spacer()
-            BoardView(characterContent: tempPlayer1, abilityContent: abilityHeroTemp)
+            BoardView(characterContent: tempPlayer1)
             Spacer()
-            BoardView(characterContent: tempPlayer2, abilityContent: abilityFollowerTemp)
+            BoardView(characterContent: tempPlayer2/*, abilityContent: abilityFollowerTemp*/)
             Spacer()
         }
         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
