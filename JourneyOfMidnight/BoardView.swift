@@ -11,7 +11,6 @@ import SwiftUI
 struct BoardView: View {
     @ObservedObject var cardManager = CardManager.shared
     var characterContent: [Character]?
-    var abilityContent: [Ability]?
     
     var body: some View {
         ZStack{
@@ -28,21 +27,6 @@ struct BoardView: View {
              Character(name: "KranMan", type: .follower)
              ]
              */
-            //            HStack{
-            //                if let abilityContent = abilityContent {
-            //                    ForEach(abilityContent) { ability in
-            //                        if ability.type == .hero {
-            //                            VStack{
-            //                                AbilityBoxView()
-            //                            }
-            //                        } else {
-            //                            VStack{
-            //                                AbilityBoxView()
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
             
             HStack {
                 if let characterContent = characterContent {
@@ -53,10 +37,10 @@ struct BoardView: View {
                                     ForEach(0..<character.ability, id: \.self) { _ in
                                         AbilityBoxView()
                                     }
-                                 
+                                    
                                 }
                                 HeroCardView()
-                                //                                Text("Hero \(character.name)")
+                         // Text("Hero \(character.name)")
                                 Spacer()
                             }
                         } else {
@@ -65,11 +49,11 @@ struct BoardView: View {
                                     ForEach(0..<character.ability, id: \.self) { _ in
                                         AbilityBoxView()
                                     }
-                                   
+                                    
                                 }
                                 
                                 FollowerCardView().padding(.trailing)
-                                //                                Text("Follower \(character.name)")
+                        // Text("Follower \(character.name)")
                                 Spacer()
                             }
                         }

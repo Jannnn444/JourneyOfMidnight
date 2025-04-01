@@ -46,7 +46,7 @@ enum CharacterType {
 struct Ability: Identifiable {
     var id = UUID()
     var skillName: String
-    var type: CharacterType
+    var boxAmt: Int
 }
 
-// TBD: Reschedule the Character struct
+

@@ -20,13 +20,3 @@ var tempPlayer2 = [
     Character(name: "Meowster", type: .follower, ability: 2)
 ]
 
-//var abilityHeroTemp = [
-//    Ability(skillName: "BigSkill", type: .hero),
-//    Ability(skillName: "MidSkill", type: .hero),
-//    Ability(skillName: "SmallSkill", type: .hero)
-//]
-//
-//var abilityFollowerTemp = [
-//    Ability(skillName: "FS1", type: .follower),
-//    Ability(skillName: "FS2", type: .follower)
-//]
