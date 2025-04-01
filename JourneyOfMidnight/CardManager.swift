@@ -11,8 +11,8 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     static let shared = CardManager()
     
     // MARK: 📦 Board Width/Height
-    let boardWidth: CGFloat = 500
-    let boardHeight: CGFloat = 130
+    let boardWidth: CGFloat = 600
+    let boardHeight: CGFloat = 150
     
     // MARK: 🃏 Card Width/Height
     let heroCardWidth: CGFloat = 120
@@ -34,8 +34,7 @@ struct Character: Identifiable {
     var id = UUID()
     var name: String
     var type: CharacterType
-//  var ability: [Ability]
-    var ability: Int
+    var ability: Ability
 }
 
 enum CharacterType {

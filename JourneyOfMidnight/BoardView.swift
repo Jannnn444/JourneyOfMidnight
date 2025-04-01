@@ -34,27 +34,24 @@ struct BoardView: View {
                         if character.type == .hero {
                             VStack{
                                 HStack{
-                                    ForEach(0..<character.ability, id: \.self) { _ in
+                                    ForEach(0..<character.ability.boxAmt, id: \.self) { _ in
                                         AbilityBoxView()
                                     }
-                                    
                                 }
+//                              Text("\(character.ability.skillName)")
                                 HeroCardView()
-                         // Text("Hero \(character.name)")
-                                Spacer()
+//                              Text("Hero \(character.name)")
                             }
                         } else {
                             VStack{
                                 HStack{
-                                    ForEach(0..<character.ability, id: \.self) { _ in
+                                    ForEach(0..<character.ability.boxAmt, id: \.self) { _ in
                                         AbilityBoxView()
                                     }
-                                    
                                 }
-                                
+//                              Text("\(character.ability.skillName)")
                                 FollowerCardView().padding(.trailing)
-                        // Text("Follower \(character.name)")
-                                Spacer()
+//                              Text("Follower \(character.name)")
                             }
                         }
                     }
