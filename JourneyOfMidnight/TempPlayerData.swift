@@ -12,23 +12,23 @@ var tempPlayer1 = [
         name: "WolfGuardiance",
         type: .follower,
         ability:[
-            Ability(skillName: "Starfall", boxAmt: 2),
-            Ability(skillName: "Starfall", boxAmt: 2)]
+            Ability(skillName: "Skill1", boxAmt: 1),
+            Ability(skillName: "Skill2", boxAmt: 1)]
     ),
     Character(
         name: "KiityEnemy",
         type: .hero,
         ability:[
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3),
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3),
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3)]
+            Ability(skillName: "Sk1", boxAmt: 1),
+            Ability(skillName: "Sk2", boxAmt: 1),
+            Ability(skillName: "Sk3", boxAmt: 1)]
     ),
     Character(
         name: "WolfGuardiance",
         type: .follower,
         ability:[
-            Ability(skillName: "Starfall", boxAmt: 2),
-            Ability(skillName: "Starfall", boxAmt: 2)]
+            Ability(skillName: "Skill1", boxAmt: 1),
+            Ability(skillName: "Skill2", boxAmt: 1)]
     ),
 ]
 var tempPlayer2 = [
@@ -36,38 +36,37 @@ var tempPlayer2 = [
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "Starfall", boxAmt: 2),
-            Ability(skillName: "Starfall", boxAmt: 2)]
+            Ability(skillName: "Skill1", boxAmt: 1),
+            Ability(skillName: "Skill2", boxAmt: 1)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "Starfall", boxAmt: 2),
-            Ability(skillName: "Starfall", boxAmt: 2)]
+            Ability(skillName: "Skill1", boxAmt: 1),
+            Ability(skillName: "Skill2", boxAmt: 1)]
     ),
     Character(
         name: "WolfCommander",
         type: .hero,
         ability:[
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3),
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3),
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3)]
+            Ability(skillName: "Sk1", boxAmt: 1),
+            Ability(skillName: "Sk2", boxAmt: 1),
+            Ability(skillName: "Sk3", boxAmt: 1)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3),
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3),
-            Ability(skillName: "Big Meteor Fall", boxAmt: 3)]
+            Ability(skillName: "Skill1", boxAmt: 1),
+            Ability(skillName: "Skill2", boxAmt: 1)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "Starfall", boxAmt: 2),
-            Ability(skillName: "Starfall", boxAmt: 2)]
+            Ability(skillName: "Skill1", boxAmt: 1),
+            Ability(skillName: "Skill2", boxAmt: 1)]
     ),
 ]
 

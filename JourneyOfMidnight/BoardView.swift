@@ -34,19 +34,38 @@ struct BoardView: View {
                         if character.type == .hero {
                             VStack{
                                 HStack{
-                                    ForEach(0..<character.ability.count, id: \.self) { _ in
-                                        AbilityBoxView()
+                                    ForEach(character.ability) { ability in
+                                        VStack{
+                                            // MARK: Display skill name
+                                            Text(ability.skillName)
+                                                .font(.footnote)
+                                                .foregroundStyle(.black)
+                                            HStack {
+                                            // MARK: Display AbilityBox
+                                                ForEach(0..<ability.boxAmt, id: \.self) { _ in
+                                                    AbilityBoxView()
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-//                              Text("\(character.ability.skillName)")
                                 HeroCardView()
 //                              Text("Hero \(character.name)")
                             }
                         } else {
                             VStack{
                                 HStack{
-                                    ForEach(0..<character.ability.count, id: \.self) { _ in
-                                        AbilityBoxView()
+                                    ForEach(character.ability) { ability in
+                                        VStack {
+                                            Text(ability.skillName)
+                                                .font(.footnote)
+                                                .foregroundStyle(.black)
+                                            HStack {
+                                                ForEach(0..<ability.boxAmt, id:\.self) { _ in
+                                                    AbilityBoxView()
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                                 FollowerCardView().padding(.trailing)
