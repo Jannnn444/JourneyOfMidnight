@@ -46,6 +46,12 @@ struct Ability: Identifiable {
     var id = UUID()
     var skillName: String
     var boxAmt: Int
+    var skillType: SkillType
 }
 
+enum SkillType {
+    case atack
+    case heal
+    case defense
+}
 
