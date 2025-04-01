@@ -34,7 +34,7 @@ struct Character: Identifiable {
     var id = UUID()
     var name: String
     var type: CharacterType
-    var ability: Ability
+    var ability: [Ability]
 }
 
 enum CharacterType {

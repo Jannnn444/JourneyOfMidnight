@@ -34,7 +34,7 @@ struct BoardView: View {
                         if character.type == .hero {
                             VStack{
                                 HStack{
-                                    ForEach(0..<character.ability.boxAmt, id: \.self) { _ in
+                                    ForEach(0..<character.ability.count, id: \.self) { _ in
                                         AbilityBoxView()
                                     }
                                 }
@@ -45,11 +45,10 @@ struct BoardView: View {
                         } else {
                             VStack{
                                 HStack{
-                                    ForEach(0..<character.ability.boxAmt, id: \.self) { _ in
+                                    ForEach(0..<character.ability.count, id: \.self) { _ in
                                         AbilityBoxView()
                                     }
                                 }
-//                              Text("\(character.ability.skillName)")
                                 FollowerCardView().padding(.trailing)
 //                              Text("Follower \(character.name)")
                             }
