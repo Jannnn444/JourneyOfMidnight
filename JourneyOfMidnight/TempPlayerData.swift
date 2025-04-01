@@ -21,15 +21,15 @@ var tempPlayer1 = [
         type: .hero,
         ability:[
             Ability(skillName: "Sk1", boxAmt: 1, skillType: .atack),
-            Ability(skillName: "Sk2", boxAmt: 1, skillType: .atack),
-            Ability(skillName: "Sk3", boxAmt: 1, skillType: .atack)]
+            Ability(skillName: "Sk2", boxAmt: 1, skillType: .defense),
+            Ability(skillName: "Sk3", boxAmt: 1, skillType: .heal)]
     ),
     Character(
         name: "WolfGuardiance",
         type: .follower,
         ability:[
             Ability(skillName: "Skill1", boxAmt: 1, skillType: .atack),
-            Ability(skillName: "Skill2", boxAmt: 1, skillType: .atack)]
+            Ability(skillName: "Skill2", boxAmt: 1, skillType: .defense)]
     ),
 ]
 var tempPlayer2 = [
@@ -44,7 +44,7 @@ var tempPlayer2 = [
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "Skill1", boxAmt: 1, skillType: .atack),
+            Ability(skillName: "Skill1", boxAmt: 1, skillType: .heal),
             Ability(skillName: "Skill2", boxAmt: 1, skillType: .atack)]
     ),
     Character(
@@ -52,7 +52,7 @@ var tempPlayer2 = [
         type: .hero,
         ability:[
             Ability(skillName: "Sk1", boxAmt: 1, skillType: .atack),
-            Ability(skillName: "Sk2", boxAmt: 1, skillType: .atack),
+            Ability(skillName: "Sk2", boxAmt: 1, skillType: .heal),
             Ability(skillName: "Sk3", boxAmt: 1, skillType: .atack)]
     ),
     Character(
@@ -60,14 +60,14 @@ var tempPlayer2 = [
         type: .follower,
         ability:[
             Ability(skillName: "Skill1", boxAmt: 1, skillType: .atack),
-            Ability(skillName: "Skill2", boxAmt: 1, skillType: .atack)]
+            Ability(skillName: "Skill2", boxAmt: 1, skillType: .defense)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
             Ability(skillName: "Skill1", boxAmt: 1, skillType: .atack),
-            Ability(skillName: "Skill2", boxAmt: 1, skillType: .atack)]
+            Ability(skillName: "Skill2", boxAmt: 1, skillType: .heal)]
     ),
 ]
 
