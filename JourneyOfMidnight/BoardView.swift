@@ -57,9 +57,9 @@ struct BoardView: View {
                                                     }, label: {
                                                         AbilityBoxView(color: .yellow)
                                                     })
-                                                    .sheet(isPresented: $showNewView) {
-                                                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
-                                                    }
+//                                                    .sheet(isPresented: $showNewView) {
+//                                                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
+//                                                    }
                                                 }
                                             }
                                         }
@@ -89,9 +89,9 @@ struct BoardView: View {
                                                     }, label: {
                                                         AbilityBoxView(color: .blue)
                                                     })
-                                                    .sheet(isPresented: $showNewView) {
-                                                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
-                                                    }
+//                                                    .sheet(isPresented: $showNewView) {
+//                                                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
+//                                                    }
                                                 }
                                             }
                                         }
@@ -104,6 +104,33 @@ struct BoardView: View {
                     }
                 }
             }
+            if showNewView {
+                Color.black.opacity(0.4) // Blurry bkg
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        showNewView = false// tap outside to close
+                    }
+                ZStack{
+                    VStack {
+                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
+                        
+                        Button("Close") {
+                            showNewView = false
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.top, 10)
+                    }
+                    .frame(width: 300, height: 300)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
+                    .transition(.scale)
+                    .animation(.easeInOut, value: showNewView)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }
         }
+        
+            
     }
 }

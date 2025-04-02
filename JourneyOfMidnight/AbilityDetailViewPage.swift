@@ -14,27 +14,29 @@ struct AbilityDetailViewPage: View {
     var skillType: SkillType
     
     var body: some View {
-        VStack {
-            HStack{
-                VStack{
-                    Text("Hello! This is a new screen.")
-                        .font(.largeTitle)
-                        .padding()
-                    Text("\(skillName.capitalized)") // TBD: SkillName
-                        .font(.largeTitle)
-                        .padding()
-                    Text("\(skillType)") // TBD: SkillName                        
-                        .font(.title)
-                        .padding()
+        ZStack {
+            VStack {
+                HStack{
+                    VStack{
+                        Text("Hello! This is a new screen.")
+                            .font(.largeTitle)
+                            .padding()
+                        Text("\(skillName.capitalized)") // TBD: SkillName
+                            .font(.largeTitle)
+                            .padding()
+                        Text("\(skillType)") // TBD: SkillName                        
+                            .font(.title)
+                            .padding()
+                    }
                 }
+                Button("Dismiss") {
+                    dismiss() // Call dismiss to close the sheet
+                }
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
-            Button("Dismiss") {
-                dismiss() // Call dismiss to close the sheet
-            }
-            .padding()
-            .background(Color.red)
-            .foregroundColor(.white)
-            .cornerRadius(10)
         }
     }
 }
