@@ -12,6 +12,7 @@ struct AbilityDetailViewPage: View {
     @Environment(\.dismiss) var dismiss // Add dismiss environment variable
     var skillName: String
     var skillType: SkillType
+    @Binding var showNewView: Bool //Usinf binding to modify state in parent view
     
     var body: some View {
         ZStack {
@@ -24,13 +25,14 @@ struct AbilityDetailViewPage: View {
                         Text("\(skillName.capitalized)") // TBD: SkillName
                             .font(.largeTitle)
                             .padding()
-                        Text("\(skillType)") // TBD: SkillName                        
+                        Text("\(skillType)") // TBD: SkillName
                             .font(.title)
                             .padding()
                     }
                 }
                 Button("Dismiss") {
                     dismiss() // Call dismiss to close the sheet
+                    showNewView = false // Correctly updates the parent state
                 }
                 .padding()
                 .background(Color.red)
