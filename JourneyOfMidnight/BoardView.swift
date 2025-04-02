@@ -43,7 +43,7 @@ struct BoardView: View {
                                             HStack {
                                             // MARK: Display AbilityBox
                                                 ForEach(0..<ability.boxAmt, id: \.self) { _ in
-                                                    AbilityBoxView()
+                                                    AbilityBoxView(color: .yellow)
                                                 }
                                             }
                                         }
@@ -62,7 +62,7 @@ struct BoardView: View {
                                                 .foregroundStyle(.black)
                                             HStack {
                                                 ForEach(0..<ability.boxAmt, id:\.self) { _ in
-                                                    AbilityBoxView()
+                                                    AbilityBoxView(color: .blue)
                                                 }
                                             }
                                         }

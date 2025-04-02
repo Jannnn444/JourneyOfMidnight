@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AbilityBoxView: View {
     @ObservedObject var cardmanager = CardManager.shared
-    var mycolor: String = "yellow"
+    var color: Color
     
     var body: some View {
         ZStack{
@@ -19,13 +19,10 @@ struct AbilityBoxView: View {
             }, label: {
                 Rectangle()
                     .frame(width: cardmanager.abilityBoxWidth,height: cardmanager.abilityBoxHeight)
-                    .foregroundColor(Color(.yellow))
+                    .foregroundColor(color)
                     .cornerRadius(30)
             })
         }
     }
 }
 
-#Preview {
-    AbilityBoxView(cardmanager: CardManager.shared)
-}
