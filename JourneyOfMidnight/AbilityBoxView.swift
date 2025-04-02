@@ -26,35 +26,7 @@ struct AbilityBoxView: View {
             })
         }
         .sheet(isPresented: $showNewView) {
-            NewView()
+            AbilityDetailViewPage()
         }
     }
 }
-import SwiftUI
-
-struct NewView: View {
-    @Environment(\.dismiss) var dismiss // Add dismiss environment variable
-    
-    var body: some View {
-        VStack {
-            Text("Hello! This is a new screen.")
-                .font(.largeTitle)
-                .padding()
-            
-            Button("Dismiss") {
-                dismiss() // Call dismiss to close the sheet
-            }
-            .padding()
-            .background(Color.red)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-        }
-    }
-}
-
-
-
-
-
-
-
