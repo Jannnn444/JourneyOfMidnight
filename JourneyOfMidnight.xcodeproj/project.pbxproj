@@ -73,8 +73,8 @@
 				546DD1CC2D8EEAF700FAD49B /* BoardView.swift */,
 				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
 				546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */,
-				1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */,
 				1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */,
+				1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */,
 				546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */,
 			);
 			path = JourneyOfMidnight;

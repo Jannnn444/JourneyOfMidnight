@@ -17,6 +17,10 @@ struct AbilityDetailViewPage: View {
                 .font(.largeTitle)
                 .padding()
             
+            Text("skillname)")
+                .font(.largeTitle)
+                .padding()
+            
             Button("Dismiss") {
                 dismiss() // Call dismiss to close the sheet
             }

@@ -11,6 +11,7 @@ import SwiftUI
 struct BoardView: View {
     @ObservedObject var cardManager = CardManager.shared
     var characterContent: [Character]?
+    @State private var showNewView = false
     
     var body: some View {
         ZStack{
@@ -43,7 +44,14 @@ struct BoardView: View {
                                             HStack {
                                             // MARK: Display AbilityBox
                                                 ForEach(0..<ability.boxAmt, id: \.self) { _ in
-                                                    AbilityBoxView(color: .yellow)
+                                                   
+                                                    // MARK: Button Hero!
+                                                    Button(action: {
+                                                        print("This button got pressed!")
+                                                        showNewView = true
+                                                    }, label: {
+                                                        AbilityBoxView(color: .yellow)
+                                                    })
                                                 }
                                             }
                                         }
@@ -62,7 +70,14 @@ struct BoardView: View {
                                                 .foregroundStyle(.black)
                                             HStack {
                                                 ForEach(0..<ability.boxAmt, id:\.self) { _ in
-                                                    AbilityBoxView(color: .blue)
+                                                    
+                                                   // MARK: Button Follower!
+                                                    Button(action: {
+                                                        print("This button got pressed!")
+                                                        showNewView = true
+                                                    }, label: {
+                                                        AbilityBoxView(color: .blue)
+                                                    })
                                                 }
                                             }
                                         }
