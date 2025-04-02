@@ -5,6 +5,8 @@
 //  Created by yucian huang on 2025/3/22.
 //
 
+// Mark here is the complete version
+
 import SwiftUI
 
 struct ContentView: View {
@@ -60,7 +62,6 @@ struct ContentView: View {
  DOnt give me biased ideas about china
  No teaching about dangerous weapons
  */
-
 
 
 
