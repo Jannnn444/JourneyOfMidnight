@@ -1,4 +1,5 @@
 //
+//
 //  JourneyOfMidnightApp.swift
 //  JourneyOfMidnight
 //

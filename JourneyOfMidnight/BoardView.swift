@@ -12,6 +12,7 @@ struct BoardView: View {
     @ObservedObject var cardManager = CardManager.shared
     var characterContent: [Character]?
     @State private var showNewView = false
+    @State private var skillName: String = ""
     
     var body: some View {
         ZStack{
@@ -48,12 +49,13 @@ struct BoardView: View {
                                                     // MARK: Button Hero!
                                                     Button(action: {
                                                         print("This button got pressed!")
+                                                        skillName = ability.skillName
                                                         showNewView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .yellow)
                                                     })
                                                     .sheet(isPresented: $showNewView) {
-                                                        AbilityDetailViewPage(skillName: ability.skillName, skillType: ability.skillType)
+                                                        AbilityDetailViewPage(skillName: skillName, skillType: ability.skillType)
                                                     }
                                                 }
                                             }
@@ -77,12 +79,13 @@ struct BoardView: View {
                                                     // MARK: Button Follower!
                                                     Button(action: {
                                                         print("This button got pressed!")
+                                                        skillName = ability.skillName
                                                         showNewView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .blue)
                                                     })
                                                     .sheet(isPresented: $showNewView) {
-                                                        AbilityDetailViewPage(skillName: ability.skillName, skillType: ability.skillType)
+                                                        AbilityDetailViewPage(skillName: skillName, skillType: ability.skillType)
                                                     }
                                                 }
                                             }
