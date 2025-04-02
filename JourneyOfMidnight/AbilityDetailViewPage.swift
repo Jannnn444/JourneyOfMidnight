@@ -23,7 +23,7 @@ struct AbilityDetailViewPage: View {
                     Text("\(skillName.capitalized)") // TBD: SkillName
                         .font(.largeTitle)
                         .padding()
-                    Text("\(skillType)") // TBD: SkillName
+                    Text("\(skillType)") // TBD: SkillName                        
                         .font(.title)
                         .padding()
                 }

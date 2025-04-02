@@ -30,7 +30,7 @@ struct ContentView: View {
          */
         
         Text("Journey of midnight")
-            .foregroundStyle(.lightBlue)
+            .foregroundStyle(.blue)
         
         VStack {
             Spacer()
