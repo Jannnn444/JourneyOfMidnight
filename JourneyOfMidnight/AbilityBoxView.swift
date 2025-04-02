@@ -30,19 +30,28 @@ struct AbilityBoxView: View {
         }
     }
 }
+import SwiftUI
 
 struct NewView: View {
+    @Environment(\.dismiss) var dismiss // Add dismiss environment variable
+    
     var body: some View {
         VStack {
             Text("Hello! This is a new screen.")
                 .font(.largeTitle)
                 .padding()
+            
             Button("Dismiss") {
-                // Here will be handle automatically
+                dismiss() // Call dismiss to close the sheet
             }
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(10)
         }
     }
 }
+
 
 
 
