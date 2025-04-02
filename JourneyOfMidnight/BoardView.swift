@@ -53,7 +53,7 @@ struct BoardView: View {
                                                         AbilityBoxView(color: .yellow)
                                                     })
                                                     .sheet(isPresented: $showNewView) {
-                                                        AbilityDetailViewPage()
+                                                        AbilityDetailViewPage(skillName: ability.skillName, skillType: ability.skillType)
                                                     }
                                                 }
                                             }
@@ -82,7 +82,7 @@ struct BoardView: View {
                                                         AbilityBoxView(color: .blue)
                                                     })
                                                     .sheet(isPresented: $showNewView) {
-                                                        AbilityDetailViewPage()
+                                                        AbilityDetailViewPage(skillName: ability.skillName, skillType: ability.skillType)
                                                     }
                                                 }
                                             }

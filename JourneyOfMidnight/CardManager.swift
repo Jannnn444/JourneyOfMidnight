@@ -50,7 +50,7 @@ struct Ability: Identifiable {
 }
 
 enum SkillType {
-    case atack
+    case attack
     case heal
     case defense
 }

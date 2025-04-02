@@ -10,17 +10,24 @@ import SwiftUI
 
 struct AbilityDetailViewPage: View {
     @Environment(\.dismiss) var dismiss // Add dismiss environment variable
+    var skillName: String
+    var skillType: SkillType
     
     var body: some View {
         VStack {
-            Text("Hello! This is a new screen.")
-                .font(.largeTitle)
-                .padding()
-            
-            Text("") // TBD: SkillName
-                .font(.largeTitle)
-                .padding()
-            
+            HStack{
+                VStack{
+                    Text("Hello! This is a new screen.")
+                        .font(.largeTitle)
+                        .padding()
+                    Text("\(skillName.capitalized)") // TBD: SkillName
+                        .font(.largeTitle)
+                        .padding()
+                    Text("\(skillType)") // TBD: SkillName
+                        .font(.title)
+                        .padding()
+                }
+            }
             Button("Dismiss") {
                 dismiss() // Call dismiss to close the sheet
             }
