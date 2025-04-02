@@ -10,11 +10,19 @@ import SwiftUI
 
 struct AbilityBoxView: View {
     @ObservedObject var cardmanager = CardManager.shared
+    var mycolor: String = "yellow"
+    
     var body: some View {
-        Rectangle()
-            .frame(width: cardmanager.abilityBoxWidth,height: cardmanager.abilityBoxHeight)
-            .foregroundColor(.yellow)
-            .cornerRadius(30)
+        ZStack{
+            Button(action: {
+                print("This button got pressed!")
+            }, label: {
+                Rectangle()
+                    .frame(width: cardmanager.abilityBoxWidth,height: cardmanager.abilityBoxHeight)
+                    .foregroundColor(Color(.yellow))
+                    .cornerRadius(30)
+            })
+        }
     }
 }
 
