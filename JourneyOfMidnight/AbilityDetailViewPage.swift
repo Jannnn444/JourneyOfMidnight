@@ -17,7 +17,7 @@ struct AbilityDetailViewPage: View {
                 .font(.largeTitle)
                 .padding()
             
-            Text("skillname)")
+            Text("") // TBD: SkillName
                 .font(.largeTitle)
                 .padding()
             

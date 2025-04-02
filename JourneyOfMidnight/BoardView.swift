@@ -52,6 +52,9 @@ struct BoardView: View {
                                                     }, label: {
                                                         AbilityBoxView(color: .yellow)
                                                     })
+                                                    .sheet(isPresented: $showNewView) {
+                                                        AbilityDetailViewPage()
+                                                    }
                                                 }
                                             }
                                         }
@@ -71,13 +74,16 @@ struct BoardView: View {
                                             HStack {
                                                 ForEach(0..<ability.boxAmt, id:\.self) { _ in
                                                     
-                                                   // MARK: Button Follower!
+                                                    // MARK: Button Follower!
                                                     Button(action: {
                                                         print("This button got pressed!")
                                                         showNewView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .blue)
                                                     })
+                                                    .sheet(isPresented: $showNewView) {
+                                                        AbilityDetailViewPage()
+                                                    }
                                                 }
                                             }
                                         }
