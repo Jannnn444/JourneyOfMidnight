@@ -10,7 +10,8 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    @ObservedObject var cardmanager = CardManager.shared
+    
     var body: some View {
         // MARK: Board Height Calculate
         /*
@@ -31,15 +32,49 @@ struct ContentView: View {
         
         Text("Journey of midnight")
             .foregroundStyle(.blue)
-        
-        VStack {
-            Spacer()
-            BoardView(characterContent: tempPlayer1)
-            Spacer()
-            BoardView(characterContent: tempPlayer2)
-            Spacer()
-        }
-        .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
+        ZStack{
+            VStack {
+                Spacer()
+                BoardView(characterContent: tempPlayer1)
+                Spacer()
+                BoardView(characterContent: tempPlayer2)
+                Spacer()
+            }
+            .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
+        }.overlay(
+            Group {
+                if cardmanager.showNewView {
+                    ZStack {
+                        // ** Blurry background **
+                        Color.black.opacity(0.3)
+                            .cornerRadius(30)
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture {
+                                cardmanager.showNewView = false // Tap outside to close
+                            }
+
+                        // ** Detail View **
+                        VStack {
+                            AbilityDetailViewPage(skillName: cardmanager.skillName, skillType: cardmanager.skillType)
+//                            Button("Close") {
+//                                cardmanager.showNewView = false
+//                            }
+//                            .buttonStyle(.borderedProminent)
+//                            .padding(.top, 10)
+                        }
+                        .frame(width: 500, height: 300)
+                        .background(Color.white)
+                        .cornerRadius(30)
+                        .shadow(radius: 10)
+                        .transition(.scale)
+                        .animation(.easeInOut, value: cardmanager.showNewView)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) // **Full screen overlay**
+                }
+            }
+        )
+
+            
     }
 }
 

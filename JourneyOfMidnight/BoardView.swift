@@ -11,9 +11,6 @@ import SwiftUI
 struct BoardView: View {
     @ObservedObject var cardManager = CardManager.shared
     var characterContent: [Character]?
-    @State private var showNewView = false
-    @State private var skillName: String = ""
-    @State private var skillType: SkillType = .defense
     
     var body: some View {
         ZStack{
@@ -50,10 +47,10 @@ struct BoardView: View {
                                                     // MARK: Button Hero!
                                                     Button(action: {
                                                         print("This button got pressed!")
-                                                        skillName = ability.skillName
-                                                        skillType = ability.skillType
-                                                        print("Card Context: \(skillName), \(skillType)")
-                                                        showNewView = true
+                                                        cardManager.skillName = ability.skillName
+                                                        cardManager.skillType = ability.skillType
+                                                        print("Card Context: \(cardManager.skillName), \(cardManager.skillType)")
+                                                        cardManager.showNewView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .yellow)
                                                     })
@@ -82,10 +79,10 @@ struct BoardView: View {
                                                     // MARK: Button Follower!
                                                     Button(action: {
                                                         print("This button got pressed!")
-                                                        skillName = ability.skillName
-                                                        skillType = ability.skillType
-                                                        print("Card Context: \(skillName), \(skillType)")
-                                                        showNewView = true
+                                                        cardManager.skillName = ability.skillName
+                                                        cardManager.skillType = ability.skillType
+                                                        print("Card Context: \(cardManager.skillName), \(cardManager.skillType)")
+                                                        cardManager.showNewView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .blue)
                                                     })
@@ -106,39 +103,5 @@ struct BoardView: View {
             }
             
         }
-        .overlay(
-            Group {
-                if showNewView {
-                    ZStack {
-                        // ** Blurry background **
-                        Color.black.opacity(0.4)
-                            .edgesIgnoringSafeArea(.all)
-                            .onTapGesture {
-                                showNewView = false // Tap outside to close
-                            }
-
-                        // ** Detail View **
-                        VStack {
-                            AbilityDetailViewPage(skillName: skillName, skillType: skillType, showNewView: $showNewView)
-
-                            Button("Close") {
-                                showNewView = false
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .padding(.top, 10)
-                        }
-                        .frame(width: 300, height: 300)
-                        .background(Color.white)
-                        .cornerRadius(20)
-                        .shadow(radius: 10)
-                        .transition(.scale)
-                        .animation(.easeInOut, value: showNewView)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) // **Full screen overlay**
-                }
-            }
-        )
-
-            
     }
 }

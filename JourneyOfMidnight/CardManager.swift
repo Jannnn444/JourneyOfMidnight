@@ -10,6 +10,10 @@ import Foundation
 class CardManager: ObservableObject {   //put static let shared, and makke it observable object
     static let shared = CardManager()
     
+    @Published var skillName: String = ""
+    @Published var skillType: SkillType = .defense
+    @Published var showNewView: Bool = false
+    
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 600
     let boardHeight: CGFloat = 150
