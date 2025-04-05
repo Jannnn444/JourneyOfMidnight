@@ -21,9 +21,6 @@ struct AbilityDetailViewPage: View {
             VStack {
                 HStack{
                     VStack{
-                        Text("Hello! This is a new screen.")
-                            .font(.largeTitle)
-                            .padding()
                         Text("\(skillName.capitalized)") // TBD: SkillName
                             .font(.largeTitle)
                             .padding()

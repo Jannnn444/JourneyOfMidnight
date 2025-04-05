@@ -12,24 +12,24 @@ var tempPlayer1 = [
         name: "WolfGuardiance",
         type: .follower,
         ability:[
-            Ability(skillName: "TitanS", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .defense)
+            Ability(skillName: "TitanS", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .Defense)
         ]
     ),
     Character(
         name: "KiityEnemy",
         type: .hero,
         ability:[
-            Ability(skillName: "Angl", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Holy", boxAmt: 1, skillType: .defense),
-            Ability(skillName: "Freez", boxAmt: 1, skillType: .heal)]
+            Ability(skillName: "Angl", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Holy", boxAmt: 1, skillType: .Defense),
+            Ability(skillName: "Freez", boxAmt: 1, skillType: .Heal)]
     ),
     Character(
         name: "WolfGuardiance",
         type: .follower,
         ability:[
-            Ability(skillName: "Titan S", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .defense)]
+            Ability(skillName: "Titan S", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .Defense)]
     ),
 ]
 var tempPlayer2 = [
@@ -37,37 +37,37 @@ var tempPlayer2 = [
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "TitanS", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .attack)]
+            Ability(skillName: "TitanS", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .Attack)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "TitanS", boxAmt: 1, skillType: .heal),
-            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .attack)]
+            Ability(skillName: "TitanS", boxAmt: 1, skillType: .Heal),
+            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .Attack)]
     ),
     Character(
         name: "WolfCommander",
         type: .hero,
         ability:[
-            Ability(skillName: "Angl", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Meow", boxAmt: 1, skillType: .heal),
-            Ability(skillName: "Thundr", boxAmt: 1, skillType: .attack)]
+            Ability(skillName: "Angl", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Meow", boxAmt: 1, skillType: .Heal),
+            Ability(skillName: "Thundr", boxAmt: 1, skillType: .Attack)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "TitanS", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .defense)]
+            Ability(skillName: "TitanS", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .Defense)]
     ),
     Character(
         name: "Meowster",
         type: .follower,
         ability:[
-            Ability(skillName: "TitanS", boxAmt: 1, skillType: .attack),
-            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .heal)]
+            Ability(skillName: "TitanS", boxAmt: 1, skillType: .Attack),
+            Ability(skillName: "Gnslngr", boxAmt: 1, skillType: .Heal)]
     ),
 ]
 

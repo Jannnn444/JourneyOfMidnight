@@ -11,7 +11,7 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     static let shared = CardManager()
     
     @Published var skillName: String = ""
-    @Published var skillType: SkillType = .defense
+    @Published var skillType: SkillType = .Defense
     @Published var showNewView: Bool = false
     
     // MARK: 📦 Board Width/Height
@@ -54,8 +54,8 @@ struct Ability: Identifiable {
 }
 
 enum SkillType {
-    case attack
-    case heal
-    case defense
+    case Attack
+    case Heal
+    case Defense
 }
 

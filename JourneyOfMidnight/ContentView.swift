@@ -56,11 +56,6 @@ struct ContentView: View {
                         // ** Detail View **
                         VStack {
                             AbilityDetailViewPage(skillName: cardmanager.skillName, skillType: cardmanager.skillType)
-//                            Button("Close") {
-//                                cardmanager.showNewView = false
-//                            }
-//                            .buttonStyle(.borderedProminent)
-//                            .padding(.top, 10)
                         }
                         .frame(width: 500, height: 300)
                         .background(Color.white)
