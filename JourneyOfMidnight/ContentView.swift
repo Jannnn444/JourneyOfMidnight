@@ -31,6 +31,7 @@ struct ContentView: View {
          */
         
         Text("Journey of midnight")
+            .fontDesign(.monospaced)
             .foregroundStyle(.blue)
         ZStack{
             VStack {

@@ -53,7 +53,7 @@ struct Ability: Identifiable {
     var skillType: SkillType
 }
 
-enum SkillType {
+enum SkillType: String {
     case Attack
     case Heal
     case Defense

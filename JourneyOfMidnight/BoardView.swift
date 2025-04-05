@@ -38,6 +38,7 @@ struct BoardView: View {
                                         VStack{
                                             // MARK: Display skill name
                                             Text(ability.skillName)
+                                                .fontDesign(.monospaced)
                                                 .font(.footnote)
                                                 .foregroundStyle(.black)
                                             HStack {
@@ -68,6 +69,7 @@ struct BoardView: View {
                                     ForEach(character.ability) { ability in
                                         VStack {
                                             Text(ability.skillName)
+                                                .fontDesign(.monospaced)
                                                 .font(.footnote)
                                                 .foregroundStyle(.black)
                                             HStack {

@@ -53,7 +53,7 @@ var tempPlayer2 = [
         ability:[
             Ability(skillName: "Angl", boxAmt: 1, skillType: .Attack),
             Ability(skillName: "Meow", boxAmt: 1, skillType: .Heal),
-            Ability(skillName: "Thundr", boxAmt: 1, skillType: .Attack)]
+            Ability(skillName: "🖤", boxAmt: 1, skillType: .Attack)]
     ),
     Character(
         name: "Meowster",
