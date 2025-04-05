@@ -18,15 +18,6 @@ struct AbilityBoxView: View {
                 .frame(width: cardmanager.abilityBoxWidth,height: cardmanager.abilityBoxHeight)
                 .foregroundColor(color)
                 .cornerRadius(30)
-//            Button(action: {
-//                print("This button got pressed!")
-//                showNewView = true
-//            }, label: {
-//                
-//            })
         }
-//        .sheet(isPresented: $showNewView) {
-//            AbilityDetailViewPage()
-//        }
     }
 }

@@ -54,9 +54,6 @@ struct BoardView: View {
                                                     }, label: {
                                                         AbilityBoxView(color: .yellow)
                                                     })
-//                                                    .sheet(isPresented: $showNewView) {
-//                                                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
-//                                                    }
                                                 }
                                             }
                                         }
@@ -86,9 +83,6 @@ struct BoardView: View {
                                                     }, label: {
                                                         AbilityBoxView(color: .blue)
                                                     })
-//                                                    .sheet(isPresented: $showNewView) {
-//                                                        AbilityDetailViewPage(skillName: skillName, skillType: skillType)
-//                                                    }
                                                 }
                                             }
                                         }
