@@ -17,7 +17,7 @@ struct AbilityBoxView: View {
             Rectangle()
                 .frame(width: cardmanager.abilityBoxWidth,height: cardmanager.abilityBoxHeight)
                 .foregroundColor(color)
-                .cornerRadius(30)
+                .cornerRadius(20)
         }
     }
 }

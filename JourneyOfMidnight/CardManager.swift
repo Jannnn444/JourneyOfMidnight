@@ -15,7 +15,7 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     @Published var showNewView: Bool = false
     
     // MARK: 📦 Board Width/Height
-    let boardWidth: CGFloat = 600
+    let boardWidth: CGFloat = 650
     let boardHeight: CGFloat = 150
     
     // MARK: 🃏 Card Width/Height

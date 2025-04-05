@@ -15,7 +15,7 @@ struct HeroCardView: View {
         Rectangle()
             .frame(width: cardManager.heroCardWidth, height: cardManager.heroCarHeight)
             .foregroundColor(.cyan)
-            .cornerRadius(30)
+            .cornerRadius(20)
     }
 }
 

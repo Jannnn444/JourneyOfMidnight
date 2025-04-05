@@ -18,7 +18,7 @@ struct BoardView: View {
             Rectangle()
                 .frame(width: cardManager.boardWidth, height: cardManager.boardHeight)
                 .foregroundColor(.lightBlue)
-                .cornerRadius(30)
+                .cornerRadius(20)
             // MARK: Ｗhen we use this BoardView object >>> Shows view depends on the CharacterContent
             
             /*

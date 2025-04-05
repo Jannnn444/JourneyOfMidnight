@@ -15,6 +15,6 @@ struct FollowerCardView: View {
         Rectangle()
             .frame(width: cardManager.followerCardWidth, height: cardManager.followerCardHeight)
             .foregroundColor(.cyan)
-            .cornerRadius(30)
+            .cornerRadius(20)
     }
 }

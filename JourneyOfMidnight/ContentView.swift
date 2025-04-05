@@ -48,7 +48,7 @@ struct ContentView: View {
                     ZStack {
                         // ** Blurry background **
                         Color.black.opacity(0.3)
-                            .cornerRadius(30)
+                            .cornerRadius(20)
                             .edgesIgnoringSafeArea(.all)
                             .onTapGesture {
                                 cardmanager.showNewView = false // Tap outside to close
@@ -60,7 +60,7 @@ struct ContentView: View {
                         }
                         .frame(width: 500, height: 300)
                         .background(Color.white)
-                        .cornerRadius(30)
+                        .cornerRadius(20)
                         .shadow(radius: 10)
                         .transition(.scale)
                         .animation(.easeInOut, value: cardmanager.showNewView)

@@ -38,7 +38,7 @@ struct AbilityDetailViewPage: View {
                 .padding()
                 .background(Color.red)
                 .foregroundColor(.white)
-                .cornerRadius(10)
+                .cornerRadius(20)
             }
         }
     }
