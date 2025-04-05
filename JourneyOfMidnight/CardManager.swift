@@ -19,11 +19,11 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     let boardHeight: CGFloat = 150
     
     // MARK: 🃏 Card Width/Height
-    let heroCardWidth: CGFloat = 120
+    let heroCardWidth: CGFloat = 160
     let heroCarHeight: CGFloat = 100
     
     // MARK: 🦸🏻 Hero Width/ Height
-    let followerCardWidth: CGFloat = 80
+    let followerCardWidth: CGFloat = 100
     let followerCardHeight: CGFloat = 100
     
     // MARK: 🎲 Ability Box Width/Height

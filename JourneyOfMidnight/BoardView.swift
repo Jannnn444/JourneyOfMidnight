@@ -37,10 +37,10 @@ struct BoardView: View {
                                     ForEach(character.ability) { ability in
                                         VStack{
                                             // MARK: Display skill name
-                                            Text(ability.skillName)
-                                                .fontDesign(.monospaced)
-                                                .font(.footnote)
-                                                .foregroundStyle(.black)
+//                                            Text(ability.skillName)
+//                                                .fontDesign(.monospaced)
+//                                                .font(.footnote)
+//                                                .foregroundStyle(.black)
                                             HStack {
                                             // MARK: Display AbilityBox
                                                 ForEach(0..<ability.boxAmt, id: \.self) { _ in
@@ -53,14 +53,14 @@ struct BoardView: View {
                                                         print("Card Context: \(cardManager.skillName), \(cardManager.skillType)")
                                                         cardManager.showNewView = true
                                                     }, label: {
-                                                        AbilityBoxView(color: .yellow)
+                                                        AbilityBoxView(color: .yellow).padding(.trailing, 2)
                                                     })
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                HeroCardView()
+                                HeroCardView().padding(2)
 //                              Text("Hero \(character.name)")
                             }
                         } else {
@@ -68,10 +68,10 @@ struct BoardView: View {
                                 HStack{
                                     ForEach(character.ability) { ability in
                                         VStack {
-                                            Text(ability.skillName)
-                                                .fontDesign(.monospaced)
-                                                .font(.footnote)
-                                                .foregroundStyle(.black)
+//                                            Text(ability.skillName)
+//                                                .fontDesign(.monospaced)
+//                                                .font(.footnote)
+//                                                .foregroundStyle(.black)
                                             HStack {
                                                 ForEach(0..<ability.boxAmt, id:\.self) { _ in
                                                     
@@ -83,14 +83,14 @@ struct BoardView: View {
                                                         print("Card Context: \(cardManager.skillName), \(cardManager.skillType)")
                                                         cardManager.showNewView = true
                                                     }, label: {
-                                                        AbilityBoxView(color: .blue)
+                                                        AbilityBoxView(color: .blue).padding(.trailing, 2)
                                                     })
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                FollowerCardView().padding(.trailing)
+                                FollowerCardView().padding(2)
 //                              Text("Follower \(character.name)")
                             }
                         }
