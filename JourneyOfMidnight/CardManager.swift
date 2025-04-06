@@ -59,3 +59,56 @@ enum SkillType: String {
     case Defense
 }
 
+// MARK: - Hero
+
+struct HeroClass {
+    var name: HeroClassName
+    var level: Int
+}
+
+enum HeroClassName: String {
+    case fighter = "Fighter"
+    case wizard = "wizard"
+    case rogue = "rogue"
+    case priest = "priest"
+    case duelist = "duelist"
+    case templar = "templar"
+}
+
+struct Stats {
+    var health: Int  // max health for each fight
+    var endurance: Int // total health for the entire night
+}
+
+// MARK: - Attributes
+struct Attributes {
+    var Strength: Int
+    var Intelligence: Int
+    var Wisdom: Int
+    var Agility: Int
+    var Vitality: Int
+    var Faith: Int
+    var Charisma: Int
+}
+
+// MARK: - Item
+struct Item: Identifiable {
+    var id = UUID()
+    var name: String
+}
+
+// MARK: - Skill
+struct Skill: Identifiable {
+    var id = UUID()
+    var name: String
+}
+
+// MARK: - Hero
+struct Hero {
+    var `class`: HeroClass
+    var attributes: Attributes
+    var skills: [Skill]
+    var items: [Item]
+    var stats: Stats
+}
+
