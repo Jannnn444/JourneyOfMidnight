@@ -10,7 +10,8 @@ import SwiftUI
 
 // Notes: Make this main view on main entry view!
 struct GameEntryView: View {
-    @State private var showCardView = false
+    @State private var showPersonalView = false
+    @State private var showBattleView = false
     
     var body: some View {
         VStack {
@@ -19,45 +20,44 @@ struct GameEntryView: View {
                 .fontDesign(.monospaced)
                 .bold()
             HStack {
-                // TBD: Make Rectangles Clickable Buttons
-                // MARK: 🃏MyCards
+                // MARK: - 🃏MyCards
                 Button(action: {
-                    // My Card page view / fight NPS view
-                    showCardView = true
+                    showPersonalView = true
                 }) {
                     ZStack {
                         Rectangle()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.pink)
+                            .cornerRadius(10)
                         Text("Cards")
                             .font(.title)
                             .bold()
                             .fontDesign(.monospaced)
                     }
                 }
-//              .sheet(isPresented: $showCardView ) {
-//                    ContentView()
-//              }
-                .fullScreenCover(isPresented: $showCardView) {
-                    ContentView()
+                .fullScreenCover(isPresented: $showPersonalView) {
+                    PersonalView()
                 }
                 
-                // MARK: ⚔️BattleField >>> Story / Player
+                // MARK: - ⚔️BattleField >>> Story / Player
                 Button(action: {
-                    // Battle View
-                }, label: {
+                    showBattleView = true
+                }) {
                     ZStack {
                         Rectangle()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.yellow)
+                            .cornerRadius(10)
                         Text("Battle")
                             .font(.title)
                             .bold()
                             .fontDesign(.monospaced)
                     }
-                })
+                }.fullScreenCover(isPresented: $showBattleView ) {
+                    BattleView()
+                }
                 
-                // MARK: ⚙️Settings
+                // MARK: - ⚙️Settings
                 Button(action: {
                     // Settings View
                 }, label: {
@@ -65,6 +65,7 @@ struct GameEntryView: View {
                         Rectangle()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.blue)
+                            .cornerRadius(10)
                         Text("Settings")
                             .font(.title)
                             .bold()

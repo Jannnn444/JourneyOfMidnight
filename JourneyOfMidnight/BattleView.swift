@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct BattleView: View {
     @ObservedObject var cardmanager = CardManager.shared
     @Environment(\.dismiss) var dismiss
     
@@ -91,7 +91,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    BattleView()
 }
 
 
