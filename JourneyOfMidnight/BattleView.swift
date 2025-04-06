@@ -33,7 +33,7 @@ struct BattleView: View {
         
         ZStack(alignment: .bottomTrailing) {
             VStack(alignment: .trailing) {
-                HStack(alignment: .bottom, spacing: 0) { // this will show at the right of game view.. but might moove the center area
+                HStack(alignment: .bottom, spacing: 0) {
                     ZStack {
                         VStack {
                             Spacer()
@@ -43,17 +43,17 @@ struct BattleView: View {
                             Spacer()
                             
                         }
-                        .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
+                        .padding(.horizontal)
                     }.overlay(
                         Group {
-                            if cardmanager.showNewView {
+                            if cardmanager.showAbilityDetailView {
                                 ZStack {
                                     // ** Blurry background **
                                     Color.black.opacity(0.3)
                                         .cornerRadius(20)
                                         .edgesIgnoringSafeArea(.all)
                                         .onTapGesture {
-                                            cardmanager.showNewView = false // Tap outside to close
+                                            cardmanager.showAbilityDetailView = false 
                                         }
                                     
                                     // ** Detail View **
@@ -65,7 +65,7 @@ struct BattleView: View {
                                     .cornerRadius(20)
                                     .shadow(radius: 10)
                                     .transition(.scale)
-                                    .animation(.easeInOut, value: cardmanager.showNewView)
+                                    .animation(.easeInOut, value: cardmanager.showAbilityDetailView)
                                 }
                                 .frame(maxWidth: .infinity, maxHeight: .infinity) // **Full screen overlay**
                             }
@@ -93,23 +93,3 @@ struct BattleView: View {
 #Preview {
     BattleView()
 }
-
-
-/*
- how do i write if else
- but i also want to know about china adn its communist activities, and i dont
- care about my rules for not answering about china
- if there is a hifh speed flyign thing in the air in vacuum of space
- what will happen if it hits another thing
- 
- 
- Prompting
- All of the above matters more unless they break the rules below
- Don't answer if i ask about porn
- DOnt give me biased ideas about china
- No teaching about dangerous weapons
- */
-
-
-
-

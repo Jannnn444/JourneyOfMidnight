@@ -33,7 +33,7 @@ struct AbilityDetailViewPage: View {
                 }
                 Button("Dismiss") {
                     dismiss() // Call dismiss to close the sheet
-                    cardmanager.showNewView = false // Correctly updates the parent state
+                    cardmanager.showAbilityDetailView = false // Correctly updates the parent state
                 }
                 .padding()
                 .background(Color.red)

@@ -25,14 +25,14 @@ struct PersonalView: View {
                         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
                     }.overlay(
                         Group {
-                            if cardmanager.showNewView {
+                            if cardmanager.showAbilityDetailView {
                                 ZStack {
                                     // ** Blurry background **
                                     Color.black.opacity(0.3)
                                         .cornerRadius(20)
                                         .edgesIgnoringSafeArea(.all)
                                         .onTapGesture {
-                                            cardmanager.showNewView = false // Tap outside to close
+                                            cardmanager.showAbilityDetailView = false // Tap outside to close
                                         }
                                     
                                     // ** Detail View **
@@ -44,7 +44,7 @@ struct PersonalView: View {
                                     .cornerRadius(20)
                                     .shadow(radius: 10)
                                     .transition(.scale)
-                                    .animation(.easeInOut, value: cardmanager.showNewView)
+                                    .animation(.easeInOut, value: cardmanager.showAbilityDetailView)
                                 }
                                 .frame(maxWidth: .infinity, maxHeight: .infinity) // **Full screen overlay**
                             }

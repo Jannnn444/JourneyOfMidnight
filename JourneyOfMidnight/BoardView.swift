@@ -51,7 +51,7 @@ struct BoardView: View {
                                                         cardManager.skillName = ability.skillName
                                                         cardManager.skillType = ability.skillType
                                                         print("Card Context: \(cardManager.skillName), \(cardManager.skillType)")
-                                                        cardManager.showNewView = true
+                                                        cardManager.showAbilityDetailView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .yellow).padding(.trailing, 2)
                                                     })
@@ -81,7 +81,7 @@ struct BoardView: View {
                                                         cardManager.skillName = ability.skillName
                                                         cardManager.skillType = ability.skillType
                                                         print("Card Context: \(cardManager.skillName), \(cardManager.skillType)")
-                                                        cardManager.showNewView = true
+                                                        cardManager.showAbilityDetailView = true
                                                     }, label: {
                                                         AbilityBoxView(color: .blue).padding(.trailing, 2)
                                                     })

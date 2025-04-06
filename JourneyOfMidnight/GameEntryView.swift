@@ -33,6 +33,7 @@ struct GameEntryView: View {
                             .font(.title)
                             .bold()
                             .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
                     }
                 }
                 .fullScreenCover(isPresented: $showPersonalView) {
@@ -52,6 +53,7 @@ struct GameEntryView: View {
                             .font(.title)
                             .bold()
                             .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
                     }
                 }.fullScreenCover(isPresented: $showBattleView ) {
                     BattleView()

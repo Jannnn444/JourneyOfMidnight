@@ -12,7 +12,7 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
     
     @Published var skillName: String = ""
     @Published var skillType: SkillType = .Defense
-    @Published var showNewView: Bool = false
+    @Published var showAbilityDetailView: Bool = false
 
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
