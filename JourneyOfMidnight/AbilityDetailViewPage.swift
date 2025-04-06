@@ -5,11 +5,9 @@
 //  Created by yucian huang on 2025/4/2.
 //
 
-import Foundation
 import SwiftUI
 
 struct AbilityDetailViewPage: View {
-    @Environment(\.dismiss) var dismiss // Add dismiss environment variable
     var skillName: String
     var skillType: SkillType
     @ObservedObject var cardmanager = CardManager.shared
@@ -31,14 +29,13 @@ struct AbilityDetailViewPage: View {
                             .padding()
                     }
                 }
-                Button("Dismiss") {
-                    dismiss() // Call dismiss to close the sheet
-                    cardmanager.showAbilityDetailView = false // Correctly updates the parent state
+                Button("Close") {
+                    cardmanager.showAbilityDetailView = false
                 }
                 .padding()
-                .background(Color.red)
+                .background(Color.secondary)
                 .foregroundColor(.white)
-                .cornerRadius(20)
+                .cornerRadius(10)
             }
         }
     }
