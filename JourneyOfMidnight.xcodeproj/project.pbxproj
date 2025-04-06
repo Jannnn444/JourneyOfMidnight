@@ -18,6 +18,7 @@
 		546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1CC2D8EEAF700FAD49B /* BoardView.swift */; };
 		546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */; };
 		546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */; };
+		546DD1D52DA2670700FAD49B /* GameEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1D42DA2670700FAD49B /* GameEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		546DD1CC2D8EEAF700FAD49B /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCardView.swift; sourceTree = "<group>"; };
 		546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDetailViewPage.swift; sourceTree = "<group>"; };
+		546DD1D42DA2670700FAD49B /* GameEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */,
 				1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */,
 				546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */,
+				546DD1D42DA2670700FAD49B /* GameEntryView.swift */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */,
 				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,
+				546DD1D52DA2670700FAD49B /* GameEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
