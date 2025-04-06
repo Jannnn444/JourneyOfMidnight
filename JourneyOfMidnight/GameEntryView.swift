@@ -19,17 +19,35 @@ struct GameEntryView: View {
             HStack {
                 // TBD: Make Rectangles Clickable Buttons
                 // MARK: 🃏MyCards
-                Rectangle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.pink)
+                ZStack {
+                    Rectangle()
+                        .frame(width: 200, height: 200)
+                        .foregroundColor(.pink)
+                    Text("Cards")
+                        .font(.title)
+                        .bold()
+                        .fontDesign(.monospaced)
+                }
                 // MARK: ⚔️BattleField >>> Story / Player
-                Rectangle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.yellow)
+                ZStack {
+                    Rectangle()
+                        .frame(width: 200, height: 200)
+                        .foregroundColor(.yellow)
+                    Text("Battle")
+                        .font(.title)
+                        .bold()
+                        .fontDesign(.monospaced)
+                }
                 // MARK: ⚙️Settings
-                Rectangle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.blue)
+                ZStack {
+                    Rectangle()
+                        .frame(width: 200, height: 200)
+                        .foregroundColor(.blue)
+                    Text("Settings")
+                        .font(.title)
+                        .bold()
+                        .fontDesign(.monospaced)
+                }
             }
         }
     }
