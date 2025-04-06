@@ -8,8 +8,10 @@
 import Foundation
 import SwiftUI
 
-// Notes: Make this main view on maion entry view!
+// Notes: Make this main view on main entry view!
 struct GameEntryView: View {
+    @State private var showCardView = false
+    
     var body: some View {
         VStack {
             Text("Entry View")
@@ -21,8 +23,8 @@ struct GameEntryView: View {
                 // MARK: 🃏MyCards
                 Button(action: {
                     // My Card page view / fight NPS view
-                    ContentView()
-                }, label: {
+                    showCardView = true
+                }) {
                     ZStack {
                         Rectangle()
                             .frame(width: 200, height: 200)
@@ -32,8 +34,14 @@ struct GameEntryView: View {
                             .bold()
                             .fontDesign(.monospaced)
                     }
-                })
-              
+                }
+//              .sheet(isPresented: $showCardView ) {
+//                    ContentView()
+//              }
+                .fullScreenCover(isPresented: $showCardView) {
+                    ContentView()
+                }
+                
                 // MARK: ⚔️BattleField >>> Story / Player
                 Button(action: {
                     // Battle View

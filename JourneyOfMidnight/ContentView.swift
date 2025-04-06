@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var cardmanager = CardManager.shared
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         // MARK: Board Height Calculate
@@ -20,7 +21,7 @@ struct ContentView: View {
          520/4 = 130 per follower Card Width
          card board including paddings >>> 750
          
-         heroCardWidth + maxNoOfFollowers * followersCardWidth + (maxNoOfFollowers+1) * padding 
+         heroCardWidth + maxNoOfFollowers * followersCardWidth + (maxNoOfFollowers+1) * padding
          = (totalWidthOfBoard - border/padding)
          
          1. get total width of board minus padding, thats your goal (e.g. 1980)
@@ -30,47 +31,62 @@ struct ContentView: View {
          5. Figure it all out with padding! (each of length needs to add some paddings)
          */
         
-        Text("Journey of midnight")
-            .fontDesign(.monospaced)
-            .foregroundStyle(.blue)
-        ZStack{
-            VStack {
-                Spacer()
-                BoardView(characterContent: tempPlayer1)
-                Spacer()
-                BoardView(characterContent: tempPlayer2)
-                Spacer()
-            }
-            .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
-        }.overlay(
-            Group {
-                if cardmanager.showNewView {
+        ZStack(alignment: .bottomTrailing) {
+            VStack(alignment: .trailing) {
+                HStack(alignment: .bottom, spacing: 0) { // this will show at the right of game view.. but might moove the center area
                     ZStack {
-                        // ** Blurry background **
-                        Color.black.opacity(0.3)
-                            .cornerRadius(20)
-                            .edgesIgnoringSafeArea(.all)
-                            .onTapGesture {
-                                cardmanager.showNewView = false // Tap outside to close
-                            }
-
-                        // ** Detail View **
                         VStack {
-                            AbilityDetailViewPage(skillName: cardmanager.skillName, skillType: cardmanager.skillType)
+                            Spacer()
+                            BoardView(characterContent: tempPlayer1)
+                            Spacer()
+                            BoardView(characterContent: tempPlayer2)
+                            Spacer()
+                            
                         }
-                        .frame(width: 500, height: 300)
-                        .background(Color.white)
-                        .cornerRadius(20)
-                        .shadow(radius: 10)
-                        .transition(.scale)
-                        .animation(.easeInOut, value: cardmanager.showNewView)
+                        .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
+                    }.overlay(
+                        Group {
+                            if cardmanager.showNewView {
+                                ZStack {
+                                    // ** Blurry background **
+                                    Color.black.opacity(0.3)
+                                        .cornerRadius(20)
+                                        .edgesIgnoringSafeArea(.all)
+                                        .onTapGesture {
+                                            cardmanager.showNewView = false // Tap outside to close
+                                        }
+                                    
+                                    // ** Detail View **
+                                    VStack {
+                                        AbilityDetailViewPage(skillName: cardmanager.skillName, skillType: cardmanager.skillType)
+                                    }
+                                    .frame(width: 500, height: 300)
+                                    .background(Color.white)
+                                    .cornerRadius(20)
+                                    .shadow(radius: 10)
+                                    .transition(.scale)
+                                    .animation(.easeInOut, value: cardmanager.showNewView)
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity) // **Full screen overlay**
+                            }
+                        }
+                    ) // Zstack
+                   
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Exit")
+                            .frame(width: 40, height: 10)
+                            .padding()
+                            .font(.footnote)
+                            .background(.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) // **Full screen overlay**
-                }
-            }
-        )
-
-            
+                } //HStack
+            } // VStack
+           
+        }
     }
 }
 
