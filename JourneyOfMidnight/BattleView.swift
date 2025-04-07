@@ -41,7 +41,7 @@ struct BattleView: View {
                             Spacer()
                             BoardView(characterContent: tempPlayer2)
                             Spacer()
-                            
+                            // Todo: Replace new CardBoardView() , BoardView now abandoned
                         }
                         .padding(.horizontal)
                     }.overlay(

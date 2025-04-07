@@ -34,6 +34,7 @@ class CardManager: ObservableObject {   //put static let shared, and makke it ob
 }
 
 // MARK: Build Character
+
 struct Character: Identifiable {
     var id = UUID()
     var name: String
@@ -60,7 +61,8 @@ enum SkillType: String {
 }
 
 // MARK: - Hero
-struct Hero {
+struct Hero: Identifiable {
+    var id = UUID()
     var heroClass: HeroClass
     var attributes: Attributes
     var skills: [Skill]
@@ -106,6 +108,3 @@ struct Stats {
     var health: Int  // max health for each fight
     var endurance: Int // total health for the entire night
 }
-
-
-

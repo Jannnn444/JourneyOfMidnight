@@ -36,11 +36,6 @@ struct BoardView: View {
                                 HStack{
                                     ForEach(character.ability) { ability in
                                         VStack{
-                                            // MARK: Display skill name
-//                                            Text(ability.skillName)
-//                                                .fontDesign(.monospaced)
-//                                                .font(.footnote)
-//                                                .foregroundStyle(.black)
                                             HStack {
                                             // MARK: Display AbilityBox
                                                 ForEach(0..<ability.boxAmt, id: \.self) { _ in
@@ -68,10 +63,6 @@ struct BoardView: View {
                                 HStack{
                                     ForEach(character.ability) { ability in
                                         VStack {
-//                                            Text(ability.skillName)
-//                                                .fontDesign(.monospaced)
-//                                                .font(.footnote)
-//                                                .foregroundStyle(.black)
                                             HStack {
                                                 ForEach(0..<ability.boxAmt, id:\.self) { _ in
                                                     

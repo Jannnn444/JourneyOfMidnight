@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E64C1F02DA3E257001DFAF5 /* CardSetBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C1EF2DA3E257001DFAF5 /* CardSetBoardView.swift */; };
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
 		54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E64C1EF2DA3E257001DFAF5 /* CardSetBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSetBoardView.swift; sourceTree = "<group>"; };
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
 		54561D892D8ED0CA00EB042B /* JourneyOfMidnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyOfMidnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,16 +77,17 @@
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
 				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
+				1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */,
 				546DD1CC2D8EEAF700FAD49B /* BoardView.swift */,
 				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
 				546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */,
-				1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */,
 				1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */,
 				546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */,
 				546DD1D42DA2670700FAD49B /* GameEntryView.swift */,
 				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
 				546DD1D62DA2779E00FAD49B /* PersonalView.swift */,
 				546DD1D92DA3841E00FAD49B /* StoryView.swift */,
+				1E64C1EF2DA3E257001DFAF5 /* CardSetBoardView.swift */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */,
 				546DD1CB2D8EEA2900FAD49B /* CardManager.swift in Sources */,
 				1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */,
+				1E64C1F02DA3E257001DFAF5 /* CardSetBoardView.swift in Sources */,
 				546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */,
 				1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
