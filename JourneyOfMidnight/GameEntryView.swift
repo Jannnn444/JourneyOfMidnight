@@ -12,6 +12,7 @@ import SwiftUI
 struct GameEntryView: View {
     @State private var showPersonalView = false
     @State private var showBattleView = false
+    @State private var showStoryView = false
     
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct GameEntryView: View {
                     PersonalView()
                 }
                 
-                // MARK: - ⚔️BattleField >>> Story / Player
+                // MARK: - ⚔️Story
                 Button(action: {
                     showBattleView = true
                 }) {
@@ -48,6 +49,25 @@ struct GameEntryView: View {
                         Rectangle()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.yellow)
+                            .cornerRadius(10)
+                        Text("Story")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    }
+                }.fullScreenCover(isPresented: $showStoryView) {
+                    EmptyView()
+                }
+                
+                // MARK: - ⚔️BattleField
+                Button(action: {
+                    showBattleView = true
+                }) {
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 200, height: 200)
+                            .foregroundColor(.green)
                             .cornerRadius(10)
                         Text("Battle")
                             .font(.title)
