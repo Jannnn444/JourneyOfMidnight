@@ -7,6 +7,50 @@
 
 import Foundation
 
+var tempPlayerCardSet1 = [
+    Hero(
+        heroClass:
+            HeroClass(name: .wizard, level: 10),
+        attributes:
+            Attributes(
+                Strength: 2, 
+                Intelligence: 15,
+                Wisdom: 20,
+                Agility: 8,
+                Vitality: 5,
+                Faith: 6,
+                Charisma: 15),
+        skills: [
+            Skill(name: "Freeze Breeze"), 
+            Skill(name: "Dark Blossom")],
+        items: [
+            Item(name: "Ancient Wand"),
+            Item(name: "Lost Myth")],
+        stats:
+            Stats(health: 100, endurance: 800)),
+    Hero(
+        heroClass:
+            HeroClass(name: .priest, level: 10),
+        attributes:
+            Attributes(
+                Strength: 2,
+                Intelligence: 10,
+                Wisdom: 14,
+                Agility: 10,
+                Vitality: 10,
+                Faith: 20,
+                Charisma: 8),
+        skills: [
+            Skill(name: "Holy Call"),
+            Skill(name: "Sins Recall")],
+        items: [
+            Item(name: "Ancient Bible"),
+            Item(name: "Saint Golden Cup")],
+        stats:
+            Stats(health: 100, endurance: 800))
+    
+]
+
 var tempPlayer1 = [
     Character(
         name: "WolfGuardiance",
