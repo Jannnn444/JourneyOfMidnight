@@ -57,7 +57,7 @@ struct GameEntryView: View {
                             .foregroundStyle(.black)
                     }
                 }.fullScreenCover(isPresented: $showStoryView) {
-                    EmptyView()
+                    StoryView()
                 }
                 
                 // MARK: - ⚔️BattleField

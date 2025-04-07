@@ -20,6 +20,7 @@
 		546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */; };
 		546DD1D52DA2670700FAD49B /* GameEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1D42DA2670700FAD49B /* GameEntryView.swift */; };
 		546DD1D72DA2779E00FAD49B /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1D62DA2779E00FAD49B /* PersonalView.swift */; };
+		546DD1DA2DA3841E00FAD49B /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546DD1D92DA3841E00FAD49B /* StoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityDetailViewPage.swift; sourceTree = "<group>"; };
 		546DD1D42DA2670700FAD49B /* GameEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntryView.swift; sourceTree = "<group>"; };
 		546DD1D62DA2779E00FAD49B /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
+		546DD1D92DA3841E00FAD49B /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				546DD1D42DA2670700FAD49B /* GameEntryView.swift */,
 				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
 				546DD1D62DA2779E00FAD49B /* PersonalView.swift */,
+				546DD1D92DA3841E00FAD49B /* StoryView.swift */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */,
 				1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
+				546DD1DA2DA3841E00FAD49B /* StoryView.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */,
 				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,
