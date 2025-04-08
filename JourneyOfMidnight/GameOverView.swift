@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameOverView: View {
     var restartAction: () -> Void
+    @State private var showGameEntryVIew = false
     
     var body: some View {
         VStack {
@@ -16,10 +17,18 @@ struct GameOverView: View {
                 .font(.title)
                 .bold()
                 .padding()
-            Button("Restart") {
-                restartAction()
+            HStack {
+                Button("Restart") {
+                    restartAction()
+                }
+                Button("Menu") {
+                    showGameEntryVIew = true
+                }
             }
             .padding()
+        }
+        .fullScreenCover(isPresented: $showGameEntryVIew) {
+            GameEntryView()
         }
     }
 }
