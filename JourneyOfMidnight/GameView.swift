@@ -10,7 +10,8 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject var viewModel = GameVIewModel()
-
+    @State var isGameOver: Bool = false
+    
     var body: some View {
         VStack {
             // Display the current occasion
@@ -39,15 +40,21 @@ struct GameView: View {
                     .padding(2)
                 }
             }
-            
-            if viewModel.level == viewModel.occasions.count - 1 {
-                Text("The game is over!")
-                    .font(.title)
-                    .padding()
-            }
         }
         .onAppear {
             viewModel.setupOccasions() //init the datas!
+        }
+        .onChange(of: viewModel.level) { newLevel in
+            // Check if the game is over
+            if newLevel == viewModel.occasions.count - 1 {
+                isGameOver = true
+            }
+        }
+        .fullScreenCover(isPresented: $isGameOver) {
+            GameOverView(restartAction: {
+                viewModel.restartGame()
+                isGameOver = false  // Close the GameOver screen
+            })
         }
     }
 }

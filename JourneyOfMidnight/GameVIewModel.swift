@@ -140,4 +140,10 @@ class GameVIewModel: ObservableObject {
         }
     }
     
+    func restartGame() {
+           // Reset the level and other game-related data
+           level = 0
+           setupOccasions()  // Reinitialize the occasions or other data
+       }
+    
 }
