@@ -85,13 +85,13 @@ enum HeroClassName: String {
 }
 
 struct Attributes {
-    var Strength: Int
-    var Intelligence: Int
-    var Wisdom: Int
-    var Agility: Int
-    var Vitality: Int
-    var Faith: Int
-    var Charisma: Int
+    var Strength: Int = 5
+    var Intelligence: Int = 5
+    var Wisdom: Int = 5
+    var Agility: Int = 5
+    var Vitality: Int = 5
+    var Faith: Int = 5
+    var Charisma: Int = 5
 }
 
 struct Skill: Identifiable {
@@ -108,3 +108,24 @@ struct Stats {
     var health: Int  // max health for each fight
     var endurance: Int // total health for the entire night
 }
+
+// MARK: - Occasion
+struct Occasion {
+    let level: Int
+    let title: String
+    let description: String
+    let choices: [Choice]
+}
+
+struct Choice: Identifiable {
+    let id = UUID() // Unique identifier t=fior the choucde
+    let text: String // 'fight the dragon'
+    let effects: (inout Attributes) -> Void
+    // A closure that modifies the player's attributes based on the choice
+}
+
+
+
+
+
+

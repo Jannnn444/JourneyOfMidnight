@@ -38,7 +38,7 @@ struct GameEntryView: View {
                     }
                 }
                 .fullScreenCover(isPresented: $showPersonalView) {
-                    PersonalView()
+//                    PersonalView()
                 }
                 
                 // MARK: - ⚔️Story
@@ -57,7 +57,7 @@ struct GameEntryView: View {
                             .foregroundStyle(.black)
                     }
                 }.fullScreenCover(isPresented: $showStoryView) {
-                    StoryView()
+                    GameView()
                 }
                 
                 // MARK: - ⚔️BattleField
