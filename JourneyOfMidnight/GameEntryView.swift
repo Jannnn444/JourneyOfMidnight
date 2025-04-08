@@ -38,7 +38,7 @@ struct GameEntryView: View {
                     }
                 }
                 .fullScreenCover(isPresented: $showPersonalView) {
-//                    PersonalView()
+                    PersonalView()
                 }
                 
                 // MARK: - ⚔️Story
