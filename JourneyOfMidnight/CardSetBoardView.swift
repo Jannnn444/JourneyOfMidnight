@@ -25,8 +25,19 @@ struct CardSetBoardView: View {
                     ForEach(heroContent) { hero in
                         VStack{
                             
-                            Text("\(hero.heroClass.name.rawValue)")
-                            Text("\(hero.heroClass.level)")
+                            Text("Class: \(hero.heroClass.name.rawValue)")
+                            Text("Level: \(hero.heroClass.level)")
+                            Text("Charisma: \(hero.attributes.Charisma)")
+                            Text("Faith:\(hero.attributes.Faith)")
+                            
+                            ForEach(hero.skills) { skill in
+                                Text("Skill: \(skill.name)")
+                            }
+                            ForEach(hero.items) { item in
+                                
+                                Text("Item: \(item.name)")
+                            }
+                            
                             
                             HStack {
                             ForEach(hero.skills) { skill in
