@@ -11,8 +11,7 @@ struct AbilityDetailViewPage: View {
     var skillName: String
     var skillType: SkillType
     @ObservedObject var cardmanager = CardManager.shared
-//    @Binding var showNewViewatDetail: Bool //Usinf binding to modify state in parent view
-    
+//  @Binding var showNewViewatDetail: Bool //Use binding to modify state in parent view
     
     var body: some View {
         ZStack {
@@ -40,4 +39,3 @@ struct AbilityDetailViewPage: View {
         }
     }
 }
-

@@ -43,7 +43,7 @@ struct GameEntryView: View {
                 
                 // MARK: - ⚔️Story
                 Button(action: {
-                    showBattleView = true
+                    showStoryView = true
                 }) {
                     ZStack {
                         Rectangle()

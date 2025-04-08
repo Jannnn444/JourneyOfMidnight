@@ -19,25 +19,22 @@ struct CardSetBoardView: View {
                 .frame(width: cardManager.boardWidth, height: cardManager.boardHeight)
                 .foregroundColor(.lightBlue)
                 .cornerRadius(20)
-            
             HStack {
                 if let heroContent = heroContent {
                     ForEach(heroContent) { hero in
                         VStack{
-                            
+                            /*
                             Text("Class: \(hero.heroClass.name.rawValue)")
                             Text("Level: \(hero.heroClass.level)")
                             Text("Charisma: \(hero.attributes.Charisma)")
                             Text("Faith:\(hero.attributes.Faith)")
-                            
                             ForEach(hero.skills) { skill in
                                 Text("Skill: \(skill.name)")
                             }
                             ForEach(hero.items) { item in
-                                
                                 Text("Item: \(item.name)")
                             }
-                            
+                            */
                             
                             HStack {
                             ForEach(hero.skills) { skill in
