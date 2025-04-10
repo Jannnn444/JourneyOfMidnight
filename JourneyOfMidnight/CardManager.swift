@@ -64,7 +64,7 @@ enum SkillType: String {
 struct Hero: Identifiable {
     var id = UUID()
     var heroClass: HeroClass
-    var attributes: Attributes
+    var attributes: Attributes // now reference type
     var skills: [Skill]
     var items: [Item]
     var stats: Stats
@@ -84,14 +84,14 @@ enum HeroClassName: String {
     case templar = "templar"
 }
 
-struct Attributes {
-    var Strength: Int = 5
-    var Intelligence: Int = 5
-    var Wisdom: Int = 5
-    var Agility: Int = 5
-    var Vitality: Int = 5
-    var Faith: Int = 5
-    var Charisma: Int = 5
+class Attributes: ObservableObject {
+    @Published var Strength: Int = 5
+    @Published var Intelligence: Int = 5
+    @Published var Wisdom: Int = 5
+    @Published var Agility: Int = 5
+    @Published var Vitality: Int = 5
+    @Published var Faith: Int = 5
+    @Published var Charisma: Int = 5
 }
 
 struct Skill: Identifiable {

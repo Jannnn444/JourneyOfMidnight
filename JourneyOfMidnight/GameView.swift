@@ -47,7 +47,6 @@ struct GameView: View {
         .onAppear {
             //MARK: - init the datas!
             viewModel.setupOccasions()
-            viewModel.setupPlayerData()
         }
         .onChange(of: viewModel.level) { newLevel in
             // Check if the game is over
@@ -56,10 +55,6 @@ struct GameView: View {
             }
         }
         .fullScreenCover(isPresented: $isGameOver) {
-//            GameOverView(restartAction: {
-//                viewModel.restartGame()
-//                isGameOver = false  // Close the GameOver screen
-//            })
             GameOverView(restartAction: {
                 viewModel.restartGame()
                 isGameOver = false

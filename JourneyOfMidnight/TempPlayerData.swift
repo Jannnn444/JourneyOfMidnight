@@ -12,14 +12,7 @@ var tempPlayerCardSet1 = [
         heroClass:
             HeroClass(name: .wizard, level: 10),
         attributes:
-            Attributes(
-                Strength: 2, 
-                Intelligence: 15,
-                Wisdom: 20,
-                Agility: 8,
-                Vitality: 5,
-                Faith: 6,
-                Charisma: 15),
+            Attributes(),
         skills: [
             Skill(name: "Freeze Breeze"), 
             Skill(name: "Dark Blossom")],

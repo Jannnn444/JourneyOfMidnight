@@ -12,10 +12,6 @@ struct GameOverView: View {
     @ObservedObject var gameModelView : GameVIewModel // ! Pass in old model
     @State private var showGameEntryVIew = false
     
-    var currentAttributes: Attributes {
-        gameModelView.player?.attributes ?? Attributes()
-    }
-    
     var body: some View {
         VStack {
             Text("The game is over!")
@@ -23,16 +19,25 @@ struct GameOverView: View {
                 .font(.title)
                 .bold()
                 .padding()
-            Text("Player strength\(currentAttributes.Strength)")
-                .fontDesign(.monospaced)
-                .font(.caption)
-                .bold()
-                .padding()
-            Text("Player Charisma\(currentAttributes.Charisma)")
-                .fontDesign(.monospaced)
-                .font(.caption)
-                .bold()
-                .padding()
+            if let attributes = gameModelView.player?.attributes {
+                Text("Player Strength \(attributes.Strength )")
+                    .fontDesign(.monospaced)
+                    .font(.caption)
+                    .bold()
+                    .padding()
+                Text("Player Charisma \(attributes.Charisma)")
+                     .fontDesign(.monospaced)
+                    .font(.caption)
+                    .bold()
+                    .padding()
+            } else {
+                Text("No hero data")
+                    .fontDesign(.monospaced)
+                    .font(.caption)
+                    .bold()
+                    .padding()
+            }
+           
             HStack {
                 Button("Restart") {
                     restartAction()
