@@ -10,7 +10,7 @@ import SwiftUI
 
 class GameVIewModel: ObservableObject {
     @Published var level: Int = 0
-    @Published var hero : Hero?
+    @Published var player : Hero?
     
     var occasions: [Occasion] = []
     
@@ -20,7 +20,7 @@ class GameVIewModel: ObservableObject {
     }
     
     func setupPlayerData() {
-        self.hero = Hero(
+        self.player = Hero(
             heroClass:
                 HeroClass(name: .fighter, level: 20), 
                 attributes:
@@ -148,12 +148,18 @@ class GameVIewModel: ObservableObject {
     func choose(_ choice: Choice) async {
         // Simulate async processing delay
         
-        try? await Task.sleep(nanoseconds: 500_000_000) //5scs
-        
-        choice.consequences(&attributes)
-        
-        if level < occasions.count - 1 {
-             level += 1
+        try? await Task.sleep(nanoseconds: 500_000_000) // background threads
+         
+//      choice.consequences(&attributes)  //was published an attribute but now use hero
+        DispatchQueue.main.async {
+            if var currentHero = self.player {
+                choice.consequences(&currentHero.attributes)
+                self.player = currentHero // reassign to trigger view updates
+            }
+            
+            if self.level < self.occasions.count - 1 {
+                self.level += 1
+            }
         }
     }
     
