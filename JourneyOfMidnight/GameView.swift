@@ -42,7 +42,9 @@ struct GameView: View {
             }
         }
         .onAppear {
-            viewModel.setupOccasions() //init the datas!
+            //MARK: - init the datas!
+            viewModel.setupOccasions()
+            viewModel.setupPlayerData()
         }
         .onChange(of: viewModel.level) { newLevel in
             // Check if the game is over

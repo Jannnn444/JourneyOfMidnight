@@ -16,6 +16,13 @@ class GameVIewModel: ObservableObject {
     
     init() {
         setupOccasions()
+        setupPlayerData()
+    }
+    
+    func setupPlayerData() {
+        Hero(heroClass:
+                HeroClass(name: .fighter, level: 20), attributes:
+                Attributes(Strength: 50, Intelligence: 10, Wisdom: 10, Agility: 10, Vitality: 10, Faith: 5, Charisma: 10), skills: [Skill(name: "punch"), Skill(name: "star strike")], items: [Item(name: "armouur"), Item(name:"pants")], stats: Stats(health: 100, endurance: 100))
     }
     
     func setupOccasions() {

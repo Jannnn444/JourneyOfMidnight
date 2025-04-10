@@ -5,7 +5,6 @@
 //  Created by yucian huang on 2025/4/7.
 //
 
-import Foundation
 import SwiftUI
 
 struct StoryView: View {
