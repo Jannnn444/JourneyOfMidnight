@@ -56,10 +56,14 @@ struct GameView: View {
             }
         }
         .fullScreenCover(isPresented: $isGameOver) {
+//            GameOverView(restartAction: {
+//                viewModel.restartGame()
+//                isGameOver = false  // Close the GameOver screen
+//            })
             GameOverView(restartAction: {
                 viewModel.restartGame()
-                isGameOver = false  // Close the GameOver screen
-            })
+                isGameOver = false
+            }, gameModelView: GameVIewModel())
         }
     }
 }

@@ -9,8 +9,12 @@ import SwiftUI
 
 struct GameOverView: View {
     var restartAction: () -> Void
+    @ObservedObject var gameModelView : GameVIewModel // ! Pass in old model
     @State private var showGameEntryVIew = false
-    @State var gameModelView = GameVIewModel()
+    
+    var currentAttributes: Attributes {
+        gameModelView.player?.attributes ?? Attributes()
+    }
     
     var body: some View {
         VStack {
@@ -19,12 +23,12 @@ struct GameOverView: View {
                 .font(.title)
                 .bold()
                 .padding()
-            Text("Player strength\(gameModelView.player?.attributes.Strength ?? 0)")
+            Text("Player strength\(currentAttributes.Strength)")
                 .fontDesign(.monospaced)
                 .font(.caption)
                 .bold()
                 .padding()
-            Text("Player Charisma\(gameModelView.player?.attributes.Charisma ?? 0)")
+            Text("Player Charisma\(currentAttributes.Charisma)")
                 .fontDesign(.monospaced)
                 .font(.caption)
                 .bold()
