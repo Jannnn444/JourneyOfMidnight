@@ -112,15 +112,15 @@ struct Stats {
 // MARK: - Occasion
 struct Occasion {
     let level: Int
-    let title: String
+    let topic: String
     let description: String
-    let choices: [Choice]
+    let choices: [Choice] // 3 each 1
 }
 
 struct Choice: Identifiable {
     let id = UUID() // Unique identifier t=fior the choucde
     let text: String // 'fight the dragon'
-    let effects: (inout Attributes) -> Void
+    let consequences: (inout Attributes) -> Void
     // A closure that modifies the player's attributes based on the choice
 }
 

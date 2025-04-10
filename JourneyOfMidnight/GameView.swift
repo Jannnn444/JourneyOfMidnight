@@ -18,7 +18,7 @@ struct GameView: View {
             if viewModel.level < viewModel.occasions.count {
                 let currentOccasion = viewModel.occasions[viewModel.level]
                 
-                Text(currentOccasion.title)
+                Text(currentOccasion.topic)
                     .font(.title)
                     .bold()
                     .padding()
@@ -28,8 +28,11 @@ struct GameView: View {
                 
                 // Display choices
                 ForEach(currentOccasion.choices, id: \.text) { choice in
+                    
                     Button(action: {
-                        viewModel.choose(choice)
+                        Task {
+                           await viewModel.choose(choice)
+                        }
                     }) {
                         Text(choice.text)
                             .padding()
