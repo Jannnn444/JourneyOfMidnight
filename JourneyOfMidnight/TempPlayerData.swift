@@ -28,26 +28,26 @@ var tempPlayerCardSet1 = [
             Item(name: "Lost Myth")],
         stats:
             Stats(health: 100, endurance: 800)),
-    Hero(
-        heroClass:
-            HeroClass(name: .priest, level: 10),
-        attributes:
-            Attributes(
-                Strength: 2,
-                Intelligence: 10,
-                Wisdom: 14,
-                Agility: 10,
-                Vitality: 10,
-                Faith: 20,
-                Charisma: 8),
-        skills: [
-            Skill(name: "Holy Call"),
-            Skill(name: "Sins Recall")],
-        items: [
-            Item(name: "Ancient Bible"),
-            Item(name: "Saint Golden Cup")],
-        stats:
-            Stats(health: 100, endurance: 800))
+//    Hero(
+//        heroClass:
+//            HeroClass(name: .priest, level: 10),
+//        attributes:
+//            Attributes(
+//                Strength: 2,
+//                Intelligence: 10,
+//                Wisdom: 14,
+//                Agility: 10,
+//                Vitality: 10,
+//                Faith: 20,
+//                Charisma: 8),
+//        skills: [
+//            Skill(name: "Holy Call"),
+//            Skill(name: "Sins Recall")],
+//        items: [
+//            Item(name: "Ancient Bible"),
+//            Item(name: "Saint Golden Cup")],
+//        stats:
+//            Stats(health: 100, endurance: 800))
     
 ]
 

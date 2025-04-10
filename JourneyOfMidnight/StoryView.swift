@@ -10,6 +10,8 @@ import SwiftUI
 
 struct StoryView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var cardManager = CardManager.shared
+    var heroContent: [Hero]?
     
     var body: some View {
         VStack {
@@ -17,8 +19,15 @@ struct StoryView: View {
                 .font(.title)
                 .foregroundStyle(.black)
                 .fontDesign(.monospaced)
+            
+            if let heroContent = heroContent {
+                ForEach(heroContent) { hero in
+                    Text("\(hero.heroClass.name)")
+                    Text("Attributes- charisma\(hero.attributes.Charisma)")
+                }
+            }
+            
             HStack(alignment: .top) {
-                
                 Button(action: {
                     dismiss()
                 }) {
