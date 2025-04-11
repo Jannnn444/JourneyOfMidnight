@@ -65,3 +65,7 @@ struct StoryView: View {
         }
     }
 }
+
+#Preview {
+    StoryView()
+}

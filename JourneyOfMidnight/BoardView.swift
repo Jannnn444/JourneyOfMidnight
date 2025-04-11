@@ -27,7 +27,6 @@ struct BoardView: View {
              Character(name: "KranMan", type: .follower)
              ]
              */
-            
             HStack {
                 if let characterContent = characterContent {
                     ForEach(characterContent) { character in

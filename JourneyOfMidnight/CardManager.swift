@@ -7,7 +7,8 @@
 
 import Foundation
 
-class CardManager: ObservableObject {   //put static let shared, and makke it observable object
+class CardManager: ObservableObject {   
+    // put static let shared, and makke it observable object
     static let shared = CardManager()
     
     @Published var skillName: String = ""
@@ -123,9 +124,5 @@ struct Choice: Identifiable {
     let consequences: (inout Attributes) -> Void
     // A closure that modifies the player's attributes based on the choice
 }
-
-
-
-
 
 

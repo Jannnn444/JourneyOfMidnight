@@ -9,8 +9,9 @@ import SwiftUI
 
 struct GameOverView: View {
     var restartAction: () -> Void
-    @ObservedObject var gameModelView : GameVIewModel // ! Pass in old model
+    @StateObject var gameModelView : GameVIewModel // ! Pass in old model
     @State private var showGameEntryVIew = false
+    @Binding var strength: Int = 0
     
     var body: some View {
         VStack {

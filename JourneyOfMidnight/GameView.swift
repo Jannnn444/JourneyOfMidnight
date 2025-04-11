@@ -11,6 +11,7 @@ import SwiftUI
 struct GameView: View {
     @StateObject var viewModel = GameVIewModel()
     @State var isGameOver: Bool = false
+    @Binding var strength: Int
     
     var body: some View {
         VStack {
@@ -58,7 +59,8 @@ struct GameView: View {
             GameOverView(restartAction: {
                 viewModel.restartGame()
                 isGameOver = false
-            }, gameModelView: GameVIewModel())
+    
+            }, gameModelView: GameVIewModel(),strength: viewModel.attributes.Strength)
         }
     }
 }

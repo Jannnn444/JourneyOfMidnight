@@ -11,8 +11,8 @@ import SwiftUI
 class GameVIewModel: ObservableObject {
     @Published var level: Int = 0
     @Published var player : Hero?
-//    @ObservedObject var attributes: Attributes
-    @Published var attributes: Attributes = Attributes()
+//  @ObservedObject var attributes: Attributes
+    @ObservedObject var attributes: Attributes = Attributes()
     
     var occasions: [Occasion] = []
     
@@ -147,9 +147,8 @@ class GameVIewModel: ObservableObject {
        }
     
     func choose(_ choice: Choice) async {
-        
         try? await Task.sleep(nanoseconds: 500_000_000) // background threads
-         
+        
         DispatchQueue.main.async {
             if let attributes = self.player?.attributes {
                 choice.consequences(&self.attributes)
@@ -165,6 +164,8 @@ class GameVIewModel: ObservableObject {
            // Reset the level and other game-related data
            level = 0
            setupOccasions()  // Reinitialize the occasions or other data
-       }
-    
+        }
 }
+
+
+
