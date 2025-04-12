@@ -7,14 +7,14 @@
 
 import Foundation
 
-class CardManager: ObservableObject {   
+class CardManager: ObservableObject {
     // put static let shared, and makke it observable object
     static let shared = CardManager()
     
     @Published var skillName: String = ""
     @Published var skillType: SkillType = .Defense
     @Published var showAbilityDetailView: Bool = false
-
+    
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
     let boardHeight: CGFloat = 150
@@ -31,7 +31,7 @@ class CardManager: ObservableObject {
     let abilityBoxWidth: CGFloat =  20
     let abilityBoxHeight: CGFloat = 15
     
-    private init() {} 
+    private init() {}
 }
 
 // MARK: Build Character
@@ -85,14 +85,14 @@ enum HeroClassName: String {
     case templar = "templar"
 }
 
-class Attributes: ObservableObject {
-    @Published var Strength: Int = 5
-    @Published var Intelligence: Int = 5
-    @Published var Wisdom: Int = 5
-    @Published var Agility: Int = 5
-    @Published var Vitality: Int = 5
-    @Published var Faith: Int = 5
-    @Published var Charisma: Int = 5
+struct Attributes {
+    var Strength: Int = 5
+    var Intelligence: Int = 5
+    var Wisdom: Int = 5
+    var Agility: Int = 5
+    var Vitality: Int = 5
+    var Faith: Int = 5
+    var Charisma: Int = 5
 }
 
 struct Skill: Identifiable {
