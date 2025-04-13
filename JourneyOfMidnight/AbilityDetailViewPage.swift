@@ -10,6 +10,7 @@ import SwiftUI
 struct AbilityDetailViewPage: View {
     var skillName: String
     var skillType: SkillType
+    @State var isShowView: Bool = false
     @ObservedObject var cardmanager = GameCardManager.shared
 //  @Binding var showNewViewatDetail: Bool //Use binding to modify state in parent view
     
@@ -26,9 +27,22 @@ struct AbilityDetailViewPage: View {
                             .font(.title2)
                             .fontDesign(.monospaced)
                             .padding()
+                        if isShowView {
+                            PopupView {
+                                Text("This is 2nd View")
+                                Button("Close") {
+                                    isShowView = false
+                                    print("Close view")
+                                }
+                            }
+                        }
                     }
+                    
                 }
-                Button("Close") {
+                Button("ShowView") {
+                    isShowView = true
+                }
+                Button("Close the view") {
                     cardmanager.showAbilityDetailView = false
                 }
                 .padding()
@@ -38,4 +52,7 @@ struct AbilityDetailViewPage: View {
             }
         }
     }
+}
+#Preview {
+    GameEntryView()
 }
