@@ -7,13 +7,14 @@
 
 import Foundation
 
-class CardManager: ObservableObject {
+class GameCardManager: ObservableObject {
     // put static let shared, and makke it observable object
-    static let shared = CardManager()
+    static let shared = GameCardManager()
     
     @Published var skillName: String = ""
     @Published var skillType: SkillType = .Defense
     @Published var showAbilityDetailView: Bool = false
+    @Published var hero: Hero
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -31,7 +32,22 @@ class CardManager: ObservableObject {
     let abilityBoxWidth: CGFloat =  20
     let abilityBoxHeight: CGFloat = 15
     
-    private init() {}
+    private init() {
+        self.hero = Hero(
+            heroClass:
+                HeroClass(name: .fighter, level: 10),
+                attributes: Attributes(
+                    Strength: 10,
+                    Intelligence: 101,
+                    Wisdom: 10,
+                    Agility: 10,
+                    Vitality: 10,
+                    Faith: 10,
+                    Charisma: 10),
+                skills: [Skill(name: "meteor stike"), Skill(name: "roll dodge")],
+            items: [Item(name: "Armour"), Item(name: "pants")],
+            stats: Stats(health: 100, endurance: 500))
+    }
 }
 
 // MARK: Build Character

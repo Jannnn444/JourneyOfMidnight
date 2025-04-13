@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PersonalView: View {
-    @ObservedObject var cardmanager = CardManager.shared
+    @ObservedObject var cardmanager = GameCardManager.shared
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

@@ -55,10 +55,11 @@ struct GameEntryView: View {
                             .bold()
                             .fontDesign(.monospaced)
                             .foregroundStyle(.black)
+                    }.fullScreenCover(isPresented: $showStoryView ) {
+                        StoryView()
                     }
-                }.fullScreenCover(isPresented: $showStoryView) {
-                    GameView(gameViewModel: GameViewModel(), isGameOver: false)
                 }
+                
                 
                 // MARK: - ⚔️BattleField
                 Button(action: {

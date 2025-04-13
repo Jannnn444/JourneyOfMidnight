@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AbilityBoxView: View {
-    @ObservedObject var cardmanager = CardManager.shared
+    @ObservedObject var cardmanager = GameCardManager.shared
     var color: Color
     
     var body: some View {

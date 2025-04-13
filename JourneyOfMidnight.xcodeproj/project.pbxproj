@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
+		5455ED222DAA992200157005 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED212DAA992200157005 /* StoryView.swift */; };
+		5455ED252DAA993700157005 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED242DAA993700157005 /* ShopView.swift */; };
+		5455ED272DAC077700157005 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED262DAC077700157005 /* PopupView.swift */; };
 		54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */; };
 		54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8E2D8ED0CA00EB042B /* BattleView.swift */; };
 		54561D912D8ED0CC00EB042B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54561D902D8ED0CC00EB042B /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
+		5455ED212DAA992200157005 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		5455ED242DAA993700157005 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		5455ED262DAC077700157005 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		54561D892D8ED0CA00EB042B /* JourneyOfMidnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyOfMidnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyOfMidnightApp.swift; sourceTree = "<group>"; };
 		54561D8E2D8ED0CA00EB042B /* BattleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleView.swift; sourceTree = "<group>"; };
@@ -50,6 +56,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5455ED232DAA992800157005 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				5455ED212DAA992200157005 /* StoryView.swift */,
+				5455ED242DAA993700157005 /* ShopView.swift */,
+				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
+				5455ED262DAC077700157005 /* PopupView.swift */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
 		54561D802D8ED0CA00EB042B = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +97,8 @@
 				1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */,
 				546DD1D02D9D0FD600FAD49B /* AbilityDetailViewPage.swift */,
 				546DD1D42DA2670700FAD49B /* GameEntryView.swift */,
-				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
 				546DD1D62DA2779E00FAD49B /* PersonalView.swift */,
+				5455ED232DAA992800157005 /* Events */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
@@ -170,8 +187,11 @@
 				546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */,
 				1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
+				5455ED222DAA992200157005 /* StoryView.swift in Sources */,
+				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */,
+				5455ED252DAA993700157005 /* ShopView.swift in Sources */,
 				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,
 				546DD1D52DA2670700FAD49B /* GameEntryView.swift in Sources */,
 				546DD1D72DA2779E00FAD49B /* PersonalView.swift in Sources */,

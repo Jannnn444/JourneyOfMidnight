@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct BattleView: View {
-    @ObservedObject var cardmanager = CardManager.shared
+    @ObservedObject var cardmanager = GameCardManager.shared
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -41,7 +41,7 @@ struct BattleView: View {
                             Spacer()
                             BoardView(characterContent: tempPlayer2)
                             Spacer()
-                            // Todo: Replace new CardBoardView() , BoardView now abandoned
+                            // Todo: Replace new /Users/yucianhuang/Documents/JourneyOfMidnight/JourneyOfMidnight/BattleView.swiftCardBoardView() , BoardView now abandoned
                         }
                         .padding(.horizontal)
                     }.overlay(

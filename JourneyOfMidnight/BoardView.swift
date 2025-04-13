@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct BoardView: View {
-    @ObservedObject var cardManager = CardManager.shared
+    @ObservedObject var cardManager = GameCardManager.shared
     var characterContent: [Character]?
     
     var body: some View {

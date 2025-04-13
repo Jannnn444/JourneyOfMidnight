@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct HeroCardView: View {
-    @ObservedObject var cardManager = CardManager.shared
+    @ObservedObject var cardManager = GameCardManager.shared
     
     var body: some View {
         Rectangle()

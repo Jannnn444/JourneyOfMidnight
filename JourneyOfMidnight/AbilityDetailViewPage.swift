@@ -10,7 +10,7 @@ import SwiftUI
 struct AbilityDetailViewPage: View {
     var skillName: String
     var skillType: SkillType
-    @ObservedObject var cardmanager = CardManager.shared
+    @ObservedObject var cardmanager = GameCardManager.shared
 //  @Binding var showNewViewatDetail: Bool //Use binding to modify state in parent view
     
     var body: some View {
