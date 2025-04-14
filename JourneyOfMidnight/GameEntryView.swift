@@ -13,6 +13,7 @@ struct GameEntryView: View {
     @State private var showPersonalView = false
     @State private var showBattleView = false
     @State private var showStoryView = false
+    @State private var showSettingView = false
     
     var body: some View {
         VStack {
@@ -83,7 +84,8 @@ struct GameEntryView: View {
                 // MARK: - ⚙️Settings
                 Button(action: {
                     // Settings View
-                }, label: {
+                    showSettingView = true
+                }) {
                     ZStack {
                         Rectangle()
                             .frame(width: 200, height: 200)
@@ -95,7 +97,9 @@ struct GameEntryView: View {
                             .fontDesign(.monospaced)
                             .foregroundStyle(.black)
                     }
-                })
+                }.fullScreenCover(isPresented: $showSettingView ) {
+                    HeroMainView()
+                }
             }
         }
     }
