@@ -14,7 +14,7 @@ struct HeroMainView: View {
         // Title
         Text("Hero Main Page")
         
-        // Cards
+        // Cards Propertoes we can use
         Text("Hero name: \(cardManager.hero.heroClass.name)")
         Text("Hero level: \(cardManager.hero.heroClass.level)")
         Text("Hero Attributes Charisma:  \(cardManager.hero.attributes.Charisma)")
@@ -25,29 +25,41 @@ struct HeroMainView: View {
             Text("Hero Skill: \(item.name.capitalized)")
             Text("Hero status: \(cardManager.hero.stats.health)")
         }
+        
+        // Design the display cards
+        HStack {
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+            Rectangle()
+                .frame(width: 100, height: 130)
+                .foregroundColor(.yellow)
+                .cornerRadius(20)
+        }
     }
 }
 
-
-
-
-
 #Preview {
-    HeroMainView(cardManager: CardManager.shared)
+    HeroMainView()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
