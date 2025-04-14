@@ -7,9 +7,9 @@
 
 import Foundation
 
-class GameCardManager: ObservableObject {
+class CardManager: ObservableObject {
     // put static let shared, and makke it observable object
-    static let shared = GameCardManager()
+    static let shared = CardManager()
     
     @Published var skillName: String = ""
     @Published var skillType: SkillType = .Defense

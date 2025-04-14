@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+ 
 var tempPlayer1 = [
     Character(
         name: "WolfGuardiance",

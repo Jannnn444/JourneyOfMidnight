@@ -9,9 +9,15 @@ import Foundation
 import SwiftUI
 
 struct ShopView: View {
+    @ObservedObject var cardmanager = CardManager.shared
+    
     var body: some View {
         Text("Shop View")
             .font(.headline)
             .fontDesign(.monospaced)
+        Rectangle()
+            .frame(width: cardmanager.boardWidth, height: cardmanager.boardHeight)
     }
 }
+
+
