@@ -37,7 +37,6 @@ struct AbilityDetailViewPage: View {
                             }
                         }
                     }
-                    
                 }
                 Button("ShowView") {
                     isShowView = true
@@ -53,6 +52,7 @@ struct AbilityDetailViewPage: View {
         }
     }
 }
+
 #Preview {
     GameEntryView()
 }
