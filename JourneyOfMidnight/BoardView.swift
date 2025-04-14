@@ -1,11 +1,10 @@
 //
-//  BoardVIew.swift
+//  BoardView.swift
 //  JourneyOfMidnight
 //
 //  Created by yucian huang on 2025/3/22.
 //
 
-import Foundation
 import SwiftUI
 
 struct BoardView: View {
@@ -87,7 +86,6 @@ struct BoardView: View {
                     }
                 }
             }
-            
         }
     }
 }

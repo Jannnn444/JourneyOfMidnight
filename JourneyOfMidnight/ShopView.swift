@@ -17,6 +17,8 @@ struct ShopView: View {
             .fontDesign(.monospaced)
         Rectangle()
             .frame(width: cardmanager.boardWidth, height: cardmanager.boardHeight)
+            .foregroundStyle(.red)
+        
     }
 }
 

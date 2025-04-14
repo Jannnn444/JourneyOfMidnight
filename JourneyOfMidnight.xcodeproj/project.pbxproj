@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
+		1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0962DAD0994007392FE /* HeroMainView.swift */; };
 		5455ED222DAA992200157005 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED212DAA992200157005 /* StoryView.swift */; };
 		5455ED252DAA993700157005 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED242DAA993700157005 /* ShopView.swift */; };
 		5455ED272DAC077700157005 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED262DAC077700157005 /* PopupView.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
+		1E99D0962DAD0994007392FE /* HeroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMainView.swift; sourceTree = "<group>"; };
 		5455ED212DAA992200157005 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		5455ED242DAA993700157005 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		5455ED262DAC077700157005 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				5455ED242DAA993700157005 /* ShopView.swift */,
 				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
 				5455ED262DAC077700157005 /* PopupView.swift */,
+				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */,
 				546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */,
 				1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */,
+				1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
 				5455ED222DAA992200157005 /* StoryView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
