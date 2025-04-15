@@ -14,7 +14,7 @@ class CardManager: ObservableObject {
     @Published var skillName: String = ""
     @Published var skillType: SkillType = .Defense
     @Published var showAbilityDetailView: Bool = false
-    @Published var hero: Hero
+    @Published var hero: [Hero]
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -33,7 +33,7 @@ class CardManager: ObservableObject {
     let abilityBoxHeight: CGFloat = 15
     
     private init() {
-        self.hero = Hero(
+        self.hero = [Hero(
             heroClass:
                 HeroClass(name: .fighter, level: 10),
                 attributes: Attributes(
@@ -46,7 +46,14 @@ class CardManager: ObservableObject {
                     Charisma: 10),
                 skills: [Skill(name: "meteor stike"), Skill(name: "roll dodge")],
             items: [Item(name: "Armour"), Item(name: "pants")],
-            stats: Stats(health: 100, endurance: 500))
+            stats: Stats(health: 100, endurance: 500)),
+                     Hero(
+                        heroClass: HeroClass(name: .wizard, level: 50),
+                        attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
+                        skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
+                        items: [Item(name: "wands"), Item(name: "Handbook")],
+                        stats: Stats(health: 100, endurance: 500))
+                     ]
     }
 }
 
