@@ -59,17 +59,46 @@ struct HeroMainView: View {
                                     .padding()
                                     .fontDesign(.monospaced)
                                     .bold()
+                                // A View
                                 if showDetailSkillView {
                                     // heres what we gotta do
                                     // makes the view clickable
                                     VStack(alignment: .leading) {
                                         ForEach(hero.skills) { skill in
-                                            DetailSkillView(skill: skill)
+                                            // HAve the skills able to be buttons and expand to show more infos
+                                            Button(action: {
+                                                cardManager.showMoreDetail = true
+                                            }) {
+                                                DetailSkillView(skill: skill)
+                                            }
+                                           
                                         }
                                     }
                                 }
-                            }
-                        }
+                                // B View
+                                if cardManager.showMoreDetail {
+                                    VStack(alignment: .leading) {
+                                        PopupView{
+                                            Text("Test")
+                                                .foregroundStyle(.black)
+                                            
+                                            Button(action: {
+                                                cardManager.showMoreDetail = false
+                                            }) {
+                                                Text("Close")
+                                                    .padding()
+                                                    .foregroundColor(.black)
+                                                    .background(Color.secondary)
+                                                    .cornerRadius(10)
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                                
+                            } // Vstack yellow column
+                            
+                        } // Zstack
                     }
                     
                     

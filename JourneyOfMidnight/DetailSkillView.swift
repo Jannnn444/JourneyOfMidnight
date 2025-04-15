@@ -21,30 +21,22 @@ import SwiftUI
 struct DetailSkillView: View {
     @ObservedObject var cardManager = CardManager.shared
     var skill: Skill
+//    @Binding var showMoreDetail: Bool //for receving commnads from outside
 
-    
     var body: some View {
         VStack {
             // Button
-            
-            
-            if cardManager.showMoreDetail {
-                PopupView {
-                    Text("")
-                    Text("Dispaly comingsoon...")
-                        .foregroundStyle(.black)
-                }
-            } else if cardManager.showMoreDetail == false {
                 
                 // UI
                 Text("💠\(skill.name)")
                     .font(.caption)
                     .fontDesign(.monospaced)
                     .bold()
+                
             }
             
             
         }
     }
-}
+
 
