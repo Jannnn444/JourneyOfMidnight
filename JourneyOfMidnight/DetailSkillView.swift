@@ -27,21 +27,22 @@ struct DetailSkillView: View {
         VStack {
             // Button
             
-
-                if cardManager.showMoreDetail {
-                    PopupView {
-                        Text("")
-                        Text("Dispaly comingsoon...")
-                            .foregroundStyle(.black)
-                    }
-                } else if cardManager.showMoreDetail == false {
-                    
-                    // UI
-                    Text("💠\(skill.name)")
-                        .font(.caption)
-                        .fontDesign(.monospaced)
-                        .bold()
+            
+            if cardManager.showMoreDetail {
+                PopupView {
+                    Text("")
+                    Text("Dispaly comingsoon...")
+                        .foregroundStyle(.black)
                 }
+            } else if cardManager.showMoreDetail == false {
+                
+                // UI
+                Text("💠\(skill.name)")
+                    .font(.caption)
+                    .fontDesign(.monospaced)
+                    .bold()
+            }
+            
             
         }
     }

@@ -10,25 +10,35 @@ import SwiftUI
 struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
+    @State var selectedHero: Hero? = nil
     
     var body: some View {
+        ZStack{
+            // Background - this will be our clickable area to dismiss
+            Color.clear
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    showDetailSkillView = false
+                    selectedHero = nil
+                }
+            
         VStack {
             Text("Hero Main Page")
                 .font(.title)
                 .padding()
             
-            // Cards Properties we can use
             /*
+             Cards Properties we can use:
+             
              Text("Hero name: \(cardManager.hero.heroClass.name.rawValue)")
              Text("Hero level: \(cardManager.hero.heroClass.level)")
              Text("Hero Attributes Charisma:  \(cardManager.hero.attributes.Charisma)")
              ForEach(cardManager.hero.skills) { skill in
-             Text("Hero Skill: \(skill.name.capitalized)")
-             }
+             Text("Hero Skill: \(skill.name.capitalized)") }
              ForEach(cardManager.hero.items) { item in
              Text("Hero Skill: \(item.name.capitalized)")
-             Text("Hero status: \(cardManager.hero.stats.health)")
-             }
+             Text("Hero status: \(cardManager.hero.stats.health)") }
+             
              */
             
             // Design the display cards
@@ -62,10 +72,11 @@ struct HeroMainView: View {
                         }
                     }
                     
-                   
+                    
                 }
             }
         }
+    }
     }
 }
 
