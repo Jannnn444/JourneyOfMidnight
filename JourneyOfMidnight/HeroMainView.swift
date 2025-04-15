@@ -11,6 +11,7 @@ struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
     @State var selectedHero: Hero? = nil
+    @State var selectedSkills: [Skill] = []
     
     var body: some View {
         ZStack{
@@ -20,6 +21,7 @@ struct HeroMainView: View {
                 .onTapGesture {
                     showDetailSkillView = false
                     selectedHero = nil
+                    selectedSkills = []
                 }
             
         VStack {
@@ -44,8 +46,13 @@ struct HeroMainView: View {
             if selectedHero != nil {
                 VStack(alignment: .leading) {
                     PopupView{
-                        Text("Test")
-                            .foregroundStyle(.black)
+                        ForEach(selectedSkills) { skill in
+                            Text("Skill power: \(skill.power)")
+                                .foregroundStyle(.black)
+                                .font(.caption2)
+                                
+                        }
+                        
                         
                         Button(action: {
                             cardManager.showMoreDetail = false
@@ -90,6 +97,7 @@ struct HeroMainView: View {
                                                 Button(action: {
                                                     cardManager.showMoreDetail = true
                                                     selectedHero = hero
+                                                    selectedSkills = hero.skills
                                                 }) {
                                                     DetailSkillView(skill: skill)
                                                 }
