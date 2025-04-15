@@ -19,11 +19,13 @@ struct AbilityDetailViewPage: View {
             VStack {
                 HStack{
                     VStack{
-                        Text("\(skillName.uppercased())") // TBD: SkillName
+                        Text("\(skillName.uppercased())") 
+                        // TBD: SkillName
                             .font(.title)
                             .fontDesign(.monospaced)
                             .padding()
-                        Text("\(skillType.rawValue.uppercased())") // TBD: SkillName
+                        Text("\(skillType.rawValue.uppercased())") 
+                        // TBD: SkillName
                             .font(.title2)
                             .fontDesign(.monospaced)
                             .padding()

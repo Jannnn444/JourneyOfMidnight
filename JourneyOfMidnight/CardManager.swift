@@ -52,7 +52,20 @@ class CardManager: ObservableObject {
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                         skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
                         items: [Item(name: "wands"), Item(name: "Handbook")],
+                        stats: Stats(health: 100, endurance: 500)),
+                     Hero(
+                        heroClass: HeroClass(name: .wizard, level: 50),
+                        attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
+                        skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
+                        items: [Item(name: "wands"), Item(name: "Handbook")],
+                        stats: Stats(health: 100, endurance: 500)),
+                     Hero(
+                        heroClass: HeroClass(name: .wizard, level: 50),
+                        attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
+                        skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
+                        items: [Item(name: "wands"), Item(name: "Handbook")],
                         stats: Stats(health: 100, endurance: 500))
+                     
                      ]
     }
 }

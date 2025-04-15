@@ -33,6 +33,13 @@ struct HeroMainView: View {
             // Design the display cards
             HStack {
                 ForEach(cardManager.hero) { hero in
+                    
+                    Button(action: {
+                        
+                    }) {
+                        
+                    }
+                    
                     ZStack {
                         Rectangle()
                             .frame(width: 100, height: 130)
@@ -41,10 +48,8 @@ struct HeroMainView: View {
                         VStack(alignment: .leading, spacing: 5) {
                             Text(hero.heroClass.name.rawValue)
                                 .font(.subheadline)
-                            Text("Level: \(hero.heroClass.level)")
-                                .font(.subheadline)
+                           
                         }
-                        
                     }
                 }
             }
