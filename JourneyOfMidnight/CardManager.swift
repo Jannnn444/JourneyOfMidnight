@@ -44,25 +44,25 @@ class CardManager: ObservableObject {
                     Vitality: 10,
                     Faith: 10,
                     Charisma: 10),
-                skills: [Skill(name: "meteor stike"), Skill(name: "roll dodge")],
+                skills: [Skill(name: "Meteor"), Skill(name: "Dodge")],
             items: [Item(name: "Armour"), Item(name: "pants")],
             stats: Stats(health: 100, endurance: 500)),
                      Hero(
                         heroClass: HeroClass(name: .wizard, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
-                        skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
+                        skills: [Skill(name: "Rainy"), Skill(name: "Wolve")],
                         items: [Item(name: "wands"), Item(name: "Handbook")],
                         stats: Stats(health: 100, endurance: 500)),
                      Hero(
-                        heroClass: HeroClass(name: .wizard, level: 50),
+                        heroClass: HeroClass(name: .rogue, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
-                        skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
+                        skills: [Skill(name: "Flower"), Skill(name: "WolveCry")],
                         items: [Item(name: "wands"), Item(name: "Handbook")],
                         stats: Stats(health: 100, endurance: 500)),
                      Hero(
-                        heroClass: HeroClass(name: .wizard, level: 50),
+                        heroClass: HeroClass(name: .priest, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
-                        skills: [Skill(name: "Magic"), Skill(name: "WolveCry")],
+                        skills: [Skill(name: "Moon"), Skill(name: "WolveCry")],
                         items: [Item(name: "wands"), Item(name: "Handbook")],
                         stats: Stats(health: 100, endurance: 500))
                      

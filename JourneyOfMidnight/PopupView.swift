@@ -21,7 +21,7 @@ struct PopupView<Content: View>: View {
     
     var body: some View {
         VStack {
-            // display content
+            // display content dynamic!
             content
         }.background(
             Rectangle()
@@ -32,7 +32,7 @@ struct PopupView<Content: View>: View {
     }
 }
 
-// example usage
+// Example usage
 struct ContentExample: View {
     var body: some View {
         PopupView {

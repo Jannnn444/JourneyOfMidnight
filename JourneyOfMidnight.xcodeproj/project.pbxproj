@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */; };
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
 		1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0962DAD0994007392FE /* HeroMainView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSkillView.swift; sourceTree = "<group>"; };
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
 		1E99D0962DAD0994007392FE /* HeroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMainView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
 				5455ED262DAC077700157005 /* PopupView.swift */,
 				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
+				1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */,
+				1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */,
 				546DD1CB2D8EEA2900FAD49B /* CardManager.swift in Sources */,
 				1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */,
 				546DD1CF2D8EEB3000FAD49B /* FollowerCardView.swift in Sources */,

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
+    @State var showDetailSkillView = false
     
     var body: some View {
         VStack {
@@ -35,22 +36,33 @@ struct HeroMainView: View {
                 ForEach(cardManager.hero) { hero in
                     
                     Button(action: {
-                        
+                        showDetailSkillView = true
                     }) {
-                        
-                    }
-                    
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 100, height: 130)
-                            .foregroundColor(.yellow)
-                            .cornerRadius(20)
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(hero.heroClass.name.rawValue)
-                                .font(.subheadline)
-                           
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 100, height: 130)
+                                .foregroundColor(.yellow)
+                                .cornerRadius(20)
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(hero.heroClass.name.rawValue.capitalized)
+                                    .font(.headline)
+                                    .padding()
+                                    .fontDesign(.monospaced)
+                                    .bold()
+                                if showDetailSkillView {
+                                    // heres what we gotta do
+                                    // makes the view clickable
+                                    VStack(alignment: .leading) {
+                                        ForEach(hero.skills) { skill in
+                                            DetailSkillView(skill: skill)
+                                        }
+                                    }.padding()
+                                }
+                            }
                         }
                     }
+                    
+                   
                 }
             }
         }
