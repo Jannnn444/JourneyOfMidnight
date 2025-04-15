@@ -15,6 +15,7 @@ class CardManager: ObservableObject {
     @Published var skillType: SkillType = .Defense
     @Published var showAbilityDetailView: Bool = false
     @Published var hero: [Hero]
+    @Published var showMoreDetail: Bool = false
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650

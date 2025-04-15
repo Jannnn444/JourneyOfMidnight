@@ -21,13 +21,13 @@ struct PopupView<Content: View>: View {
     
     var body: some View {
         VStack {
-            // display content dynamic!
+            // display content ! DYNAMIC !
             content
         }.background(
             Rectangle()
                 .cornerRadius(20)
-                .foregroundColor(.yellow)
-                .frame(width: 300, height: 130))
+                .foregroundColor(.secondary)
+                .frame(width: 100, height: 130))
     
     }
 }

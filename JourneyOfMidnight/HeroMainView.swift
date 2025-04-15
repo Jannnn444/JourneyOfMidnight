@@ -56,7 +56,7 @@ struct HeroMainView: View {
                                         ForEach(hero.skills) { skill in
                                             DetailSkillView(skill: skill)
                                         }
-                                    }.padding()
+                                    }
                                 }
                             }
                         }
