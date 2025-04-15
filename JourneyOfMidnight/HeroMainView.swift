@@ -68,6 +68,7 @@ struct HeroMainView: View {
                                             // HAve the skills able to be buttons and expand to show more infos
                                             Button(action: {
                                                 cardManager.showMoreDetail = true
+                                                selectedHero = hero
                                             }) {
                                                 DetailSkillView(skill: skill)
                                             }
@@ -75,35 +76,32 @@ struct HeroMainView: View {
                                         }
                                     }
                                 }
-                                // B View
-                                if cardManager.showMoreDetail {
-                                    VStack(alignment: .leading) {
-                                        PopupView{
-                                            Text("Test")
-                                                .foregroundStyle(.black)
-                                            
-                                            Button(action: {
-                                                cardManager.showMoreDetail = false
-                                            }) {
-                                                Text("Close")
-                                                    .padding()
-                                                    .foregroundColor(.black)
-                                                    .background(Color.secondary)
-                                                    .cornerRadius(10)
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                                
                             } // Vstack yellow column
                             
                         } // Zstack
                     }
-                    
-                    
                 }
-            }
+                // B View
+                if selectedHero != nil {
+                    VStack(alignment: .leading) {
+                        PopupView{
+                            Text("Test")
+                                .foregroundStyle(.black)
+                            
+                            Button(action: {
+                                cardManager.showMoreDetail = false
+                            }) {
+                                Text("Close")
+                                    .padding()
+                                    .foregroundColor(.black)
+                                    .background(Color.secondary)
+                                    .cornerRadius(10)
+                            }
+                        }
+                        
+                    }
+                }
+            } //Hstack
         }
     }
     }
