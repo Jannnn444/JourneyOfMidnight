@@ -11,7 +11,6 @@ struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
     @State var selectedHero: Hero? = nil
-//    @State var selectedSkills: [Skill] = []
     
     var body: some View {
         ZStack{
@@ -21,7 +20,6 @@ struct HeroMainView: View {
                 .onTapGesture {
                     showDetailSkillView = false
                     selectedHero = nil
-//                    selectedSkills = []
                 }
             
             VStack {
@@ -51,6 +49,14 @@ struct HeroMainView: View {
                                     .foregroundStyle(.black)
                                     .font(.caption2)
                             }
+                            ForEach(selectedHero!.items) { item in
+                                Text("\(item.name)")
+                                    .foregroundStyle(.black)
+                                    .font(.caption2)
+                            }
+                            Text("Wisdom: \(String(describing: selectedHero?.attributes.Wisdom))")
+                                .foregroundStyle(.black)
+                                .font(.caption2)
                             
                             Button(action: {
                                 cardManager.showMoreDetail = false
@@ -95,7 +101,7 @@ struct HeroMainView: View {
                                                     Button(action: {
                                                         cardManager.showMoreDetail = true
                                                         selectedHero = hero
-//                                                        selectedSkills = hero.skills
+                                                        //                                                      selectedSkills = hero.skills
                                                     }) {
                                                         DetailSkillView(skill: skill)
                                                     }
