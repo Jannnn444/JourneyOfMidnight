@@ -21,21 +21,16 @@ import SwiftUI
 struct DetailSkillView: View {
     @ObservedObject var cardManager = CardManager.shared
     var skill: Skill
-//    @Binding var showMoreDetail: Bool //for receving commnads from outside
+//  @Binding var showMoreDetail: Bool //for receving commnads from outside
 
     var body: some View {
         VStack {
             // Button
-                
-                // UI
                 Text("💠\(skill.name)")
                     .font(.caption)
                     .fontDesign(.monospaced)
                     .bold()
-                
             }
-            
-            
         }
     }
 

@@ -24,97 +24,95 @@ struct HeroMainView: View {
                     selectedSkills = []
                 }
             
-        VStack {
-            Text("Hero Main Page")
-                .font(.title)
-                .padding()
-            
-            /*
-             Cards Properties we can use:
-             
-             Text("Hero name: \(cardManager.hero.heroClass.name.rawValue)")
-             Text("Hero level: \(cardManager.hero.heroClass.level)")
-             Text("Hero Attributes Charisma:  \(cardManager.hero.attributes.Charisma)")
-             ForEach(cardManager.hero.skills) { skill in
-             Text("Hero Skill: \(skill.name.capitalized)") }
-             ForEach(cardManager.hero.items) { item in
-             Text("Hero Skill: \(item.name.capitalized)")
-             Text("Hero status: \(cardManager.hero.stats.health)") }
-             
-             */
-            // B View
-            if selectedHero != nil {
-                VStack(alignment: .leading) {
-                    PopupView{
-                        ForEach(selectedSkills) { skill in
-                            Text("Skill power: \(skill.power)")
-                                .foregroundStyle(.black)
-                                .font(.caption2)
-                                
-                        }
-                        
-                        
-                        Button(action: {
-                            cardManager.showMoreDetail = false
-                            selectedHero = nil
-                        }) {
-                            Text("Close")
-                                .padding()
-                                .foregroundColor(.black)
-                                .background(Color.secondary)
-                                .cornerRadius(10)
-                        }
-                    }.padding()
-                    
-                }
-            } else {
+            VStack {
+                Text("Hero Main Page")
+                    .font(.title)
+                    .padding()
                 
-                // Design the display cards
-                HStack {
-                    ForEach(cardManager.hero) { hero in
+                /*
+                 Cards Properties we can use:
+                 
+                 Text("Hero name: \(cardManager.hero.heroClass.name.rawValue)")
+                 Text("Hero level: \(cardManager.hero.heroClass.level)")
+                 Text("Hero Attributes Charisma:  \(cardManager.hero.attributes.Charisma)")
+                 ForEach(cardManager.hero.skills) { skill in
+                 Text("Hero Skill: \(skill.name.capitalized)") }
+                 ForEach(cardManager.hero.items) { item in
+                 Text("Hero Skill: \(item.name.capitalized)")
+                 Text("Hero status: \(cardManager.hero.stats.health)") }
+                 
+                 */
+                // B View
+                if selectedHero != nil {
+                    VStack(alignment: .leading) {
+                        PopupView{
+                            ForEach(selectedSkills) { skill in
+                                Text("\(skill.name): \(skill.power)")
+                                    .foregroundStyle(.black)
+                                    .font(.caption2)
+                            }
+                            
+                            Button(action: {
+                                cardManager.showMoreDetail = false
+                                selectedHero = nil
+                            }) {
+                                Text("Close")
+                                    .padding()
+                                    .foregroundColor(.black)
+                                    .background(Color.secondary)
+                                    .cornerRadius(10)
+                            }
+                        }.padding()
                         
-                        Button(action: {
-                            showDetailSkillView = true
-                        }) {
-                            ZStack {
-                                Rectangle()
-                                    .frame(width: 100, height: 130)
-                                    .foregroundColor(.yellow)
-                                    .cornerRadius(20)
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(hero.heroClass.name.rawValue.capitalized)
-                                        .font(.headline)
-                                        .padding()
-                                        .fontDesign(.monospaced)
-                                        .bold()
-                                    // A View
-                                    if showDetailSkillView {
-                                        // heres what we gotta do
-                                        // makes the view clickable
-                                        VStack(alignment: .leading) {
-                                            ForEach(hero.skills) { skill in
-                                                // HAve the skills able to be buttons and expand to show more infos
-                                                Button(action: {
-                                                    cardManager.showMoreDetail = true
-                                                    selectedHero = hero
-                                                    selectedSkills = hero.skills
-                                                }) {
-                                                    DetailSkillView(skill: skill)
+                    }
+                } else {
+                    
+                    // Design the display cards
+                    HStack {
+                        ForEach(cardManager.hero) { hero in
+                            
+                            Button(action: {
+                                showDetailSkillView = true
+                            }) {
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 100, height: 130)
+                                        .foregroundColor(.yellow)
+                                        .cornerRadius(20)
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text(hero.heroClass.name.rawValue.capitalized)
+                                            .font(.headline)
+                                            .padding()
+                                            .fontDesign(.monospaced)
+                                            .bold()
+                                        // A View
+                                        if showDetailSkillView {
+                                            // heres what we gotta do
+                                            // makes the view clickable
+                                            VStack(alignment: .leading) {
+                                                ForEach(hero.skills) { skill in
+                                                    // HAve the skills able to be buttons and expand to show more infos
+                                                    Button(action: {
+                                                        cardManager.showMoreDetail = true
+                                                        selectedHero = hero
+                                                        selectedSkills = hero.skills
+                                                    }) {
+                                                        DetailSkillView(skill: skill)
+                                                    }
+                                                    
                                                 }
-                                                
                                             }
                                         }
-                                    }
-                                } // Vstack yellow column
-                                
-                            } // Zstack
+                                    } // Vstack yellow column
+                                    
+                                } // Zstack
+                            }
                         }
-                    }
-                    
-                } //Hstack
-            } // selected = nil >>> else view shows
+                        
+                    } //Hstack
+                } // selected = nil >>> else view shows
+            }
         }
-    }
     }
 }
 
