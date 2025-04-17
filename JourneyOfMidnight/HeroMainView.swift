@@ -11,6 +11,7 @@ struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
     @State var selectedHero: Hero? = nil
+    var eventState: Events
     
     var body: some View {
         ZStack{
@@ -23,6 +24,7 @@ struct HeroMainView: View {
                 }
             
             VStack {
+                
                
                 
                
@@ -116,7 +118,7 @@ struct HeroMainView: View {
 }
 
 #Preview {
-    HeroMainView()
+    HeroMainView(eventState: .Game)
 }
 
 

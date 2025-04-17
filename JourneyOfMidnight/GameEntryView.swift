@@ -98,7 +98,7 @@ struct GameEntryView: View {
                             .foregroundStyle(.black)
                     }
                 }.fullScreenCover(isPresented: $showSettingView ) {
-                    HeroMainView()
+                    HeroMainView(eventState: .Game)
                 }
             }
         }

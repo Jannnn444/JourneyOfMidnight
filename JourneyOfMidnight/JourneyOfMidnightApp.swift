@@ -13,7 +13,7 @@ struct JourneyOfMidnightApp: App {
     var body: some Scene {
         WindowGroup {
 //          GameEntryView()
-            HeroMainView()
+            HeroMainView(eventState: .Game) // day one start at game
         }
     }
 }
