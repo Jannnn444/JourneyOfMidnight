@@ -44,7 +44,7 @@ struct HeroMainView: View {
                 if selectedHero != nil {
                     VStack(alignment: .leading) {
                         PopupView{
-                            Text("\(selectedHero?.heroClass.name)")
+                            Text("\(selectedHero!.heroClass.name.rawValue.capitalized)")
                                     .foregroundStyle(.black)
                                     .font(.caption2)
                             ForEach(selectedHero!.skills) { skill in
