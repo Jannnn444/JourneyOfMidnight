@@ -118,7 +118,7 @@ struct HeroMainView: View {
                             }
                         }
                         
-                    } .position(x: 350, y: 280)
+                    } .position(x: 350, y: 250)
                 } // selectedHero = nil >>> else view shows
             }
         }.padding([.top, .leading, .trailing])
