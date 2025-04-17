@@ -57,7 +57,7 @@ struct GameEntryView: View {
                             .fontDesign(.monospaced)
                             .foregroundStyle(.black)
                     }.fullScreenCover(isPresented: $showStoryView ) {
-                        StoryView()
+                       
                     }
                 }
                 

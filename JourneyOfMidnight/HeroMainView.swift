@@ -23,20 +23,10 @@ struct HeroMainView: View {
                 }
             
             VStack {
-                /*
-                 Cards Properties we can use:
-                 
-                 Text("Hero name: \(cardManager.hero.heroClass.name.rawValue)")
-                 Text("Hero level: \(cardManager.hero.heroClass.level)")
-                 Text("Hero Attributes Charisma:  \(cardManager.hero.attributes.Charisma)")
-                 ForEach(cardManager.hero.skills) { skill in
-                 Text("Hero Skill: \(skill.name.capitalized)") }
-                 ForEach(cardManager.hero.items) { item in
-                 Text("Hero Skill: \(item.name.capitalized)")
-                 Text("Hero status: \(cardManager.hero.stats.health)") }
-                 
-                 */
-                // B View
+               
+                
+               
+                // MARK: - B. Bounced Skill View
                 if selectedHero != nil {
                     VStack(alignment: .leading) {
                         PopupView{
@@ -71,7 +61,6 @@ struct HeroMainView: View {
                         
                     }
                 } else {
-                    
                     // Design the display cards
                     HStack {
                         ForEach(cardManager.hero) { hero in
@@ -90,7 +79,8 @@ struct HeroMainView: View {
                                             .padding()
                                             .fontDesign(.monospaced)
                                             .bold()
-                                        // A View
+                                        
+                                        // MARK: - A. Main Card View
                                         if showDetailSkillView {
                                             // heres what we gotta do
                                             // makes the view clickable

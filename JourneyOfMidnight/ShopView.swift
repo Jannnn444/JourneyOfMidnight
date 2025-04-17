@@ -12,7 +12,7 @@ struct ShopView: View {
     @ObservedObject var cardmanager = CardManager.shared
     
     var body: some View {
-        Text("Shop View")
+        Text("Shop Frame")
             .font(.headline)
             .fontDesign(.monospaced)
         Rectangle()
@@ -23,3 +23,6 @@ struct ShopView: View {
 }
 
 
+#Preview {
+    ShopView(cardmanager: CardManager.shared)
+}

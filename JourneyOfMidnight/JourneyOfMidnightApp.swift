@@ -12,7 +12,8 @@ import SwiftUI
 struct JourneyOfMidnightApp: App {
     var body: some Scene {
         WindowGroup {
-            GameEntryView()
+//          GameEntryView()
+            HeroMainView()
         }
     }
 }
