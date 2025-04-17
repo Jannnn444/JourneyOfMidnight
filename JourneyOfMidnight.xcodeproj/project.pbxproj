@@ -61,9 +61,9 @@
 		5455ED232DAA992800157005 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
 				5455ED242DAA993700157005 /* ShopView.swift */,
 				5455ED262DAC077700157005 /* PopupView.swift */,
-				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
 				1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */,
 			);
 			name = Events;

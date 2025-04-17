@@ -18,8 +18,8 @@ struct HeroMainView: View {
             Color.clear
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    showDetailSkillView = false
-                    selectedHero = nil
+//                    showDetailSkillView = false
+//                    selectedHero = nil
                 }
             
             VStack {
@@ -32,20 +32,21 @@ struct HeroMainView: View {
                         PopupView{
                             Text("\(selectedHero!.heroClass.name.rawValue.capitalized)")
                                     .foregroundStyle(.black)
-                                    .font(.caption2)
+                                    .font(.headline)
+                                    .bold()
                             ForEach(selectedHero!.skills) { skill in
                                 Text("\(skill.name): \(skill.power)")
                                     .foregroundStyle(.black)
-                                    .font(.caption2)
+                                    .font(.headline)
                             }
                             ForEach(selectedHero!.items) { item in
                                 Text("\(item.name)")
                                     .foregroundStyle(.black)
-                                    .font(.caption2)
+                                    .font(.headline)
                             }
                             Text("Wisdom: \(String(describing: selectedHero!.attributes.Wisdom))")
                                 .foregroundStyle(.black)
-                                .font(.caption2)
+                                .font(.headline)
                             
                             Button(action: {
                                 cardManager.showMoreDetail = false
@@ -54,6 +55,8 @@ struct HeroMainView: View {
                                 Text("Close")
                                     .padding()
                                     .foregroundColor(.black)
+                                    .font(.headline)
+                                    .bold()
                                     .background(Color.secondary)
                                     .cornerRadius(10)
                             }
@@ -66,7 +69,8 @@ struct HeroMainView: View {
                         ForEach(cardManager.hero) { hero in
                             
                             Button(action: {
-                                showDetailSkillView = true
+                                showDetailSkillView.toggle()
+                                // Button for shows the brief skill listed
                             }) {
                                 ZStack {
                                     Rectangle()
