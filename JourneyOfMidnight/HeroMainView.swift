@@ -19,15 +19,16 @@ struct HeroMainView: View {
             Color.clear
                 .contentShape(Rectangle())
                 .onTapGesture {
-//                    showDetailSkillView = false
-//                    selectedHero = nil
+//               showDetailSkillView = false
+//               selectedHero = nil
                 }
-            
-            VStack {
             // MARK: Top 1/2 Banner GameBd
                 switch eventState {
                 case .Game:
-                    EmptyView()
+                    Rectangle()
+                        .frame(width: 500, height: 350)
+                        .foregroundColor(.blue)
+                        .cornerRadius(20)
                 case .FortuneWheel:
                     EmptyView()
                 case .GroceryShop:
@@ -37,6 +38,8 @@ struct HeroMainView: View {
                 case .Forest:
                     EmptyView()
                 }
+            
+            VStack {
             
                 // MARK: - 2/2 B.Bounced Skill View
                 if selectedHero != nil {
@@ -72,31 +75,30 @@ struct HeroMainView: View {
                                     .background(Color.secondary)
                                     .cornerRadius(10)
                             }
-                        }.padding()
-                        
+                        }
                     }
                 } else {
-                    // Design the display cards
+                    // MARK: - 2/2 A.Card View
                     HStack {
                         ForEach(cardManager.hero) { hero in
                             
                             Button(action: {
-                                showDetailSkillView.toggle()
-                                // Button for shows the brief skill listed
+                                showDetailSkillView.toggle() // Button for shows brief skill
                             }) {
                                 ZStack {
+                                    
                                     Rectangle()
                                         .frame(width: 100, height: 130)
                                         .foregroundColor(.yellow)
-                                        .cornerRadius(20)
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(hero.heroClass.name.rawValue.capitalized)
-                                            .font(.headline)
-                                            .padding()
-                                            .fontDesign(.monospaced)
-                                            .bold()
+                                        .cornerRadius(10)
+                                        VStack() {
+                                            Text(hero.heroClass.name.rawValue.capitalized)
+                                                .font(.headline)
+                                                .padding()
+                                                .fontDesign(.monospaced)
+                                                .bold()
+                                        }
                                         
-                                        // MARK: - 2/2 A.Card View
                                         if showDetailSkillView {
                                             // heres what we gotta do
                                             // makes the view clickable
@@ -106,24 +108,21 @@ struct HeroMainView: View {
                                                     Button(action: {
                                                         cardManager.showMoreDetail = true
                                                         selectedHero = hero
-                                                        //                                                      selectedSkills = hero.skills
                                                     }) {
                                                         DetailSkillView(skill: skill)
                                                     }
-                                                    
                                                 }
                                             }
                                         }
-                                    } // Vstack yellow column
-                                    
                                 } // Zstack
                             }
                         }
                         
-                    } //Hstack
-                } // selected = nil >>> else view shows
+                    } .position(x: 350, y: 280)
+                } // selectedHero = nil >>> else view shows
             }
-        }
+        }.padding([.top, .leading, .trailing])
+//       .ignoresSafeArea()
     }
 }
 
