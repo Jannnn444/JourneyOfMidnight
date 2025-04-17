@@ -24,11 +24,21 @@ struct HeroMainView: View {
                 }
             
             VStack {
-                
-               
-                
-               
-                // MARK: - B. Bounced Skill View
+            // MARK: Top 1/2 Banner GameBd
+                switch eventState {
+                case .Game:
+                    EmptyView()
+                case .FortuneWheel:
+                    EmptyView()
+                case .GroceryShop:
+                    EmptyView()
+                case .Sleep:
+                    EmptyView()
+                case .Forest:
+                    EmptyView()
+                }
+            
+                // MARK: - 2/2 B.Bounced Skill View
                 if selectedHero != nil {
                     VStack(alignment: .leading) {
                         PopupView{
@@ -86,7 +96,7 @@ struct HeroMainView: View {
                                             .fontDesign(.monospaced)
                                             .bold()
                                         
-                                        // MARK: - A. Main Card View
+                                        // MARK: - 2/2 A.Card View
                                         if showDetailSkillView {
                                             // heres what we gotta do
                                             // makes the view clickable
