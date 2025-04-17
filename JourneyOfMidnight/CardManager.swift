@@ -162,4 +162,12 @@ struct Choice: Identifiable {
     // A closure that modifies the player's attributes based on the choice
 }
 
-
+enum Events {
+    case Game
+    case FortuneWheel
+    case GroceryShop
+    case Sleep
+    case Forest // addditional chance to drop treasure
+    
+}
+                         

@@ -23,10 +23,6 @@ struct HeroMainView: View {
                 }
             
             VStack {
-                Text("Hero Main Page")
-                    .font(.title)
-                    .padding()
-                
                 /*
                  Cards Properties we can use:
                  
@@ -57,7 +53,7 @@ struct HeroMainView: View {
                                     .foregroundStyle(.black)
                                     .font(.caption2)
                             }
-                            Text("Wisdom: \(String(describing: selectedHero?.attributes.Wisdom))")
+                            Text("Wisdom: \(String(describing: selectedHero!.attributes.Wisdom))")
                                 .foregroundStyle(.black)
                                 .font(.caption2)
                             
@@ -128,3 +124,5 @@ struct HeroMainView: View {
 #Preview {
     HeroMainView()
 }
+
+
