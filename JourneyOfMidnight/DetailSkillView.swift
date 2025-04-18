@@ -24,7 +24,7 @@ struct DetailSkillView: View {
 //  @Binding var showMoreDetail: Bool //for receving commnads from outside
 
     var body: some View {
-        VStack {
+        ZStack {
             // Button
                 Text("💠\(skill.name)")
                     .font(.caption)

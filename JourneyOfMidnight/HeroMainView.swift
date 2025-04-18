@@ -19,8 +19,8 @@ struct HeroMainView: View {
                 Color.clear
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        //               showDetailSkillView = false
-                        //               selectedHero = nil
+//               showDetailSkillView = false
+//               selectedHero = nil
                     }
                 // MARK: - Top 1/2 Banner GameBd
                 switch eventState {
@@ -52,8 +52,6 @@ struct HeroMainView: View {
                 }
                 
                 // MARK: - 2/2 B.Bounced Skill View
-            HStack {
-                VStack {
                     if selectedHero != nil {
                         VStack(alignment: .leading) {
                             PopupView{
@@ -97,7 +95,6 @@ struct HeroMainView: View {
                                     showDetailSkillView.toggle() // Button for shows brief skill
                                 }) {
                                     ZStack {
-                                        
                                         Rectangle()
                                             .frame(width: 100, height: 130)
                                             .foregroundColor(.yellow)
@@ -132,24 +129,31 @@ struct HeroMainView: View {
                             
                         } .position(x: 410, y: 250)
                     } // selectedHero = nil >>> else view shows
+                
+        // MARK: - Shuffle Event Button - Always at bottom right
+        VStack {
+                 Spacer()
+            HStack {
+                Spacer()
+                Button(action: {
+                    eventState = shuffleEvents()
+                }) {
+                    Text("Shuffle Event")
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
-                VStack { // Vstack inside the Hstack
-                    Spacer() // push it to the right
-                    Button(action: {
-                        eventState = shuffleEvents()
-                    }) {
-                        Text("Shuffle Event")
-                            .padding()
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }.padding() //padding for button
-                }
-            }  // Hstack
-            }.padding([.top, .leading, .trailing])
-       .ignoresSafeArea()
-    }
-}
+                .padding()
+                
+            }
+                 }
+             }
+         .padding([.top, .leading, .trailing])
+         .ignoresSafeArea()
+     }
+ }
+
 
 #Preview {
     HeroMainView(eventState: .Game)
