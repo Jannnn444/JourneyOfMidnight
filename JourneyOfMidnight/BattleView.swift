@@ -37,9 +37,9 @@ struct BattleView: View {
                     ZStack {
                         VStack {
                             Spacer()
-                            BoardView(characterContent: tempPlayer1)
+//                            BoardView(characterContent: tempPlayer1)
                             Spacer()
-                            BoardView(characterContent: tempPlayer2)
+//                            BoardView(characterContent: tempPlayer2)
                             Spacer()
                             // Todo: Replace new /Users/yucianhuang/Documents/JourneyOfMidnight/JourneyOfMidnight/BattleView.swiftCardBoardView() , BoardView now abandoned
                         }

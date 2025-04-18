@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-
+ 
 struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
-    @State var selectedHero: Hero? = nil
+    @State var selectedHeros: [Hero] = []
     @State var eventState: Events
+    @State var hoveredHero: Hero? = nil
     
     var body: some View {
         ZStack{
@@ -33,18 +34,22 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                HStack {
-                    Image("knight")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    Text("Battle For Glory")
-                        .font(.title)
-                        .bold()
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.black)
-                } .padding()
-                    .background(Color.white.opacity(0.7))
-                    .cornerRadius(10)
+                VStack {
+                    HStack {
+                        Image("knight")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Battle For Glory")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    } .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Spacer()
+                }
+         
                 
                 Spacer()
                 
@@ -56,18 +61,22 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                HStack {
-                    Image("castle")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    Text("Spin Your Fortune Wheel")
-                        .font(.title)
-                        .bold()
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.black)
-                } .padding()
-                    .background(Color.white.opacity(0.7))
-                    .cornerRadius(10)
+                VStack {
+                    HStack {
+                        Image("castle")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Spin Your Fortune Wheel")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    } .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Spacer()
+                }
+      
                 Spacer()
             case .GroceryShop:
                 Rectangle()
@@ -77,18 +86,21 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                HStack {
-                    Image("vendor")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    Text("Vendor")
-                        .font(.title)
-                        .bold()
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.black)
-                } .padding()
-                    .background(Color.white.opacity(0.7))
-                    .cornerRadius(10)
+                VStack {
+                    HStack {
+                        Image("vendor")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Vendor")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    } .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Spacer()
+                }
                 Spacer()
             case .Sleep:
                 Rectangle()
@@ -98,18 +110,21 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                HStack {
-                    Image("campfire")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    Text("Rest Recharge")
-                        .font(.title)
-                        .bold()
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.black)
-                } .padding()
-                    .background(Color.white.opacity(0.7))
-                    .cornerRadius(10)
+                VStack {
+                    HStack {
+                        Image("campfire")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Rest Recharge")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    } .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Spacer()
+                }
                 Spacer()
             case .Forest:
                 Rectangle()
@@ -119,46 +134,53 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                HStack {
-                    Image("forest")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    Text("Adventure Forest")
-                        .font(.title)
-                        .bold()
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.black)
-                } .padding()
-                    .background(Color.white.opacity(0.7))
-                    .cornerRadius(10)
+                VStack {
+                    HStack {
+                        Image("forest")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Adventure Forest")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    } .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Spacer()
+                }
                 Spacer()
             }
             
             // MARK: - 2/2 B.Bounced Skill View
-            if selectedHero != nil {
+            if selectedHeros != [] {
                 VStack(alignment: .leading) {
+                    ForEach(selectedHeros) { hero in
                     PopupView{
-                        Text("\(selectedHero!.heroClass.name.rawValue.capitalized)")
+                        Text("\(hero.heroClass.name.rawValue.capitalized)")
                             .foregroundStyle(.white)
                             .font(.headline)
                             .bold()
-                        ForEach(selectedHero!.skills) { skill in
-                            Text("\(skill.name): \(skill.power)")
+                       
+                            ForEach(hero.skills) { skill in
+                                Text("\(skill.name): \(skill.power)")
+                                    .foregroundStyle(.white)
+                                    .font(.headline)
+                            }
+                            ForEach(hero.items) { item in
+                                Text("\(item.name)")
+                                    .foregroundStyle(.white)
+                                    .font(.headline)
+                            }
+                            Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
                                 .foregroundStyle(.white)
                                 .font(.headline)
+                            
                         }
-                        ForEach(selectedHero!.items) { item in
-                            Text("\(item.name)")
-                                .foregroundStyle(.white)
-                                .font(.headline)
-                        }
-                        Text("Wisdom: \(String(describing: selectedHero!.attributes.Wisdom))")
-                            .foregroundStyle(.white)
-                            .font(.headline)
-                        
+                       
                         Button(action: {
                             cardManager.showMoreDetail = false
-                            selectedHero = nil
+                            selectedHeros = []
                         }) {
                             Text("Close")
                                 .padding()
@@ -170,7 +192,7 @@ struct HeroMainView: View {
                         }
                     }
                 }
-            } else {
+            } else if selectedHeros == [] {
                 // MARK: - 2/2 A.Card View
                 HStack {
                     ForEach(cardManager.hero) { hero in
@@ -197,7 +219,7 @@ struct HeroMainView: View {
                                                 // Have the skills able to be buttons and expand to show more infos
                                                 Button(action: {
                                                     cardManager.showMoreDetail = true
-                                                    selectedHero = hero
+                                                    selectedHeros.append(hero)
                                                 }) {
                                                     DetailSkillView(skill: skill)
                                                 }

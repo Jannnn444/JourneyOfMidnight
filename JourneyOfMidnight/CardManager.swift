@@ -98,7 +98,11 @@ enum SkillType: String {
 }
 
 // MARK: - Hero
-struct Hero: Identifiable {
+struct Hero: Identifiable, Equatable {
+    static func == (lhs: Hero, rhs: Hero) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id = UUID()
     var heroClass: HeroClass
     var attributes: Attributes // now reference type

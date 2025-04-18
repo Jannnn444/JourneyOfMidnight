@@ -19,7 +19,7 @@ struct PersonalView: View {
                     ZStack {
                         VStack {
                             Spacer()
-                            BoardView(characterContent: tempPlayer1)
+//                            BoardView(characterContent: tempPlayer1)
                             Spacer()
                         }
                         .padding(.horizontal) // Padding Horizontally makes up and down liitle padding
