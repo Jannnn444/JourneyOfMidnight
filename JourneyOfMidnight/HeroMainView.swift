@@ -27,16 +27,28 @@ struct HeroMainView: View {
                 case .Game:
                     Rectangle()
                         .frame(width: 500, height: 350)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.blue.opacity(0.4))
                         .cornerRadius(20)
                 case .FortuneWheel:
-                    EmptyView()
+                    Rectangle()
+                        .frame(width: 500, height: 350)
+                        .foregroundColor(.brown.opacity(0.4))
+                        .cornerRadius(20)
                 case .GroceryShop:
-                    EmptyView()
+                    Rectangle()
+                        .frame(width: 500, height: 350)
+                        .foregroundColor(.indigo.opacity(0.4))
+                        .cornerRadius(20)
                 case .Sleep:
-                    EmptyView()
+                    Rectangle()
+                        .frame(width: 500, height: 350)
+                        .foregroundColor(.pink.opacity(0.4))
+                        .cornerRadius(20)
                 case .Forest:
-                    EmptyView()
+                    Rectangle()
+                        .frame(width: 500, height: 350)
+                        .foregroundColor(.green.opacity(0.4))
+                        .cornerRadius(20)
                 }
                 
                 // MARK: - 2/2 B.Bounced Skill View
