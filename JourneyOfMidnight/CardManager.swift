@@ -171,3 +171,7 @@ enum Events {
     
 }
                          
+func shuffleEvents() -> Events {
+    let allEvents: [Events] = [.Game, .Forest, .FortuneWheel, .GroceryShop, .Sleep]
+    return allEvents.randomElement() ?? .Game // Default .Game as a fallback
+}
