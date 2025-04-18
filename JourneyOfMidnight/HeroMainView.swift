@@ -21,8 +21,6 @@ struct HeroMainView: View {
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    //               showDetailSkillView = false
-                    //               selectedHero = nil
                 }
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
@@ -202,7 +200,7 @@ struct HeroMainView: View {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 100, height: 130)
-                                    .foregroundColor(.yellow.opacity(0.4))
+                                    .foregroundColor(.yellow)
                                     .cornerRadius(10)
                                 VStack() {
                                     Text(hero.heroClass.name.rawValue.capitalized)
