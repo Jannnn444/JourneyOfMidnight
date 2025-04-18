@@ -52,6 +52,7 @@ struct HeroMainView: View {
                 }
                 
                 // MARK: - 2/2 B.Bounced Skill View
+            HStack {
                 VStack {
                     if selectedHero != nil {
                         VStack(alignment: .leading) {
@@ -129,20 +130,24 @@ struct HeroMainView: View {
                                 }
                             } // ForEach hero
                             
-                        } .position(x: 350, y: 250)
+                        } .position(x: 410, y: 250)
                     } // selectedHero = nil >>> else view shows
+                }
+                VStack { // Vstack inside the Hstack
+                    Spacer() // push it to the right
                     Button(action: {
                         eventState = shuffleEvents()
                     }) {
                         Text("Shuffle Event")
-                                .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                    }
+                            .padding()
+                            .background(Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }.padding() //padding for button
                 }
+            }  // Hstack
             }.padding([.top, .leading, .trailing])
-//       .ignoresSafeArea()
+       .ignoresSafeArea()
     }
 }
 
