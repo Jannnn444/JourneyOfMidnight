@@ -117,7 +117,7 @@ struct HeroMainView: View {
                                     
                                 } // Zstack
                             }
-                        }
+                        } // ForEach hero
                         
                     } .position(x: 350, y: 250)
                 } // selectedHero = nil >>> else view shows
