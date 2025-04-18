@@ -21,6 +21,8 @@ struct HeroMainView: View {
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
                 .onTapGesture {
+                    //               showDetailSkillView = false
+                    //               selectedHero = nil
                 }
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
@@ -132,21 +134,18 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                VStack {
-                    HStack {
-                        Image("forest")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("Adventure Forest")
-                            .font(.title)
-                            .bold()
-                            .fontDesign(.monospaced)
-                            .foregroundStyle(.black)
-                    } .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    Spacer()
-                }
+                HStack {
+                    Image("forest")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                    Text("Adventure Forest")
+                        .font(.title)
+                        .bold()
+                        .fontDesign(.monospaced)
+                        .foregroundStyle(.black)
+                } .padding()
+                    .background(Color.white.opacity(0.7))
+                    .cornerRadius(10)
                 Spacer()
             }
             
@@ -200,7 +199,7 @@ struct HeroMainView: View {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 100, height: 130)
-                                    .foregroundColor(.yellow)
+                                    .foregroundColor(.yellow.opacity(0.4))
                                     .cornerRadius(10)
                                 VStack() {
                                     Text(hero.heroClass.name.rawValue.capitalized)

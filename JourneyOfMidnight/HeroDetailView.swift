@@ -8,7 +8,9 @@
 import Foundation
 import SwiftUI
 
-// Hero Detail View
+// Hero Detail View for test
+
+/*
 struct HeroDetailView: View {
     let hero: Hero
     
@@ -104,3 +106,4 @@ struct HeroDetailView: View {
     }
 }
 
+*/
