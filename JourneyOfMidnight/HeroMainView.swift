@@ -11,8 +11,8 @@ struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
     @State var selectedHeros: [Hero] = []
+    @State var selectedEnemies: [Hero] = []
     @State var eventState: Events
-    @State var hoveredHero: Hero? = nil
     
     var body: some View {
         ZStack{
@@ -26,6 +26,7 @@ struct HeroMainView: View {
             switch eventState {
             case .Game:
                 EventGame()
+                
                 Spacer()
                 
             case .FortuneWheel:
@@ -42,7 +43,7 @@ struct HeroMainView: View {
                 Spacer()
             }
             
-            // MARK: - 2/2 B.Bounced Skill View
+            // MARK: - B.BounceUp Skill View
             if selectedHeros != [] {
                 VStack(alignment: .leading) {
                     ForEach(selectedHeros) { hero in
@@ -82,8 +83,8 @@ struct HeroMainView: View {
                         }
                     }
                 }
+                // MARK: - A.Card View
             } else if selectedHeros == [] {
-                // MARK: - 2/2 A.Card View
                 HStack {
                     ForEach(cardManager.hero) { hero in
                         Button(action: {
