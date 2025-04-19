@@ -15,7 +15,6 @@ struct CardHeroSetView: View {
     @Binding var showMoreDetail: Bool
     
     var body: some View {
-//        if selectedHeros == [] {
             HStack {
                 ForEach(cardManager.hero) { hero in
                     Button(action: {

@@ -15,7 +15,6 @@ struct HeroMainView: View {
     @State var selectedHeros: [Hero] = []
     @State var selectedEnemies: [Hero] = []
     @State var eventState: Events
-
     
     var body: some View {
         ZStack{
@@ -25,16 +24,14 @@ struct HeroMainView: View {
                 .contentShape(Rectangle())
                 .onTapGesture {
                 }
+            
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
             case .Game:
                 EventGame()
                 // MARK: -  Enemy Card Set
-                if selectedEnemies == [] {
-                    EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-                }
+                EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
-                
             case .FortuneWheel:
                 EventFortuneWheel()
                 Spacer()
@@ -50,22 +47,14 @@ struct HeroMainView: View {
             }
             
             // MARK: -  Hero Card Set
-            if selectedHeros == [] {
-                CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
-            }
+            CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+            
+            // MARK: PopUp (Hero & Enemy)
+            CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+            EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
             
             
-//            if selectedHeros != [] {
-                CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
-//            }
-            
-//            if selectedEnemies != [] {
-                EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-//            }
-            
-            // MARK: - Button Shuffle Event
-            // Always at bottom right
-            // Zstack
+            // MARK: Shuffle
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
         }
         // .padding([.top, .leading, .trailing])
