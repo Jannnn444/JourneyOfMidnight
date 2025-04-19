@@ -16,7 +16,7 @@ struct EnemyCardSet: View {
     
     var body: some View {
             HStack {
-                ForEach(cardManager.hero) { hero in
+                ForEach(cardManager.enemy) { enemy in
                     Button(action: {
                         showDetailSkillView.toggle() // Button for shows brief skill
                     }) {
@@ -28,7 +28,7 @@ struct EnemyCardSet: View {
                             
                             VStack() {
                                 
-                                var myHero = hero.heroClass.name
+                                var myHero = enemy.heroClass.name
                                 if myHero == HeroClassName.fighter {
                                     Image("knight")
                                         .resizable()
@@ -56,7 +56,7 @@ struct EnemyCardSet: View {
                                 }
                                 
                                 
-                                Text(hero.heroClass.name.rawValue.capitalized)
+                                Text(enemy.heroClass.name.rawValue.capitalized)
                                     .font(.headline)
                                     .fontDesign(.monospaced)
                                     .bold()
@@ -65,11 +65,11 @@ struct EnemyCardSet: View {
                                     // heres what we gotta do
                                     // makes the view clickable
                                     VStack(alignment: .leading) {
-                                        ForEach(hero.skills) { skill in
+                                        ForEach(enemy.skills) { skill in
                                             // Have the skills able to be buttons and expand to show more infos
                                             Button(action: {
                                                 cardManager.showMoreDetail = true
-                                                selectedHeros.append(hero)
+                                                selectedEnemies.append(enemy)
                                             }) {
                                                 DetailSkillView(skill: skill)
                                             }

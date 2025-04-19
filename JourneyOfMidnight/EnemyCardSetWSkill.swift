@@ -16,24 +16,24 @@ struct EnemyCardSetWSkill: View {
     
     var body: some View {
             VStack(alignment: .leading) {
-                ForEach(selectedHeros) { hero in
+                ForEach(selectedEnemies) { enemy in
                 PopupView{
-                    Text("\(hero.heroClass.name.rawValue.capitalized)")
+                    Text("\(enemy.heroClass.name.rawValue.capitalized)")
                         .foregroundStyle(.white)
                         .font(.headline)
                         .bold()
                    
-                        ForEach(hero.skills) { skill in
+                        ForEach(enemy.skills) { skill in
                             Text("\(skill.name): \(skill.power)")
                                 .foregroundStyle(.white)
                                 .font(.headline)
                         }
-                        ForEach(hero.items) { item in
+                        ForEach(enemy.items) { item in
                             Text("\(item.name)")
                                 .foregroundStyle(.white)
                                 .font(.headline)
                         }
-                        Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
+                        Text("Wisdom: \(String(describing: enemy.attributes.Wisdom))")
                             .foregroundStyle(.white)
                             .font(.headline)
                         
@@ -41,7 +41,7 @@ struct EnemyCardSetWSkill: View {
                    
                     Button(action: {
                         cardManager.showMoreDetail = false
-                        selectedHeros = []
+                        selectedEnemies = []
                     }) {
                         Text("Close")
                             .padding()
