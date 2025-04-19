@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ButtomButton: View {
     @Binding var eventState: Events
-    @State var textOnButton: String
+    let textOnButton: String
     
     var body: some View {
         VStack {
