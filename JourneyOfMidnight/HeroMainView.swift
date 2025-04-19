@@ -43,11 +43,11 @@ struct HeroMainView: View {
                 Spacer()
             }
             
-            // MARK: -  Card Set View (CardSet & show skill 2 vers)
+            // MARK: -  Hero Card Set View (CardSet & show skill 2 vers)
             if selectedHeros == [] {
-               CardHeroSetView(selectedHeros: $selectedHeros, selectedEnemies: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+               CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             } else if selectedHeros != [] {
-                CardHeroSetViewWSkill(selectedHeros: $selectedHeros, selectedEnemies: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+                CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             }
             
             // MARK: - Button Shuffle Event

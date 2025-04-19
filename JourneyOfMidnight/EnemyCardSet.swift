@@ -1,5 +1,5 @@
 //
-//  CardHeroSetView.swift
+//  EnemyCardSet.swift
 //  JourneyOfMidnight
 //
 //  Created by yucian huang on 2025/4/19.
@@ -8,14 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct CardHeroSetView: View {
+struct EnemyCardSet: View {
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var selectedHeros: [Hero]
+    @Binding var selectedEnemies: [Hero]
     @Binding var showDetailSkillView: Bool
     @Binding var showMoreDetail: Bool
     
     var body: some View {
-//        if selectedHeros == [] {
             HStack {
                 ForEach(cardManager.hero) { hero in
                     Button(action: {
@@ -84,5 +83,6 @@ struct CardHeroSetView: View {
                 } // ForEach hero
                 
             } .position(x: 410, y: 300)
+        
     }
 }

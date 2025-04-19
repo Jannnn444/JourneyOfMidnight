@@ -1,5 +1,5 @@
 //
-//  CardHeroSetViewWSkill.swift
+//  EnemyCardSetWSkill.swift
 //  JourneyOfMidnight
 //
 //  Created by yucian huang on 2025/4/19.
@@ -8,15 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct CardHeroSetViewWSkill : View {
+struct EnemyCardSetWSkill: View {
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var selectedHeros: [Hero]
+    @Binding var selectedEnemies: [Hero]
     @Binding var showDetailSkillView: Bool
     @Binding var showMoreDetail: Bool
     
     var body: some View {
-        //    if selectedHeros != [] {
-        
             VStack(alignment: .leading) {
                 ForEach(selectedHeros) { hero in
                 PopupView{

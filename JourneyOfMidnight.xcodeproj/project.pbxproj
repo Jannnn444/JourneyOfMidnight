@@ -21,6 +21,8 @@
 		541C593B2DB3BDC200AB0AC6 /* ButtomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */; };
 		541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */; };
 		541C593F2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C593E2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift */; };
+		541C59412DB3C4AD00AB0AC6 /* EnemyCardSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */; };
+		541C59432DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */; };
 		5455ED272DAC077700157005 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED262DAC077700157005 /* PopupView.swift */; };
 		54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */; };
 		54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8E2D8ED0CA00EB042B /* BattleView.swift */; };
@@ -50,6 +52,8 @@
 		541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomButton.swift; sourceTree = "<group>"; };
 		541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeroSetView.swift; sourceTree = "<group>"; };
 		541C593E2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeroSetViewWSkill.swift; sourceTree = "<group>"; };
+		541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyCardSet.swift; sourceTree = "<group>"; };
+		541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyCardSetWSkill.swift; sourceTree = "<group>"; };
 		5455ED262DAC077700157005 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		54561D892D8ED0CA00EB042B /* JourneyOfMidnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyOfMidnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyOfMidnightApp.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */,
 				541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */,
 				541C593E2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift */,
+				541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */,
+				541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				541C59312DB3B89400AB0AC6 /* EventGame.swift in Sources */,
+				541C59432DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift in Sources */,
 				54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */,
 				1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */,
 				541C593F2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift in Sources */,
@@ -232,6 +239,7 @@
 				541C59372DB3B98200AB0AC6 /* EventSleep.swift in Sources */,
 				1E64C2042DB25707001DFAF5 /* HeroDetailView.swift in Sources */,
 				541C59332DB3B92500AB0AC6 /* EventFortuneWheel.swift in Sources */,
+				541C59412DB3C4AD00AB0AC6 /* EnemyCardSet.swift in Sources */,
 				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,
 				546DD1D52DA2670700FAD49B /* GameEntryView.swift in Sources */,
 				546DD1D72DA2779E00FAD49B /* PersonalView.swift in Sources */,
