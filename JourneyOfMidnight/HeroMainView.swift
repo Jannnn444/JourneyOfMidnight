@@ -155,26 +155,11 @@ struct HeroMainView: View {
                 } .position(x: 410, y: 300)
             } // selectedHero = nil >>> else view shows
             
-            // MARK: - Shuffle Event Button - Always at bottom right
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        eventState = shuffleEvents()
-                    }) {
-                        Text("Shuffle Event")
-                            .padding()
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                    .padding()
-                    
-                }
-            }
+            // MARK: - Button Shuffle Event
+            // Always at bottom right
+            ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
         }
-        //         .padding([.top, .leading, .trailing])
+        // .padding([.top, .leading, .trailing])
         .ignoresSafeArea()
         
     }
