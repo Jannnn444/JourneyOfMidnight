@@ -32,8 +32,6 @@ struct HeroMainView: View {
                 // MARK: -  Enemy Card Set
                 if selectedEnemies == [] {
                     EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-                } else if selectedEnemies != [] {
-                    EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 }
                 Spacer()
                 
@@ -54,9 +52,16 @@ struct HeroMainView: View {
             // MARK: -  Hero Card Set
             if selectedHeros == [] {
                 CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
-            } else if selectedHeros != [] {
-                CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             }
+            
+            
+//            if selectedHeros != [] {
+                CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+//            }
+            
+//            if selectedEnemies != [] {
+                EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
+//            }
             
             // MARK: - Button Shuffle Event
             // Always at bottom right

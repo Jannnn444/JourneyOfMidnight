@@ -15,14 +15,16 @@ struct EnemyCardSetWSkill: View {
     @Binding var showMoreDetailEnemi: Bool
     
     var body: some View {
-            VStack(alignment: .leading) {
-                ForEach(selectedEnemies) { enemy in
+        ZStack(alignment: .leading) {
+            ForEach(selectedEnemies) { enemy in
+                
                 PopupView{
-                    Text("\(enemy.heroClass.name.rawValue.capitalized)")
-                        .foregroundStyle(.white)
-                        .font(.headline)
-                        .bold()
-                   
+                    VStack {
+                        Text("\(enemy.heroClass.name.rawValue.capitalized)")
+                            .foregroundStyle(.white)
+                            .font(.headline)
+                            .bold()
+                        
                         ForEach(enemy.skills) { skill in
                             Text("\(skill.name): \(skill.power)")
                                 .foregroundStyle(.white)
@@ -37,22 +39,23 @@ struct EnemyCardSetWSkill: View {
                             .foregroundStyle(.white)
                             .font(.headline)
                         
-                    }
-                   
+                    }.padding()
+                    
                     Button(action: {
                         cardManager.showMoreDetail = false
                         selectedEnemies = []
                     }) {
                         Text("Close")
                             .padding()
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .font(.headline)
                             .bold()
-                            .background(Color.secondary)
+                            .background(Color.black)
                             .cornerRadius(10)
                     }
                 }
             }
+        }
     }
 }
-  
+

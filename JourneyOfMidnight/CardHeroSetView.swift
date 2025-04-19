@@ -28,7 +28,6 @@ struct CardHeroSetView: View {
                                 .cornerRadius(10)
                             
                             VStack() {
-                                
                                 var myHero = hero.heroClass.name
                                 if myHero == HeroClassName.fighter {
                                     Image("knight")
@@ -63,11 +62,10 @@ struct CardHeroSetView: View {
                                     .bold()
                                
                                 if showDetailSkillView {
-                                    // heres what we gotta do
-                                    // makes the view clickable
+                                    // heres what we gotta do makes the view clickable
                                     VStack(alignment: .leading) {
                                         ForEach(hero.skills) { skill in
-                                            // Have the skills able to be buttons and expand to show more infos
+                                            // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP 
                                             Button(action: {
                                                 cardManager.showMoreDetail = true
                                                 selectedHeros.append(hero)

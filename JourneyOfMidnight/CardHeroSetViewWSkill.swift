@@ -15,16 +15,15 @@ struct CardHeroSetViewWSkill : View {
     @Binding var showMoreDetail: Bool
     
     var body: some View {
-        //    if selectedHeros != [] {
-        
-            VStack(alignment: .leading) {
-                ForEach(selectedHeros) { hero in
+        ZStack(alignment: .leading) {
+            ForEach(selectedHeros) { hero in
                 PopupView{
-                    Text("\(hero.heroClass.name.rawValue.capitalized)")
-                        .foregroundStyle(.white)
-                        .font(.headline)
-                        .bold()
-                   
+                    VStack {
+                        Text("\(hero.heroClass.name.rawValue.capitalized)")
+                            .foregroundStyle(.white)
+                            .font(.headline)
+                            .bold()
+                        
                         ForEach(hero.skills) { skill in
                             Text("\(skill.name): \(skill.power)")
                                 .foregroundStyle(.white)
@@ -38,9 +37,9 @@ struct CardHeroSetViewWSkill : View {
                         Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
                             .foregroundStyle(.white)
                             .font(.headline)
-                        
                     }
-                   
+                    
+                    // Close Button
                     Button(action: {
                         cardManager.showMoreDetail = false
                         selectedHeros = []
@@ -55,6 +54,7 @@ struct CardHeroSetViewWSkill : View {
                     }
                 }
             }
+        }
     }
 }
-  
+
