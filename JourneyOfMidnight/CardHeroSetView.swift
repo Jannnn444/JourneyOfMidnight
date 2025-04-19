@@ -47,7 +47,7 @@ struct CardHeroSetView: View {
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 } else if myHero == HeroClassName.rogue {
-                                    Image("rogue")
+                                    Image("king")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 } else if myHero == HeroClassName.templar {

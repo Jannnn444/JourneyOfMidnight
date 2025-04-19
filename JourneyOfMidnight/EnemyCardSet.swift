@@ -11,14 +11,14 @@ import SwiftUI
 struct EnemyCardSet: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var selectedEnemies: [Hero]
-    @Binding var showDetailSkillView: Bool
-    @Binding var showMoreDetail: Bool
+    @Binding var showDetailSkillViewEnemi: Bool
+    @Binding var showMoreDetailEnemi: Bool
     
     var body: some View {
             HStack {
                 ForEach(cardManager.enemy) { enemy in
                     Button(action: {
-                        showDetailSkillView.toggle() // Button for shows brief skill
+                        showDetailSkillViewEnemi.toggle() // Button for shows brief skill
                     }) {
                         ZStack {
                             Rectangle()
@@ -61,7 +61,7 @@ struct EnemyCardSet: View {
                                     .fontDesign(.monospaced)
                                     .bold()
                                
-                                if showDetailSkillView {
+                                if showDetailSkillViewEnemi {
                                     // heres what we gotta do
                                     // makes the view clickable
                                     VStack(alignment: .leading) {
@@ -82,7 +82,7 @@ struct EnemyCardSet: View {
                     }
                 } // ForEach hero
                 
-            } .position(x: 410, y: 300)
+            } .position(x: 410, y: 150)  // y: for the height!
         
     }
 }

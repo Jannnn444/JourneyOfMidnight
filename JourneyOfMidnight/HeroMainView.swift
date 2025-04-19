@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
- 
+
 struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
+    @State var showDetailSkillViewEnemi = false
+    @State var showMoreDetailEnemi = false
     @State var selectedHeros: [Hero] = []
     @State var selectedEnemies: [Hero] = []
     @State var eventState: Events
+
     
     var body: some View {
         ZStack{
@@ -26,7 +29,12 @@ struct HeroMainView: View {
             switch eventState {
             case .Game:
                 EventGame()
-                
+                // MARK: -  Enemy Card Set
+                if selectedEnemies == [] {
+                    EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
+                } else if selectedEnemies != [] {
+                    EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
+                }
                 Spacer()
                 
             case .FortuneWheel:
@@ -43,9 +51,9 @@ struct HeroMainView: View {
                 Spacer()
             }
             
-            // MARK: -  Hero Card Set View (CardSet & show skill 2 vers)
+            // MARK: -  Hero Card Set
             if selectedHeros == [] {
-               CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+                CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             } else if selectedHeros != [] {
                 CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             }
