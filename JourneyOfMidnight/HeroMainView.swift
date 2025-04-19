@@ -17,12 +17,10 @@ struct HeroMainView: View {
     var body: some View {
         ZStack{
             // Background - this will be our clickable area to dismiss
-            Color.black
+            Color.white //black
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    //               showDetailSkillView = false
-                    //               selectedHero = nil
                 }
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
@@ -36,7 +34,7 @@ struct HeroMainView: View {
                     .padding()
                 VStack {
                     HStack {
-                        Image("knight")
+                        Image("fight")
                             .resizable()
                             .frame(width: 50, height: 50)
                         Text("Battle For Glory")
@@ -110,7 +108,7 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                VStack {
+                VStack { 
                     HStack {
                         Image("campfire")
                             .resizable()
@@ -125,6 +123,7 @@ struct HeroMainView: View {
                         .cornerRadius(10)
                     Spacer()
                 }
+                    
                 Spacer()
             case .Forest:
                 Rectangle()
@@ -134,18 +133,22 @@ struct HeroMainView: View {
                 Image("banner")
                     .frame(width: 400, height: 200)
                     .padding()
-                HStack {
-                    Image("forest")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    Text("Adventure Forest")
-                        .font(.title)
-                        .bold()
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.black)
-                } .padding()
-                    .background(Color.white.opacity(0.7))
-                    .cornerRadius(10)
+                VStack {
+                    HStack {
+                        Image("forest")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Adventure Forest")
+                            .font(.title)
+                            .bold()
+                            .fontDesign(.monospaced)
+                            .foregroundStyle(.black)
+                    } .padding()
+                        .background(Color.white.opacity(0.7))
+                        .cornerRadius(10)
+                    Spacer()
+                }
+             
                 Spacer()
             }
             
@@ -199,15 +202,44 @@ struct HeroMainView: View {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 100, height: 130)
-                                    .foregroundColor(.yellow.opacity(0.4))
+                                    .foregroundColor(.yellow)
                                     .cornerRadius(10)
+                                
                                 VStack() {
+                                    
+                                    var myHero = hero.heroClass.name
+                                    if myHero == HeroClassName.fighter {
+                                        Image("knight")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    } else if myHero == HeroClassName.wizard {
+                                        Image("princess")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    } else if myHero == HeroClassName.priest {
+                                        Image("priest")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    } else if myHero == HeroClassName.duelist {
+                                        Image("duelist")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    } else if myHero == HeroClassName.rogue {
+                                        Image("rogue")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    } else if myHero == HeroClassName.templar {
+                                        Image("templar")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    }
+                                    
+                                    
                                     Text(hero.heroClass.name.rawValue.capitalized)
                                         .font(.headline)
-                                        .padding()
                                         .fontDesign(.monospaced)
                                         .bold()
-                                    
+                                   
                                     if showDetailSkillView {
                                         // heres what we gotta do
                                         // makes the view clickable
