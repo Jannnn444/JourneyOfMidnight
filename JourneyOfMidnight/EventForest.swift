@@ -28,7 +28,7 @@ struct EventForest: View {
                     .fontDesign(.monospaced)
                     .foregroundStyle(.black)
             } .padding()
-                .background(Color.white.opacity(0.7))
+                .background(Color.white.opacity(0.8))
                 .cornerRadius(10)
             Spacer()
         }

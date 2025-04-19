@@ -16,41 +16,45 @@ struct EnemyCardSetWSkill: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            ForEach(selectedEnemies) { enemy in
-                
+            ForEach(selectedEnemies) { hero in
                 PopupView{
                     VStack {
-                        Text("\(enemy.heroClass.name.rawValue.capitalized)")
+                        Text("\(hero.heroClass.name.rawValue.capitalized)")
                             .foregroundStyle(.white)
-                            .font(.headline)
+                            .fontDesign(.monospaced)
+                            .font(.title)
                             .bold()
                         
-                        ForEach(enemy.skills) { skill in
+                        ForEach(hero.skills) { skill in
                             Text("\(skill.name): \(skill.power)")
                                 .foregroundStyle(.white)
                                 .font(.headline)
+                                .fontDesign(.monospaced)
                         }
-                        ForEach(enemy.items) { item in
+                        ForEach(hero.items) { item in
                             Text("\(item.name)")
                                 .foregroundStyle(.white)
                                 .font(.headline)
+                                .fontDesign(.monospaced)
                         }
-                        Text("Wisdom: \(String(describing: enemy.attributes.Wisdom))")
+                        Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
                             .foregroundStyle(.white)
                             .font(.headline)
-                        
-                    }.padding()
+                            .fontDesign(.monospaced)
+                    }
                     
+                    // Close Button
                     Button(action: {
                         cardManager.showMoreDetail = false
                         selectedEnemies = []
                     }) {
                         Text("Close")
                             .padding()
-                            .foregroundColor(.white)
-                            .font(.headline)
+                            .foregroundColor(.black)
+                            .fontDesign(.monospaced)
                             .bold()
-                            .background(Color.black)
+                            .font(.headline)
+                            .background(Color.secondary)
                             .cornerRadius(10)
                     }
                 }
@@ -58,4 +62,3 @@ struct EnemyCardSetWSkill: View {
         }
     }
 }
-

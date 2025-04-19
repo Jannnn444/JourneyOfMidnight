@@ -21,22 +21,26 @@ struct CardHeroSetViewWSkill : View {
                     VStack {
                         Text("\(hero.heroClass.name.rawValue.capitalized)")
                             .foregroundStyle(.white)
-                            .font(.headline)
+                            .fontDesign(.monospaced)
+                            .font(.title)
                             .bold()
                         
                         ForEach(hero.skills) { skill in
                             Text("\(skill.name): \(skill.power)")
                                 .foregroundStyle(.white)
                                 .font(.headline)
+                                .fontDesign(.monospaced)
                         }
                         ForEach(hero.items) { item in
                             Text("\(item.name)")
                                 .foregroundStyle(.white)
                                 .font(.headline)
+                                .fontDesign(.monospaced)
                         }
                         Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
                             .foregroundStyle(.white)
                             .font(.headline)
+                            .fontDesign(.monospaced)
                     }
                     
                     // Close Button
@@ -47,8 +51,9 @@ struct CardHeroSetViewWSkill : View {
                         Text("Close")
                             .padding()
                             .foregroundColor(.black)
-                            .font(.headline)
+                            .fontDesign(.monospaced)
                             .bold()
+                            .font(.headline)
                             .background(Color.secondary)
                             .cornerRadius(10)
                     }
