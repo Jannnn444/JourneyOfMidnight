@@ -13,7 +13,11 @@
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
 		1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0962DAD0994007392FE /* HeroMainView.swift */; };
-		5455ED252DAA993700157005 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED242DAA993700157005 /* ShopView.swift */; };
+		541C59312DB3B89400AB0AC6 /* EventGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventGame.swift */; };
+		541C59332DB3B92500AB0AC6 /* EventFortuneWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59322DB3B92500AB0AC6 /* EventFortuneWheel.swift */; };
+		541C59352DB3B95A00AB0AC6 /* EventGroceryShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */; };
+		541C59372DB3B98200AB0AC6 /* EventSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59362DB3B98200AB0AC6 /* EventSleep.swift */; };
+		541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59382DB3B9EC00AB0AC6 /* EventForest.swift */; };
 		5455ED272DAC077700157005 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455ED262DAC077700157005 /* PopupView.swift */; };
 		54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */; };
 		54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54561D8E2D8ED0CA00EB042B /* BattleView.swift */; };
@@ -35,7 +39,11 @@
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
 		1E99D0962DAD0994007392FE /* HeroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMainView.swift; sourceTree = "<group>"; };
-		5455ED242DAA993700157005 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		541C59302DB3B89400AB0AC6 /* EventGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGame.swift; sourceTree = "<group>"; };
+		541C59322DB3B92500AB0AC6 /* EventFortuneWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFortuneWheel.swift; sourceTree = "<group>"; };
+		541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGroceryShop.swift; sourceTree = "<group>"; };
+		541C59362DB3B98200AB0AC6 /* EventSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSleep.swift; sourceTree = "<group>"; };
+		541C59382DB3B9EC00AB0AC6 /* EventForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForest.swift; sourceTree = "<group>"; };
 		5455ED262DAC077700157005 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		54561D892D8ED0CA00EB042B /* JourneyOfMidnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JourneyOfMidnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyOfMidnightApp.swift; sourceTree = "<group>"; };
@@ -66,12 +74,13 @@
 			isa = PBXGroup;
 			children = (
 				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
-				5455ED242DAA993700157005 /* ShopView.swift */,
 				5455ED262DAC077700157005 /* PopupView.swift */,
 				1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */,
-				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
-				1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */,
-				1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */,
+				541C59302DB3B89400AB0AC6 /* EventGame.swift */,
+				541C59322DB3B92500AB0AC6 /* EventFortuneWheel.swift */,
+				541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */,
+				541C59362DB3B98200AB0AC6 /* EventSleep.swift */,
+				541C59382DB3B9EC00AB0AC6 /* EventForest.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -107,6 +116,9 @@
 				546DD1D42DA2670700FAD49B /* GameEntryView.swift */,
 				546DD1D62DA2779E00FAD49B /* PersonalView.swift */,
 				54561D8E2D8ED0CA00EB042B /* BattleView.swift */,
+				1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */,
+				1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */,
+				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
 				5455ED232DAA992800157005 /* Events */,
 			);
 			path = JourneyOfMidnight;
@@ -190,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				541C59312DB3B89400AB0AC6 /* EventGame.swift in Sources */,
 				54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */,
 				1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */,
 				546DD1CB2D8EEA2900FAD49B /* CardManager.swift in Sources */,
@@ -202,8 +215,11 @@
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */,
+				541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */,
+				541C59352DB3B95A00AB0AC6 /* EventGroceryShop.swift in Sources */,
+				541C59372DB3B98200AB0AC6 /* EventSleep.swift in Sources */,
 				1E64C2042DB25707001DFAF5 /* HeroDetailView.swift in Sources */,
-				5455ED252DAA993700157005 /* ShopView.swift in Sources */,
+				541C59332DB3B92500AB0AC6 /* EventFortuneWheel.swift in Sources */,
 				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,
 				546DD1D52DA2670700FAD49B /* GameEntryView.swift in Sources */,
 				546DD1D72DA2779E00FAD49B /* PersonalView.swift in Sources */,

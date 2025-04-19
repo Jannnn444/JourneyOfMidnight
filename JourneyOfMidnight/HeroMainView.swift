@@ -25,130 +25,20 @@ struct HeroMainView: View {
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
             case .Game:
-                Rectangle()
-                    .frame(width: 500, height: 350)
-                    .foregroundColor(.blue.opacity(0.8))
-                    .cornerRadius(20)
-                Image("banner")
-                    .frame(width: 400, height: 200)
-                    .padding()
-                VStack {
-                    HStack {
-                        Image("fight")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("Battle For Glory")
-                            .font(.title)
-                            .bold()
-                            .fontDesign(.monospaced)
-                            .foregroundStyle(.black)
-                    } .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    Spacer()
-                }
-         
-                
+                EventGame()
                 Spacer()
                 
             case .FortuneWheel:
-                Rectangle()
-                    .frame(width: 500, height: 350)
-                    .foregroundColor(.brown.opacity(0.8))
-                    .cornerRadius(20)
-                Image("banner")
-                    .frame(width: 400, height: 200)
-                    .padding()
-                VStack {
-                    HStack {
-                        Image("castle")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("Spin Your Fortune Wheel")
-                            .font(.title)
-                            .bold()
-                            .fontDesign(.monospaced)
-                            .foregroundStyle(.black)
-                    } .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    Spacer()
-                }
-      
+                EventFortuneWheel()
                 Spacer()
             case .GroceryShop:
-                Rectangle()
-                    .frame(width: 500, height: 350)
-                    .foregroundColor(.indigo.opacity(0.8))
-                    .cornerRadius(20)
-                Image("banner")
-                    .frame(width: 400, height: 200)
-                    .padding()
-                VStack {
-                    HStack {
-                        Image("vendor")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("Vendor")
-                            .font(.title)
-                            .bold()
-                            .fontDesign(.monospaced)
-                            .foregroundStyle(.black)
-                    } .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    Spacer()
-                }
+                EventGroceryShop()
                 Spacer()
             case .Sleep:
-                Rectangle()
-                    .frame(width: 500, height: 350)
-                    .foregroundColor(.pink.opacity(0.8))
-                    .cornerRadius(20)
-                Image("banner")
-                    .frame(width: 400, height: 200)
-                    .padding()
-                VStack { 
-                    HStack {
-                        Image("campfire")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("Rest Recharge")
-                            .font(.title)
-                            .bold()
-                            .fontDesign(.monospaced)
-                            .foregroundStyle(.black)
-                    } .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    Spacer()
-                }
-                    
+                EventSleep()
                 Spacer()
             case .Forest:
-                Rectangle()
-                    .frame(width: 500, height: 350)
-                    .foregroundColor(.green.opacity(0.8))
-                    .cornerRadius(20)
-                Image("banner")
-                    .frame(width: 400, height: 200)
-                    .padding()
-                VStack {
-                    HStack {
-                        Image("forest")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("Adventure Forest")
-                            .font(.title)
-                            .bold()
-                            .fontDesign(.monospaced)
-                            .foregroundStyle(.black)
-                    } .padding()
-                        .background(Color.white.opacity(0.7))
-                        .cornerRadius(10)
-                    Spacer()
-                }
-             
+                EventForest()
                 Spacer()
             }
             
