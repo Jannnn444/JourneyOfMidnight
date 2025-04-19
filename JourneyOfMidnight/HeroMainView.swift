@@ -18,18 +18,16 @@ struct HeroMainView: View {
     
     var body: some View {
         ZStack{
-            // Background - this will be our clickable area to dismiss
-            Color.white //black
+            Color.white
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
-                .onTapGesture {
-                }
+                .onTapGesture {}
             
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
             case .Game:
                 EventGame()
-                // MARK: -  Enemy Card Set
+                // MARK: -  Enemy
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
             case .FortuneWheel:
@@ -46,10 +44,10 @@ struct HeroMainView: View {
                 Spacer()
             }
             
-            // MARK: -  Hero Card Set
+            // MARK: -  Hero
             CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             
-            // MARK: PopUp (Hero & Enemy)
+            // MARK: PopUp (Hero&Enemy)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
             
@@ -57,10 +55,12 @@ struct HeroMainView: View {
             // MARK: Shuffle
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
         }
-        // .padding([.top, .leading, .trailing])
         .ignoresSafeArea()
     }
 }
+
+
+
 
 
 #Preview {
