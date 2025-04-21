@@ -60,7 +60,6 @@ struct CardHeroSetView: View {
                                         .frame(width: 50, height: 50)
                                 }
                                 
-                                
                                 Text(hero.heroClass.name.rawValue.capitalized)
                                     .font(.headline)
                                     .fontDesign(.monospaced)
@@ -81,11 +80,9 @@ struct CardHeroSetView: View {
                                     }
                                 }
                             }
-                            
                         } // Zstack
                     }
                 } // ForEach hero
-                
             } .position(x: 410, y: 300)
     }
 }

@@ -17,6 +17,7 @@ class CardManager: ObservableObject {
     @Published var hero: [Hero]
     @Published var enemy: [Hero]
     @Published var showMoreDetail: Bool = false
+    @Published var vendorGoods: [Item]
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -74,6 +75,14 @@ class CardManager: ObservableObject {
             Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "god", power: 8)], items: [Item(name: "holybook"), Item(name: "cross")], stats: Stats(health: 100, endurance: 500)),
             Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7),Skill(name: "fist", power: 6)], items: [Item(name: "fakeID"), Item(name: "letter")], stats: Stats(health: 100, endurance: 500))
         ]
+        self.vendorGoods = [
+        Item(name: "Artifacts"),
+        Item(name: "Morningstar"),
+        Item(name: "Lucky Coin"),
+        Item(name: "Goblin Journal"),
+        Item(name: "Portion")
+        ]
+        
     }
 }
 
@@ -105,11 +114,7 @@ enum SkillType: String {
 }
 
 // MARK: - Hero
-struct Hero: Identifiable, Equatable {
-    static func == (lhs: Hero, rhs: Hero) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
+struct Hero: Identifiable {
     var id = UUID()
     var heroClass: HeroClass
     var attributes: Attributes // now reference type
