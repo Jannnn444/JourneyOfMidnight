@@ -51,7 +51,6 @@ struct HeroMainView: View {
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
             
-            
             // MARK: Shuffle
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
         }
