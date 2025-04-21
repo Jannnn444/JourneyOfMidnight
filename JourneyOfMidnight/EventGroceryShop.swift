@@ -10,13 +10,13 @@ import SwiftUI
 
 struct EventGroceryShop: View {
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var selectedItem: [Item]
     @Binding var showDetailSkillView: Bool
-//    @binding var showMoreDetail: Bool -> do we need popup here?
+
     
     var body: some View {
+        ZStack {
         // MARK: - Banner and Event title
-        VStack {
+   
             Rectangle()
                 .frame(width: 500, height: 350)
                 .foregroundColor(.indigo.opacity(0.8))
@@ -39,11 +39,12 @@ struct EventGroceryShop: View {
                     .cornerRadius(10)
                 Spacer()
             }
-        }
+
         // MARK - Vendors Goods
         // Show Vendor Goods Hstack
         HStack {
-            ForEach(cardManager.vendorGoods) { hero in
+            ForEach(cardManager.vendorGoods) { item in
+                ForEach(item.item) { i in
                 Button(action: {
                     showDetailSkillView.toggle() // Button for shows brief skill
                 }) {
@@ -60,7 +61,7 @@ struct EventGroceryShop: View {
                             .cornerRadius(10)
                         
                         /*
-                         self.vendorGoods = [
+                         [
                          Item(name: "Artifacts"),
                          Item(name: "Morningstar"),
                          Item(name: "Lucky Coin"),
@@ -70,53 +71,40 @@ struct EventGroceryShop: View {
                          */
                         
                         VStack() {
-                            var myHero = hero.name
-                            if myHero == "Artifacts" {
-                                Image("knight")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                            } else if myHero == "Morningstar" {
-                                Image("princess")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                            } else if myHero == "Lucky Coin" {
-                                Image("priest")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                            } else if myHero == "Goblin Journal" {
-                                Image("duelist")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                            } else if myHero == "Portion" {
-                                Image("king")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
+                        
+                                if i.name == "Artifacts" {
+                                    Image("knight")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                } else if i.name == "Morningstar" {
+                                    Image("princess")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                } else if i.name == "Lucky Coin" {
+                                    Image("priest")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                } else if i.name == "Goblin Journal" {
+                                    Image("duelist")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                } else if i.name == "Portion" {
+                                    Image("king")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                }
+                                
+                                Text(i.name.capitalized)
+                                    .font(.caption)
+                                    .fontDesign(.monospaced)
+                                    .bold()
                             }
                             
-                            Text(hero.name.capitalized)
-                                .font(.headline)
-                                .fontDesign(.monospaced)
-                                .bold()
-                           
-                            if showDetailSkillView {
-                                // heres what we gotta do makes the view clickable
-                                VStack(alignment: .leading) {
-                                    ForEach(hero.skills) { skill in
-                                        // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP
-                                        Button(action: {
-                                            cardManager.showMoreDetail = true
-//                                            selectedHeros.append(hero)
-                                        }) {
-                                            DetailSkillView(skill: skill)
-                                        }
-                                    }
-                                }
-                            }
                         }
                     } // Zstack
                 }
             } // ForEach hero
-        } .position(x: 410, y: 300)
-        
+        } .position(x: 410, y: 150)
+    }
     }
 }

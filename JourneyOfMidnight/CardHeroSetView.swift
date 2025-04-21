@@ -10,7 +10,6 @@ import SwiftUI
 
 struct CardHeroSetView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var selectedHeros: [Hero]
     @Binding var showDetailSkillView: Bool
     @Binding var showMoreDetail: Bool
     
@@ -72,7 +71,6 @@ struct CardHeroSetView: View {
                                             // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP 
                                             Button(action: {
                                                 cardManager.showMoreDetail = true
-                                                selectedHeros.append(hero)
                                             }) {
                                                 DetailSkillView(skill: skill)
                                             }

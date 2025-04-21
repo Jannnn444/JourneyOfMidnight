@@ -31,7 +31,7 @@ struct HeroMainView: View {
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
             case .vendor:
-                EventGroceryShop()
+                EventGroceryShop(showDetailSkillView: $showDetailSkillView)
                 Spacer()
             case .inTheWoods:
                 EventForest() 
@@ -39,7 +39,7 @@ struct HeroMainView: View {
             }
             
             // MARK: -  Hero
-            CardHeroSetView(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+            CardHeroSetView(showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
             
             // MARK: PopUp (Hero&Enemy)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
