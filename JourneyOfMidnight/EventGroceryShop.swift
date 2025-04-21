@@ -57,7 +57,7 @@ struct EventGroceryShop: View {
                             .offset(y: 8)
                         Rectangle()
                             .frame(width: 100, height: 130)
-                            .foregroundColor(.yellow)
+                            .foregroundColor(.blue)
                             .cornerRadius(10)
                         
                         /*
@@ -73,23 +73,23 @@ struct EventGroceryShop: View {
                         VStack() {
                         
                                 if i.name == "Artifacts" {
-                                    Image("knight")
+                                    Image("artifact")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 } else if i.name == "Morningstar" {
-                                    Image("princess")
+                                    Image("morningstar")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 } else if i.name == "Lucky Coin" {
-                                    Image("priest")
+                                    Image("coin")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 } else if i.name == "Goblin Journal" {
-                                    Image("duelist")
+                                    Image("goblinJournal")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 } else if i.name == "Portion" {
-                                    Image("king")
+                                    Image("portion")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                 }
