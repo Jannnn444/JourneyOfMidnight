@@ -10,14 +10,14 @@ import SwiftUI
 
 struct CardHeroSetView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var showDetailSkillView: Bool
+    @Binding var IsShowDetailSkillView: Bool
     @Binding var showMoreDetail: Bool
     
     var body: some View {
             HStack {
                 ForEach(cardManager.hero) { hero in
                     Button(action: {
-                        showDetailSkillView.toggle() // Button for shows brief skill
+                        IsShowDetailSkillView.toggle() // Button for shows brief skill
                     }) {
                         ZStack {
                             Rectangle()
@@ -64,8 +64,9 @@ struct CardHeroSetView: View {
                                     .fontDesign(.monospaced)
                                     .bold()
                                
-                                if showDetailSkillView {
-                                    // heres what we gotta do makes the view clickable
+                                if IsShowDetailSkillView {
+                                    // if showDetailView {
+                                    // heres what we gotta do makes the view clickable and will click popup new more detail view
                                     VStack(alignment: .leading) {
                                         ForEach(hero.skills) { skill in
                                             // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP 
