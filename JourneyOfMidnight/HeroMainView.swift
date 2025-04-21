@@ -25,22 +25,16 @@ struct HeroMainView: View {
             
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
-            case .Game:
+            case .combat:
                 EventGame()
                 // MARK: -  Enemy
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
-            case .FortuneWheel:
-                EventFortuneWheel()
-                Spacer()
-            case .GroceryShop:
+            case .vendor:
                 EventGroceryShop()
                 Spacer()
-            case .Sleep:
-                EventSleep()
-                Spacer()
-            case .Forest:
-                EventForest()
+            case .inTheWoods:
+                EventForest() 
                 Spacer()
             }
             
@@ -61,9 +55,8 @@ struct HeroMainView: View {
 
 
 
-
 #Preview {
-    HeroMainView(eventState: .Game)
+    HeroMainView(eventState: .combat)
 }
 
 

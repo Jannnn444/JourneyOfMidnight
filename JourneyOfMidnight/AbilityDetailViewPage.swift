@@ -12,7 +12,6 @@ struct AbilityDetailViewPage: View {
     var skillType: SkillType
     @State var isShowView: Bool = false
     @ObservedObject var cardmanager = CardManager.shared
-//  @Binding var showNewViewatDetail: Bool //Use binding to modify state in parent view
     
     var body: some View {
         ZStack {

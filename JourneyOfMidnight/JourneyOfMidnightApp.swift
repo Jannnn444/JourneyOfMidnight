@@ -12,8 +12,7 @@ import SwiftUI
 struct JourneyOfMidnightApp: App {
     var body: some Scene {
         WindowGroup {
-//          GameEntryView()
-            HeroMainView(eventState: .Game) // day one start at game
+            HeroMainView(eventState: .combat) 
         }
     }
 }

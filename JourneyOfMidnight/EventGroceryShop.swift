@@ -22,7 +22,7 @@ struct EventGroceryShop: View {
                 Image("vendor")
                     .resizable()
                     .frame(width: 50, height: 50)
-                Text("Vendor")
+                Text("Vendor Ware")
                     .font(.title)
                     .bold()
                     .fontDesign(.monospaced)

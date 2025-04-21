@@ -174,15 +174,19 @@ struct Choice: Identifiable {
 }
 
 enum Events {
+    case combat
+    case vendor
+    case inTheWoods
+    /*
     case Game  // Banner + fight + knight
     case FortuneWheel // Banner + castle (godness blessing, king's coin rain, priest healing)
     case GroceryShop // Banner + vendor
     case Sleep // Banner + campfire
     case Forest // addditional chance to drop treasure   // Banner + forest (chest)
-    
+    */
 }
                          
 func shuffleEvents() -> Events {
-    let allEvents: [Events] = [.Game, .Forest, .FortuneWheel, .GroceryShop, .Sleep]
-    return allEvents.randomElement() ?? .Game // Default .Game as a fallback
+    let allEvents: [Events] = [.combat, .inTheWoods, .vendor]
+    return allEvents.randomElement() ?? .combat// Default .Game as a fallback
 }
