@@ -17,7 +17,7 @@ class CardManager: ObservableObject {
     @Published var hero: [Hero]
     @Published var enemy: [Hero]
     @Published var showMoreDetail: Bool = false
-    @Published var vendorGoods: [Item]
+    @Published var vendorGoods: [VenderGoods]
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -126,6 +126,11 @@ struct Hero: Identifiable {
 struct HeroClass {
     var name: HeroClassName
     var level: Int
+}
+
+struct VenderGoods: Identifiable {
+    var id = UUID()
+    var item: [Item]
 }
 
 enum HeroClassName: String {

@@ -84,5 +84,16 @@ struct CardHeroSetView: View {
                     }
                 } // ForEach hero
             } .position(x: 410, y: 300)
+        
+          /*
+           
+           hero: .position(x: 410, y: 300)
+           enemy: .position(x: 410, y: 150)
+           
+           p.s. y for the height!
+           hero higher 150,
+           enemy and all other events lower 300
+           
+           */
     }
 }
