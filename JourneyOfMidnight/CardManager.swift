@@ -16,7 +16,7 @@ class CardManager: ObservableObject {
     @Published var showAbilityDetailView: Bool = false
     @Published var hero: [Hero]
     @Published var enemy: [Hero]
-    
+    @Published var showMoreDetailItems: Bool = false
     @Published var showMoreDetail: Bool = false
     @Published var vendorGoods: [VendorGoods]
     

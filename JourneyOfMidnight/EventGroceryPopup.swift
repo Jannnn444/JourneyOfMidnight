@@ -12,14 +12,15 @@ struct EventGroceryPopup: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var selectedItems: [VendorGoods]
     @Binding var showDetailSkillView: Bool
-    @Binding var showMoreDetails: Bool
+    @Binding var showMoreDetailItems: Bool
     
     var body: some View {
         ZStack(alignment: .leading) {
             ForEach(selectedItems) { item in
+                ForEach(item.item) { i in
+                //move this out so it wont shows all
                 PopupView{
                     VStack {
-                        ForEach(item.item) { i in
                             Text(i.name)
                                 .foregroundStyle(.white)
                                 .font(.headline)
@@ -31,10 +32,12 @@ struct EventGroceryPopup: View {
                                 .fontDesign(.monospaced)
                                 .foregroundStyle(.black)
                         }
+                       .padding(.bottom, 20)
+                        
                         
                         // Close Button
                         Button(action: {
-                            cardManager.showMoreDetail = false
+                            cardManager.showMoreDetailItems = false
                             selectedItems = []
                         }) {
                             Text("Close")

@@ -107,7 +107,7 @@ struct EventGroceryShop: View {
                             if IsShowDetailItemView {
                                 VStack(alignment: .leading) {
                                   Button(action: {
-                                      cardManager.showMoreDetail = true
+                                      cardManager.showMoreDetailItems = true
                                       selectedItems.append(item)   // add the whole struct
                                   }) {
                                       DetailItemView(item: i)
