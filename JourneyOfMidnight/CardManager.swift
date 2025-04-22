@@ -190,13 +190,6 @@ enum Events {
     case combat
     case vendor
     case inTheWoods
-    /*
-    case Game  // Banner + fight + knight
-    case FortuneWheel // Banner + castle (godness blessing, king's coin rain, priest healing)
-    case GroceryShop // Banner + vendor
-    case Sleep // Banner + campfire
-    case Forest // addditional chance to drop treasure   // Banner + forest (chest)
-    */
 }
                          
 func shuffleEvents() -> Events {

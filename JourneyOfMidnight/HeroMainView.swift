@@ -47,13 +47,12 @@ struct HeroMainView: View {
             // MARK: -  Hero
             CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
             
-            // MARK: PopUp (Hero&Enemy)
+            // MARK: PopUp (Hero & Enemy &Grocery)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-            
             EventGroceryPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
             
-            // MARK: Shuffle
+            // MARK: Shuffle Button
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
         }
         .ignoresSafeArea()
