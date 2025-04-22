@@ -10,6 +10,7 @@ import SwiftUI
 struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
     @State var showDetailSkillView = false
+    @State var showDetailItemView = false
     @State var showDetailSkillViewEnemi = false
     @State var showMoreDetailEnemi = false
     @State var selectedHeros: [Hero] = []
@@ -31,7 +32,7 @@ struct HeroMainView: View {
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
             case .vendor:
-                EventGroceryShop(IsShowDetailSkillView: $showDetailSkillView)
+                EventGroceryShop(IsShowDetailItemView: $showDetailItemView)
                 Spacer()
             case .inTheWoods:
                 EventForest() 

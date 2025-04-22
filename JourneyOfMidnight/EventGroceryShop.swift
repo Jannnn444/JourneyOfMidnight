@@ -10,8 +10,9 @@ import SwiftUI
 
 struct EventGroceryShop: View {
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var IsShowDetailSkillView: Bool
-
+//  @Binding var IsShowDetailSkillView: Bool
+    @Binding var IsShowDetailItemView:  Bool
+    
     var body: some View {
         ZStack {
         // MARK: - Banner and Event title
@@ -45,7 +46,7 @@ struct EventGroceryShop: View {
             ForEach(cardManager.vendorGoods) { item in
                 ForEach(item.item) { i in
                 Button(action: {
-                    IsShowDetailSkillView.toggle() // Button for shows brief skill
+                    IsShowDetailItemView.toggle() // Button for shows brief skill
                 }) {
                     ZStack {
                         Rectangle()
