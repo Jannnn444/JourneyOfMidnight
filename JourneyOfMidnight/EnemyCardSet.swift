@@ -83,12 +83,9 @@ struct EnemyCardSet: View {
                                     }
                                 }
                             }
-                            
                         } // Zstack
                     }
                 } // ForEach hero
-                
             } .position(x: 410, y: 150)  // y: for the height!
-        
     }
 }
