@@ -12,7 +12,8 @@ struct CardHeroSetView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var IsShowDetailSkillView: Bool
     @Binding var showMoreDetail: Bool
-    
+    @Binding var selectedHeros: [Hero]
+ 
     var body: some View {
             HStack {
                 ForEach(cardManager.hero) { hero in
@@ -65,13 +66,14 @@ struct CardHeroSetView: View {
                                     .bold()
                                
                                 if IsShowDetailSkillView {
-                                    // if showDetailView {
+                                    // if showDetailView shows 
                                     // heres what we gotta do makes the view clickable and will click popup new more detail view
                                     VStack(alignment: .leading) {
                                         ForEach(hero.skills) { skill in
                                             // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP
                                             Button(action: {
                                                 cardManager.showMoreDetail = true
+                                                selectedHeros.append(hero)
                                             }) {
                                                 DetailSkillView(skill: skill)
                                             }

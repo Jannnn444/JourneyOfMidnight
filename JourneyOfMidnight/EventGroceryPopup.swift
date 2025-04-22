@@ -15,6 +15,41 @@ struct EventGroceryPopup: View {
     @Binding var showMoreDetails: Bool
     
     var body: some View {
-        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+        ZStack(alignment: .leading) {
+            ForEach(selectedItems) { item in
+                PopupView{
+                    VStack {
+                        ForEach(item.item) { i in
+                            Text(i.name)
+                                .foregroundStyle(.white)
+                                .font(.headline)
+                                .fontDesign(.monospaced)
+                                .foregroundStyle(.black)
+                            Text(i.intro)
+                                .foregroundStyle(.white)
+                                .font(.headline)
+                                .fontDesign(.monospaced)
+                                .foregroundStyle(.black)
+                        }
+                        
+                        // Close Button
+                        Button(action: {
+                            cardManager.showMoreDetail = false
+                            selectedItems = []
+                        }) {
+                            Text("Close")
+                                .padding()
+                                .foregroundColor(.black)
+                                .fontDesign(.monospaced)
+                                .bold()
+                                .font(.headline)
+                                .background(Color.secondary)
+                                .cornerRadius(10)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+

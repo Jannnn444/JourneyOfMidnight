@@ -121,8 +121,6 @@
 			children = (
 				541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */,
 				541C593E2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift */,
-				541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */,
-				541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */,
 			);
 			name = CardSet;
 			sourceTree = "<group>";
@@ -138,6 +136,8 @@
 		5455ED232DAA992800157005 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */,
+				541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */,
 				541C59302DB3B89400AB0AC6 /* EventGame.swift */,
 				541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */,
 				1E64C2162DB77BCF001DFAF5 /* EventGroceryPopup.swift */,

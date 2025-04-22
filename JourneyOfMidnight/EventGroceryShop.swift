@@ -12,6 +12,7 @@ struct EventGroceryShop: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var IsShowDetailItemView:  Bool
     @Binding var showMoreDetail: Bool
+    @Binding var selectedItems : [VendorGoods]
     
     var body: some View {
         ZStack {
@@ -107,6 +108,7 @@ struct EventGroceryShop: View {
                                 VStack(alignment: .leading) {
                                   Button(action: {
                                       cardManager.showMoreDetail = true
+                                      selectedItems.append(item)   // add the whole struct
                                   }) {
                                       DetailItemView(item: i)
                                       

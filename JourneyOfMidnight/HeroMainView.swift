@@ -9,12 +9,17 @@ import SwiftUI
 
 struct HeroMainView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State var showDetailSkillView = false
-    @State var showDetailItemView = false
+    @State var showDetailSkillViewHero = false
     @State var showDetailSkillViewEnemi = false
+    @State var showDetailItemView = false
+    
     @State var showMoreDetailEnemi = false
+    @State var showMoreDetailItems = false
+    
     @State var selectedHeros: [Hero] = []
     @State var selectedEnemies: [Hero] = []
+    @State var selectedItems: [VendorGoods] = []
+    
     @State var eventState: Events
     
     var body: some View {
@@ -32,7 +37,7 @@ struct HeroMainView: View {
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
             case .vendor:
-                EventGroceryShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView)
+                EventGroceryShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
                 Spacer()
             case .inTheWoods:
                 EventForest() 
@@ -40,10 +45,10 @@ struct HeroMainView: View {
             }
             
             // MARK: -  Hero
-            CardHeroSetView(IsShowDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+            CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
             
             // MARK: PopUp (Hero&Enemy)
-            CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillView, showMoreDetail: $showDetailSkillView)
+            CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
             
             // MARK: Shuffle
