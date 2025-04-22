@@ -32,7 +32,7 @@ struct HeroMainView: View {
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
                 Spacer()
             case .vendor:
-                EventGroceryShop(IsShowDetailItemView: $showDetailItemView)
+                EventGroceryShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView)
                 Spacer()
             case .inTheWoods:
                 EventForest() 

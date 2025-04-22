@@ -10,6 +10,7 @@
 		1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */; };
 		1E64C2042DB25707001DFAF5 /* HeroDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */; };
 		1E64C2062DB25809001DFAF5 /* HeroSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */; };
+		1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */; };
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
 		1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0962DAD0994007392FE /* HeroMainView.swift */; };
@@ -41,6 +42,7 @@
 		1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSkillView.swift; sourceTree = "<group>"; };
 		1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailView.swift; sourceTree = "<group>"; };
 		1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSelectionView.swift; sourceTree = "<group>"; };
+		1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemView.swift; sourceTree = "<group>"; };
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
 		1E99D0962DAD0994007392FE /* HeroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMainView.swift; sourceTree = "<group>"; };
@@ -80,12 +82,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E64C20D2DB7669F001DFAF5 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */,
+				1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */,
+			);
+			name = DetailView;
+			sourceTree = "<group>";
+		};
+		1E64C20E2DB766C9001DFAF5 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		5455ED232DAA992800157005 /* Events */ = {
 			isa = PBXGroup;
 			children = (
 				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
 				5455ED262DAC077700157005 /* PopupView.swift */,
-				1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */,
 				541C59302DB3B89400AB0AC6 /* EventGame.swift */,
 				541C59322DB3B92500AB0AC6 /* EventFortuneWheel.swift */,
 				541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */,
@@ -122,7 +140,6 @@
 				54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */,
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
-				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
 				1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */,
 				546DD1CC2D8EEAF700FAD49B /* BoardView.swift */,
 				546DD1CE2D8EEB3000FAD49B /* FollowerCardView.swift */,
@@ -134,6 +151,8 @@
 				1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */,
 				1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */,
 				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
+				1E64C20E2DB766C9001DFAF5 /* Manager */,
+				1E64C20D2DB7669F001DFAF5 /* DetailView */,
 				5455ED232DAA992800157005 /* Events */,
 			);
 			path = JourneyOfMidnight;
@@ -228,6 +247,7 @@
 				1E64C2062DB25809001DFAF5 /* HeroSelectionView.swift in Sources */,
 				1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */,
 				1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */,
+				1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */,
 				541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,

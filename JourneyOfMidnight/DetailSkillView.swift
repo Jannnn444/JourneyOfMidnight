@@ -25,7 +25,6 @@ struct DetailSkillView: View {
 
     var body: some View {
         ZStack {
-            // Button
                 Text("💠\(skill.name)")
                     .font(.caption)
                     .fontDesign(.monospaced)

@@ -10,8 +10,8 @@ import SwiftUI
 
 struct EventGroceryShop: View {
     @ObservedObject var cardManager = CardManager.shared
-//  @Binding var IsShowDetailSkillView: Bool
     @Binding var IsShowDetailItemView:  Bool
+    @Binding var showMoreDetail: Bool
     
     var body: some View {
         ZStack {
@@ -71,7 +71,7 @@ struct EventGroceryShop: View {
                          */
                         
                         VStack() {
-                        
+                                
                                 if i.name == "Artifacts" {
                                     Image("artifact")
                                         .resizable()
@@ -99,8 +99,20 @@ struct EventGroceryShop: View {
                                     .foregroundStyle(.black)
                                     .fontDesign(.monospaced)
                                     .bold()
+                                
+                            if IsShowDetailItemView {
+                                VStack(alignment: .leading) {
+                                  Button(action: {
+                                      cardManager.showMoreDetail = true
+                                  }) {
+//                                      DetailSkillView(skill: <#T##Skill#>)
+                                      DetailItemView(item: i)
+                                      
+                                  }
+                                }
                             }
                             
+                            }
                         }
                     } // Zstack
                 }

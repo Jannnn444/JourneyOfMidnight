@@ -69,7 +69,7 @@ struct CardHeroSetView: View {
                                     // heres what we gotta do makes the view clickable and will click popup new more detail view
                                     VStack(alignment: .leading) {
                                         ForEach(hero.skills) { skill in
-                                            // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP 
+                                            // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP
                                             Button(action: {
                                                 cardManager.showMoreDetail = true
                                             }) {
