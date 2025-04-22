@@ -14,8 +14,8 @@ struct DetailItemView: View {
     
     var body: some View {
         ZStack {
-            Text("💠\(item.name)")
-                .font(.caption2)
+            Text("💠\(item.intro)")
+                .font(.caption)
                 .foregroundStyle(.black)
                 .fontDesign(.monospaced)
                 .bold()

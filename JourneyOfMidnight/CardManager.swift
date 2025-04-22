@@ -17,7 +17,7 @@ class CardManager: ObservableObject {
     @Published var hero: [Hero]
     @Published var enemy: [Hero]
     @Published var showMoreDetail: Bool = false
-    @Published var vendorGoods: [VenderGoods]
+    @Published var vendorGoods: [VendorGoods]
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -48,39 +48,39 @@ class CardManager: ObservableObject {
                     Faith: 10,
                     Charisma: 10),
             skills: [Skill(name: "Meteor", power: 9), Skill(name: "Dodge", power: 8)],
-            items: [Item(name: "Armour"), Item(name: "pants")],
+            items: [Item(name: "Armore", intro: "Love"), Item(name: "pants", intro: "Armour")],
             stats: Stats(health: 100, endurance: 500)),
                      Hero(
                         heroClass: HeroClass(name: .wizard, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                         skills: [Skill(name: "Rainy", power: 7), Skill(name: "Wolve", power: 6)],
-                        items: [Item(name: "wands"), Item(name: "Handbook")],
+                        items: [Item(name: "wands", intro: "weapon"), Item(name: "Handbook", intro: "Handwritten")],
                         stats: Stats(health: 100, endurance: 500)),
                      Hero(
                         heroClass: HeroClass(name: .rogue, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                         skills: [Skill(name: "Flower", power: 8), Skill(name: "WolveCry", power: 5)],
-                        items: [Item(name: "wands"), Item(name: "Handbook")],
+                        items: [Item(name: "wands", intro: "Nature source is needed"), Item(name: "Handbook", intro: "Handwritten")],
                         stats: Stats(health: 100, endurance: 500)),
                      Hero(
                         heroClass: HeroClass(name: .priest, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                         skills: [Skill(name: "Moon", power: 8), Skill(name: "WolveCry", power: 9)],
-                        items: [Item(name: "wands"), Item(name: "Handbook")],
+                        items: [Item(name: "wands", intro: "Nature power needed"), Item(name: "Handbook", intro: "Cant be exchanged")],
                         stats: Stats(health: 100, endurance: 500))
         ]
         
         self.enemy = [
-            Hero(heroClass: HeroClass(name: .wizard, level: 10), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4), Skill(name: "lightling", power: 3)], items: [Item(name: "cat"), Item(name: "staff")], stats: Stats(health: 100, endurance: 500)),
-            Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "god", power: 8)], items: [Item(name: "holybook"), Item(name: "cross")], stats: Stats(health: 100, endurance: 500)),
-            Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7),Skill(name: "fist", power: 6)], items: [Item(name: "fakeID"), Item(name: "letter")], stats: Stats(health: 100, endurance: 500))
+            Hero(heroClass: HeroClass(name: .wizard, level: 10), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4), Skill(name: "lightling", power: 3)], items: [Item(name: "cat", intro: "pet"), Item(name: "staff", intro: "weapon")], stats: Stats(health: 100, endurance: 500)),
+            Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "god", power: 8)], items: [Item(name: "holybook", intro: "Spirit"), Item(name: "cross", intro: "Belief")], stats: Stats(health: 100, endurance: 500)),
+            Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7),Skill(name: "fist", power: 6)], items: [Item(name: "fakeID", intro: "detect using"), Item(name: "letter", intro: "read")], stats: Stats(health: 100, endurance: 500))
         ]
-        self.vendorGoods = [VenderGoods(item: [ 
-            Item(name: "Artifacts"),
-            Item(name: "Morningstar"),
-            Item(name: "Lucky Coin"),
-            Item(name: "Goblin Journal"),
-            Item(name: "Portion")]
+        self.vendorGoods = [VendorGoods(item: [ 
+            Item(name: "Artifacts", intro: "Power"),
+            Item(name: "Morningstar", intro: "Brutal Weapon"),
+            Item(name: "Lucky Coin",intro: "Savethrows +1"),
+            Item(name: "Goblin Journal", intro: "Lost myth"),
+            Item(name: "Portion",intro: "Not a heal \nstrength -3")]
                                        )]
         
     }
@@ -128,7 +128,7 @@ struct HeroClass {
     var level: Int
 }
 
-struct VenderGoods: Identifiable {
+struct VendorGoods: Identifiable {
     var id = UUID()
     var item: [Item]
 }
@@ -161,6 +161,8 @@ struct Skill: Identifiable {
 struct Item: Identifiable {
     var id = UUID()
     var name: String
+    var intro: String
+//    var price: Int
 }
 
 struct Stats {

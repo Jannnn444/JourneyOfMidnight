@@ -105,7 +105,6 @@ struct EventGroceryShop: View {
                                   Button(action: {
                                       cardManager.showMoreDetail = true
                                   }) {
-//                                      DetailSkillView(skill: <#T##Skill#>)
                                       DetailItemView(item: i)
                                       
                                   }
