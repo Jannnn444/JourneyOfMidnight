@@ -71,28 +71,31 @@ struct EventGroceryShop: View {
                          */
                         
                         VStack() {
-                                
-                                if i.name == "Artifacts" {
-                                    Image("artifact")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                } else if i.name == "Morningstar" {
-                                    Image("morningstar")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                } else if i.name == "Lucky Coin" {
-                                    Image("coin")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                } else if i.name == "Goblin Journal" {
-                                    Image("goblinJournal")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                } else if i.name == "Portion" {
-                                    Image("portion")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                }
+                            
+                            switch i.name {
+                            case "Artifacts" :
+                                Image("artifact")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            case "Morningstar":
+                                Image("morningstar")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            case "Lucky Coin":
+                                Image("coin")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            case "Goblin Journal":
+                                Image("goblinJournal")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            case "Portion":
+                                Image("portion")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            default:
+                                EmptyView()
+                            }
                                 
                                 Text(i.name.capitalized)
                                     .font(.caption)
