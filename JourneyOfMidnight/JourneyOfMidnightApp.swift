@@ -12,7 +12,7 @@ import SwiftUI
 struct JourneyOfMidnightApp: App {
     var body: some Scene {
         WindowGroup {
-            HeroMainView(eventState: .combat) 
+            HeroMainView(eventState: .combat, gold: Gold(gold: 10000))
         }
     }
 }

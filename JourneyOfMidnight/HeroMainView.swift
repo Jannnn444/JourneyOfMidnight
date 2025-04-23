@@ -21,6 +21,7 @@ struct HeroMainView: View {
     @State var selectedItems: [VendorGoods] = []
     
     @State var eventState: Events
+    @State var gold: Gold
     
     var body: some View {
         ZStack{
@@ -54,6 +55,7 @@ struct HeroMainView: View {
             
             // MARK: Shuffle Button
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
+            GoldView(gold: $gold).padding()
         }
         .ignoresSafeArea()
     }
@@ -63,7 +65,7 @@ struct HeroMainView: View {
 
 
 #Preview {
-    HeroMainView(eventState: .combat)
+    HeroMainView(eventState: .combat, gold: Gold(gold: 10000))
 }
 
 

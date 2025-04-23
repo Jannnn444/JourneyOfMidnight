@@ -5,7 +5,6 @@
 //  Created by yucian huang on 2025/4/19.
 //
 
-import Foundation
 import SwiftUI
 
 struct ButtomButton: View {
@@ -16,12 +15,13 @@ struct ButtomButton: View {
         VStack {
             Spacer() // push to the buttom
             HStack {
-                Spacer()
+                Spacer()  // push to right
                 Button(action: {
                     eventState = shuffleEvents()
                 }) {
                     Text(textOnButton)
                         .padding()
+                        .fontDesign(.monospaced)
                         .background(Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(10)

@@ -19,6 +19,7 @@ class CardManager: ObservableObject {
     @Published var showMoreDetailItems: Bool = false
     @Published var showMoreDetail: Bool = false
     @Published var vendorGoods: [VendorGoods]
+    @Published var gold: Gold
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -83,7 +84,7 @@ class CardManager: ObservableObject {
             Item(name: "Goblin Journal", intro: "Lost myth"),
             Item(name: "Portion",intro: "Not a heal \nstrength -3")]
                                        )]
-        
+        self.gold = Gold(gold: 10000)
     }
 }
 
@@ -118,7 +119,7 @@ enum SkillType: String {
 struct Hero: Identifiable {
     var id = UUID()
     var heroClass: HeroClass
-    var attributes: Attributes // now reference type
+    var attributes: Attributes
     var skills: [Skill]
     var items: [Item]
     var stats: Stats
@@ -163,7 +164,7 @@ struct Item: Identifiable {
     var id = UUID()
     var name: String
     var intro: String
-//    var price: Int
+//  var price: Int   // Future TBD
 }
 
 struct Stats {
@@ -200,3 +201,5 @@ func shuffleEvents() -> Events {
 struct Gold {
     let gold: Int
 }
+ 
+
