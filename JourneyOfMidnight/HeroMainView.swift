@@ -22,6 +22,7 @@ struct HeroMainView: View {
     
     @State var eventState: Events
     @State var gold: Gold
+    @State var stories: [Stories]
     
     var body: some View {
         ZStack{
@@ -41,7 +42,7 @@ struct HeroMainView: View {
                 EventGroceryShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
                 Spacer()
             case .inTheWoods:
-                EventForest() 
+                EventForest(stories: $stories) 
                 Spacer()
             }
             
@@ -55,6 +56,8 @@ struct HeroMainView: View {
             
             // MARK: Shuffle Button
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
+            
+            // MARK: Gold
             GoldView(gold: $gold).padding()
         }
         .ignoresSafeArea()
@@ -65,7 +68,10 @@ struct HeroMainView: View {
 
 
 #Preview {
-    HeroMainView(eventState: .combat, gold: Gold(gold: 10000))
+    HeroMainView(eventState: .combat, gold: Gold(gold: 10000), stories: [
+        Stories(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choices: [Choice(choice: "Admit your crime", effect: 5, effectType: .Charisma), Choice(choice: "Wash your hands", effect: 5, effectType: .Wisdom), Choice(choice: "go back to sleep", effect: 5, effectType: .Agility)]),
+        Stories(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choices: [Choice(choice: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Choice(choice: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Choice(choice: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
+    ])
 }
 
 

@@ -17,7 +17,6 @@ struct EventGroceryShop: View {
     var body: some View {
         ZStack {
         // MARK: - Banner and Event title
-   
             Rectangle()
                 .frame(width: 500, height: 350)
                 .foregroundColor(.indigo.opacity(0.8))
@@ -35,7 +34,7 @@ struct EventGroceryShop: View {
                         .bold()
                         .fontDesign(.monospaced)
                         .foregroundStyle(.black)
-                } .padding()
+                }   .padding()
                     .background(Color.white.opacity(0.8))
                     .cornerRadius(10)
                 Spacer()
@@ -72,7 +71,6 @@ struct EventGroceryShop: View {
                          */
                         
                         VStack() {
-                            
                             switch i.name {
                             case "Artifacts" :
                                 Image("artifact")

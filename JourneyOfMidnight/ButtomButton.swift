@@ -27,7 +27,6 @@ struct ButtomButton: View {
                         .cornerRadius(10)
                 }
                 .padding()
-                
             }
         }
     }

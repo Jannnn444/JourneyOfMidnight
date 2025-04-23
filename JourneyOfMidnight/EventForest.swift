@@ -30,7 +30,13 @@ struct EventForest: View {
             } .padding()
                 .background(Color.white.opacity(0.8))
                 .cornerRadius(10)
-            Spacer()
+            Spacer() // push the banner up
+            
+            
+        }
+        
+        HStack {
+            
         }
     }
 }

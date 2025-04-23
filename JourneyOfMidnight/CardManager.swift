@@ -18,8 +18,10 @@ class CardManager: ObservableObject {
     @Published var enemy: [Hero]
     @Published var showMoreDetailItems: Bool = false
     @Published var showMoreDetail: Bool = false
+    
     @Published var vendorGoods: [VendorGoods]
     @Published var gold: Gold
+    @Published var stories: [Stories]
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -85,6 +87,10 @@ class CardManager: ObservableObject {
             Item(name: "Portion",intro: "Not a heal \nstrength -3")]
                                        )]
         self.gold = Gold(gold: 10000)
+        self.stories = [
+            Stories(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choices: [Choice(choice: "Admit your crime", effect: 5, effectType: .Charisma), Choice(choice: "Wash your hands", effect: 5, effectType: .Wisdom), Choice(choice: "go back to sleep", effect: 5, effectType: .Agility)]),
+            Stories(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choices: [Choice(choice: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Choice(choice: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Choice(choice: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
+        ]
     }
 }
 
@@ -172,21 +178,6 @@ struct Stats {
     var endurance: Int // total health for the entire night
 }
 
-// MARK: - Occasion
-struct Occasion {
-    let level: Int
-    let topic: String
-    let description: String
-    let choices: [Choice] // 3 each 1
-}
-
-struct Choice: Identifiable {
-    let id = UUID() // Unique identifier t=fior the choucde
-    let text: String // 'fight the dragon'
-    let consequences: (inout Attributes) -> Void
-    // A closure that modifies the player's attributes based on the choice
-}
-
 enum Events {
     case combat
     case vendor
@@ -195,11 +186,34 @@ enum Events {
                          
 func shuffleEvents() -> Events {
     let allEvents: [Events] = [.combat, .inTheWoods, .vendor]
-    return allEvents.randomElement() ?? .combat// Default .Game as a fallback
+    return allEvents.randomElement() ?? .combat
 }
 
 struct Gold {
     let gold: Int
 }
  
+struct Stories: Identifiable {
+    var id = UUID()
+    var topic: String
+    var choices: [Choice]
+}
+
+struct Choice: Identifiable {
+    var id = UUID()
+    var choice: String
+    var effect: Int
+    var effectType: EffectTypes
+}
+
+enum EffectTypes {
+    case Strength
+    case Intelligence
+    case Wisdom
+    case Agility
+    case Vitality
+    case Faith
+    case Charisma
+}
+
 
