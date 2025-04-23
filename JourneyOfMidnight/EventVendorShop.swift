@@ -76,7 +76,7 @@ struct EventVendorShop: View {
                                 Image("artifact")
                                     .resizable()
                                     .frame(width: 35, height: 35)
-                            case "Morningstar":
+                            case "Morning Star":
                                 Image("morningstar")
                                     .resizable()
                                     .frame(width: 35, height: 35)
@@ -88,7 +88,7 @@ struct EventVendorShop: View {
                                 Image("goblinJournal")
                                     .resizable()
                                     .frame(width: 35, height: 35)
-                            case "Portion":
+                            case "Potion":
                                 Image("portion")
                                     .resizable()
                                     .frame(width: 35, height: 35)
