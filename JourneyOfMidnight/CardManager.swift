@@ -196,3 +196,7 @@ func shuffleEvents() -> Events {
     let allEvents: [Events] = [.combat, .inTheWoods, .vendor]
     return allEvents.randomElement() ?? .combat// Default .Game as a fallback
 }
+
+struct Gold {
+    let gold: Int
+}
