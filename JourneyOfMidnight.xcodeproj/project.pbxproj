@@ -11,13 +11,13 @@
 		1E64C2042DB25707001DFAF5 /* HeroDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */; };
 		1E64C2062DB25809001DFAF5 /* HeroSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */; };
 		1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */; };
-		1E64C2172DB77BCF001DFAF5 /* EventGroceryPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2162DB77BCF001DFAF5 /* EventGroceryPopup.swift */; };
+		1E64C2172DB77BCF001DFAF5 /* EventVendorPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */; };
 		1E64C21C2DB88E4F001DFAF5 /* GoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C21B2DB88E4F001DFAF5 /* GoldView.swift */; };
 		1E99D0932D9A9DA7007392FE /* AbilityBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */; };
 		1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */; };
 		1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0962DAD0994007392FE /* HeroMainView.swift */; };
-		541C59312DB3B89400AB0AC6 /* EventGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventGame.swift */; };
-		541C59352DB3B95A00AB0AC6 /* EventGroceryShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */; };
+		541C59312DB3B89400AB0AC6 /* EventCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventCombat.swift */; };
+		541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */; };
 		541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59382DB3B9EC00AB0AC6 /* EventForest.swift */; };
 		541C593B2DB3BDC200AB0AC6 /* ButtomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */; };
 		541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */; };
@@ -43,13 +43,13 @@
 		1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailView.swift; sourceTree = "<group>"; };
 		1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSelectionView.swift; sourceTree = "<group>"; };
 		1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemView.swift; sourceTree = "<group>"; };
-		1E64C2162DB77BCF001DFAF5 /* EventGroceryPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGroceryPopup.swift; sourceTree = "<group>"; };
+		1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorPopup.swift; sourceTree = "<group>"; };
 		1E64C21B2DB88E4F001DFAF5 /* GoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldView.swift; sourceTree = "<group>"; };
 		1E99D0922D9A9DA6007392FE /* AbilityBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityBoxView.swift; sourceTree = "<group>"; };
 		1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlayerData.swift; sourceTree = "<group>"; };
 		1E99D0962DAD0994007392FE /* HeroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMainView.swift; sourceTree = "<group>"; };
-		541C59302DB3B89400AB0AC6 /* EventGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGame.swift; sourceTree = "<group>"; };
-		541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGroceryShop.swift; sourceTree = "<group>"; };
+		541C59302DB3B89400AB0AC6 /* EventCombat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCombat.swift; sourceTree = "<group>"; };
+		541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorShop.swift; sourceTree = "<group>"; };
 		541C59382DB3B9EC00AB0AC6 /* EventForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForest.swift; sourceTree = "<group>"; };
 		541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomButton.swift; sourceTree = "<group>"; };
 		541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeroSetView.swift; sourceTree = "<group>"; };
@@ -142,9 +142,9 @@
 			children = (
 				541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */,
 				541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */,
-				541C59302DB3B89400AB0AC6 /* EventGame.swift */,
-				541C59342DB3B95A00AB0AC6 /* EventGroceryShop.swift */,
-				1E64C2162DB77BCF001DFAF5 /* EventGroceryPopup.swift */,
+				541C59302DB3B89400AB0AC6 /* EventCombat.swift */,
+				541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */,
+				1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */,
 				541C59382DB3B9EC00AB0AC6 /* EventForest.swift */,
 			);
 			name = Events;
@@ -260,7 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				541C59312DB3B89400AB0AC6 /* EventGame.swift in Sources */,
+				541C59312DB3B89400AB0AC6 /* EventCombat.swift in Sources */,
 				541C59432DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift in Sources */,
 				54561D8F2D8ED0CA00EB042B /* BattleView.swift in Sources */,
 				1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */,
@@ -271,7 +271,7 @@
 				1E64C2062DB25809001DFAF5 /* HeroSelectionView.swift in Sources */,
 				1E99D0952D9AA2BC007392FE /* TempPlayerData.swift in Sources */,
 				1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */,
-				1E64C2172DB77BCF001DFAF5 /* EventGroceryPopup.swift in Sources */,
+				1E64C2172DB77BCF001DFAF5 /* EventVendorPopup.swift in Sources */,
 				1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */,
 				541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
@@ -281,7 +281,7 @@
 				1E64C21C2DB88E4F001DFAF5 /* GoldView.swift in Sources */,
 				546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */,
 				541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */,
-				541C59352DB3B95A00AB0AC6 /* EventGroceryShop.swift in Sources */,
+				541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */,
 				1E64C2042DB25707001DFAF5 /* HeroDetailView.swift in Sources */,
 				541C59412DB3C4AD00AB0AC6 /* EnemyCardSet.swift in Sources */,
 				546DD1C92D8EE9D800FAD49B /* HeroCardView.swift in Sources */,

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct EventGroceryPopup: View {
+struct EventVendorPopup: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var selectedItems: [VendorGoods]
     @Binding var showDetailSkillView: Bool

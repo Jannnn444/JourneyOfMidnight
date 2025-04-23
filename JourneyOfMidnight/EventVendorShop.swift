@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct EventGroceryShop: View {
+struct EventVendorShop: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var IsShowDetailItemView:  Bool
     @Binding var showMoreDetail: Bool

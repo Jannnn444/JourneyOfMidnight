@@ -216,4 +216,3 @@ enum EffectTypes {
     case Charisma
 }
 
-

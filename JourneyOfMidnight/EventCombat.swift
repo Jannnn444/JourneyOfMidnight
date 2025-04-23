@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct EventGame: View {
+struct EventCombat: View {
     var body: some View {
         Rectangle()
             .frame(width: 500, height: 350)
