@@ -33,9 +33,9 @@ struct EventForest: View {
             } .padding()
                 .background(Color.white.opacity(0.8))
                 .cornerRadius(10)
-            Spacer() // push the banner up
+          /*  Spacer()*/ // push the banner up
             
-            VStack {
+            VStack(alignment: .center) {
             if !cardManager.stories.isEmpty {
                 // Current Story Display
                 let currentStory = cardManager.stories[selectedStoryIndex]
@@ -51,7 +51,7 @@ struct EventForest: View {
                     .multilineTextAlignment(.center)
                 
                 // Options
-                VStack(spacing: 10) {
+                VStack() {
                     ForEach(currentStory.choice) { option in
                         Button(action: {
                             handleOptionSelected(option: option)
@@ -98,8 +98,8 @@ struct EventForest: View {
                     .cornerRadius(8)
             }
             }   .frame(width: 500, height: 500)
-            .position(x: 410, y: 150)
-                         
+                .position(x: 420, y: 150)
+                
                          // Story navigation (if you have multiple stories)
                          if cardManager.stories.count > 1 {
                              HStack(spacing: 20) {

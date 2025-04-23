@@ -81,10 +81,10 @@ class CardManager: ObservableObject {
         ]
         self.vendorGoods = [VendorGoods(item: [ 
             Item(name: "Artifacts", intro: "Power"),
-            Item(name: "Morningstar", intro: "Brutal Weapon"),
+            Item(name: "Morning Star", intro: "Brutal Weapon"),
             Item(name: "Lucky Coin",intro: "Savethrows +1"),
             Item(name: "Goblin Journal", intro: "Lost myth"),
-            Item(name: "Portion",intro: "Not a heal \nstrength -3")]
+            Item(name: "Potion",intro: "Not a heal \nstrength -3")]
                                        )]
         self.gold = Gold(gold: 10000)
         self.stories = [
