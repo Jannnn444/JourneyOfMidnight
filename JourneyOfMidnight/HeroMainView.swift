@@ -22,7 +22,7 @@ struct HeroMainView: View {
     
     @State var eventState: Events
     @State var gold: Gold
-    @State var stories: [Stories]
+    @State var stories: [Story]
     
     var body: some View {
         ZStack{
@@ -35,21 +35,25 @@ struct HeroMainView: View {
             switch eventState {
             case .combat:
                 EventGame()
-                // MARK: -  Enemy
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
+                CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
                 Spacer()
+                
             case .vendor:
                 EventGroceryShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
+                CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
                 Spacer()
+                
             case .inTheWoods:
                 EventForest(stories: $stories) 
                 Spacer()
+                
             }
             
-            // MARK: -  Hero
-            CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
-            
-            // MARK: PopUp (Hero & Enemy &Grocery)
+// MARK: -  Hero >>> Show based on events
+//CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
+
+            // MARK: PopUp (Hero & Enemy &Grocery  at the outtest layer)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
             EventGroceryPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
@@ -65,13 +69,5 @@ struct HeroMainView: View {
 }
 
 
-
-
-#Preview {
-    HeroMainView(eventState: .combat, gold: Gold(gold: 10000), stories: [
-        Stories(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choices: [Choice(choice: "Admit your crime", effect: 5, effectType: .Charisma), Choice(choice: "Wash your hands", effect: 5, effectType: .Wisdom), Choice(choice: "go back to sleep", effect: 5, effectType: .Agility)]),
-        Stories(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choices: [Choice(choice: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Choice(choice: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Choice(choice: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
-    ])
-}
 
 

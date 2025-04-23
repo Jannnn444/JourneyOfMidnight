@@ -21,7 +21,7 @@ class CardManager: ObservableObject {
     
     @Published var vendorGoods: [VendorGoods]
     @Published var gold: Gold
-    @Published var stories: [Stories]
+    @Published var stories: [Story]
     
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
@@ -88,8 +88,8 @@ class CardManager: ObservableObject {
                                        )]
         self.gold = Gold(gold: 10000)
         self.stories = [
-            Stories(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choices: [Choice(choice: "Admit your crime", effect: 5, effectType: .Charisma), Choice(choice: "Wash your hands", effect: 5, effectType: .Wisdom), Choice(choice: "go back to sleep", effect: 5, effectType: .Agility)]),
-            Stories(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choices: [Choice(choice: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Choice(choice: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Choice(choice: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
+            Story(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choice: [Option(option: "Admit your crime", effect: 5, effectType: .Charisma), Option(option: "Wash your hands", effect: 5, effectType: .Wisdom), Option(option: "go back to sleep", effect: 5, effectType: .Agility)]),
+            Story(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choice: [Option(option: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Option(option: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Option(option: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
         ]
     }
 }
@@ -193,15 +193,15 @@ struct Gold {
     let gold: Int
 }
  
-struct Stories: Identifiable {
+struct Story: Identifiable {
     var id = UUID()
     var topic: String
-    var choices: [Choice]
+    var choice: [Option]
 }
 
-struct Choice: Identifiable {
+struct Option: Identifiable {
     var id = UUID()
-    var choice: String
+    var option: String
     var effect: Int
     var effectType: EffectTypes
 }
