@@ -89,7 +89,8 @@ class CardManager: ObservableObject {
         self.gold = Gold(gold: 10000)
         self.stories = [
             Story(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choice: [Option(option: "Admit your crime", effect: 5, effectType: .Charisma), Option(option: "Wash your hands", effect: 5, effectType: .Wisdom), Option(option: "go back to sleep", effect: 5, effectType: .Agility)]),
-            Story(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choice: [Option(option: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Option(option: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Option(option: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
+            Story(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choice: [Option(option: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Option(option: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Option(option: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)]),
+            Story(topic: "You heard a wild animals roaring, but you not in the mood for wild friend now, what will you do?", choice: [Option(option: "(Inspection)Take a closer look of what happened", effect: 5, effectType: .Agility),Option(option: "(Rogue)A friend in need is a friend in need", effect: 5, effectType: .Vitality),Option(option: "You really in a rush and having a bad day. Leave it", effect: 3, effectType: .Wisdom)])
         ]
     }
 }
