@@ -17,6 +17,7 @@ struct EventCombat: View {
         Image("banner")
             .frame(width: 400, height: 200)
             .padding()
+        
         VStack {
             HStack {
                 Image("fight")

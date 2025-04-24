@@ -26,10 +26,16 @@ struct HeroMainView: View {
     
     var body: some View {
         ZStack{
-            Color.white
+            Image("bkg")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+//                .ignoresSafeArea()
+            
+/*     Color.white
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
                 .onTapGesture {}
+*/
             
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
@@ -56,10 +62,11 @@ struct HeroMainView: View {
             EventVendorPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
             
             // MARK: Shuffle Button
-            ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding()
+            ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
             
             // MARK: Gold
             GoldView(gold: $gold).padding()
+                
         }
         .ignoresSafeArea()
     }
