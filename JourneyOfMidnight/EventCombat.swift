@@ -35,5 +35,3 @@ struct EventCombat: View {
         }
     }
 }
-
-// TBD

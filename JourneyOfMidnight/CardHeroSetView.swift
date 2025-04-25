@@ -96,5 +96,7 @@ struct CardHeroSetView: View {
            enemy and all other events lower 300
            
            */
+        
+        
     }
 }
