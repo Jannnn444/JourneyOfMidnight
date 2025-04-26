@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E1FFF772DBCEB74002382B0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF762DBCEB74002382B0 /* Config.swift */; };
+		1E1FFF792DBCEB7B002382B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF782DBCEB7B002382B0 /* NetworkManager.swift */; };
 		1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */; };
 		1E64C2042DB25707001DFAF5 /* HeroDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */; };
 		1E64C2062DB25809001DFAF5 /* HeroSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E1FFF762DBCEB74002382B0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		1E1FFF782DBCEB7B002382B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSkillView.swift; sourceTree = "<group>"; };
 		1E64C2032DB25707001DFAF5 /* HeroDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailView.swift; sourceTree = "<group>"; };
 		1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSelectionView.swift; sourceTree = "<group>"; };
@@ -82,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E1FFF752DBCEB50002382B0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1E1FFF762DBCEB74002382B0 /* Config.swift */,
+				1E1FFF782DBCEB7B002382B0 /* NetworkManager.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		1E64C20D2DB7669F001DFAF5 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,15 +182,16 @@
 		54561D8B2D8ED0CA00EB042B /* JourneyOfMidnight */ = {
 			isa = PBXGroup;
 			children = (
-				1E64C2132DB76CCE001DFAF5 /* OldCodes */,
 				54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */,
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
+				1E1FFF752DBCEB50002382B0 /* Network */,
 				1E64C20E2DB766C9001DFAF5 /* Manager */,
 				1E64C2152DB77940001DFAF5 /* Main */,
 				1E64C2142DB76D2C001DFAF5 /* CardSet */,
 				5455ED232DAA992800157005 /* Events */,
 				1E64C20D2DB7669F001DFAF5 /* DetailView */,
+				1E64C2132DB76CCE001DFAF5 /* OldCodes */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
@@ -274,9 +288,11 @@
 				1E64C2172DB77BCF001DFAF5 /* EventVendorPopup.swift in Sources */,
 				1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */,
 				541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */,
+				1E1FFF792DBCEB7B002382B0 /* NetworkManager.swift in Sources */,
 				546DD1CD2D8EEAF700FAD49B /* BoardView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
+				1E1FFF772DBCEB74002382B0 /* Config.swift in Sources */,
 				541C593B2DB3BDC200AB0AC6 /* ButtomButton.swift in Sources */,
 				1E64C21C2DB88E4F001DFAF5 /* GoldView.swift in Sources */,
 				546DD1D12D9D0FD600FAD49B /* AbilityDetailViewPage.swift in Sources */,
