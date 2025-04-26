@@ -86,16 +86,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1E1FFF752DBCEB50002382B0 /* Network */ = {
+		1E1FFF7A2DBCF043002382B0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				1E1FFF762DBCEB74002382B0 /* Config.swift */,
 				1E1FFF782DBCEB7B002382B0 /* NetworkManager.swift */,
 			);
-			name = Network;
+			path = Network;
 			sourceTree = "<group>";
 		};
-		1E64C20D2DB7669F001DFAF5 /* DetailView */ = {
+		1E1FFF7B2DBCF07A002382B0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		1E1FFF7D2DBCF0C4002382B0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1E1FFF7F2DBCF103002382B0 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */,
+				541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */,
+				541C59302DB3B89400AB0AC6 /* EventCombat.swift */,
+				541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */,
+				1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */,
+				541C59382DB3B9EC00AB0AC6 /* EventForest.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		1E1FFF802DBCF12A002382B0 /* HeroCardOurs */ = {
+			isa = PBXGroup;
+			children = (
+				541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */,
+				541C593E2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift */,
+			);
+			path = HeroCardOurs;
+			sourceTree = "<group>";
+		};
+		1E1FFF812DBCF154002382B0 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
 				1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */,
@@ -104,18 +142,10 @@
 				541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */,
 				1E64C21B2DB88E4F001DFAF5 /* GoldView.swift */,
 			);
-			name = DetailView;
+			path = DetailView;
 			sourceTree = "<group>";
 		};
-		1E64C20E2DB766C9001DFAF5 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
-			);
-			name = Manager;
-			sourceTree = "<group>";
-		};
-		1E64C2132DB76CCE001DFAF5 /* OldCodes */ = {
+		1E1FFF822DBCF16C002382B0 /* OldCodes */ = {
 			isa = PBXGroup;
 			children = (
 				1E99D0942D9AA2BC007392FE /* TempPlayerData.swift */,
@@ -130,37 +160,7 @@
 				1E64C2052DB25809001DFAF5 /* HeroSelectionView.swift */,
 				546DD1C82D8EE9D800FAD49B /* HeroCardView.swift */,
 			);
-			name = OldCodes;
-			sourceTree = "<group>";
-		};
-		1E64C2142DB76D2C001DFAF5 /* CardSet */ = {
-			isa = PBXGroup;
-			children = (
-				541C593C2DB3BFBF00AB0AC6 /* CardHeroSetView.swift */,
-				541C593E2DB3C32E00AB0AC6 /* CardHeroSetViewWSkill.swift */,
-			);
-			name = CardSet;
-			sourceTree = "<group>";
-		};
-		1E64C2152DB77940001DFAF5 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				1E99D0962DAD0994007392FE /* HeroMainView.swift */,
-			);
-			name = Main;
-			sourceTree = "<group>";
-		};
-		5455ED232DAA992800157005 /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				541C59402DB3C4AD00AB0AC6 /* EnemyCardSet.swift */,
-				541C59422DB3C4B800AB0AC6 /* EnemyCardSetWSkill.swift */,
-				541C59302DB3B89400AB0AC6 /* EventCombat.swift */,
-				541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */,
-				1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */,
-				541C59382DB3B9EC00AB0AC6 /* EventForest.swift */,
-			);
-			name = Events;
+			path = OldCodes;
 			sourceTree = "<group>";
 		};
 		54561D802D8ED0CA00EB042B = {
@@ -185,13 +185,13 @@
 				54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */,
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
-				1E1FFF752DBCEB50002382B0 /* Network */,
-				1E64C20E2DB766C9001DFAF5 /* Manager */,
-				1E64C2152DB77940001DFAF5 /* Main */,
-				1E64C2142DB76D2C001DFAF5 /* CardSet */,
-				5455ED232DAA992800157005 /* Events */,
-				1E64C20D2DB7669F001DFAF5 /* DetailView */,
-				1E64C2132DB76CCE001DFAF5 /* OldCodes */,
+				1E1FFF7B2DBCF07A002382B0 /* Manager */,
+				1E1FFF7A2DBCF043002382B0 /* Network */,
+				1E1FFF7D2DBCF0C4002382B0 /* Main */,
+				1E1FFF7F2DBCF103002382B0 /* Events */,
+				1E1FFF802DBCF12A002382B0 /* HeroCardOurs */,
+				1E1FFF812DBCF154002382B0 /* DetailView */,
+				1E1FFF822DBCF16C002382B0 /* OldCodes */,
 			);
 			path = JourneyOfMidnight;
 			sourceTree = "<group>";
