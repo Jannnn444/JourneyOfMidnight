@@ -29,25 +29,21 @@ struct HeroMainView: View {
             Image("bkg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-//                .ignoresSafeArea()
             
 /*     Color.white
                 .ignoresSafeArea()
                 .contentShape(Rectangle())
-                .onTapGesture {}
-*/
+                .onTapGesture {}  */
             
             // MARK: - Top 1/2 Banner GameBd
             switch eventState {
             case .combat:
                 EventCombat()
-                EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-                CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
+                EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi) 
                 Spacer()
                 
             case .vendor:
                 EventVendorShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
-                CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
                 Spacer()
                 
             case .inTheWoods:
@@ -55,6 +51,8 @@ struct HeroMainView: View {
                 Spacer()
                 
             }
+            
+            CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
             
             // MARK: PopUp (Hero & Enemy &Grocery)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
