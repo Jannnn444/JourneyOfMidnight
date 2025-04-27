@@ -31,7 +31,7 @@ enum WebSocketError: Error {
 }
 
 class WebsocketManager: ObservableObject {
-    // Singleton instance
+    // Singleton instance !! 1 shared connection to websocket server
     static let shared = WebsocketManager()
     
     // Publishers for connection state and message events
@@ -104,7 +104,7 @@ class WebsocketManager: ObservableObject {
                 let string = String(data: data, encoding: .utf8)!
                 return .string(string)
             }
-            .mapError { WebSocketError.invalidMessageFormat }
+            .mapError { _ in WebSocketError.invalidMessageFormat }
             .flatMap { socketMessage -> AnyPublisher<Void, WebSocketError> in
                 return Future<Void, WebSocketError> { promise in
                     webSocketTask.send(socketMessage) { error in
@@ -136,6 +136,7 @@ class WebsocketManager: ObservableObject {
                     if let data = text.data(using: .utf8) {
                         do {
                             let socketMessage = try JSONDecoder().decode(SocketMessage.self, from: data)
+                            print("Message received from websocket: \(socketMessage)")
                             self.messageSubject.send(socketMessage)
                         } catch {
                             print("Failed to decode message: \(error)")

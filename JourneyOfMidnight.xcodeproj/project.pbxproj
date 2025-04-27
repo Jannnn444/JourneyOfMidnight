@@ -13,6 +13,8 @@
 		1E1FFF892DBE5D6C002382B0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF882DBE5D6C002382B0 /* Game.swift */; };
 		1E1FFF8B2DBE5D88002382B0 /* WebsocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF8A2DBE5D88002382B0 /* WebsocketManager.swift */; };
 		1E1FFF8F2DBE5DEE002382B0 /* MatchMakingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF8E2DBE5DEE002382B0 /* MatchMakingViewModel.swift */; };
+		1E1FFF922DBE64EE002382B0 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF912DBE64EE002382B0 /* MainMenuView.swift */; };
+		1E1FFF942DBE64F6002382B0 /* QueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF932DBE64F6002382B0 /* QueueView.swift */; };
 		1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */; };
 		1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */; };
 		1E64C2172DB77BCF001DFAF5 /* EventVendorPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */; };
@@ -40,6 +42,8 @@
 		1E1FFF882DBE5D6C002382B0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		1E1FFF8A2DBE5D88002382B0 /* WebsocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketManager.swift; sourceTree = "<group>"; };
 		1E1FFF8E2DBE5DEE002382B0 /* MatchMakingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMakingViewModel.swift; sourceTree = "<group>"; };
+		1E1FFF912DBE64EE002382B0 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		1E1FFF932DBE64F6002382B0 /* QueueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueView.swift; sourceTree = "<group>"; };
 		1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSkillView.swift; sourceTree = "<group>"; };
 		1E64C20F2DB76A95001DFAF5 /* DetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemView.swift; sourceTree = "<group>"; };
 		1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorPopup.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 		1E1FFF8C2DBE5DA2002382B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1E1FFF902DBE64D2002382B0 /* MatchMaking */,
 				1E1FFF7D2DBCF0C4002382B0 /* Main */,
 				1E1FFF7F2DBCF103002382B0 /* Events */,
 				1E1FFF802DBCF12A002382B0 /* HeroCardOurs */,
@@ -158,6 +163,15 @@
 				1E1FFF8E2DBE5DEE002382B0 /* MatchMakingViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1E1FFF902DBE64D2002382B0 /* MatchMaking */ = {
+			isa = PBXGroup;
+			children = (
+				1E1FFF912DBE64EE002382B0 /* MainMenuView.swift */,
+				1E1FFF932DBE64F6002382B0 /* QueueView.swift */,
+			);
+			path = MatchMaking;
 			sourceTree = "<group>";
 		};
 		54561D802D8ED0CA00EB042B = {
@@ -281,12 +295,14 @@
 				541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */,
 				1E1FFF792DBCEB7B002382B0 /* NetworkManager.swift in Sources */,
 				1E1FFF892DBE5D6C002382B0 /* Game.swift in Sources */,
+				1E1FFF922DBE64EE002382B0 /* MainMenuView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
 				1E1FFF8F2DBE5DEE002382B0 /* MatchMakingViewModel.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				1E1FFF772DBCEB74002382B0 /* Config.swift in Sources */,
 				541C593B2DB3BDC200AB0AC6 /* ButtomButton.swift in Sources */,
 				1E64C21C2DB88E4F001DFAF5 /* GoldView.swift in Sources */,
+				1E1FFF942DBE64F6002382B0 /* QueueView.swift in Sources */,
 				541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */,
 				541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */,
 				541C59412DB3C4AD00AB0AC6 /* EnemyCardSet.swift in Sources */,
