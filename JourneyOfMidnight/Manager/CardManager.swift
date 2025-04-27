@@ -99,6 +99,7 @@ class CardManager: ObservableObject {
     }
 }
 
+// model
 // MARK: Build Character
 
 struct Character: Identifiable {

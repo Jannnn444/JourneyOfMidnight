@@ -5,8 +5,6 @@
 //  Created by yucian huang on 2025/4/13.
 //
 
-import Foundation
-
 import SwiftUI
 
 // simplest popup view that receives content
