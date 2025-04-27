@@ -43,14 +43,14 @@ class CardManager: ObservableObject {
         self.hero = [Hero(
             heroClass:
                 HeroClass(name: .fighter, level: 10),
-                attributes: Attributes(
-                    Strength: 10,
-                    Intelligence: 101,
-                    Wisdom: 10,
-                    Agility: 10,
-                    Vitality: 10,
-                    Faith: 10,
-                    Charisma: 10),
+            attributes: Attributes(
+                Strength: 10,
+                Intelligence: 101,
+                Wisdom: 10,
+                Agility: 10,
+                Vitality: 10,
+                Faith: 10,
+                Charisma: 10),
             skills: [Skill(name: "Meteor", power: 9), Skill(name: "Dodge", power: 8)],
             items: [Item(name: "Armore", intro: "Love"), Item(name: "pants", intro: "Armour")],
             stats: Stats(health: 100, endurance: 500)),
@@ -79,7 +79,7 @@ class CardManager: ObservableObject {
             Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "god", power: 8)], items: [Item(name: "holybook", intro: "Spirit"), Item(name: "cross", intro: "Belief")], stats: Stats(health: 100, endurance: 500)),
             Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7),Skill(name: "fist", power: 6)], items: [Item(name: "fakeID", intro: "detect using"), Item(name: "letter", intro: "read")], stats: Stats(health: 100, endurance: 500))
         ]
-        self.vendorGoods = [VendorGoods(item: [ 
+        self.vendorGoods = [VendorGoods(item: [
             Item(name: "Artifacts", intro: "Power"),
             Item(name: "Morning Star", intro: "Brutal Weapon"),
             Item(name: "Lucky Coin",intro: "Savethrows +1"),
@@ -176,7 +176,7 @@ struct Item: Identifiable {
     var id = UUID()
     var name: String
     var intro: String
-//  var price: Int   // Future TBD
+    //  var price: Int   // Future TBD
 }
 
 struct Stats {
@@ -189,7 +189,7 @@ enum Events {
     case vendor
     case inTheWoods
 }
-                         
+
 func shuffleEvents() -> Events {
     let allEvents: [Events] = [.combat, .inTheWoods, .vendor]
     return allEvents.randomElement() ?? .combat
@@ -198,7 +198,7 @@ func shuffleEvents() -> Events {
 struct Gold {
     let gold: Int
 }
- 
+
 struct Story: Identifiable {
     var id = UUID()
     var topic: String
