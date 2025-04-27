@@ -19,8 +19,8 @@ let officeIP = "10.1.6.21"
 let DigitalOceanServerIP = "206.189.40.30"
 
 // currently selected IP
-let apiDomain = DigitalOceanServerIP
+let apiDomain = "172.20.10.4"
 
 
 // 206.189.40.30
-
+// 172.20.10.4 -> phone

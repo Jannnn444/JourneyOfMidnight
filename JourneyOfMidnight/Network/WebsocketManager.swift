@@ -15,6 +15,8 @@
 import Foundation
 import Combine
 
+// manager
+
 enum ConnectionState {
     case disconnected
     case connecting
