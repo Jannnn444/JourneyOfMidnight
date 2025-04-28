@@ -11,7 +11,7 @@ import SwiftUI
 struct MainTemplateWithPopupEvent<Content: View>: View {
     // store content
     let content: Content
-    
+  
     // init with content
     init(@ViewBuilder content: () -> Content) {
         self.content = content()

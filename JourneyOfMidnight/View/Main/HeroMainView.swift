@@ -49,7 +49,6 @@ struct HeroMainView: View {
             case .inTheWoods:
                 EventForest(stories: $stories) 
                 Spacer()
-                
             }
             
             CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
@@ -64,7 +63,6 @@ struct HeroMainView: View {
             
             // MARK: Gold
             GoldView(gold: $gold).padding()
-                
         }
         .ignoresSafeArea()
     }

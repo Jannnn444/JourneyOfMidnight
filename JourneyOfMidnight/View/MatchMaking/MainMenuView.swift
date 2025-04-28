@@ -26,6 +26,10 @@ struct MainMenuView: View {
                 navigation = .queue
             }) {
                 Text("Find match!")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
             
         case .game:
@@ -36,8 +40,7 @@ struct MainMenuView: View {
         case .queue:
             Text("queue")
         }
-        
-  
     }
-    
 }
+
+

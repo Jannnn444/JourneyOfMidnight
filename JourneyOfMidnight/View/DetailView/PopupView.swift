@@ -28,22 +28,3 @@ struct PopupView<Content: View>: View {
                 .frame(width: 250, height: 230))
     }
 }
-
-// Example usage
-struct ContentExample: View {
-    var body: some View {
-        PopupView {
-            // everything here becomes content
-            Text("Hello")
-            Button("OK") {
-                print("Button tapped")
-            }
-        }
-    }
-}
-
-struct ContentExample_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentExample()
-    }
-}
