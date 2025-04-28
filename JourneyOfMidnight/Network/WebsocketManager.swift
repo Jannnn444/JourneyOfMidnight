@@ -46,7 +46,7 @@ class WebsocketManager: ObservableObject {
     private var webSocketTask: URLSessionWebSocketTask?
     
     // Server URL configuration
-    private let serverBaseURL = "ws://\(apiDomain):8080" // Use your server's WebSocket port
+    private let serverBaseURL = "ws://\(apiDomain):4333"  // Use your server's WebSocket port
     
     // Cancel bag for subscriptions
     private var cancellables = Set<AnyCancellable>()
@@ -129,8 +129,7 @@ class WebsocketManager: ObservableObject {
             guard let self = self else { return }
             
             switch result {
-            case .success(let message):
-                // Handle received message
+            case .success(let message):   // Handle received message
                 switch message {
                 case .string(let text):
                     if let data = text.data(using: .utf8) {
