@@ -4,65 +4,91 @@
 //
 //  Created by Hualiteq International on 2025/4/27.
 //
+//
+//  MainTemplateWithPopupEvent.swift
+//  JourneyOfMidnight
+//
+//  Created by Hualiteq International on 2025/4/27.
+//
 
 import SwiftUI
 
-// simplest popup view that receives content
-struct MainTemplateWithPopupEvent<Content: View>: View {
-    // store content
-    let content: Content
-
+struct MainTemplateWithPopupEvent<Content: View, PopupContent: View>: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State private var showDetailSkillViewHero = false
-    @State private var showDetailSkillViewEnemi = false
-    @State private var showDetailItemView = false
+    @Binding var eventState: Events
+    @Binding var gold: Gold
     
-    @State private var showMoreDetailEnemi = false
-    @State private var showMoreDetailItems = false
+    // The main content to display (like EventCombat, EventVendorShop, or EventForest)
+    let content: Content
     
-    @State private var selectedHeros: [Hero] = []
-    @State private var selectedEnemies: [Hero] = []
-    @State private var selectedItems: [VendorGoods] = []
+    // Optional popup content
+    let popupContent: PopupContent?
     
-    @State private var eventState: Events = .combat
-    @State private var gold: Gold = Gold(gold: 10000)
-    @State private var stories: [Story] = []
-    
-    
-      // init with content
-      init(@ViewBuilder content: () -> Content) {
-          self.content = content()
-      }
-      
+    // Initialize with event content and popup
+    init(content: Content,
+         eventState: Binding<Events>,
+         gold: Binding<Gold>,
+         @ViewBuilder popup: () -> PopupContent) {
+        self.content = content
+        self._eventState = eventState
+        self._gold = gold
+        self.popupContent = popup()
+    }
     
     var body: some View {
-        ZStack{
+        ZStack {
+            // Background
             Image("bkg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-            
-/*     Color.white
                 .ignoresSafeArea()
-                .contentShape(Rectangle())
-                .onTapGesture {}  */
             
-            // MARK: - Top 1/2 Banner GameBd (will be pass in)
-            content
+            VStack {
+                // The main content (passed in)
+                content
+                
+                Spacer()
+                
+                // Hero cards at the bottom all the time
+                CardHeroSetView(
+                    IsShowDetailSkillView: .constant(false),
+                    showMoreDetail: .constant(false),
+                    selectedHeros: .constant([])
+                )
+            }
             
-            // Hero View always show
-            CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
+            // Display popup
+            popupContent
             
-            // MARK: PopUp (Hero & Enemy &Grocery)
-            CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
-            EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-            EventVendorPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView)
+            // Next day button
+            ButtomButton(eventState: $eventState, textOnButton: "Next Day")
+                .padding()
+                .padding(.bottom, 40)
             
-            // MARK: Shuffle Button
-            ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
-            
-            // MARK: Gold
-            GoldView(gold: $gold).padding()
+            // Gold display
+            GoldView(gold: $gold)
+                .padding()
         }
         .ignoresSafeArea()
+    }
+}
+
+// Convenience initializer with no popup - using EmptyView
+extension MainTemplateWithPopupEvent where PopupContent == EmptyView {
+    init(content: Content, eventState: Binding<Events>, gold: Binding<Gold>) {
+        self.init(content: content, eventState: eventState, gold: gold) {
+            EmptyView()
+        }
+    }
+}
+
+// Preview provider
+struct MainTemplateWithPopupEvent_Previews: PreviewProvider {
+    static var previews: some View {
+        MainTemplateWithPopupEvent(
+            content: EventCombat(),
+            eventState: .constant(.combat),
+            gold: .constant(Gold(gold: 1000))
+        )
     }
 }
