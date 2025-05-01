@@ -14,7 +14,9 @@ enum Navigation {
 }
 
 struct MainMenuView: View {
+    @ObservedObject var cardManager = CardManager.shared
     @State var navigation: Navigation = .home
+    @State var event: Events
     
     var body: some View {
         switch(navigation) {
@@ -33,10 +35,14 @@ struct MainMenuView: View {
             }
             
         case .game:
+            
+            
+            
             HeroMainView(eventState: .combat, gold: Gold(gold: 10000), stories: [
                 Story(topic: "Waken from an abandoned chapel, you found a body cruelly harmed and passed right next to you. You smell the blood on your hand. ", choice: [Option(option: "Admit your crime", effect: 5, effectType: .Charisma), Option(option: "Wash your hands", effect: 5, effectType: .Wisdom), Option(option: "go back to sleep", effect: 5, effectType: .Agility)]),
                 Story(topic: "Unusual mist start gathering in front of you, you sence the creep atmosphere, you turn back, but all you see just white wall...", choice: [Option(option: "Shout all the saint chris name, hope any evils step back and scared", effect: 7, effectType: .Faith), Option(option: "(Sorceror)Natural force to find a path", effect: 4, effectType: .Intelligence), Option(option: "(Dexterity)Listen to where the river shivering", effect: 5, effectType: .Vitality)])
             ])
+            
         case .queue:
             Text("queue")
         }

@@ -67,3 +67,5 @@ struct HeroMainView: View {
         .ignoresSafeArea()
     }
 }
+
+

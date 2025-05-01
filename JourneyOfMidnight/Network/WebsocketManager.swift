@@ -8,14 +8,11 @@
 //
 //  WebsocketManager.swift
 //  JourneyOfMidnight
-//
 //  Created on 2025/4/27.
 //
 
 import Foundation
 import Combine
-
-// manager
 
 enum ConnectionState {
     case disconnected
