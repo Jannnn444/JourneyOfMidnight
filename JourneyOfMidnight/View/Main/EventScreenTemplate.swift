@@ -15,8 +15,13 @@ struct EventScreenTemplate: View {
     
     // Event-specific content
     let eventContent: AnyView
-    // Optional popup content
-    let popupContent: AnyView?
+    // Event-specific popup content
+    let eventPopupContent: AnyView?
+    
+    // Common state for all event types
+    @State private var selectedHeros: [Hero] = []
+    @State private var showDetailSkillViewHero: Bool = false
+    @State private var showMoreDetailHero: Bool = false
     
     // For combat events
     init(
@@ -42,8 +47,8 @@ struct EventScreenTemplate: View {
             }
         )
         
-        // Create popup content if needed
-        self.popupContent = AnyView(
+        // Create event popup content
+        self.eventPopupContent = AnyView(
             EnemyCardSetWSkill(
                 selectedEnemies: selectedEnemies,
                 showDetailSkillViewEnemi: showDetailSkillViewEnemi,
@@ -72,8 +77,8 @@ struct EventScreenTemplate: View {
             )
         )
         
-        // Create popup content
-        self.popupContent = AnyView(
+        // Create event popup content
+        self.eventPopupContent = AnyView(
             EventVendorPopup(
                 selectedItems: selectedItems,
                 showDetailSkillView: showDetailItemView,
@@ -96,8 +101,8 @@ struct EventScreenTemplate: View {
             EventForest(stories: stories)
         )
         
-        // No popup needed for forest events
-        self.popupContent = nil
+        // No event-specific popup needed for forest events
+        self.eventPopupContent = nil
     }
     
     var body: some View {
@@ -113,13 +118,20 @@ struct EventScreenTemplate: View {
             
             // Hero cards at the bottom
             CardHeroSetView(
-                IsShowDetailSkillView: .constant(false),
-                showMoreDetail: .constant(false),
-                selectedHeros: .constant([])
+                IsShowDetailSkillView: $showDetailSkillViewHero,
+                showMoreDetail: $showMoreDetailHero,
+                selectedHeros: $selectedHeros
             )
             
-            // Popup content if available
-            if let popup = popupContent {
+            // Hero skills popup
+            CardHeroSetViewWSkill(
+                selectedHeros: $selectedHeros,
+                showDetailSkillView: $showDetailSkillViewHero,
+                showMoreDetail: $showMoreDetailHero
+            )
+            
+            // Event-specific popup content if available
+            if let popup = eventPopupContent {
                 popup
             }
             

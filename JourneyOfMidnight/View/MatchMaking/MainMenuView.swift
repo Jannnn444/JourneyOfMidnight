@@ -31,6 +31,7 @@ struct MainMenuView: View {
     @State private var showDetailSkillViewEnemi: Bool = false
     @State private var showDetailItemView: Bool = false
     
+    @State private var showMoreDetailHero: Bool = false
     @State private var showMoreDetailEnemi: Bool = false
     @State private var showMoreDetailItems: Bool = false
     
@@ -102,30 +103,57 @@ struct MainMenuView: View {
                 Group {
                     switch eventState {
                     case .combat:
-                        EventScreenTemplate(
-                            eventState: $eventState,
-                            gold: $gold,
-                            selectedEnemies: $selectedEnemies,
-                            showDetailSkillViewEnemi: $showDetailSkillViewEnemi,
-                            showMoreDetailEnemi: $showMoreDetailEnemi
-                        )
+                        ZStack {
+                            // Main event screen
+                            EventScreenTemplate(
+                                eventState: $eventState,
+                                gold: $gold,
+                                selectedEnemies: $selectedEnemies,
+                                showDetailSkillViewEnemi: $showDetailSkillViewEnemi,
+                                showMoreDetailEnemi: $showMoreDetailEnemi
+                            )
+                            
+                            // Additional hero popup that needs to be at the ZStack level
+                            CardHeroSetViewWSkill(
+                                selectedHeros: $selectedHeros,
+                                showDetailSkillView: $showDetailSkillViewHero,
+                                showMoreDetail: $showMoreDetailHero
+                            )
+                        }
                         
                     case .vendor:
-                        EventScreenTemplate(
-                            eventState: $eventState,
-                            gold: $gold,
-                            selectedItems: $selectedItems,
-                            showDetailItemView: $showDetailItemView,
-                            showMoreDetailItems: $showMoreDetailItems
-                        )
+                        ZStack {
+                            EventScreenTemplate(
+                                eventState: $eventState,
+                                gold: $gold,
+                                selectedItems: $selectedItems,
+                                showDetailItemView: $showDetailItemView,
+                                showMoreDetailItems: $showMoreDetailItems
+                            )
+                            
+                            // Additional hero popup that needs to be at the ZStack level
+                            CardHeroSetViewWSkill(
+                                selectedHeros: $selectedHeros,
+                                showDetailSkillView: $showDetailSkillViewHero,
+                                showMoreDetail: $showMoreDetailHero
+                            )
+                        }
                         
                     case .inTheWoods:
-                        EventScreenTemplate(
-                            eventState: $eventState,
-                            gold: $gold,
-                            stories: $stories
-                        )
-                        
+                        ZStack {
+                            EventScreenTemplate(
+                                eventState: $eventState,
+                                gold: $gold,
+                                stories: $stories
+                            )
+                            
+                            // Additional hero popup that needs to be at the ZStack level
+                            CardHeroSetViewWSkill(
+                                selectedHeros: $selectedHeros,
+                                showDetailSkillView: $showDetailSkillViewHero,
+                                showMoreDetail: $showMoreDetailHero
+                            )
+                        }
                     }
                 }
                 
@@ -189,9 +217,14 @@ struct MainMenuView: View {
                 .cornerRadius(20)
             }
         }
+        .onAppear {
+            // Make sure we have stories loaded when the view appears
+            if stories.isEmpty {
+                stories = cardManager.stories
+            }
+        }
         .padding()
         .ignoresSafeArea()
-            
     }
 }
 
