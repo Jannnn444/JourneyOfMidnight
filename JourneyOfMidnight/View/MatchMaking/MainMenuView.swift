@@ -183,22 +183,8 @@ struct MainMenuView: View {
                 
             case .queue:
                 // Queue view
-                VStack {
-                    Text("Finding Match...")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .fontDesign(.monospaced)
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                    ProgressView()
-                        .scaleEffect(2)
-                        .padding()
-                    
-                    Text("Searching for other players...")
-                        .fontDesign(.monospaced)
-                        .foregroundColor(.white)
-                        .padding()
+                ZStack {
+                    QueueView()
                     
                     Button(action: {
                         navigation = .home
@@ -212,8 +198,7 @@ struct MainMenuView: View {
                     }
                     .padding(.top, 30)
                 }
-                .frame(width: 300, height: 300)
-                .background(Color.black.opacity(0.7))
+                .frame(width: 500, height: 300)
                 .cornerRadius(20)
             }
         }
