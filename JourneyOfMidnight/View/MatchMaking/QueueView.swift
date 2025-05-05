@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct QueueView: View {
+    @Binding var navigation: Navigation
+    
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
@@ -28,7 +30,17 @@ struct QueueView: View {
                     .fontDesign(.monospaced)
                     .foregroundColor(.white)
                     .padding()
-                
+                Button(action: {
+                    navigation = .home
+                }) {
+                    Text("Cancel")
+                        .fontWeight(.bold)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 30)
                
             }
             
@@ -36,7 +48,3 @@ struct QueueView: View {
     }
 }
 
-
-#Preview {
-    QueueView()
-}

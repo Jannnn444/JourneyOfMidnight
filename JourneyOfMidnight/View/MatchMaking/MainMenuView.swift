@@ -184,19 +184,12 @@ struct MainMenuView: View {
             case .queue:
                 // Queue view
                 ZStack {
-                    QueueView()
-                    
-                    Button(action: {
-                        navigation = .home
-                    }) {
-                        Text("Cancel")
-                            .fontWeight(.bold)
+                    QueueView(navigation: $navigation)
+                    VStack {
+                        ProgressView()
                             .padding()
-                            .background(Color.red)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                        
                     }
-                    .padding(.top, 30)
                 }
                 .frame(width: 500, height: 300)
                 .cornerRadius(20)
