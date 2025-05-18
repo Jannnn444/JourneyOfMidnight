@@ -5,295 +5,270 @@
 //  Created by Hualiteq International on 2025/4/27.
 //
 
-//
-//  WebsocketManager.swift
-//  JourneyOfMidnight
-//  Created on 2025/4/27.
-//
-
 import Foundation
 import Combine
 
-enum ConnectionState {
-    case disconnected
-    case connecting
-    case connected
-}
-
-enum WebSocketError: Error {
-    case connectionFailed(Error)
-    case messageSendFailed(Error)
-    case invalidMessageFormat
-    case connectionClosed
-}
-
-class WebsocketManager: ObservableObject {
-    // Singleton instance !! 1 shared connection to websocket server
-    static let shared = WebsocketManager()
-    
-    // Publishers for connection state and message events
-    @Published var connectionState: ConnectionState = .disconnected
-    private let messageSubject = PassthroughSubject<SocketMessage, Never>()
-    var messagePublisher: AnyPublisher<SocketMessage, Never> {
-        return messageSubject.eraseToAnyPublisher()
-    }
-    
-    // URL session and task
-    private var session: URLSession!
+@MainActor
+class WebSocketManager: ObservableObject {
+    // MARK: - Properties
+    static let shared = WebSocketManager()
+    private let serverURL = URL(string: "ws://206.189.40.30:4333/ws")!
     private var webSocketTask: URLSessionWebSocketTask?
+    private var pingTask: Task<Void, Never>?
+    private var receiveTask: Task<Void, Never>?
+    private var session: URLSession!
     
-    // Server URL configuration
-    private let serverBaseURL = "ws://\(apiDomain):4333"  // Use your server's WebSocket port
+    // Publishers
+    @Published var isConnected: Bool = false
+    @Published var receivedMessages: [String] = []
     
-    // Cancel bag for subscriptions
-    private var cancellables = Set<AnyCancellable>()
-    
+    // MARK: - Initialization
     private init() {
-        let config = URLSessionConfiguration.default
-        session = URLSession(configuration: config)
+        session = URLSession(configuration: .default)
     }
     
-    // Connect to WebSocket server
-    func connect(endpoint: String = "/ws") {
-        // Don't connect if already connected
-        guard connectionState != .connected && connectionState != .connecting else {
-            return
-        }
-        
-        connectionState = .connecting
-        
-        let fullURL = "\(serverBaseURL)\(endpoint)"
-        guard let url = URL(string: fullURL) else {
-            print("Invalid WebSocket URL: \(fullURL)")
-            connectionState = .disconnected
-            return
-        }
-        
-        webSocketTask = session.webSocketTask(with: url)
-        
-        // Setup message receiver
-        receiveMessage()
-        
-        // Connect to server
+    // MARK: - Connection Management
+    func connect() {
+        // Synchronous setup
+        guard webSocketTask == nil else { return }
+        webSocketTask = session.webSocketTask(with: serverURL)
         webSocketTask?.resume()
-        connectionState = .connected
+        isConnected = true
         
-        // Setup ping to keep connection alive
-        schedulePing()
+        // Start receiving messages
+        startReceivingMessages()
+        
+        // Setup ping task to keep connection alive
+        startPingTask()
+        
+        print("WebSocket connected to: \(serverURL.absoluteString)")
     }
     
-    // Disconnect from WebSocket server
     func disconnect() {
+        pingTask?.cancel()
+        pingTask = nil
+        
+        receiveTask?.cancel()
+        receiveTask = nil
+        
         webSocketTask?.cancel(with: .normalClosure, reason: nil)
         webSocketTask = nil
-        connectionState = .disconnected
+        isConnected = false
+        
+        print("WebSocket disconnected")
     }
     
-    // Send a message to the server
-    func send<T: Encodable>(message: T) -> AnyPublisher<Void, WebSocketError> {
-        guard connectionState == .connected, let webSocketTask = webSocketTask else {
-            return Fail(error: WebSocketError.connectionClosed).eraseToAnyPublisher()
+    // MARK: - Message Handling
+    func sendMessage(_ message: String) async throws {
+        guard let webSocketTask = webSocketTask, isConnected else {
+            print("Cannot send message: WebSocket not connected")
+            throw WebSocketError.notConnected
         }
         
-        return Just(message)
-            .tryMap { message -> URLSessionWebSocketTask.Message in
-                let data = try JSONEncoder().encode(message)
-                let string = String(data: data, encoding: .utf8)!
-                return .string(string)
-            }
-            .mapError { _ in WebSocketError.invalidMessageFormat }
-            .flatMap { socketMessage -> AnyPublisher<Void, WebSocketError> in
-                return Future<Void, WebSocketError> { promise in
-                    webSocketTask.send(socketMessage) { error in
-                        if let error = error {
-                            promise(.failure(WebSocketError.messageSendFailed(error)))
-                        } else {
-                            promise(.success(()))
+        let message = URLSessionWebSocketTask.Message.string(message)
+        try await webSocketTask.send(message)
+    }
+    
+    func sendGameAction(_ action: GameAction) async throws -> GameResponse {
+        // Encode the action to JSON
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(action)
+        
+        guard let jsonString = String(data: data, encoding: .utf8) else {
+            throw WebSocketError.encodingFailed
+        }
+        
+        // Send the message
+        try await sendMessage(jsonString)
+        
+        // Wait for a response
+        // In a real implementation, you'd want to correlate requests and responses
+        // using something like a request ID
+        return try await withTimeout(seconds: 10) {
+            var response: GameResponse?
+            
+            while response == nil {
+                if let message = await self.waitForNextMessage() {
+                    let decoder = JSONDecoder()
+                    if let data = message.data(using: .utf8) {
+                        do {
+                            response = try decoder.decode(GameResponse.self, from: data)
+                        } catch {
+                            print("Failed to decode response: \(error)")
                         }
                     }
-                }.eraseToAnyPublisher()
+                }
             }
-            .eraseToAnyPublisher()
+            
+            return response!
+        }
     }
     
-    // Recursively receive messages
-    private func receiveMessage() {
-        guard let webSocketTask = webSocketTask, connectionState == .connected else {
-            return
+    private func waitForNextMessage() async -> String? {
+        let currentCount = receivedMessages.count
+        
+        // Wait for a new message
+        while receivedMessages.count == currentCount {
+            try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 second
+            if Task.isCancelled { return nil }
         }
         
-        webSocketTask.receive { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let message):   // Handle received message
+        return receivedMessages.last
+    }
+    
+    private func startReceivingMessages() {
+        receiveTask = Task {
+            await receiveMessages()
+        }
+    }
+    
+    private func receiveMessages() async {
+        guard let webSocketTask = webSocketTask else { return }
+        
+        do {
+            while !Task.isCancelled {
+                let message = try await webSocketTask.receive()
+                
                 switch message {
                 case .string(let text):
-                    if let data = text.data(using: .utf8) {
-                        do {
-                            let socketMessage = try JSONDecoder().decode(SocketMessage.self, from: data)
-                            print("Message received from websocket: \(socketMessage)")
-                            self.messageSubject.send(socketMessage)
-                        } catch {
-                            print("Failed to decode message: \(error)")
-                        }
-                    }
-                case .data(let data):
-                    do {
-                        let socketMessage = try JSONDecoder().decode(SocketMessage.self, from: data)
-                        self.messageSubject.send(socketMessage)
-                    } catch {
-                        print("Failed to decode message: \(error)")
-                    }
-                @unknown default:
-                    print("Unknown message type received")
-                }
-                
-                // Continue receiving messages
-                self.receiveMessage()
-                
-            case .failure(let error):
-                print("WebSocket receive error: \(error)")
-                self.connectionState = .disconnected
-                
-                // Try to reconnect after a short delay
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-                    self?.connect()
-                }
-            }
-        }
-    }
-    
-    // Schedule periodic ping to keep the connection alive
-    private func schedulePing() {
-        // Schedule ping every 30 seconds to keep connection alive
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in
-            guard let self = self, self.connectionState == .connected else { return }
-            
-            self.webSocketTask?.sendPing { error in
-                if let error = error {
-                    print("Ping failed: \(error)")
-                    self.connectionState = .disconnected
+                    receivedMessages.append(text)
+                    print("Received message: \(text)")
                     
-                    // Try to reconnect
-                    self.connect()
-                } else {
-                    // Schedule next ping
-                    self.schedulePing()
+                case .data(let data):
+                    if let string = String(data: data, encoding: .utf8) {
+                        receivedMessages.append(string)
+                        print("Received data message: \(string)")
+                    }
+                    
+                @unknown default:
+                    break
                 }
             }
-        }
-    }
-}
-
-// MARK: - Socket Message Types
-
-// Base message structure for socket communication
-struct SocketMessage: Codable {
-    let type: MessageType
-    let payload: MessagePayload
-}
-
-// Message types
-enum MessageType: String, Codable {
-    case matchRequest = "match_request"
-    case matchFound = "match_found"
-    case matchCancelled = "match_cancelled"
-    case gameStart = "game_start"
-    case gameAction = "game_action"
-    case gameEnd = "game_end"
-    case error = "error"
-    case ping = "ping"
-    case pong = "pong"
-}
-
-// Payload structure
-struct MessagePayload: Codable {
-    private var values: [String: String]
-    
-    // Custom coding keys to access dynamic fields
-    private struct CodingKeys: CodingKey {
-        var stringValue: String
-        var intValue: Int?
-        
-        init?(stringValue: String) {
-            self.stringValue = stringValue
-        }
-        
-        init?(intValue: Int) {
-            return nil
+        } catch {
+            print("WebSocket receive error: \(error)")
+            await handleError(error)
         }
     }
     
-    // Access dynamic fields
-    func value(for key: String) -> String? {
-        return values[key]
+    // MARK: - Error Handling
+    private func handleError(_ error: Error) async {
+        isConnected = false
+        await reconnectAfterDelay()
     }
     
-    // Initialize with key-value pairs
-    init(values: [String: String]) {
-        self.values = values
-    }
-    
-    // Decodable implementation
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+    private func reconnectAfterDelay() async {
+        disconnect()
         
-        var values = [String: String]()
-        for key in container.allKeys {
-            let value = try container.decode(String.self, forKey: key)
-            values[key.stringValue] = value
+        try? await Task.sleep(nanoseconds: 3_000_000_000) // 3 seconds
+        
+        if !Task.isCancelled {
+            connect()
         }
-        
-        self.values = values
     }
     
-    // Encodable implementation
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        for (key, value) in values {
-            guard let codingKey = CodingKeys(stringValue: key) else {
-                continue
+    // MARK: - Ping to Keep Connection Active
+    private func startPingTask() {
+        pingTask = Task {
+            while !Task.isCancelled {
+                await pingServer()
+                try? await Task.sleep(nanoseconds: 30_000_000_000) // 30 seconds
             }
-            try container.encode(value, forKey: codingKey)
+        }
+    }
+    
+    private func pingServer() async {
+        do {
+            try await webSocketTask?.sendPing(pongReceiveHandler: {_ in
+                
+            })
+        } catch {
+            print("WebSocket ping failed: \(error)")
+            await handleError(error)
+        }
+    }
+    
+    // Helper function for timeouts
+    private func withTimeout<T>(seconds: Double, operation: @escaping () async throws -> T) async throws -> T {
+        try await withThrowingTaskGroup(of: T.self) { group in
+            group.addTask {
+                try await operation()
+            }
+            
+            group.addTask {
+                try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+                throw WebSocketError.timeout
+            }
+            
+            // Return the first completed result, which will either be the operation
+            // or the timeout error
+            return try await group.next()!
         }
     }
 }
 
-// Helper for match request
-struct MatchRequest {
-    let heroClass: HeroClassName
-    let level: Int
-    
-    func toSocketMessage() -> SocketMessage {
-        let payload = MessagePayload(values: [
-            "heroClass": heroClass.rawValue,
-            "level": "\(level)"
-        ])
-        
-        return SocketMessage(type: .matchRequest, payload: payload)
-    }
+// MARK: - Custom Errors
+enum WebSocketError: Error {
+    case notConnected
+    case encodingFailed
+    case timeout
 }
 
-// Helper for game actions
-struct GameAction {
+// MARK: - Game Data Models
+struct GameAction: Codable {
+    let type: String
+    let payload: GameActionPayload
+}
+
+struct GameActionPayload: Codable {
     let actionType: String
     let targetId: String?
-    let skillId: String?
-    
-    func toSocketMessage() -> SocketMessage {
-        var values: [String: String] = ["actionType": actionType]
-        
-        if let targetId = targetId {
-            values["targetId"] = targetId
-        }
-        
-        if let skillId = skillId {
-            values["skillId"] = skillId
-        }
-        
-        let payload = MessagePayload(values: values)
-        return SocketMessage(type: .gameAction, payload: payload)
-    }
+    let selectedOption: Int?
+    // Add other fields as needed for your game actions
+}
+
+struct GameResponse: Codable {
+    let success: Bool
+    let message: String
+    let data: GameResponseData?
+}
+
+struct GameResponseData: Codable {
+    let gameState: String
+    let heroes: [HeroResponse]?
+    let enemies: [HeroResponse]?
+    let events: [EventResponse]?
+    // Add other fields as needed
+}
+
+struct HeroResponse: Codable, Identifiable {
+    let id: String
+    let name: String
+    let heroClass: String
+    let level: Int
+    let health: Int
+    let skills: [SkillResponse]
+    // Add other fields as needed
+}
+
+struct SkillResponse: Codable, Identifiable {
+    let id: String
+    let name: String
+    let power: Int
+    // Add other fields as needed
+}
+
+struct EventResponse: Codable, Identifiable {
+    let id: String
+    let type: String
+    let description: String
+    let options: [OptionResponse]?
+    // Add other fields as needed
+}
+
+struct OptionResponse: Codable, Identifiable {
+    let id: String
+    let text: String
+    let effectType: String
+    let effectValue: Int
+    // Add other fields as needed
 }

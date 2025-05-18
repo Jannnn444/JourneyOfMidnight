@@ -15,6 +15,8 @@ enum Navigation {
 
 struct MainMenuView: View {
     @ObservedObject var cardManager = CardManager.shared
+    @ObservedObject var websocketManager = WebSocketManager.shared
+    
     @State private var navigation: Navigation = .home
     
     // Event state and player resources
@@ -73,11 +75,12 @@ struct MainMenuView: View {
                             stories = cardManager.stories
                             navigation = .game
                         }) {
-                            MenuButton(text: "Start Adventure", icon: "sword")
+                            MenuButton(text: "Start Adventure", icon: "gamecontroller")
                         }
                         
                         Button(action: {
                             navigation = .queue
+                            websocketManager.connect()  // This is correct as is
                         }) {
                             MenuButton(text: "Find Match", icon: "magnifyingglass")
                         }
@@ -186,9 +189,31 @@ struct MainMenuView: View {
                 ZStack {
                     QueueView(navigation: $navigation)
                     VStack {
-                        ProgressView()
+                        if websocketManager.isConnected {
+                            ProgressView()
+                                .padding()
+                            Text("Searching for match...")
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Cannot connect to server")
+                                .foregroundColor(.red)
+                                .padding()
+                            Button("Retry") {
+                                websocketManager.connect()
+                            }
                             .padding()
-                        
+                            .background(Color.black.opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            Button("Back") {
+                                navigation = .home
+                            }
+                            .padding()
+                            .background(Color.black.opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        }
                     }
                 }
                 .frame(width: 500, height: 300)
