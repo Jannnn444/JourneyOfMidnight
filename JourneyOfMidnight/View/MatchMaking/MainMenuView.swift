@@ -194,6 +194,7 @@ struct MainMenuView: View {
                                 .padding()
                             Text("Searching for match...")
                                 .foregroundColor(.white)
+                            
                         } else {
                             Text("Cannot connect to server")
                                 .foregroundColor(.red)

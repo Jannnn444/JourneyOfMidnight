@@ -12,11 +12,14 @@ import Combine
 class WebSocketManager: ObservableObject {
     // MARK: - Properties
     static let shared = WebSocketManager()
-    private let serverURL = URL(string: "ws://206.189.40.30:4333/ws")!
+    private let serverURL = URL(string: "ws://10.2.201.208:4333/ws")!
     private var webSocketTask: URLSessionWebSocketTask?
     private var pingTask: Task<Void, Never>?
     private var receiveTask: Task<Void, Never>?
     private var session: URLSession!
+    
+    // workplace IP: 10.2.201.208
+    // phone IP: 206.189.40.30:4333
     
     // Publishers
     @Published var isConnected: Bool = false
@@ -29,19 +32,20 @@ class WebSocketManager: ObservableObject {
     
     // MARK: - Connection Management
     func connect() {
-        // Synchronous setup
         guard webSocketTask == nil else { return }
-        webSocketTask = session.webSocketTask(with: serverURL)
-        webSocketTask?.resume()
-        isConnected = true
-        
-        // Start receiving messages
-        startReceivingMessages()
-        
-        // Setup ping task to keep connection alive
-        startPingTask()
-        
-        print("WebSocket connected to: \(serverURL.absoluteString)")
+        do {
+            webSocketTask = session.webSocketTask(with: serverURL)
+            webSocketTask?.resume()
+            isConnected = true
+            
+            startReceivingMessages()
+            startPingTask()
+            
+            print("WebSocket attempting connection to: \(serverURL.absoluteString)")
+        } catch {
+            print("WebSocket connection initialization error: \(error)")
+            isConnected = false
+        }
     }
     
     func disconnect() {
