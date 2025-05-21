@@ -15,21 +15,21 @@ struct QueueView: View {
             Color.black.opacity(0.7)
                 .ignoresSafeArea()
             VStack {
-                Text("Finding Match...")
+                Text("Game Lobby...")
                     .font(.title)
                     .fontWeight(.bold)
                     .fontDesign(.monospaced)
                     .foregroundColor(.white)
                     .padding()
-                
-                ProgressView()
-                    .scaleEffect()
-                    .padding()
-                
+    
+                Spacer()
                 Text("Searching for other players...")
                     .fontDesign(.monospaced)
                     .foregroundColor(.white)
                     .padding()
+                
+                // When connected, popped into game mode
+                
                 Button(action: {
                     navigation = .home
                 }) {
@@ -41,6 +41,7 @@ struct QueueView: View {
                         .cornerRadius(10)
                 }
                 .padding(.top, 30)
+                .padding(.bottom, 20)
                
             }
             

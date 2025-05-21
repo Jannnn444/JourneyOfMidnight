@@ -190,10 +190,11 @@ struct MainMenuView: View {
                     QueueView(navigation: $navigation)
                     VStack {
                         if websocketManager.isConnected {
-                            ProgressView()
-                                .padding()
-                            Text("Searching for match...")
-                                .foregroundColor(.white)
+                            VStack {
+                                ProgressView()
+                                    .padding()
+                                
+                            }.padding()
                             
                         } else {
                             Text("Cannot connect to server")
