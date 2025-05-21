@@ -166,6 +166,7 @@ struct EventForest: View {
         // For example, updating character stats, progressing the story, etc.
         print("Selected option: \(option.option) with effect: +\(option.effect) \(option.effectType)")
         // MARK: - this could shows on UI!!!
+        // MARK: - Change the story show only once??
   
         // After handling the option, select a new random story
         selectRandomStory()
