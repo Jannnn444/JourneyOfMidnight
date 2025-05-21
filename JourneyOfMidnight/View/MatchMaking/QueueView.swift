@@ -15,7 +15,7 @@ struct QueueView: View {
             Color.black.opacity(0.7)
                 .ignoresSafeArea()
             VStack {
-                Text("Game Lobby...")
+                Text(" Game Lobby ")
                     .font(.title)
                     .fontWeight(.bold)
                     .fontDesign(.monospaced)

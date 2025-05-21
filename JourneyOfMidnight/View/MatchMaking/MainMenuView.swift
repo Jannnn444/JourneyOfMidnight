@@ -187,17 +187,13 @@ struct MainMenuView: View {
             case .queue:
                 // Queue view
                 ZStack {
-                    QueueView(navigation: $navigation)
                     VStack {
                         if websocketManager.isConnected {
-                            VStack {
-                                ProgressView()
-                                    .padding()
-                                
-                            }.padding()
+                            QueueView(navigation: $navigation)
                             
                         } else {
                             Text("Cannot connect to server")
+                                .font(.headline.bold())
                                 .foregroundColor(.red)
                                 .padding()
                             Button("Retry") {
