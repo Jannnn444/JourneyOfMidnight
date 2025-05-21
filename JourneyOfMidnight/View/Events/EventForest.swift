@@ -12,6 +12,7 @@ struct EventForest: View {
     @Binding var stories: [Story]
     @State private var selectedStoryIndex = 0
     @State private var showOptions = false // Add this state variable
+    @State private var showTopic = true
     
     var body: some View {
         Rectangle()
@@ -36,22 +37,26 @@ struct EventForest: View {
                 .cornerRadius(10)
             
             VStack(alignment: .leading) {
+                
                 if !cardManager.stories.isEmpty {
                     let currentStory = cardManager.stories[selectedStoryIndex]
                     
                     Button(action: {
                         showOptions.toggle()
+                        showTopic.toggle()
                     }) {
-                        Text(currentStory.topic)
-                            .font(.headline)
-                            .foregroundStyle(.black)
-                            .padding()
-                            .background(Color.white.opacity(0.7))
-                            .cornerRadius(8)
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.center)
+                        
+                        if showTopic {
+                            Text(currentStory.topic)
+                                .font(.headline)
+                                .foregroundStyle(.black)
+                                .padding()
+                                .background(Color.white.opacity(0.7))
+                                .cornerRadius(8)
+                                .padding(.horizontal)
+                                .multilineTextAlignment(.center)
+                        }
                     }
-//                    .offset(y: -75)
                     
                     if showOptions {
                         VStack() {
@@ -88,11 +93,10 @@ struct EventForest: View {
                                 }
                             }
                         }
-                       
+                        
                         .padding(.horizontal)
                         .transition(.opacity) // Optional: add a transition effect
                     }
-                   
                 } else {
                     Text("No adventures available")
                         .font(.headline)
@@ -100,36 +104,60 @@ struct EventForest: View {
                         .padding()
                         .background(Color.white.opacity(0.7))
                         .cornerRadius(8)
-                    
-                }
-            }   .frame(width: 500, height: 500)
-                .position(x: 420, y: 80) // located the topic
-            
-            
-            
-            // Story navigation (if you have multiple stories)
-            if cardManager.stories.count > 1 {
-                HStack(spacing: 20) {
-                    Button(action: {
-                        selectedStoryIndex = max(0, selectedStoryIndex - 1)
-                    }) {
-                        Image(systemName: "arrow.left.circle.fill")
-                            .font(.title)
-                            .foregroundColor(.black)
-                    }
-                    .disabled(selectedStoryIndex == 0)
-                    
-                    Button(action: {
-                        selectedStoryIndex = min(cardManager.stories.count - 1, selectedStoryIndex + 1)
-                    }) {
-                        Image(systemName: "arrow.right.circle.fill")
-                            .font(.title)
-                            .foregroundColor(.black)
-                    }
-                    .disabled(selectedStoryIndex == cardManager.stories.count - 1)
                 }
             }
+            .frame(width: 500, height: 500)
+            .position(x: 420, y: 80) // located the topic area
+            
+            // Story navigation
+            HStack(spacing: 20) {
+                Button(action: {
+                    selectedStoryIndex = max(0, selectedStoryIndex - 1)
+                    resetOptionState()
+                }) {
+                    Image(systemName: "arrow.left.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
+                .disabled(selectedStoryIndex == 0)
+                
+                Button(action: {
+                    selectRandomStory()
+                    resetOptionState()
+                }) {
+                    Image(systemName: "dice.fill")
+                        .font(.title)
+                        .foregroundStyle(.black)
+                }
+                //                    .disabled(selectedStoryIndex == cardManager.stories.count - 1)
+                .disabled(cardManager.stories.count <= 1 )
+                
+                Button(action: {
+                    selectedStoryIndex = min(cardManager.stories.count - 1, selectedStoryIndex + 1)
+                    resetOptionState()
+                }) {
+                    Image(systemName: "arrow.right.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
+                .disabled(selectedStoryIndex == cardManager.stories.count - 1)
+            }
+            .padding(.top,20)
+        } .onAppear {
+            
+            selectRandomStory()  // Get a random story when the view first appears
         }
+    }
+    
+    private func selectRandomStory() {
+        if let randomIndex = cardManager.stories.indices.randomElement() {
+            selectedStoryIndex = randomIndex
+        }
+    }
+    // Reset options state when changing stories
+    private func resetOptionState() {
+        showOptions = false
+        showTopic = true
     }
     
     // Helper function to handle option selection
@@ -137,33 +165,34 @@ struct EventForest: View {
         // Here you would implement the logic for when a player selects an option
         // For example, updating character stats, progressing the story, etc.
         print("Selected option: \(option.option) with effect: +\(option.effect) \(option.effectType)")
+        // MARK: - this could shows on UI!!!
+  
+        // After handling the option, select a new random story
+        selectRandomStory()
         
-        // Move to the next story or show results
-        if selectedStoryIndex < cardManager.stories.count - 1 {
-            selectedStoryIndex += 1
-        } else {
-            // End of stories - implement your game logic here
-        }
+        // Reset UI state
+        resetOptionState()
     }
     
-    // Helper function to provide appropriate colors for different effect types
-    private func effectColor(for effectType: EffectTypes) -> Color {
-        switch effectType {
-        case .Strength:
-            return Color.red
-        case .Intelligence:
-            return Color.blue
-        case .Wisdom:
-            return Color.purple
-        case .Agility:
-            return Color.green
-        case .Vitality:
-            return Color.orange
-        case .Faith:
-            return Color.yellow
-        case .Charisma:
-            return Color.pink
-        }
+}
+
+// Helper function to provide appropriate colors for different effect types
+private func effectColor(for effectType: EffectTypes) -> Color {
+    switch effectType {
+    case .Strength:
+        return Color.red
+    case .Intelligence:
+        return Color.blue
+    case .Wisdom:
+        return Color.purple
+    case .Agility:
+        return Color.green
+    case .Vitality:
+        return Color.orange
+    case .Faith:
+        return Color.yellow
+    case .Charisma:
+        return Color.pink
     }
 }
 
@@ -196,5 +225,6 @@ extension EffectTypes: RawRepresentable {
         }
     }
 }
+
 
 
