@@ -11,6 +11,7 @@ struct EventForest: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var stories: [Story]
     @State private var selectedStoryIndex = 0
+    @State private var showOptions = false // Add this state variable
     
     var body: some View {
         Rectangle()
@@ -34,54 +35,64 @@ struct EventForest: View {
                 .background(Color.white.opacity(0.8))
                 .cornerRadius(10)
             
-            VStack(alignment: .center) {
+            VStack(alignment: .leading) {
                 if !cardManager.stories.isEmpty {
                     let currentStory = cardManager.stories[selectedStoryIndex]
                     
-                    Text(currentStory.topic)
-                        .font(.headline)
-                        .foregroundStyle(.black)
-                        .padding()
-                        .background(Color.white.opacity(0.7))
-                        .cornerRadius(8)
-                        .padding(.horizontal)
-                        .multilineTextAlignment(.center)
+                    Button(action: {
+                        showOptions.toggle()
+                    }) {
+                        Text(currentStory.topic)
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                            .padding()
+                            .background(Color.white.opacity(0.7))
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                            .multilineTextAlignment(.center)
+                    }
+//                    .offset(y: -75)
                     
-                    VStack() {
-                        ForEach(currentStory.choice) { option in
-                            Button(action: {
-                                handleOptionSelected(option: option)
-                            }) {
-                                HStack {
-                                    Text(option.option)
-                                        .font(.subheadline)
-                                        .foregroundStyle(.black)
-                                        .fontDesign(.monospaced)
-                                        .bold()
-                                    Spacer()
-                                    HStack(spacing: 4) {
-                                        Text("+\(option.effect)")
-                                            .font(.caption)
-                                            .fontWeight(.bold)
-                                            .foregroundStyle(.white)
-                                        
-                                        Text(option.effectType.rawValue)
-                                            .font(.caption)
-                                            .foregroundStyle(.white)
+                    if showOptions {
+                        VStack() {
+                            ForEach(currentStory.choice) { option in
+                                Button(action: {
+                                    handleOptionSelected(option: option)
+                                }) {
+                                    HStack {
+                                        Text(option.option)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.black)
+                                            .fontDesign(.monospaced)
+                                            .bold()
+                                        Spacer()
+                                        HStack(spacing: 4) {
+                                            Text("+\(option.effect)")
+                                                .font(.caption)
+                                                .fontWeight(.bold)
+                                                .foregroundStyle(.white)
+                                            
+                                            Text(option.effectType.rawValue)
+                                                .font(.caption)
+                                                .foregroundStyle(.white)
+                                        }
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(effectColor(for: option.effectType))
+                                        .cornerRadius(12)
                                     }
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(effectColor(for: option.effectType))
-                                    .cornerRadius(12)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 12)
+                                    .background(Color.white.opacity(0.9))
+                                    .cornerRadius(8)
                                 }
-                                .padding(.horizontal)
-                                .padding(.vertical, 12)
-                                .background(Color.white.opacity(0.9))
-                                .cornerRadius(8)
                             }
                         }
+                       
+                        .padding(.horizontal)
+                        .transition(.opacity) // Optional: add a transition effect
                     }
-                    .padding(.horizontal)
+                   
                 } else {
                     Text("No adventures available")
                         .font(.headline)
@@ -89,9 +100,12 @@ struct EventForest: View {
                         .padding()
                         .background(Color.white.opacity(0.7))
                         .cornerRadius(8)
+                    
                 }
             }   .frame(width: 500, height: 500)
-                .position(x: 420, y: 150)
+                .position(x: 420, y: 80) // located the topic
+            
+            
             
             // Story navigation (if you have multiple stories)
             if cardManager.stories.count > 1 {
