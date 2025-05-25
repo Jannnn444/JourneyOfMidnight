@@ -217,6 +217,18 @@ enum WebSocketError: Error {
     case timeout
 }
 
+struct FindMatchAction: Codable {
+    let action: String
+    let payload: FindMatchPayload
+}
+
+struct FindMatchPayload: Codable {
+    let id: String
+    let username: String
+}
+
+
+
 // MARK: - Game Data Models
 struct GameAction: Codable {
     let type: String

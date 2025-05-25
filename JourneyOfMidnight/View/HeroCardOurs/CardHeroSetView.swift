@@ -84,8 +84,7 @@ struct CardHeroSetView: View {
                         } // Zstack
                     }
                 } // ForEach hero
-            } .position(x: 410, y: 300)
-        
+            } .position(x: 410, y: 330)
           /*
            
            hero: .position(x: 410, y: 300)
@@ -96,7 +95,5 @@ struct CardHeroSetView: View {
            enemy and all other events lower 300
            
            */
-        
-        
     }
 }
