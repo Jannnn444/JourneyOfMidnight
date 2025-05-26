@@ -227,6 +227,17 @@ struct FindMatchPayload: Codable {
     let username: String
 }
 
+/*
+ 
+ {
+    "action": "find_match",
+    "payload": {
+     "id": "11111111-1111-1111-1111-111111111112",
+     "username": "player 2"
+    }
+ }
+ 
+ */
 
 
 // MARK: - Game Data Models
@@ -242,6 +253,7 @@ struct GameActionPayload: Codable {
     // Add other fields as needed for your game actions
 }
 
+// game response syntax ?? TBD
 struct GameResponse: Codable {
     let success: Bool
     let message: String
