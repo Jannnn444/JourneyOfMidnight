@@ -33,7 +33,6 @@ struct EnemyCardSet: View {
                                 .cornerRadius(10)
                            
                             VStack() {
-                                
                                 var myHero = enemy.heroClass.name
                                 if myHero == HeroClassName.fighter {
                                     Image("knight")

@@ -241,12 +241,13 @@ struct MainMenuView: View {
             await MainActor.run {
                 if websocketManager.isConnected {
                     print("WebSocket connected! Finding match...")
-                    websocketManager.findMatch(username: "Player2")
+                    websocketManager.findMatch(username: "Player4")
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }
             }
         }
+        
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
 //            if websocketManager.isConnected {
 //                print("WebSocket connected! Finding match...")

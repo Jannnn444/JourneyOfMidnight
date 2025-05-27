@@ -64,10 +64,10 @@ class WebSocketManager: NSObject, ObservableObject {
     
     // MARK: - Public Connection Methods
     func connect() {
-        guard webSocketTask == nil else {
-            print("WebSocket already connected or connecting")
-            return
-        }
+//        guard webSocketTask == nil else {
+//            print("WebSocket already connected or connecting")
+//            return
+//        }
         
         connectionState = .connecting
         webSocketTask = urlSession.webSocketTask(with: serverURL)
