@@ -9,6 +9,7 @@ import SwiftUI
 
 struct QueueView: View {
     @Binding var navigation: Navigation
+    @ObservedObject var websocketManager = WebSocketManager.shared
     
     var body: some View {
         ZStack {
@@ -32,6 +33,7 @@ struct QueueView: View {
                 
                 Button(action: {
                     navigation = .home
+                    websocketManager.cancelQueue()
                 }) {
                     Text("Cancel")
                         .fontWeight(.bold)

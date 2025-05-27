@@ -80,7 +80,9 @@ struct MainMenuView: View {
                         
                         Button(action: {
                             navigation = .queue
-                            websocketManager.connect()  // This is correct as is
+//                          websocketManager.connect() 
+                            // MARK: here put func
+                            setupWebsocketConnection()
                         }) {
                             MenuButton(text: "Find Match", icon: "magnifyingglass")
                         }
@@ -226,6 +228,34 @@ struct MainMenuView: View {
         }
         .padding()
         .ignoresSafeArea()
+    }
+    
+    private func setupWebsocketConnection() {
+        websocketManager.connect()
+        
+        Task {
+            // Wait 2 seconds
+            try await Task.sleep(nanoseconds: 1_000_000_000)
+            
+            // Check connection on main actor
+            await MainActor.run {
+                if websocketManager.isConnected {
+                    print("WebSocket connected! Finding match...")
+                    websocketManager.findMatch(username: "Player1")
+                } else {
+                    print("WebSocket not connected after 2 seconds")
+                }
+            }
+        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//            if websocketManager.isConnected {
+//                print("WebSocket connected! Finding match...")
+//                WebSocketManager.shared.findMatch(username: "Player1")
+//            } else {
+//                print("WebSocket faield connected ...")
+//            }
+//        }
+
     }
 }
 
