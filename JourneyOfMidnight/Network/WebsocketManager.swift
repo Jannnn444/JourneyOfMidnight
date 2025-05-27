@@ -20,6 +20,9 @@ class WebSocketManager: NSObject, ObservableObject {
     private let queueKeepAliveInterval: TimeInterval = 25.0
     private let reconnectDelay: TimeInterval = 3.0
     
+    // workplace IP: 10.2.201.208
+    // phone IP: 206.189.40.30:4333
+    
     // MARK: - Properties
     private var webSocketTask: URLSessionWebSocketTask?
     private var urlSession: URLSession!

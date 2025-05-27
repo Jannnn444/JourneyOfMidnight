@@ -235,13 +235,13 @@ struct MainMenuView: View {
         
         Task {
             // Wait 2 seconds
-            try await Task.sleep(nanoseconds: 1_000_000_000)
+            try await Task.sleep(nanoseconds: 2_000_000_000)
             
             // Check connection on main actor
             await MainActor.run {
                 if websocketManager.isConnected {
                     print("WebSocket connected! Finding match...")
-                    websocketManager.findMatch(username: "Player1")
+                    websocketManager.findMatch(username: "Player2")
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }
