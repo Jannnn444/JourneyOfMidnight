@@ -5,16 +5,24 @@
 //  Created by Hualiteq International on 2025/4/27.
 //
 
+//
+//  WebsocketManager.swift
+//  JourneyOfMidnight
+//
+//  Created by Hualiteq International on 2025/4/27.
+//
+
 import Foundation
 import Combine
 
 // MARK: - WebSocket Manager
 @MainActor
 class WebSocketManager: NSObject, ObservableObject {
-    // MARK: - Singleton
+    
+    // MARK: - 單例模式
     static let shared = WebSocketManager()
     
-    // MARK: - Configuration
+    // MARK: - 配置常數
     private let serverURL = URL(string: "ws://10.2.201.208:4333/ws")!
     private let heartbeatInterval: TimeInterval = 30.0
     private let queueKeepAliveInterval: TimeInterval = 25.0
@@ -23,24 +31,25 @@ class WebSocketManager: NSObject, ObservableObject {
     // workplace IP: 10.2.201.208
     // phone IP: 206.189.40.30:4333
     
-    // MARK: - Properties
+    // MARK: - 核心屬性
     private var webSocketTask: URLSessionWebSocketTask?
     private var urlSession: URLSession!
-    private var heartbeatTimer: Timer?
-    private var queueKeepAliveTimer: Timer?
     private var messageSubscriptions = Set<AnyCancellable>()
     
-    // MARK: - Published Properties
+    private let playerId = UUID().uuidString
+    private var playerUsername: String = "Player"
+    
+    // MARK: - 狀態管理
     @Published var connectionState: ConnectionState = .disconnected
     @Published var queueState: QueueState = .notInQueue
     @Published var lastError: WebSocketError?
     @Published var receivedMessages: [GameMessage] = []
     
-    // MARK: - Player Info
-    private let playerId = UUID().uuidString
-    private var playerUsername: String = "Player"
+    // MARK: - 計時器管理
+    private var heartbeatTimer: Timer?
+    private var queueKeepAliveTimer: Timer?
     
-    // MARK: - Computed Properties
+    // MARK: - 計算屬性
     var isConnected: Bool {
         connectionState == .connected
     }
@@ -49,20 +58,10 @@ class WebSocketManager: NSObject, ObservableObject {
         queueState == .searching || queueState == .waitingForMatch
     }
     
-    // MARK: - Initialization
+    // MARK: - 初始化
     private override init() {
         super.init()
         setupURLSession()
-    }
-    
-    private func sendMessage() {
-        // find the correct
-        // based on the websocket
-    }
-    
-    private func getData() {
-        // find the data where it shall be new
-        // ip update
     }
     
     private func setupURLSession() {
@@ -72,7 +71,9 @@ class WebSocketManager: NSObject, ObservableObject {
         urlSession = URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }
     
-    // MARK: - Public Connection Methods
+    // MARK: - === 第一層：底層連接管理 ===
+    
+    /// 建立 WebSocket 連接
     func connect() {
         connectionState = .connecting
         webSocketTask = urlSession.webSocketTask(with: serverURL)
@@ -82,6 +83,7 @@ class WebSocketManager: NSObject, ObservableObject {
         print("WebSocket attempting connection to: \(serverURL.absoluteString)")
     }
     
+    /// 斷開 WebSocket 連接
     func disconnect() {
         stopAllTimers()
         
@@ -94,59 +96,26 @@ class WebSocketManager: NSObject, ObservableObject {
         print("WebSocket disconnected")
     }
     
-    // MARK: - Queue Management
-    func findMatch(username: String) {
-        guard isConnected else {
-            lastError = .notConnected
-            return
-        }
-        
-        self.playerUsername = username
-        queueState = .searching
-        
-        let action = FindMatchAction(action: "find_match", payload: FindMatchPayload(id: playerId, username: username))
-        
-        Task {
-            await sendMessage(action)
-            startQueueKeepAlive()
-        }
-    }
-    
-    
-/*
- 
- {
-    "action": "find_match",
-    "payload": {
-     "id": "11111111-1111-1111-1111-111111111112",
-     "username": "player 2"
-    }
- }
- 
- */
-    
-    
-    func cancelQueue() {
-        guard isInQueue else { return }
-        
-        let action = QueueAction(
-            action: "cancel_queue",
-            payload: BasicPayload(
-                id: playerId,
-                username: playerUsername
-            )
-        )
-        
-        Task {
-            await sendMessage(action)
-        }
-        
-        stopQueueKeepAlive()
+    /// 處理連接錯誤和自動重連
+    private func handleConnectionError(_ error: Error) async {
+        connectionState = .disconnected
         queueState = .notInQueue
+        lastError = .connectionLost(error)
+        
+        stopAllTimers()
+        
+        // Auto-reconnect after delay
+        try? await Task.sleep(nanoseconds: UInt64(reconnectDelay * 1_000_000_000))
+        
+        if !Task.isCancelled {
+            connect()
+        }
     }
     
-    // MARK: - Game Actions
-    func sendGameAction<T: Codable>(_ action: T) async throws {
+    // MARK: - === 第二層：底層消息收發 ===
+    
+    /// 底層消息發送（會拋出錯誤）
+    private func sendGameAction<T: Codable>(_ action: T) async throws {
         guard isConnected else {
             throw WebSocketError.notConnected
         }
@@ -170,61 +139,14 @@ class WebSocketManager: NSObject, ObservableObject {
         }
     }
     
-    func sendTurnAction(eventChoice: String, gameState: GameStatePayload) {
-        let action = TurnAction(
-            action: "turn_action",
-            payload: TurnPayload(
-                id: playerId,
-                username: playerUsername,
-                eventChoice: eventChoice,
-                gameState: gameState,
-                timestamp: Date()
-            )
-        )
-        
-        Task {
-            try await sendGameAction(action)
-        }
-    }
-    
-    func sendHeroSelection(heroes: [Hero]) {
-        let heroData = heroes.map { HeroData(
-            name: $0.heroClass.name.rawValue,
-            level: $0.heroClass.level,
-            skills: $0.skills.map { $0.name }
-        )}
-        
-        let action = HeroSelectionAction(
-            action: "hero_selection",
-            payload: HeroSelectionPayload(
-                id: playerId,
-                username: playerUsername,
-                heroes: heroData,
-                timestamp: Date()
-            )
-        )
-        
-        Task {
-            try await sendGameAction(action)
-        }
-    }
-    
-    // MARK: - Private Message Handling
-    private func sendMessage<T: Codable>(_ message: T) async {
-        do {
-            try await sendGameAction(message)
-        } catch {
-            print("Failed to send message: \(error)")
-            lastError = error as? WebSocketError ?? .unknown(error)
-        }
-    }
-    
+    /// 開始接收消息
     private func startReceivingMessages() {
         Task {
             await receiveMessages()
         }
     }
     
+    /// 持續接收消息的循環
     private func receiveMessages() async {
         guard let webSocketTask = webSocketTask else { return }
         
@@ -240,6 +162,7 @@ class WebSocketManager: NSObject, ObservableObject {
         }
     }
     
+    /// 處理接收到的原始消息
     private func handleReceivedMessage(_ message: URLSessionWebSocketTask.Message) async {
         var messageString: String?
         
@@ -262,6 +185,19 @@ class WebSocketManager: NSObject, ObservableObject {
         await processMessage(messageString)
     }
     
+    // MARK: - === 第三層：消息封裝和錯誤處理 ===
+    
+    /// 安全的消息發送（不會拋出錯誤）
+    private func sendMessage<T: Codable>(_ message: T) async {
+        do {
+            try await sendGameAction(message)
+        } catch {
+            print("Failed to send message: \(error)")
+            lastError = error as? WebSocketError ?? .unknown(error)
+        }
+    }
+    
+    /// 處理和解析消息內容
     private func processMessage(_ messageString: String) async {
         guard let data = messageString.data(using: .utf8) else {
             print("Failed to convert message to data")
@@ -281,6 +217,7 @@ class WebSocketManager: NSObject, ObservableObject {
         }
     }
     
+    /// 處理解析後的遊戲消息
     private func handleGameMessage(_ message: GameMessage) async {
         switch message.action {
         case "match_found":
@@ -317,76 +254,101 @@ class WebSocketManager: NSObject, ObservableObject {
         }
     }
     
-    // MARK: - Connection Management
-    private func handleConnectionError(_ error: Error) async {
-        connectionState = .disconnected
+    // MARK: - === 第四層：業務邏輯功能 ===
+    
+    /// 尋找遊戲匹配
+    func findMatch(username: String) {
+        guard isConnected else {
+            lastError = .notConnected
+            return
+        }
+        
+        self.playerUsername = username
+        queueState = .searching
+        
+        let action = FindMatchAction(
+            action: "find_match",
+            payload: FindMatchPayload(id: playerId, username: username)
+        )
+        
+        Task {
+            await sendMessage(action)
+            startQueueKeepAlive()
+        }
+    }
+    
+    /// 取消排隊
+    func cancelQueue() {
+        guard isInQueue else { return }
+        
+        let action = QueueAction(
+            action: "cancel_queue",
+            payload: BasicPayload(id: playerId, username: playerUsername)
+        )
+        
+        Task {
+            await sendMessage(action)
+        }
+        
+        stopQueueKeepAlive()
         queueState = .notInQueue
-        lastError = .connectionLost(error)
+    }
+    
+    /// 發送回合動作
+    func sendTurnAction(eventChoice: String, gameState: GameStatePayload) {
+        let action = TurnAction(
+            action: "turn_action",
+            payload: TurnPayload(
+                id: playerId,
+                username: playerUsername,
+                eventChoice: eventChoice,
+                gameState: gameState,
+                timestamp: Date()
+            )
+        )
         
-        stopAllTimers()
-        
-        // Auto-reconnect after delay
-        try? await Task.sleep(nanoseconds: UInt64(reconnectDelay * 1_000_000_000))
-        
-        if !Task.isCancelled {
-            connect()
+        Task {
+            await sendMessage(action)
         }
     }
     
-    // MARK: - Timer Management
-    private func startHeartbeat() {
-        stopHeartbeat()
+    /// 發送英雄選擇
+    func sendHeroSelection(heroes: [Hero]) {
+        let heroData = heroes.map { HeroData(
+            name: $0.heroClass.name.rawValue,
+            level: $0.heroClass.level,
+            skills: $0.skills.map { $0.name }
+        )}
         
-        heartbeatTimer = Timer.scheduledTimer(withTimeInterval: heartbeatInterval, repeats: true) { [weak self] _ in
-            Task {
-                do {
-                    await self?.sendHeartbeat()
-                }
-            }
+        let action = HeroSelectionAction(
+            action: "hero_selection",
+            payload: HeroSelectionPayload(
+                id: playerId,
+                username: playerUsername,
+                heroes: heroData,
+                timestamp: Date()
+            )
+        )
+        
+        Task {
+            await sendMessage(action)
         }
     }
     
-    private func stopHeartbeat() {
-        heartbeatTimer?.invalidate()
-        heartbeatTimer = nil
-    }
+    // MARK: - === 第五層：輔助功能（計時器和心跳）===
     
-    private func startQueueKeepAlive() {
-        stopQueueKeepAlive()
-        
-        queueKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: queueKeepAliveInterval, repeats: true) { [weak self] _ in
-            Task {
-                do {
-                    await self?.sendQueueKeepAlive()
-                }
-              
-            }
-        }
-    }
-    
-    private func stopQueueKeepAlive() {
-        queueKeepAliveTimer?.invalidate()
-        queueKeepAliveTimer = nil
-    }
-    
-    private func stopAllTimers() {
-        stopHeartbeat()
-        stopQueueKeepAlive()
-    }
-    
+    /// 發送心跳包
     private func sendHeartbeat() async {
         let heartbeat = HeartbeatAction(
             action: "heartbeat",
-            payload: BasicPayload(
-                id: playerId,
-                username: playerUsername
-            )
+            payload: BasicPayload(id: playerId, username: playerUsername)
         )
         
         await sendMessage(heartbeat)
     }
     
-    func sendQueueKeepAlive() async {
+    /// 發送隊列保活信號
+    private func sendQueueKeepAlive() async {
         guard isInQueue else {
             stopQueueKeepAlive()
             return
@@ -403,9 +365,49 @@ class WebSocketManager: NSObject, ObservableObject {
         
         await sendMessage(keepAlive)
     }
+    
+    /// 啟動心跳計時器
+    private func startHeartbeat() {
+        stopHeartbeat()
+        
+        heartbeatTimer = Timer.scheduledTimer(withTimeInterval: heartbeatInterval, repeats: true) { [weak self] _ in
+            Task {
+                await self?.sendHeartbeat()
+            }
+        }
+    }
+    
+    /// 停止心跳計時器
+    private func stopHeartbeat() {
+        heartbeatTimer?.invalidate()
+        heartbeatTimer = nil
+    }
+    
+    /// 啟動隊列保活計時器
+    private func startQueueKeepAlive() {
+        stopQueueKeepAlive()
+        
+        queueKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: queueKeepAliveInterval, repeats: true) { [weak self] _ in
+            Task {
+                await self?.sendQueueKeepAlive()
+            }
+        }
+    }
+    
+    /// 停止隊列保活計時器
+    private func stopQueueKeepAlive() {
+        queueKeepAliveTimer?.invalidate()
+        queueKeepAliveTimer = nil
+    }
+    
+    /// 停止所有計時器
+    private func stopAllTimers() {
+        stopHeartbeat()
+        stopQueueKeepAlive()
+    }
 }
 
-// MARK: - URLSessionWebSocketDelegate
+// MARK: - === URLSessionWebSocketDelegate ===
 extension WebSocketManager: URLSessionWebSocketDelegate {
     nonisolated func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         Task { @MainActor in
@@ -427,7 +429,7 @@ extension WebSocketManager: URLSessionWebSocketDelegate {
     }
 }
 
-// MARK: - Enums
+// MARK: - === 枚舉定義 ===
 enum ConnectionState {
     case disconnected
     case connecting
@@ -470,7 +472,9 @@ enum WebSocketError: Error, LocalizedError {
     }
 }
 
-// MARK: - Message Models
+// MARK: - === 數據模型 ===
+
+// 消息模型
 struct GameMessage: Codable {
     let action: String
     let payload: MessagePayload
@@ -485,7 +489,7 @@ struct SimpleMessage: Codable {
     let message: String
 }
 
-// MARK: - Action Models
+// 動作模型
 struct FindMatchAction: Codable {
     let action: String
     let payload: FindMatchPayload
@@ -521,7 +525,7 @@ struct HeroSelectionAction: Codable {
     let payload: HeroSelectionPayload
 }
 
-// MARK: - Payload Models
+// 載荷模型
 struct BasicPayload: Codable {
     let id: String
     let username: String
