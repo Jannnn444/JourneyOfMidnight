@@ -55,6 +55,16 @@ class WebSocketManager: NSObject, ObservableObject {
         setupURLSession()
     }
     
+    private func sendMessage() {
+        // find the correct
+        // based on the websocket
+    }
+    
+    private func getData() {
+        // find the data where it shall be new
+        // ip update
+    }
+    
     private func setupURLSession() {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30
@@ -64,11 +74,6 @@ class WebSocketManager: NSObject, ObservableObject {
     
     // MARK: - Public Connection Methods
     func connect() {
-//        guard webSocketTask == nil else {
-//            print("WebSocket already connected or connecting")
-//            return
-//        }
-        
         connectionState = .connecting
         webSocketTask = urlSession.webSocketTask(with: serverURL)
         webSocketTask?.resume()
@@ -99,19 +104,27 @@ class WebSocketManager: NSObject, ObservableObject {
         self.playerUsername = username
         queueState = .searching
         
-        let action = FindMatchAction(
-            action: "find_match",
-            payload: FindMatchPayload(
-                id: playerId,
-                username: username
-            )
-        )
+        let action = FindMatchAction(action: "find_match", payload: FindMatchPayload(id: playerId, username: username))
         
         Task {
             await sendMessage(action)
             startQueueKeepAlive()
         }
     }
+    
+    
+/*
+ 
+ {
+    "action": "find_match",
+    "payload": {
+     "id": "11111111-1111-1111-1111-111111111112",
+     "username": "player 2"
+    }
+ }
+ 
+ */
+    
     
     func cancelQueue() {
         guard isInQueue else { return }

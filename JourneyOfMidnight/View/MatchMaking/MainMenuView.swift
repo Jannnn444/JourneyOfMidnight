@@ -241,7 +241,7 @@ struct MainMenuView: View {
             await MainActor.run {
                 if websocketManager.isConnected {
                     print("WebSocket connected! Finding match...")
-                    websocketManager.findMatch(username: "Player4")
+                    websocketManager.findMatch(username: "PlayerOfHoly")
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }
@@ -256,7 +256,6 @@ struct MainMenuView: View {
 //                print("WebSocket faield connected ...")
 //            }
 //        }
-
     }
 }
 
