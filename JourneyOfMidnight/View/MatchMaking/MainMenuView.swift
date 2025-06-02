@@ -198,21 +198,23 @@ struct MainMenuView: View {
                                 .font(.headline.bold())
                                 .foregroundColor(.red)
                                 .padding()
-                            Button("Retry") {
-                                websocketManager.connect()
+                            HStack {
+                                Button("Retry") {
+                                    websocketManager.connect()
+                                }
+                                .padding()
+                                .background(Color.black.opacity(0.7))
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                
+                                Button("Back") {
+                                    navigation = .home
+                                }
+                                .padding()
+                                .background(Color.black.opacity(0.7))
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                             }
-                            .padding()
-                            .background(Color.black.opacity(0.7))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            
-                            Button("Back") {
-                                navigation = .home
-                            }
-                            .padding()
-                            .background(Color.black.opacity(0.7))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
                         }
                     }
                 }
