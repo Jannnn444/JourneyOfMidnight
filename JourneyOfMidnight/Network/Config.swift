@@ -6,12 +6,12 @@
 //
 
 // API PORT for Development
-//let PORT = 6666
+// let PORT = 6666
 
 /*4041*/
 
-// network ips for api development
-let mobileIP = "172.20.10.4"       //Kranti Phone :"172.20.10.9"
+// network IP for API connecting
+let mobileIP = "172.20.10.4"
 let homeWifiIP = "10.0.0.110"
 let officeIP = "10.1.6.21"
 
@@ -22,4 +22,6 @@ let DigitalOceanServerIP = "206.189.40.30"
 let apiDomain = "172.20.10.4"
 
 // 206.189.40.30
-// 172.20.10.4 -> phone
+// 172.20.10.4 -> Janus Phone
+// 172.20.10.9 -> Kranti Phone
+

@@ -525,7 +525,9 @@ struct HeroSelectionAction: Codable {
     let payload: HeroSelectionPayload
 }
 
-// 載荷模型
+
+// Payload Model
+
 struct BasicPayload: Codable {
     let id: String
     let username: String
