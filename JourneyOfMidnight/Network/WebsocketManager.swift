@@ -5,13 +5,6 @@
 //  Created by Hualiteq International on 2025/4/27.
 //
 
-//
-//  WebsocketManager.swift
-//  JourneyOfMidnight
-//
-//  Created by Hualiteq International on 2025/4/27.
-//
-
 import Foundation
 import Combine
 
@@ -44,6 +37,19 @@ class WebSocketManager: NSObject, ObservableObject {
     @Published var queueState: QueueState = .notInQueue
     @Published var lastError: WebSocketError?
     @Published var receivedMessages: [GameMessage] = []
+    
+    // MARK: - 配對狀態管理
+    @Published var queueStatus: QueueStatus = .waiting
+    @Published var currentPlayers: [String] = []
+    @Published var gameId: String? = nil
+    @Published var isMatchReady: Bool = false
+    
+    enum QueueStatus {
+        case waiting
+        case found
+        case starting
+        case inGame
+    }
     
     // MARK: - 計時器管理
     private var heartbeatTimer: Timer?
@@ -92,8 +98,17 @@ class WebSocketManager: NSObject, ObservableObject {
         
         connectionState = .disconnected
         queueState = .notInQueue
+        resetQueueStatus()
         
         print("WebSocket disconnected")
+    }
+    
+    /// 重置隊列狀態
+    private func resetQueueStatus() {
+        queueStatus = .waiting
+        currentPlayers = []
+        gameId = nil
+        isMatchReady = false
     }
     
     /// 處理連接錯誤和自動重連
@@ -103,6 +118,7 @@ class WebSocketManager: NSObject, ObservableObject {
         lastError = .connectionLost(error)
         
         stopAllTimers()
+        resetQueueStatus()
         
         // Auto-reconnect after delay
         try? await Task.sleep(nanoseconds: UInt64(reconnectDelay * 1_000_000_000))
@@ -185,6 +201,69 @@ class WebSocketManager: NSObject, ObservableObject {
         await processMessage(messageString)
     }
     
+    /// 解析玩家列表
+    private func parsePlayerList(from message: String) {
+        let lines = message.components(separatedBy: "\n")
+        var players: [String] = []
+        
+        for line in lines {
+            let trimmedLine = line.trimmingCharacters(in: .whitespacesAndNewlines)
+            if trimmedLine.hasPrefix("PlayerOf") {
+                let player = String(trimmedLine.dropFirst(8)) // Remove "Player: "
+                players.append(player)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.currentPlayers = players
+            print("Updated player list: \(players)")
+            self.checkMatchReadiness()
+        }
+    }
+    
+    /// 解析遊戲信息
+    private func parseGameInfo(from message: String) {
+        if let range = message.range(of: "gameId: ") {
+            let gameIdStart = range.upperBound
+            let remainingMessage = message[gameIdStart...]
+            
+            if let lineEnd = remainingMessage.firstIndex(of: "\n") {
+                let extractedGameId = String(remainingMessage[..<lineEnd]).trimmingCharacters(in: .whitespacesAndNewlines)
+                DispatchQueue.main.async {
+                    self.gameId = extractedGameId
+                    print("Updated game ID: \(extractedGameId)")
+                    self.checkMatchReadiness()
+                }
+            } else {
+                // If no newline found, take the rest of the string
+                let extractedGameId = String(remainingMessage).trimmingCharacters(in: .whitespacesAndNewlines)
+                DispatchQueue.main.async {
+                    self.gameId = extractedGameId
+                    print("Updated game ID: \(extractedGameId)")
+                    self.checkMatchReadiness()
+                }
+            }
+        }
+    }
+    
+    /// 檢查配對是否準備就緒
+    private func checkMatchReadiness() {
+        let playersReady = currentPlayers.count >= 2
+        let gameIdReady = gameId != nil && !gameId!.isEmpty
+        
+        if playersReady && gameIdReady && !isMatchReady {
+            isMatchReady = true
+            queueStatus = .found
+            queueState = .matchFound
+            print("🎮 Match is ready! Players: \(currentPlayers.count), GameID: \(gameId ?? "none")")
+            
+            // Optional: Automatically transition after a short delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.queueStatus = .starting
+            }
+        }
+    }
+    
     // MARK: - === 第三層：消息封裝和錯誤處理 ===
     
     /// 安全的消息發送（不會拋出錯誤）
@@ -199,6 +278,13 @@ class WebSocketManager: NSObject, ObservableObject {
     
     /// 處理和解析消息內容
     private func processMessage(_ messageString: String) async {
+        // First try to parse as queue status message (plain text)
+        if messageString.contains("players:") || messageString.contains("gameId:") {
+            await handleQueueStatusMessage(messageString)
+            return
+        }
+        
+        // Try to parse as JSON message
         guard let data = messageString.data(using: .utf8) else {
             print("Failed to convert message to data")
             return
@@ -213,7 +299,24 @@ class WebSocketManager: NSObject, ObservableObject {
             // Try to decode as a simple message
             if let simpleMessage = try? JSONDecoder().decode(SimpleMessage.self, from: data) {
                 print("Received simple message: \(simpleMessage.message)")
+            } else {
+                print("Raw message: \(messageString)")
             }
+        }
+    }
+    
+    /// 處理隊列狀態消息
+    private func handleQueueStatusMessage(_ message: String) async {
+        print("Processing queue status message")
+        
+        // Parse player list
+        if message.contains("players:") {
+            parsePlayerList(from: message)
+        }
+        
+        // Parse game info
+        if message.contains("gameId:") {
+            parseGameInfo(from: message)
         }
     }
     
@@ -222,6 +325,7 @@ class WebSocketManager: NSObject, ObservableObject {
         switch message.action {
         case "match_found":
             queueState = .matchFound
+            queueStatus = .found
             stopQueueKeepAlive()
             print("Match found!")
             
@@ -233,6 +337,7 @@ class WebSocketManager: NSObject, ObservableObject {
             
         case "game_start":
             queueState = .notInQueue
+            queueStatus = .inGame
             print("Game started!")
             
         case "turn_update":
@@ -240,6 +345,8 @@ class WebSocketManager: NSObject, ObservableObject {
             
         case "game_end":
             queueState = .notInQueue
+            queueStatus = .waiting
+            resetQueueStatus()
             print("Game ended")
             
         case "error":
@@ -265,6 +372,7 @@ class WebSocketManager: NSObject, ObservableObject {
         
         self.playerUsername = username
         queueState = .searching
+        resetQueueStatus()
         
         let action = FindMatchAction(
             action: "find_match",
@@ -292,6 +400,18 @@ class WebSocketManager: NSObject, ObservableObject {
         
         stopQueueKeepAlive()
         queueState = .notInQueue
+        resetQueueStatus()
+    }
+    
+    /// 確認開始遊戲
+    func confirmGameStart() {
+        guard queueStatus == .found || queueStatus == .starting else { return }
+        
+        queueStatus = .inGame
+        queueState = .notInQueue
+        stopQueueKeepAlive()
+        
+        print("Game confirmed to start with gameId: \(gameId ?? "unknown")")
     }
     
     /// 發送回合動作
@@ -422,6 +542,7 @@ extension WebSocketManager: URLSessionWebSocketDelegate {
             connectionState = .disconnected
             queueState = .notInQueue
             stopAllTimers()
+            resetQueueStatus()
             
             let reasonString = reason.flatMap { String(data: $0, encoding: .utf8) } ?? "Unknown"
             print("WebSocket closed with code: \(closeCode.rawValue), reason: \(reasonString)")
@@ -527,7 +648,6 @@ struct HeroSelectionAction: Codable {
 
 
 // Payload Model
-
 struct BasicPayload: Codable {
     let id: String
     let username: String

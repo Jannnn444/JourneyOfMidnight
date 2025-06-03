@@ -228,13 +228,65 @@ struct MainMenuView: View {
                 stories = cardManager.stories
             }
         }
+        .onChange(of: websocketManager.queueStatus) { status in
+            handleQueueStatusChange(status)
+        }
+
+        
         .padding()
         .ignoresSafeArea()
     }
     
+    // MARK: - Queue Status Handling
+    private func handleQueueStatusChange(_ status: WebSocketManager.QueueStatus) {
+        switch status {
+        case .waiting:
+            print("Waiting for players...")
+            
+        case .found:
+            print("Match found! Preparing to start game...")
+            // Show match found notification
+            showMatchFoundAlert()
+            
+        case .starting:
+            print("Game is starting...")
+            // Optional: Show countdown or loading screen
+            
+        case .inGame:
+            print("Starting multiplayer game...")
+            startMultiplayerGame()
+        }
+    }
+    private func startMultiplayerGame() {
+        // Set up game state for multiplayer
+        eventState = .combat
+        stories = cardManager.stories
+        
+        // Store multiplayer game info for use in game
+        // You might want to pass gameId and players to your EventScreenTemplate
+        
+        // Transition to game
+        navigation = .game
+        
+        print("🚀 Multiplayer game started!")
+        print("Game ID: \(websocketManager.gameId ?? "Unknown")")
+        print("Players: \(websocketManager.currentPlayers)")
+    }
+
+    private func showMatchFoundAlert() {
+        // You can add a custom alert/notification here
+        print("🎮 Match Found!")
+        print("Players: \(websocketManager.currentPlayers)")
+        print("Game ID: \(websocketManager.gameId ?? "Unknown")")
+        
+        // Automatically proceed to game after a short delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            websocketManager.confirmGameStart()
+        }
+    }
+    
     private func setupWebsocketConnection() {
         websocketManager.connect()
-        
         Task {
             // Wait 2 seconds
             try await Task.sleep(nanoseconds: 2_000_000_000)
@@ -243,21 +295,26 @@ struct MainMenuView: View {
             await MainActor.run {
                 if websocketManager.isConnected {
                     print("WebSocket connected! Finding match...")
-                    websocketManager.findMatch(username: "PlayerOfWoof")
+                    websocketManager.findMatch(username: "PlayerOfRR")
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }
             }
         }
+        /*
+        -
+        asyncAfter + 2.0
+        -
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if websocketManager.isConnected {
+                print("WebSocket connected! Finding match...")
+                WebSocketManager.shared.findMatch(username: "Player1")
+            } else {
+                print("WebSocket faield connected ...")
+            }
+        }
+        */
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//            if websocketManager.isConnected {
-//                print("WebSocket connected! Finding match...")
-//                WebSocketManager.shared.findMatch(username: "Player1")
-//            } else {
-//                print("WebSocket faield connected ...")
-//            }
-//        }
     }
 }
 
