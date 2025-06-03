@@ -43,6 +43,7 @@ class WebSocketManager: NSObject, ObservableObject {
     @Published var currentPlayers: [String] = []
     @Published var gameId: String? = nil
     @Published var isMatchReady: Bool = false
+    @Published var jsonStringMsg: String? = nil
     
     enum QueueStatus {
         case waiting
@@ -131,6 +132,32 @@ class WebSocketManager: NSObject, ObservableObject {
     // MARK: - === 第二層：底層消息收發 ===
     
     /// 底層消息發送（會拋出錯誤）
+//    private func sendGameAction<T: Codable>(_ action: T) async throws {
+//        guard isConnected else {
+//            throw WebSocketError.notConnected
+//        }
+//        
+//        do {
+//            let encoder = JSONEncoder()
+//            let data = try encoder.encode(action)
+//            
+//            guard let jsonString = String(data: data, encoding: .utf8) else {
+//                throw WebSocketError.encodingFailed
+//            }
+//            
+//            let message = URLSessionWebSocketTask.Message.string(jsonString)
+//            try await webSocketTask?.send(message)
+//            
+//            print("Sent game action: \(jsonString)")
+//            self.jsonStringMsg = jsonString
+//            
+//        } catch {
+//            print("Failed to send game action: \(error)")
+//            throw WebSocketError.sendFailed(error)
+//        }
+//    }
+//  
+    /// 底層消息發送（會拋出錯誤）- Updated to differentiate sent vs received
     private func sendGameAction<T: Codable>(_ action: T) async throws {
         guard isConnected else {
             throw WebSocketError.notConnected
@@ -148,6 +175,11 @@ class WebSocketManager: NSObject, ObservableObject {
             try await webSocketTask?.send(message)
             
             print("Sent game action: \(jsonString)")
+            
+            // Update jsonStringMsg with sent message
+            DispatchQueue.main.async {
+                self.jsonStringMsg = "SENT: \(jsonString)"
+            }
             
         } catch {
             print("Failed to send game action: \(error)")
@@ -198,32 +230,53 @@ class WebSocketManager: NSObject, ObservableObject {
         }
         
         print("Received message: \(messageString)")
+        
+        // Save received JSON string to jsonStringMsg for debugging
+        DispatchQueue.main.async {
+            self.jsonStringMsg = "RECEIVED: \(messageString)"
+        }
+        
         await processMessage(messageString)
     }
-    
-    /// 解析玩家列表
+    /// 解析玩家列表 (for plain text messages)
     private func parsePlayerList(from message: String) {
         let lines = message.components(separatedBy: "\n")
         var players: [String] = []
         
         for line in lines {
             let trimmedLine = line.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // Handle different formats
             if trimmedLine.hasPrefix("PlayerOf") {
-                let player = String(trimmedLine.dropFirst(8)) // Remove "Player: "
-                players.append(player)
+                // Direct format: PlayerOfRR
+                if !players.contains(trimmedLine) {
+                    players.append(trimmedLine)
+                }
+            } else if trimmedLine.contains("username:") {
+                // JSON-like format in plain text: username: PlayerOfRR
+                if let colonIndex = trimmedLine.firstIndex(of: ":") {
+                    let username = String(trimmedLine[trimmedLine.index(after: colonIndex)...])
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                        .replacingOccurrences(of: "\"", with: "") // Remove quotes if present
+                    
+                    if !username.isEmpty && !players.contains(username) {
+                        players.append(username)
+                    }
+                }
             }
         }
         
-        DispatchQueue.main.async {
-            self.currentPlayers = players
-            print("Updated player list: \(players)")
-            self.checkMatchReadiness()
+        if !players.isEmpty {
+            DispatchQueue.main.async {
+                self.currentPlayers = players
+                print("Updated player list from plain text: \(players)")
+                self.checkMatchReadiness()
+            }
         }
     }
-    
     /// 解析遊戲信息
     private func parseGameInfo(from message: String) {
-        if let range = message.range(of: "gameId: ") {
+        if let range = message.range(of: "id: ") {
             let gameIdStart = range.upperBound
             let remainingMessage = message[gameIdStart...]
             
@@ -278,44 +331,106 @@ class WebSocketManager: NSObject, ObservableObject {
     
     /// 處理和解析消息內容
     private func processMessage(_ messageString: String) async {
-        // First try to parse as queue status message (plain text)
-        if messageString.contains("players:") || messageString.contains("gameId:") {
-            await handleQueueStatusMessage(messageString)
-            return
-        }
-        
-        // Try to parse as JSON message
+        // Try to parse as JSON message first
         guard let data = messageString.data(using: .utf8) else {
             print("Failed to convert message to data")
             return
         }
         
+        // Check if it's a valid JSON
         do {
-            let gameMessage = try JSONDecoder().decode(GameMessage.self, from: data)
-            receivedMessages.append(gameMessage)
-            await handleGameMessage(gameMessage)
-        } catch {
-            print("Failed to decode game message: \(error)")
-            // Try to decode as a simple message
-            if let simpleMessage = try? JSONDecoder().decode(SimpleMessage.self, from: data) {
+            let jsonObject = try JSONSerialization.jsonObject(with: data)
+            
+            // Try to decode as GameMessage
+            do {
+                let gameMessage = try JSONDecoder().decode(GameMessage.self, from: data)
+                DispatchQueue.main.async {
+                    self.receivedMessages.append(gameMessage)
+                }
+                await handleGameMessage(gameMessage)
+                return
+            } catch {
+                print("Failed to decode as GameMessage: \(error)")
+            }
+            
+            // Try to decode as SimpleMessage
+            do {
+                let simpleMessage = try JSONDecoder().decode(SimpleMessage.self, from: data)
                 print("Received simple message: \(simpleMessage.message)")
-            } else {
-                print("Raw message: \(messageString)")
+                return
+            } catch {
+                print("Failed to decode as SimpleMessage: \(error)")
+            }
+            
+            // If it's JSON but doesn't match our models, try to extract username from JSON
+            if let jsonDict = jsonObject as? [String: Any] {
+                await handleJSONMessage(jsonDict, rawMessage: messageString)
+            }
+            
+        } catch {
+            // Not valid JSON, treat as plain text
+            print("Not valid JSON, treating as plain text: \(messageString)")
+            await handlePlainTextMessage(messageString)
+        }
+    }
+    
+    private func handleJSONMessage(_ jsonDict: [String: Any], rawMessage: String) async {
+        print("Processing JSON message: \(jsonDict)")
+        
+        // Extract username from JSON payload
+        if let payload = jsonDict["payload"] as? [String: Any],
+           let username = payload["username"] as? String {
+            
+            // Update player list if this is a player message
+            if username.hasPrefix("PlayerOf") {
+                DispatchQueue.main.async {
+                    if !self.currentPlayers.contains(username) {
+                        self.currentPlayers.append(username)
+                        print("Added player from JSON: \(username)")
+                        print("Updated player list: \(self.currentPlayers)")
+                        self.checkMatchReadiness()
+                    }
+                }
+            }
+        }
+        
+        // Handle specific actions
+        if let action = jsonDict["action"] as? String {
+            switch action {
+            case "queue_keepalive":
+                print("Received queue keepalive")
+            case "heartbeat":
+                print("Received heartbeat")
+            case "pong":
+                print("Received pong")
+            default:
+                print("Unknown JSON action: \(action)")
             }
         }
     }
+
+    /// 處理純文本消息
+    private func handlePlainTextMessage(_ message: String) async {
+        // Handle plain text queue status messages
+        if message.contains("username:") || message.contains("id:") || message.contains("PlayerOf") {
+            await handleQueueStatusMessage(message)
+        } else {
+            print("Unknown plain text message format: \(message)")
+        }
+    }
+
     
     /// 處理隊列狀態消息
     private func handleQueueStatusMessage(_ message: String) async {
         print("Processing queue status message")
         
         // Parse player list
-        if message.contains("players:") {
+        if message.contains("username:") || message.contains("PlayerOf") {
             parsePlayerList(from: message)
         }
         
         // Parse game info
-        if message.contains("gameId:") {
+        if message.contains("id:") {
             parseGameInfo(from: message)
         }
     }
