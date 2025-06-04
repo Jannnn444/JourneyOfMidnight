@@ -17,10 +17,10 @@ struct EventVendorShop: View {
     var body: some View {
         ZStack {
         // MARK: - Banner and Event title
-            Rectangle()
-                .frame(width: 500, height: 350)
-                .foregroundColor(.indigo.opacity(0.8))
-                .cornerRadius(20)
+//            Rectangle()
+//                .frame(width: 500, height: 350)
+//                .foregroundColor(.indigo.opacity(0.8))
+//                .cornerRadius(20)
             Image("banner")
                 .frame(width: 400, height: 200)
                 .padding()
@@ -51,7 +51,7 @@ struct EventVendorShop: View {
                     ZStack {
                         Rectangle()
                             .frame(width: 100, height: 130)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.brown)
                             .cornerRadius(10)
                             .offset(x: 5)
                             .offset(y: 8)

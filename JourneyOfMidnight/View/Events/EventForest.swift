@@ -15,10 +15,10 @@ struct EventForest: View {
     @State private var showTopic = true
     
     var body: some View {
-        Rectangle()
-            .frame(width: 500, height: 350)
-            .foregroundColor(.green.opacity(0.8))
-            .cornerRadius(20)
+//        Rectangle()
+//            .frame(width: 500, height: 350)
+//            .foregroundColor(.green.opacity(0.8))
+//            .cornerRadius(20)
         Image("banner")
             .frame(width: 400, height: 200)
             .padding()

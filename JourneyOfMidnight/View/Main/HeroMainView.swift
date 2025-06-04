@@ -29,7 +29,7 @@ struct HeroMainView: View {
             Image("bkg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-            
+         
 /*     Color.white .ignoresSafeArea() .contentShape(Rectangle()) .onTapGesture {}  */
             
             // MARK: - Top 1/2 Banner GameBd
