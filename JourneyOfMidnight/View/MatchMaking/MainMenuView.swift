@@ -295,7 +295,7 @@ struct MainMenuView: View {
             await MainActor.run {
                 if websocketManager.isConnected {
                     print("WebSocket connected! Finding match...")
-                    websocketManager.findMatch(username: "PlayerOfB")
+                    websocketManager.findMatch(username: "PlayerOfC")
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }

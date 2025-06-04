@@ -16,13 +16,18 @@ class WebSocketManager: NSObject, ObservableObject {
     static let shared = WebSocketManager()
     
     // MARK: - 配置常數
-    private let serverURL = URL(string: "ws://206.189.40.30:4333/ws")!
+    private let serverURL = URL(string: "ws://172.20.10.11:4333/ws")!
     private let heartbeatInterval: TimeInterval = 30.0
     private let queueKeepAliveInterval: TimeInterval = 25.0
     private let reconnectDelay: TimeInterval = 3.0
     
-    // office workplace IP: 10.2.201.208 >>> "ws://10.2.201.208:4333/ws"
-    // Janus phone IP: 206.189.40.30:4333 >>> "ws://206.189.40.30:4333/ws"
+    // office workplace IP: 10.2.201.208
+    // Janus phone IP: 172.20.10.11
+    
+    /* Info remember to add !!
+     10.2.201.208
+     172.20.10.11 -> Janus Phone
+     */
     
     // MARK: - 核心屬性
     private var webSocketTask: URLSessionWebSocketTask?

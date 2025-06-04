@@ -11,7 +11,7 @@
 /*4041*/
 
 // network IP for API connecting
-let mobileIP = "172.20.10.4"
+let mobileIP = "172.20.10.11" //4 or 11 or 1
 let homeWifiIP = "10.0.0.110"
 let officeIP = "10.1.6.21"
 
@@ -19,7 +19,7 @@ let officeIP = "10.1.6.21"
 let DigitalOceanServerIP = "206.189.40.30"
 
 // currently selected IP
-let apiDomain = "172.20.10.4"
+let apiDomain = "172.20.10.11"
 
 // 206.189.40.30
 // 172.20.10.4 -> Janus Phone
