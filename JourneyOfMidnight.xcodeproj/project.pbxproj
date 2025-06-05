@@ -25,6 +25,7 @@
 		3D5B20742DF144D4001D242D /* SettingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20732DF144D4001D242D /* SettingMainView.swift */; };
 		3D5B20762DF1486C001D242D /* PickerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20752DF1486C001D242D /* PickerBar.swift */; };
 		3D5B20782DF14A1D001D242D /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20772DF14A1D001D242D /* ColorExtension.swift */; };
+		3D5B207C2DF16AC7001D242D /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B207B2DF16AC7001D242D /* MusicManager.swift */; };
 		541C59312DB3B89400AB0AC6 /* EventCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventCombat.swift */; };
 		541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */; };
 		541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59382DB3B9EC00AB0AC6 /* EventForest.swift */; };
@@ -60,6 +61,7 @@
 		3D5B20732DF144D4001D242D /* SettingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainView.swift; sourceTree = "<group>"; };
 		3D5B20752DF1486C001D242D /* PickerBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerBar.swift; sourceTree = "<group>"; };
 		3D5B20772DF14A1D001D242D /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		3D5B207B2DF16AC7001D242D /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		541C59302DB3B89400AB0AC6 /* EventCombat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCombat.swift; sourceTree = "<group>"; };
 		541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorShop.swift; sourceTree = "<group>"; };
 		541C59382DB3B9EC00AB0AC6 /* EventForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForest.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
+				3D5B207B2DF16AC7001D242D /* MusicManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */,
 				541C59412DB3C4AD00AB0AC6 /* EnemyCardSet.swift in Sources */,
 				1E1FFF8B2DBE5D88002382B0 /* WebsocketManager.swift in Sources */,
+				3D5B207C2DF16AC7001D242D /* MusicManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
