@@ -21,9 +21,10 @@ struct EventVendorShop: View {
 //                .frame(width: 500, height: 350)
 //                .foregroundColor(.indigo.opacity(0.8))
 //                .cornerRadius(20)
-            Image("banner")
-                .frame(width: 400, height: 200)
-                .padding()
+            
+//            Image("banner")
+//                .frame(width: 400, height: 200)
+//                .padding()
             VStack {
                 HStack {
                     Image("vendor")

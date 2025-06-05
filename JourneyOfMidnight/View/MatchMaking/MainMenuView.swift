@@ -11,11 +11,14 @@ enum Navigation {
     case home
     case game
     case queue
+    case settings
 }
 
 struct MainMenuView: View {
     @ObservedObject var cardManager = CardManager.shared
     @ObservedObject var websocketManager = WebSocketManager.shared
+    
+    @AppStorage("selectedAppColor") private var selectedColorName = "black"
     
     @State private var navigation: Navigation = .home
     
@@ -51,11 +54,11 @@ struct MainMenuView: View {
                     Spacer()
                     
                     // Title with logo
-                    Image("banner")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 400)
-                        .padding(.bottom, 40)
+//                    Image("banner")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 400)
+//                        .padding(.bottom, 40)
                     
                     Text("Journey Of Midnight")
                         .font(.largeTitle)
@@ -63,7 +66,7 @@ struct MainMenuView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.black.opacity(0.6))
+                        .background(Color.fromHex(selectedColorName).opacity(0.6))
                         .cornerRadius(10)
                         .padding(.bottom, 60)
                     
@@ -88,7 +91,7 @@ struct MainMenuView: View {
                         }
                         
                         Button(action: {
-                            // Show settings or options
+                            navigation = .settings
                         }) {
                             MenuButton(text: "Settings", icon: "gearshape")
                         }
@@ -175,7 +178,9 @@ struct MainMenuView: View {
                                     .fontWeight(.bold)
                             }
                             .padding(10)
-                            .background(Color.black.opacity(0.7))
+//                            .background(Color.black.opacity(0.7))
+                            .background(Color.fromHex(selectedColorName).opacity(0.6)
+                            .foregroundColor(.white))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                         }
@@ -203,7 +208,7 @@ struct MainMenuView: View {
                                     websocketManager.connect()
                                 }
                                 .padding()
-                                .background(Color.black.opacity(0.7))
+                                .background(Color.fromHex(selectedColorName).opacity(0.6))
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                                 
@@ -211,7 +216,7 @@ struct MainMenuView: View {
                                     navigation = .home
                                 }
                                 .padding()
-                                .background(Color.black.opacity(0.7))
+                                .background(Color.fromHex(selectedColorName).opacity(0.6))
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                             }
@@ -220,6 +225,33 @@ struct MainMenuView: View {
                 }
                 .frame(width: 500, height: 300)
                 .cornerRadius(20)
+                
+            case .settings:
+                ZStack {
+                    SettingMainView().ignoresSafeArea()
+                    // Add back button for settings
+                    VStack {
+                        HStack {
+                            Button(action: {
+                                navigation = .home
+                            }) {
+                                HStack {
+                                    Image(systemName: "chevron.left")
+                                    Text("Back")
+                                        .fontDesign(.monospaced)
+                                        .fontWeight(.bold)
+                                }
+                                .padding(10)
+                                .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                            }
+                            .padding()
+                            Spacer()
+                        }
+                        Spacer()
+                    }.ignoresSafeArea()
+                }
             }
         }
         .onAppear {
@@ -232,7 +264,6 @@ struct MainMenuView: View {
             handleQueueStatusChange(status)
         }
 
-        
         .padding()
         .ignoresSafeArea()
     }
@@ -322,7 +353,7 @@ struct MainMenuView: View {
 struct MenuButton: View {
     let text: String
     let icon: String
-    
+    @AppStorage("selectedAppColor") private var selectedColorName = "black"
     var body: some View {
         HStack {
             Image(systemName: icon)
@@ -334,7 +365,8 @@ struct MenuButton: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 30)
-        .background(Color.black.opacity(0.7))
+//      .background(Color.black.opacity(0.7))
+        .background(Color.fromHex(selectedColorName).opacity(0.6))
         .foregroundColor(.white)
         .cornerRadius(10)
         .overlay(

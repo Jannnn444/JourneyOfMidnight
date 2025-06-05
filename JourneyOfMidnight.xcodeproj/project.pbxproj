@@ -22,6 +22,9 @@
 		1E99D0972DAD0994007392FE /* HeroMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E99D0962DAD0994007392FE /* HeroMainView.swift */; };
 		1EC024F62DC368A100F77448 /* SimpleTemplateWithPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC024F52DC368A100F77448 /* SimpleTemplateWithPopup.swift */; };
 		1EC024F82DC368C700F77448 /* EventScreenTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC024F72DC368C700F77448 /* EventScreenTemplate.swift */; };
+		3D5B20742DF144D4001D242D /* SettingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20732DF144D4001D242D /* SettingMainView.swift */; };
+		3D5B20762DF1486C001D242D /* PickerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20752DF1486C001D242D /* PickerBar.swift */; };
+		3D5B20782DF14A1D001D242D /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20772DF14A1D001D242D /* ColorExtension.swift */; };
 		541C59312DB3B89400AB0AC6 /* EventCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventCombat.swift */; };
 		541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */; };
 		541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59382DB3B9EC00AB0AC6 /* EventForest.swift */; };
@@ -54,6 +57,9 @@
 		1E99D0962DAD0994007392FE /* HeroMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMainView.swift; sourceTree = "<group>"; };
 		1EC024F52DC368A100F77448 /* SimpleTemplateWithPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTemplateWithPopup.swift; sourceTree = "<group>"; };
 		1EC024F72DC368C700F77448 /* EventScreenTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScreenTemplate.swift; sourceTree = "<group>"; };
+		3D5B20732DF144D4001D242D /* SettingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainView.swift; sourceTree = "<group>"; };
+		3D5B20752DF1486C001D242D /* PickerBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerBar.swift; sourceTree = "<group>"; };
+		3D5B20772DF14A1D001D242D /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		541C59302DB3B89400AB0AC6 /* EventCombat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCombat.swift; sourceTree = "<group>"; };
 		541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorShop.swift; sourceTree = "<group>"; };
 		541C59382DB3B9EC00AB0AC6 /* EventForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForest.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		1E1FFF8C2DBE5DA2002382B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D5B20722DF144C0001D242D /* Settings */,
 				1E1FFF902DBE64D2002382B0 /* MatchMaking */,
 				1E1FFF7D2DBCF0C4002382B0 /* Main */,
 				1E1FFF7F2DBCF103002382B0 /* Events */,
@@ -179,6 +186,16 @@
 				1E1FFF932DBE64F6002382B0 /* QueueView.swift */,
 			);
 			path = MatchMaking;
+			sourceTree = "<group>";
+		};
+		3D5B20722DF144C0001D242D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3D5B20732DF144D4001D242D /* SettingMainView.swift */,
+				3D5B20752DF1486C001D242D /* PickerBar.swift */,
+				3D5B20772DF14A1D001D242D /* ColorExtension.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		54561D802D8ED0CA00EB042B = {
@@ -302,11 +319,14 @@
 				1E64C2102DB76A95001DFAF5 /* DetailItemView.swift in Sources */,
 				541C593D2DB3BFBF00AB0AC6 /* CardHeroSetView.swift in Sources */,
 				1E1FFF792DBCEB7B002382B0 /* NetworkManager.swift in Sources */,
+				3D5B20782DF14A1D001D242D /* ColorExtension.swift in Sources */,
 				1E1FFF892DBE5D6C002382B0 /* Game.swift in Sources */,
+				3D5B20742DF144D4001D242D /* SettingMainView.swift in Sources */,
 				1E1FFF922DBE64EE002382B0 /* MainMenuView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
 				1E1FFF8F2DBE5DEE002382B0 /* MatchMakingViewModel.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
+				3D5B20762DF1486C001D242D /* PickerBar.swift in Sources */,
 				1E1FFF772DBCEB74002382B0 /* Config.swift in Sources */,
 				541C593B2DB3BDC200AB0AC6 /* ButtomButton.swift in Sources */,
 				1EC024F62DC368A100F77448 /* SimpleTemplateWithPopup.swift in Sources */,

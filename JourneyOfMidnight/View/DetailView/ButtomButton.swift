@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ButtomButton: View {
     @Binding var eventState: Events
+    @AppStorage("selectedAppColor") private var selectedColorName = "black"
     let textOnButton: String
     
     var body: some View {
@@ -22,7 +23,8 @@ struct ButtomButton: View {
                     Text(textOnButton)
                         .padding()
                         .fontDesign(.monospaced)
-                        .background(Color.green)
+//                      .background(Color.green)
+                        .background(Color.fromHex(selectedColorName).opacity(0.6))
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }

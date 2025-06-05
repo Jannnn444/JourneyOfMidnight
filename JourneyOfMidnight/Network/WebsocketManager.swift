@@ -202,7 +202,6 @@ class WebSocketManager: NSObject, ObservableObject {
     /// 持續接收消息的循環
     private func receiveMessages() async {
         guard let webSocketTask = webSocketTask else { return }
-        
         while !Task.isCancelled && connectionState != .disconnected {
             do {
                 let message = try await webSocketTask.receive()

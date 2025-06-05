@@ -10,9 +10,12 @@ import SwiftUI
 
 @main
 struct JourneyOfMidnightApp: App {
+    @AppStorage("selectedAppColor") private var storedColor = "black"
+    
     var body: some Scene {
         WindowGroup {
             MainMenuView()
+                .tint(Color.fromHex(storedColor)) // Apply to entire app
         }
     }
 }
