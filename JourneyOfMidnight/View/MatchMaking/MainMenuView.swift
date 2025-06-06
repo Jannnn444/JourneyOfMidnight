@@ -231,8 +231,8 @@ struct MainMenuView: View {
                     SettingMainView().ignoresSafeArea()
                         
                     // Add back button for settings
-                    VStack {
-                        HStack {
+                    VStack(alignment: .leading) {
+                        HStack(alignment: .top) {
                             Button(action: {
                                 navigation = .home
                             }) {
@@ -248,8 +248,9 @@ struct MainMenuView: View {
                                 .cornerRadius(10)
                             }
                     
-                           
+                           Spacer()
                         }
+                        Spacer()
                       
                     }.ignoresSafeArea()
                 }

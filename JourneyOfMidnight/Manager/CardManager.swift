@@ -23,6 +23,8 @@ class CardManager: ObservableObject {
     @Published var gold: Gold
     @Published var stories: [Story]
     
+    @Published var navigation: Navigation = .home
+    
     // MARK: 📦 Board Width/Height
     let boardWidth: CGFloat = 650
     let boardHeight: CGFloat = 150
