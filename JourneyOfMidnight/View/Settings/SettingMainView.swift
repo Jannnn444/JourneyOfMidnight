@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct SettingMainView: View {
-    @State private var isMusicEnabled = true
+    @ObservedObject var musicManager = MusicManager.shared
+//  @State private var isMusicEnabled = true
     @State private var showSettings = false //when its false, go to mainpage (how)
     
     var body: some View {
@@ -60,7 +61,7 @@ struct SettingMainView: View {
                             
                             Spacer()
                             
-                            Toggle("", isOn: $isMusicEnabled)
+                            Toggle("", isOn: $musicManager.isMusicEnabled)
                                 .toggleStyle(SwitchToggleStyle(tint: .mint))
                         }
                     }
@@ -112,12 +113,12 @@ struct SettingMainView: View {
             }
             .padding(.top, 20)
         }
-        .onChange(of: isMusicEnabled) { oldValue, newValue in
+        .onChange(of: musicManager.isMusicEnabled) { oldValue, newValue in
             handleMusicToggle(enabled: newValue)
         }
         .onAppear {
             // Initialize music state when view appears
-            handleMusicToggle(enabled: isMusicEnabled)
+            handleMusicToggle(enabled: musicManager.isMusicEnabled)
         }.padding()
     }
     

@@ -2,12 +2,6 @@
 //  MusicManager.swift
 //  JourneyOfMidnight
 //
-//  Created by Jan    on 2025/6/5.
-//
-//
-//  MusicManager.swift
-//  JourneyOfMidnight
-//
 //  Created by Jan on 2025/6/6.
 //
 
@@ -20,10 +14,22 @@ class MusicManager: ObservableObject {
     private var backgroundMusicPlayer: AVAudioPlayer?
     private var soundEffectPlayers: [String: AVAudioPlayer] = [:]
     
-    @Published var isMusicEnabled = true
+    @Published var isMusicEnabled = true {
+        didSet {
+            handleMusicEnabledChange()
+        }
+    }
+    
     @Published var isSoundEffectsEnabled = true
-    @Published var musicVolume: Float = 0.7
+    @Published var musicVolume: Float = 0.7 {
+        didSet {
+            backgroundMusicPlayer?.volume = musicVolume
+        }
+    }
     @Published var soundEffectVolume: Float = 0.8
+    
+    private var currentMusicFileName: String?
+    private var wasPlayingBeforeDisable = false
     
     private init() {
         setupAudioSession()
@@ -40,10 +46,35 @@ class MusicManager: ObservableObject {
         }
     }
     
+    // MARK: - Music Enable/Disable Handling
+    
+    private func handleMusicEnabledChange() {
+        if isMusicEnabled {
+            // If music was playing before being disabled, resume it
+            if wasPlayingBeforeDisable, let fileName = currentMusicFileName {
+                resumeOrStartBackgroundMusic(fileName: fileName)
+            }
+        } else {
+            // Remember if music was playing before disabling
+            wasPlayingBeforeDisable = backgroundMusicPlayer?.isPlaying ?? false
+            pauseBackgroundMusic()
+        }
+    }
+    
     // MARK: - Background Music
     
     func playBackgroundMusic(fileName: String, fileExtension: String = "mp3") {
-        guard isMusicEnabled else { return }
+        currentMusicFileName = fileName
+        
+        guard isMusicEnabled else {
+            wasPlayingBeforeDisable = true
+            return
+        }
+        
+        // Don't restart if the same music is already playing
+        if backgroundMusicPlayer?.isPlaying == true && currentMusicFileName == fileName {
+            return
+        }
         
         guard let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
             print("Could not find background music file: \(fileName).\(fileExtension)")
@@ -60,9 +91,21 @@ class MusicManager: ObservableObject {
         }
     }
     
+    private func resumeOrStartBackgroundMusic(fileName: String, fileExtension: String = "mp3") {
+        if backgroundMusicPlayer != nil && currentMusicFileName == fileName {
+            // Resume existing player
+            resumeBackgroundMusic()
+        } else {
+            // Start new music
+            playBackgroundMusic(fileName: fileName, fileExtension: fileExtension)
+        }
+    }
+    
     func stopBackgroundMusic() {
         backgroundMusicPlayer?.stop()
         backgroundMusicPlayer = nil
+        currentMusicFileName = nil
+        wasPlayingBeforeDisable = false
     }
     
     func pauseBackgroundMusic() {
@@ -136,23 +179,27 @@ class MusicManager: ObservableObject {
         playSoundEffect("skill_cast")
     }
     
-    func playSystemSound() {
-        AudioServicesPlaySystemSound(1000)
-    }
-    
-    // MARK: - Settings Management
+    // MARK: - Toggle Methods (for backwards compatibility)
     
     func toggleMusic() {
         isMusicEnabled.toggle()
-        if isMusicEnabled {
-            // Resume current background music if it was playing
-            resumeBackgroundMusic()
-        } else {
-            pauseBackgroundMusic()
-        }
     }
     
     func toggleSoundEffects() {
         isSoundEffectsEnabled.toggle()
     }
+    
+    // MARK: - Initialization Helper
+    
+    func initializeBackgroundMusic(fileName: String = "Maple") {
+        if currentMusicFileName == nil {
+            playBackgroundMusic(fileName: fileName)
+        }
+    }
+    
+    func playSystemSound() {
+        AudioServicesPlaySystemSound(1000)
+    }
+
 }
+
