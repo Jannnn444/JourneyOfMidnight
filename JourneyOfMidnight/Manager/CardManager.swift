@@ -23,6 +23,8 @@ class CardManager: ObservableObject {
     @Published var gold: Gold
     @Published var stories: [Story]
     
+    @Published var playerInQueueForTesting: [FindMatchPayload]
+    
     @Published var navigation: Navigation = .home
     
     // MARK: 📦 Board Width/Height
@@ -98,6 +100,8 @@ class CardManager: ObservableObject {
                 Option(option: "Go village and look for food", effect: 6, effectType: .Faith), Option(option: "Rather eat yourself to stay loyal to the vow you have compromised the lord", effect: 3, effectType: .Vitality), Option(option: "Take this hunger to be better", effect: 3, effectType: .Charisma)
             ])
         ]
+        
+        self.playerInQueueForTesting = []
     }
 }
 

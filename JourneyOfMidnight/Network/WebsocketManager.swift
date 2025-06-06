@@ -34,7 +34,7 @@ class WebSocketManager: NSObject, ObservableObject {
     private var urlSession: URLSession!
     private var messageSubscriptions = Set<AnyCancellable>()
     
-    private let playerId = UUID().uuidString
+    let playerId = UUID().uuidString
     private var playerUsername: String = "Player"
     
     // MARK: - 狀態管理

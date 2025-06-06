@@ -55,11 +55,11 @@ struct MainMenuView: View {
                     Spacer()
                     
                     // Title with logo
-//                    Image("banner")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 400)
-//                        .padding(.bottom, 40)
+                    //                    Image("banner")
+                    //                        .resizable()
+                    //                        .aspectRatio(contentMode: .fit)
+                    //                        .frame(width: 400)
+                    //                        .padding(.bottom, 40)
                     
                     Text("Journey Of Midnight")
                         .font(.largeTitle)
@@ -84,8 +84,7 @@ struct MainMenuView: View {
                         
                         Button(action: {
                             navigation = .queue
-//                          websocketManager.connect() 
-                            // MARK: here put func
+                            // websocketManager.connect()
                             setupWebsocketConnection()
                         }) {
                             MenuButton(text: "Find Match", icon: "magnifyingglass")
@@ -180,9 +179,9 @@ struct MainMenuView: View {
                                     .fontWeight(.bold)
                             }
                             .padding(10)
-//                            .background(Color.black.opacity(0.7))
+                            //                            .background(Color.black.opacity(0.7))
                             .background(Color.fromHex(selectedColorName).opacity(0.6)
-                            .foregroundColor(.white))
+                                .foregroundColor(.white))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                         }
@@ -197,30 +196,174 @@ struct MainMenuView: View {
                 // Queue view
                 ZStack {
                     VStack {
+                        
+                        // MARK: QUEUE ! show alarm text
+                        if websocketManager.currentPlayers.count == 1 {
+                            Text("You are next")
+                                .padding()
+                                .font(.headline.bold())
+                                .foregroundColor(.black)
+                                .background(Color.white.opacity(0.6))
+                                .cornerRadius(12)
+                                .padding()
+                        } else if websocketManager.currentPlayers.count == 2 {
+                            VStack{
+                                Text("Congrats! You found match! \nReady to fight? :)")
+                                    .lineLimit(nil)
+                                    .padding()
+                                    .font(.headline.bold())
+                                    .foregroundColor(.black)
+                                    .background(Color.white.opacity(0.6))
+                                    .cornerRadius(12)
+                                    .padding()
+                                HStack {
+                                    Button("Yes") {
+                                        //action to yes
+                                    } .padding()
+                                        .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                    Button("No") {
+                                        //action to no
+                                    } .padding()
+                                        .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
+                            } // count == 2
+                        } else if websocketManager.currentPlayers.count == 3 {
+                            Text("Queuing: Short waiting ... ")
+                                .padding()
+                                .font(.headline.bold())
+                                .foregroundColor(.black)
+                                .background(Color.white.opacity(0.6))
+                                .cornerRadius(12)
+                                .padding()
+                        } else if websocketManager.currentPlayers.count == 4 {
+                            Text("Queuing: Short waiting ... ")
+                                .padding()
+                                .font(.headline.bold())
+                                .foregroundColor(.black)
+                                .background(Color.white.opacity(0.6))
+                                .cornerRadius(12)
+                                .padding()
+                        } else if websocketManager.currentPlayers.count >= 5 {
+                            Text("Queuing: Medium waiting ... ")
+                                .padding()
+                                .font(.headline.bold())
+                                .foregroundColor(.black)
+                                .background(Color.white.opacity(0.6))
+                                .cornerRadius(12)
+                                .padding()
+                        }
+                        
+                        
+                        // Websocket! Real Connect if else
                         if websocketManager.isConnected {
                             QueueView(navigation: $navigation)
                             
                         } else {
-                            Text("Cannot connect to server")
-                                .font(.headline.bold())
-                                .foregroundColor(.red)
-                                .padding()
-                            HStack {
-                                Button("Retry") {
-                                    websocketManager.connect()
-                                }
-                                .padding()
-                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                            VStack {
+                                // MARK: QUEUE: Shows when normal case no server found
+                                // now testing mock data so comment!
                                 
-                                Button("Back") {
-                                    navigation = .home
+//                                Text("Cannot connect to server")
+//                                    .font(.headline.bold())
+//                                    .foregroundColor(.red)
+//                                    .padding()
+//                                HStack {
+//                                    Button("Retry") {
+//                                        websocketManager.connect()
+//                                    }
+//                                    .padding()
+//                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+//                                    .foregroundColor(.white)
+//                                    .cornerRadius(10)
+//                                    
+//                                    Button("Back") {
+//                                        navigation = .home
+//                                    }
+//                                    .padding()
+//                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+//                                    .foregroundColor(.white)
+//                                    .cornerRadius(10)
+//                                }
+                                
+                            // MARK: QUEUE ! player button
+                            // testing use player data - Queue Mock Datas
+                                HStack {
+                                    Button("🐶\nPlayer 1") {
+                                        websocketManager.findMatch(username: "Player 1")
+                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player1"))
+                                        websocketManager.currentPlayers.append("Player1")
+                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    }
+                                    .padding()
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("🦊\nPlayer 2") {
+                                        websocketManager.findMatch(username: "Player 2")
+                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
+                                        websocketManager.currentPlayers.append("Player2")
+                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    }
+                                    .padding()
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("🦋\nPlayer 3") {
+                                        websocketManager.findMatch(username: "Player 3")
+                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                        websocketManager.currentPlayers.append("Player3")
+                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    }
+                                    .padding()
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("🐼\nPlayer 4") {
+                                        websocketManager.findMatch(username: "Player 4")
+                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                        websocketManager.currentPlayers.append("Player4")
+                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    }
+                                    .padding()
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("🦁\nPlayer 5") {
+                                        websocketManager.findMatch(username: "Player 5")
+                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                        websocketManager.currentPlayers.append("Player5")
+                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    }
+                                    .padding()
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("🦉\nPlayer 6") {
+                                        websocketManager.findMatch(username: "Player 6")
+                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                        websocketManager.currentPlayers.append("Player5")
+                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    }
+                                    .padding()
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
                                 }
-                                .padding()
-                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
                             }
                         }
                     }
@@ -236,29 +379,29 @@ struct MainMenuView: View {
                         MainMenuView()
                     }
                     
-                    // Add back button for settings
-//                    VStack(alignment: .leading) {
-//                        HStack(alignment: .top) {
-//                            Button(action: {
-//                                navigation = .home
-//                            }) {
-//                                HStack {
-//                                    Image(systemName: "chevron.left")
-//                                    Text("Back")
-//                                        .fontDesign(.monospaced)
-//                                        .fontWeight(.bold)
-//                                }
-//                                .padding(10)
-//                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-//                                .foregroundColor(.white)
-//                                .cornerRadius(10)
-//                            }
-//                    
-//                           Spacer()
-//                        }
-//                        Spacer()
-//                      
-//                    }.ignoresSafeArea()
+                    // Add BACK button for settings
+                    //                    VStack(alignment: .leading) {
+                    //                        HStack(alignment: .top) {
+                    //                            Button(action: {
+                    //                                navigation = .home
+                    //                            }) {
+                    //                                HStack {
+                    //                                    Image(systemName: "chevron.left")
+                    //                                    Text("Back")
+                    //                                        .fontDesign(.monospaced)
+                    //                                        .fontWeight(.bold)
+                    //                                }
+                    //                                .padding(10)
+                    //                                .background(Color.fromHex(selectedColorName).opacity(0.6))
+                    //                                .foregroundColor(.white)
+                    //                                .cornerRadius(10)
+                    //                            }
+                    //
+                    //                           Spacer()
+                    //                        }
+                    //                        Spacer()
+                    //
+                    //                    }.ignoresSafeArea()
                 }
             }
         }
@@ -309,7 +452,7 @@ struct MainMenuView: View {
         print("Game ID: \(websocketManager.gameId ?? "Unknown")")
         print("Players: \(websocketManager.currentPlayers)")
     }
-
+    
     private func showMatchFoundAlert() {
         // You can add a custom alert/notification here
         print("🎮 Match Found!")
@@ -339,19 +482,18 @@ struct MainMenuView: View {
             }
         }
         /*
-        -
-        asyncAfter + 2.0
-        -
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            if websocketManager.isConnected {
-                print("WebSocket connected! Finding match...")
-                WebSocketManager.shared.findMatch(username: "Player1")
-            } else {
-                print("WebSocket faield connected ...")
-            }
-        }
-        */
-        
+         -
+         asyncAfter + 2.0
+         -
+         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+         if websocketManager.isConnected {
+         print("WebSocket connected! Finding match...")
+         WebSocketManager.shared.findMatch(username: "Player1")
+         } else {
+         print("WebSocket faield connected ...")
+         }
+         }
+         */
     }
 }
 
@@ -371,7 +513,7 @@ struct MenuButton: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 30)
-//      .background(Color.black.opacity(0.7))
+        //      .background(Color.black.opacity(0.7))
         .background(Color.fromHex(selectedColorName).opacity(0.6))
         .foregroundColor(.white)
         .cornerRadius(10)
