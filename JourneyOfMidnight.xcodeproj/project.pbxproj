@@ -26,6 +26,8 @@
 		3D5B20762DF1486C001D242D /* PickerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20752DF1486C001D242D /* PickerBar.swift */; };
 		3D5B20782DF14A1D001D242D /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20772DF14A1D001D242D /* ColorExtension.swift */; };
 		3D5B207C2DF16AC7001D242D /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B207B2DF16AC7001D242D /* MusicManager.swift */; };
+		3D5B207F2DF2F5E4001D242D /* Maple.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D5B207E2DF2F5E4001D242D /* Maple.mp3 */; };
+		3D5B20812DF2F5ED001D242D /* whatif.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D5B20802DF2F5ED001D242D /* whatif.mp3 */; };
 		541C59312DB3B89400AB0AC6 /* EventCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventCombat.swift */; };
 		541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */; };
 		541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59382DB3B9EC00AB0AC6 /* EventForest.swift */; };
@@ -62,6 +64,8 @@
 		3D5B20752DF1486C001D242D /* PickerBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerBar.swift; sourceTree = "<group>"; };
 		3D5B20772DF14A1D001D242D /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3D5B207B2DF16AC7001D242D /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		3D5B207E2DF2F5E4001D242D /* Maple.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Maple.mp3; sourceTree = "<group>"; };
+		3D5B20802DF2F5ED001D242D /* whatif.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whatif.mp3; sourceTree = "<group>"; };
 		541C59302DB3B89400AB0AC6 /* EventCombat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCombat.swift; sourceTree = "<group>"; };
 		541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorShop.swift; sourceTree = "<group>"; };
 		541C59382DB3B9EC00AB0AC6 /* EventForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForest.swift; sourceTree = "<group>"; };
@@ -201,6 +205,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		3D5B207D2DF2F5CE001D242D /* MusicTracks */ = {
+			isa = PBXGroup;
+			children = (
+				3D5B207E2DF2F5E4001D242D /* Maple.mp3 */,
+				3D5B20802DF2F5ED001D242D /* whatif.mp3 */,
+			);
+			path = MusicTracks;
+			sourceTree = "<group>";
+		};
 		54561D802D8ED0CA00EB042B = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +236,7 @@
 				1E045BE92DCF853A0098413D /* Info.plist */,
 				54561D8C2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift */,
 				54561D902D8ED0CC00EB042B /* Assets.xcassets */,
+				3D5B207D2DF2F5CE001D242D /* MusicTracks */,
 				54561D922D8ED0CC00EB042B /* Preview Content */,
 				1E1FFF7B2DBCF07A002382B0 /* Manager */,
 				1E1FFF7A2DBCF043002382B0 /* Network */,
@@ -300,7 +314,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				54561D942D8ED0CC00EB042B /* Preview Assets.xcassets in Resources */,
+				3D5B207F2DF2F5E4001D242D /* Maple.mp3 in Resources */,
 				54561D912D8ED0CC00EB042B /* Assets.xcassets in Resources */,
+				3D5B20812DF2F5ED001D242D /* whatif.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

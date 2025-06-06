@@ -229,6 +229,9 @@ struct MainMenuView: View {
             case .settings:
                 ZStack {
                     SettingMainView().ignoresSafeArea()
+                        .onAppear {
+                            MusicManager.shared.playBacjgroundMusic(fileName: "Maple")
+                        }
                     // Add back button for settings
                     VStack {
                         HStack {

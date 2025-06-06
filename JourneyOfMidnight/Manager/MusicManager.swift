@@ -31,6 +31,11 @@ class MusicManager: ObservableObject {
                print("Failed to set up audio session: \(error)")
            }
        }
+    
+    func playSystemSound() {
+        AudioServicesPlaySystemSound(1000) // Built-in sound for some notice sound?
+    }
+    
     func playBacjgroundMusic(fileName: String, fileType: String = "mp3") {
         guard isMusicEnabled else { return }
         guard let url = Bundle.main.url(forResource: fileName, withExtension: fileType) else {
