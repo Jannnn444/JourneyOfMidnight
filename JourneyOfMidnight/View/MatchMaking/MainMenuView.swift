@@ -104,7 +104,7 @@ struct MainMenuView: View {
                         .font(.caption)
                         .foregroundColor(.white)
                         .padding()
-                }
+                }.padding()
                 
             case .game:
                 // Show the appropriate event screen based on eventState
@@ -229,9 +229,7 @@ struct MainMenuView: View {
             case .settings:
                 ZStack {
                     SettingMainView().ignoresSafeArea()
-                        .onAppear {
-                            MusicManager.shared.playBacjgroundMusic(fileName: "Maple")
-                        }
+                        
                     // Add back button for settings
                     VStack {
                         HStack {
@@ -249,10 +247,10 @@ struct MainMenuView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                             }
-                            .padding()
-                            Spacer()
+                    
+                           
                         }
-                        Spacer()
+                      
                     }.ignoresSafeArea()
                 }
             }
@@ -266,8 +264,6 @@ struct MainMenuView: View {
         .onChange(of: websocketManager.queueStatus) { status in
             handleQueueStatusChange(status)
         }
-
-        .padding()
         .ignoresSafeArea()
     }
     

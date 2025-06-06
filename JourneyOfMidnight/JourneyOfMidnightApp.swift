@@ -16,6 +16,9 @@ struct JourneyOfMidnightApp: App {
         WindowGroup {
             MainMenuView()
                 .tint(Color.fromHex(storedColor)) // Apply to entire app
+                .onAppear {
+                    MusicManager.shared.playBacjgroundMusic(fileName: "Maple")
+                }
         }
     }
 }
