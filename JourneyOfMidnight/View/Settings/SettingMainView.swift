@@ -14,6 +14,7 @@ struct SettingMainView: View {
 //  @State private var showSettings = false //when its false, go to mainpage (how)
     
     var body: some View {
+        
         ZStack {
             // Background with better visual hierarchy
             Color.black.opacity(0.8)
