@@ -13,7 +13,7 @@ struct PickerBar: View {
     @AppStorage("selectedAppColor") private var storedColor = "black"
     
     var body: some View {
-        NavigationStack {
+  
             Form {
                 Picker("Selected your colors", selection: Binding(
                     get: { Color.fromHex(storedColor) },
@@ -24,7 +24,7 @@ struct PickerBar: View {
                             .tag(color)
                     }
                 }
-            }
+            
         }
     }
 }

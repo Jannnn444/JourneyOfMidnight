@@ -32,7 +32,7 @@ struct SettingMainView: View {
                     
                     // Close button
                     Button(action: {
-//                        showSettings = false
+//                      showSettings = false
                         musicManager.showSettings = false
                         
                     }) {
@@ -107,6 +107,7 @@ struct SettingMainView: View {
                                 .toggleStyle(SwitchToggleStyle(tint: .mint))
                         }
                     }
+                    
                 }
                 .padding(.horizontal)
                 
