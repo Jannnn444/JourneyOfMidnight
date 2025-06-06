@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingMainView: View {
     @ObservedObject var musicManager = MusicManager.shared
 //  @State private var isMusicEnabled = true
-    @State private var showSettings = false //when its false, go to mainpage (how)
+//  @State private var showSettings = false //when its false, go to mainpage (how)
     
     var body: some View {
         ZStack {
@@ -32,7 +32,8 @@ struct SettingMainView: View {
                     
                     // Close button
                     Button(action: {
-                        showSettings = false
+//                        showSettings = false
+                        musicManager.showSettings = false
                         
                     }) {
                         Image(systemName: "xmark.circle.fill")

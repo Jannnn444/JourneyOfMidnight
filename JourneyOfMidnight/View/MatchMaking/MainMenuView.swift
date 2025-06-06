@@ -17,6 +17,7 @@ enum Navigation {
 struct MainMenuView: View {
     @ObservedObject var cardManager = CardManager.shared
     @ObservedObject var websocketManager = WebSocketManager.shared
+    @ObservedObject var musicManager = MusicManager.shared
     
     @AppStorage("selectedAppColor") private var selectedColorName = "black"
     
@@ -92,6 +93,7 @@ struct MainMenuView: View {
                         
                         Button(action: {
                             navigation = .settings
+                            musicManager.showSettings.toggle()
                         }) {
                             MenuButton(text: "Settings", icon: "gearshape")
                         }
@@ -228,31 +230,35 @@ struct MainMenuView: View {
                 
             case .settings:
                 ZStack {
-                    SettingMainView().ignoresSafeArea()
-                        
-                    // Add back button for settings
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .top) {
-                            Button(action: {
-                                navigation = .home
-                            }) {
-                                HStack {
-                                    Image(systemName: "chevron.left")
-                                    Text("Back")
-                                        .fontDesign(.monospaced)
-                                        .fontWeight(.bold)
-                                }
-                                .padding(10)
-                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                            }
+                    if musicManager.showSettings {
+                        SettingMainView().ignoresSafeArea()
+                    } else {
+                        MainMenuView()
+                    }
                     
-                           Spacer()
-                        }
-                        Spacer()
-                      
-                    }.ignoresSafeArea()
+                    // Add back button for settings
+//                    VStack(alignment: .leading) {
+//                        HStack(alignment: .top) {
+//                            Button(action: {
+//                                navigation = .home
+//                            }) {
+//                                HStack {
+//                                    Image(systemName: "chevron.left")
+//                                    Text("Back")
+//                                        .fontDesign(.monospaced)
+//                                        .fontWeight(.bold)
+//                                }
+//                                .padding(10)
+//                                .background(Color.fromHex(selectedColorName).opacity(0.6))
+//                                .foregroundColor(.white)
+//                                .cornerRadius(10)
+//                            }
+//                    
+//                           Spacer()
+//                        }
+//                        Spacer()
+//                      
+//                    }.ignoresSafeArea()
                 }
             }
         }

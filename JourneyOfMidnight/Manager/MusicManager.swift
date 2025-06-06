@@ -14,6 +14,7 @@ class MusicManager: ObservableObject {
     private var backgroundMusicPlayer: AVAudioPlayer?
     private var soundEffectPlayers: [String: AVAudioPlayer] = [:]
     
+    @Published var showSettings = false
     @Published var isMusicEnabled = true {
         didSet {
             handleMusicEnabledChange()
