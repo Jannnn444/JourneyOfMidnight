@@ -197,78 +197,77 @@ struct MainMenuView: View {
                 ZStack {
                     VStack {
                         
-                        // MARK: QUEUE ! show alarm text
-                        if websocketManager.currentPlayers.count == 1 {
-                            Text("You are next")
-                                .padding()
-                                .font(.headline.bold())
-                                .foregroundColor(.black)
-                                .background(Color.white.opacity(0.6))
-                                .cornerRadius(12)
-                                .padding()
-                        } else if websocketManager.currentPlayers.count == 2 {
-                            VStack{
-                                Text("Congrats! You found match! \nReady to fight? :)")
-                                    .lineLimit(nil)
-                                    .padding()
-                                    .font(.headline.bold())
-                                    .foregroundColor(.black)
-                                    .background(Color.white.opacity(0.6))
-                                    .cornerRadius(12)
-                                    .padding()
-                                HStack {
-                                    Button("Yes") {
-                                        // action to yes
-                                        // when yes -> go to game
-                                        EventCombat()
-                                    } .padding()
-                                        .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                    Button("No") {
-                                        // action to no
-                                        // back to main!
-                                        navigation = .home
-                                    } .padding()
-                                        .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                    // back menu
-                                    Button("Back") {
-                                        navigation = .home
-                                    }
-                                    .padding()
-                                    .background(Color.fromHex(selectedColorName))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                }.padding()
-                            } // count == 2
-                        } else if websocketManager.currentPlayers.count == 3 {
-                            Text("Queuing: Short waiting ! ")
-                                .padding()
-                                .font(.headline.bold())
-                                .foregroundColor(.black)
-                                .background(Color.white.opacity(0.6))
-                                .cornerRadius(12)
-                                .padding()
-                        } else if websocketManager.currentPlayers.count == 4 {
-                            Text("Queuing: Short waiting ! ")
-                                .padding()
-                                .font(.headline.bold())
-                                .foregroundColor(.black)
-                                .background(Color.white.opacity(0.6))
-                                .cornerRadius(12)
-                                .padding()
-                        } else if websocketManager.currentPlayers.count >= 5 {
-                            Text("Queuing: Medium waiting ! ")
-                                .padding()
-                                .font(.headline.bold())
-                                .foregroundColor(.black)
-                                .background(Color.white.opacity(0.6))
-                                .cornerRadius(12)
-                                .padding()
-                        }
-                        
+//                        // MARK: QUEUE ! show alarm text
+//                        if websocketManager.currentPlayers.count == 1 {
+//                            Text("You are next")
+//                                .padding()
+//                                .font(.headline.bold())
+//                                .foregroundColor(.black)
+//                                .background(Color.white.opacity(0.6))
+//                                .cornerRadius(12)
+//                                .padding()
+//                        } else if websocketManager.currentPlayers.count == 2 {
+//                            VStack{
+//                                Text("Congrats! You found match! \nReady to fight? :)")
+//                                    .lineLimit(nil)
+//                                    .padding()
+//                                    .font(.headline.bold())
+//                                    .foregroundColor(.black)
+//                                    .background(Color.white.opacity(0.6))
+//                                    .cornerRadius(12)
+//                                    .padding()
+//                                HStack {
+//                                    Button("Yes") {
+//                                        // action to yes
+//                                        // when yes -> go to game
+//                                        EventCombat()
+//                                    } .padding()
+//                                        .background(Color.fromHex(selectedColorName).opacity(0.6))
+//                                        .foregroundColor(.white)
+//                                        .cornerRadius(10)
+//                                    Button("No") {
+//                                        // action to no
+//                                        // back to main!
+//                                        navigation = .home
+//                                    } .padding()
+//                                        .background(Color.fromHex(selectedColorName).opacity(0.6))
+//                                        .foregroundColor(.white)
+//                                        .cornerRadius(10)
+//                                    // back menu
+//                                    Button("Back") {
+//                                        navigation = .home
+//                                    }
+//                                    .padding()
+//                                    .background(Color.fromHex(selectedColorName))
+//                                    .foregroundColor(.white)
+//                                    .cornerRadius(10)
+//                                }.padding()
+//                            } // count == 2
+//                        } else if websocketManager.currentPlayers.count == 3 {
+//                            Text("Queuing: Short waiting ! ")
+//                                .padding()
+//                                .font(.headline.bold())
+//                                .foregroundColor(.black)
+//                                .background(Color.white.opacity(0.6))
+//                                .cornerRadius(12)
+//                                .padding()
+//                        } else if websocketManager.currentPlayers.count == 4 {
+//                            Text("Queuing: Short waiting ! ")
+//                                .padding()
+//                                .font(.headline.bold())
+//                                .foregroundColor(.black)
+//                                .background(Color.white.opacity(0.6))
+//                                .cornerRadius(12)
+//                                .padding()
+//                        } else if websocketManager.currentPlayers.count >= 5 {
+//                            Text("Queuing: Medium waiting ! ")
+//                                .padding()
+//                                .font(.headline.bold())
+//                                .foregroundColor(.black)
+//                                .background(Color.white.opacity(0.6))
+//                                .cornerRadius(12)
+//                                .padding()
+//                        }
                         
                         // Websocket! Real Connect if else
                         if websocketManager.isConnected {
