@@ -35,6 +35,7 @@ class WebSocketManager: NSObject, ObservableObject {
     private var messageSubscriptions = Set<AnyCancellable>()
     
     let playerId = UUID().uuidString
+
     private var playerUsername: String = "Player"
     
     // MARK: - 狀態管理
@@ -483,7 +484,7 @@ class WebSocketManager: NSObject, ObservableObject {
     // MARK: - === 第四層：業務邏輯功能 ===
     
     /// 尋找遊戲匹配
-    func findMatch(username: String) {
+    func findMatch(username: String, id: String) {
         guard isConnected else {
             lastError = .notConnected
             return
@@ -495,7 +496,8 @@ class WebSocketManager: NSObject, ObservableObject {
         
         let action = FindMatchAction(
             action: "find_match",
-            payload: FindMatchPayload(id: playerId, username: username)
+//          payload: FindMatchPayload(id: playerId, username: username) // this for when normal case, one phone one id!
+            payload: FindMatchPayload(id: id, username: username) // this for testing !!!! MOCK DATA For test manually add players
         )
         
         Task {
