@@ -9,8 +9,11 @@ import SwiftUI
 
 struct QueueView: View {
     @Binding var navigation: Navigation
+    @ObservedObject var cardManager = CardManager.shared
     @ObservedObject var websocketManager = WebSocketManager.shared
+    @ObservedObject var musicManager = MusicManager.shared
     
+    @AppStorage("selectedAppColor") private var selectedColorName = "black"
     @State private var showPlayerInfo: Bool = false
     
     var body: some View {
@@ -72,7 +75,7 @@ struct QueueView: View {
                             .padding()
                     }
                     
-                    // Player Info (shown after 2 seconds)
+                    // Player Info (shown after 5 seconds, by onAppear)
                     if showPlayerInfo {
                         VStack(spacing: 10) {
                             Text("Players in queue: \(websocketManager.currentPlayers.count)/2")
@@ -110,6 +113,100 @@ struct QueueView: View {
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
                     }
+                    
+                    // MARK: QUEUE ! player button - testing use player data - Queue Mock Datas
+                        HStack {
+                            // Player 1
+                            Button("🐶") {
+                                websocketManager.findMatch(username: "Player 1")
+                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player1"))
+                                websocketManager.currentPlayers.append("Player1")
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            // Player 2
+                            Button("🦊") {
+                                websocketManager.findMatch(username: "Player 2")
+                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
+                                websocketManager.currentPlayers.append("Player2")
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            // Player 3
+                            Button("🦋") {
+                                websocketManager.findMatch(username: "Player 3")
+                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.currentPlayers.append("Player3")
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            // Player 4
+                            Button("🐼") {
+                                websocketManager.findMatch(username: "Player 4")
+                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.currentPlayers.append("Player4")
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            // Player 5
+                            Button("🦁") {
+                                websocketManager.findMatch(username: "Player 5")
+                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.currentPlayers.append("Player5")
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            // Player 6
+                            Button("🦉") {
+                                websocketManager.findMatch(username: "Player 6")
+                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.currentPlayers.append("Player5")
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            
+                            // Clear, remove all
+                            Button("🥚") {
+                                websocketManager.findMatch(username: "")
+                                cardManager.playerInQueueForTesting.removeAll()
+                                websocketManager.currentPlayers.removeAll()
+                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+                                print("Now player number: \(websocketManager.currentPlayers.count)")
+                            }
+                            .padding()
+                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        } // MOCK DATA - add players maniually but mock data!
                 }
                 
                 Spacer()
@@ -133,8 +230,8 @@ struct QueueView: View {
             }
         }
         .onAppear {
-            // Show player info after 2 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            // Show player info after 5 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                 withAnimation(.easeInOut(duration: 0.5)) {
                     showPlayerInfo = true
                 }

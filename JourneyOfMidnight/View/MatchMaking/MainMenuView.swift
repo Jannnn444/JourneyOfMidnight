@@ -218,13 +218,17 @@ struct MainMenuView: View {
                                     .padding()
                                 HStack {
                                     Button("Yes") {
-                                        //action to yes
+                                        // action to yes
+                                        // when yes -> go to game
+                                        EventCombat()
                                     } .padding()
                                         .background(Color.fromHex(selectedColorName).opacity(0.6))
                                         .foregroundColor(.white)
                                         .cornerRadius(10)
                                     Button("No") {
-                                        //action to no
+                                        // action to no
+                                        // back to main!
+                                        navigation = .home
                                     } .padding()
                                         .background(Color.fromHex(selectedColorName).opacity(0.6))
                                         .foregroundColor(.white)
@@ -272,126 +276,31 @@ struct MainMenuView: View {
                             
                         } else {
                             VStack {
-                                // MARK: QUEUE: Shows when normal case no server found
-                                // now testing mock data so comment!
+                                // MARK: QUEUE: Shows when no server found
                                 
-//                                Text("Cannot connect to server")
-//                                    .font(.headline.bold())
-//                                    .foregroundColor(.red)
-//                                    .padding()
-//                                HStack {
-//                                    Button("Retry") {
-//                                        websocketManager.connect()
-//                                    }
-//                                    .padding()
-//                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
-//                                    .foregroundColor(.white)
-//                                    .cornerRadius(10)
-//                                    
-//                                    Button("Back") {
-//                                        navigation = .home
-//                                    }
-//                                    .padding()
-//                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
-//                                    .foregroundColor(.white)
-//                                    .cornerRadius(10)
-//                                }
-                                
-                            // MARK: QUEUE ! player button - testing use player data - Queue Mock Datas
+                                Text("Cannot connect to server")
+                                    .font(.headline.bold())
+                                    .foregroundColor(.red)
+                                    .padding()
                                 HStack {
-                                    // Player 1
-                                    Button("🐶") {
-                                        websocketManager.findMatch(username: "Player 1")
-                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player1"))
-                                        websocketManager.currentPlayers.append("Player1")
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    Button("Retry") {
+                                        websocketManager.connect()
                                     }
                                     .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                     
-                                    // Player 2
-                                    Button("🦊") {
-                                        websocketManager.findMatch(username: "Player 2")
-                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
-                                        websocketManager.currentPlayers.append("Player2")
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
+                                    Button("Back") {
+                                        navigation = .home
                                     }
                                     .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    
-                                    // Player 3
-                                    Button("🦋") {
-                                        websocketManager.findMatch(username: "Player 3")
-                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
-                                        websocketManager.currentPlayers.append("Player3")
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
-                                    }
-                                    .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    
-                                    // Player 4
-                                    Button("🐼") {
-                                        websocketManager.findMatch(username: "Player 4")
-                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
-                                        websocketManager.currentPlayers.append("Player4")
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
-                                    }
-                                    .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    
-                                    // Player 5
-                                    Button("🦁") {
-                                        websocketManager.findMatch(username: "Player 5")
-                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
-                                        websocketManager.currentPlayers.append("Player5")
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
-                                    }
-                                    .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    
-                                    // Player 6
-                                    Button("🦉") {
-                                        websocketManager.findMatch(username: "Player 6")
-                                        cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
-                                        websocketManager.currentPlayers.append("Player5")
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
-                                    }
-                                    .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    
-                                    // Clear, remove all
-                                    Button("🥚") {
-                                        websocketManager.findMatch(username: "")
-                                        cardManager.playerInQueueForTesting.removeAll()
-                                        websocketManager.currentPlayers.removeAll()
-                                        print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                        print("Now player number: \(websocketManager.currentPlayers.count)")
-                                    }
-                                    .padding()
-                                    .background(Color.fromHex(selectedColorName).opacity(0.7))
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                 }
                                 
-                               
+                          
                             }
                         }
                     }

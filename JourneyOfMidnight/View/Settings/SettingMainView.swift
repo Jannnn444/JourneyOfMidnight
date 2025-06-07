@@ -27,8 +27,7 @@ struct SettingMainView: View {
                         .font(.largeTitle)
                         .fontDesign(.monospaced)
                         .foregroundColor(.white)
-                        .bold()
-                    
+                        .bold() 
                     Spacer()
                     
                     // Close button
