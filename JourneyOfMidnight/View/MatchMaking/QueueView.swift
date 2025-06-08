@@ -68,6 +68,7 @@ struct QueueView: View {
                             // back menu
                             Button("Back") {
                                 navigation = .home
+                                websocketManager.currentPlayers = []
                             }
                             .padding()
                             .background(Color.fromHex(selectedColorName))

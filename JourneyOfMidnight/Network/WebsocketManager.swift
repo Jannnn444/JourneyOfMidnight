@@ -652,6 +652,13 @@ class WebSocketManager: NSObject, ObservableObject {
         stopHeartbeat()
         stopQueueKeepAlive()
     }
+    
+    func checkCurrentPlayerQueue(username: String, id: String) -> String {
+        
+        
+        
+        return ""
+    }
 }
 
 // MARK: - === URLSessionWebSocketDelegate ===
@@ -812,3 +819,5 @@ struct HeroData: Codable {
     let level: Int
     let skills: [String]
 }
+
+
