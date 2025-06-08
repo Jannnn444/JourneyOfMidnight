@@ -193,7 +193,7 @@ struct QueueView: View {
                             Button("🐶") {
 //                                websocketManager.findMatch(username: "Player 1")
                                 websocketManager.findMatch(username: "1", id: "11111111-1111-1111-1111-111111111111")
-                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player1"))
+                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player1"))
                                 websocketManager.currentPlayers.append("Player1")
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")
@@ -207,7 +207,7 @@ struct QueueView: View {
                             Button("🦊") {
 //                                websocketManager.findMatch(username: "Player 2")
                                 websocketManager.findMatch(username: "2", id: "11111111-1111-1111-1111-111111111112")
-                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
+                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
                                 websocketManager.currentPlayers.append("Player2")
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")
@@ -221,7 +221,7 @@ struct QueueView: View {
                             Button("🦋") {
 //                                websocketManager.findMatch(username: "Player 3")
                                 websocketManager.findMatch(username: "3", id: "11111111-1111-1111-1111-111111111113")
-                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
                                 websocketManager.currentPlayers.append("Player3")
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")
@@ -235,7 +235,7 @@ struct QueueView: View {
                             Button("🐼") {
 //                                websocketManager.findMatch(username: "Player 4")
                                 websocketManager.findMatch(username: "4", id: "11111111-1111-1111-1111-111111111114")
-                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
                                 websocketManager.currentPlayers.append("Player4")
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")
@@ -249,7 +249,7 @@ struct QueueView: View {
                             Button("🦁") {
 //                                websocketManager.findMatch(username: "Player 5")
                                 websocketManager.findMatch(username: "5", id: "11111111-1111-1111-1111-111111111115")
-                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
                                 websocketManager.currentPlayers.append("Player5")
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")
@@ -263,7 +263,7 @@ struct QueueView: View {
                             Button("🦉") {
 //                                websocketManager.findMatch(username: "Player 6")
                                 websocketManager.findMatch(username: "6", id: "11111111-1111-1111-1111-111111111116")
-                                cardManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
+                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player3"))
                                 websocketManager.currentPlayers.append("Player5")
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")
@@ -275,7 +275,7 @@ struct QueueView: View {
                             
                             // Clear, remove all
                             Button("🥚") {
-                                cardManager.playerInQueueForTesting.removeAll()
+                                websocketManager.playerInQueueForTesting.removeAll()
                                 websocketManager.currentPlayers.removeAll()
                                 print("Now current player in queue: \(websocketManager.currentPlayers.description)")
                                 print("Now player number: \(websocketManager.currentPlayers.count)")

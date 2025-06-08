@@ -412,7 +412,7 @@ struct MainMenuView: View {
                 if websocketManager.isConnected {
                     print("WebSocket connected! Finding match...")
 //                    websocketManager.findMatch(username: "PlayerOfC")
-                    websocketManager.findMatch(username: "PlayerJanus@phone.com!!", id: "040333")
+                    websocketManager.findMatch(username: "PlayerJanus@phone.com!!", id: "11111111-1111-1111-1111-111111111110")
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }

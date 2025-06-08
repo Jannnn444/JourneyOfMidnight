@@ -44,6 +44,8 @@ class WebSocketManager: NSObject, ObservableObject {
     @Published var lastError: WebSocketError?
     @Published var receivedMessages: [GameMessage] = []
     
+    @Published var playerInQueueForTesting: [FindMatchPayload] = []
+     
     // MARK: - 配對狀態管理
     @Published var queueStatus: QueueStatus = .waiting
     @Published var currentPlayers: [String] = []
@@ -489,10 +491,14 @@ class WebSocketManager: NSObject, ObservableObject {
             lastError = .notConnected
             return
         }
-        
-        self.playerUsername = username
-        queueState = .searching
         resetQueueStatus()
+        self.playerUsername = username
+        self.currentPlayers.append(username) // new add for queue
+        self.playerInQueueForTesting.append(FindMatchPayload(id: id, username: username)) // new add for queu
+        queueState = .searching
+       
+        print("Now current player in queue: \(currentPlayers.self.description)")
+        print("Now player number: \(self.currentPlayers.count)")
         
         let action = FindMatchAction(
             action: "find_match",
