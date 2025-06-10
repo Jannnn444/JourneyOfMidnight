@@ -81,13 +81,20 @@ struct MainMenuView: View {
                         }) {
                             MenuButton(text: "Start Adventure", icon: "gamecontroller")
                         }
-                        
-                        Button(action: {
-                            navigation = .queue
-                            // websocketManager.connect()
-                            setupWebsocketConnection()
-                        }) {
-                            MenuButton(text: "Find Match", icon: "magnifyingglass")
+                        HStack {
+                            Button(action: {
+                                //                          navigation = .queue
+                                setupWebsocketConnection()
+                            }) {
+                                MenuButton(text: "Find Match1", icon: "magnifyingglass")
+                            }
+                            
+                            Button(action: {
+                                navigation = .queue
+                                setupWebsocketConnection2()
+                            }) {
+                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
+                            }
                         }
                         
                         Button(action: {
@@ -410,11 +417,32 @@ struct MainMenuView: View {
             // Check connection on main actor
             await MainActor.run {
                 if websocketManager.isConnected {
-                    print("WebSocket connected! Finding match...")
-//                    websocketManager.findMatch(username: "PlayerOfC")
-                    websocketManager.findMatch(username: "PlayerJanus@phone.com!!", id: "11111111-1111-1111-1111-111111111110")
+                    print("WebSocket connected! player 1: Finding match  ...")
+                    //                    websocketManager.findMatch(username: "PlayerOfC")
+                    websocketManager.findMatch(username: "Player1", id: "11111111-1111-1111-1111-111111111111")
+                //  websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test
                 } else {
                     print("WebSocket not connected after 2 seconds")
+                }
+            }
+        }
+    }
+        private func setupWebsocketConnection2() {
+            websocketManager.connect()
+            Task {
+                // Wait 2 seconds
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+                
+                // Check connection on main actor
+                await MainActor.run {
+                    if websocketManager.isConnected {
+                        print("WebSocket connected! player 2: Finding match  ...")
+                        //                    websocketManager.findMatch(username: "PlayerOfC")
+//                        websocketManager.findMatch(username: "Player1", id: "11111111-1111-1111-1111-111111111111")
+                       websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test
+                    } else {
+                        print("WebSocket not connected after 2 seconds")
+                    }
                 }
             }
         }
@@ -431,7 +459,7 @@ struct MainMenuView: View {
          }
          }
          */
-    }
+    
 }
 
 // Helper view for menu buttons

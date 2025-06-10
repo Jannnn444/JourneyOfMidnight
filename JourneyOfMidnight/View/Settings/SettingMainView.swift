@@ -10,8 +10,6 @@ import SwiftUI
 
 struct SettingMainView: View {
     @ObservedObject var musicManager = MusicManager.shared
-//  @State private var isMusicEnabled = true
-//  @State private var showSettings = false //when its false, go to mainpage (how)
     
     var body: some View {
         

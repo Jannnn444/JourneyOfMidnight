@@ -34,10 +34,6 @@ class WebSocketManager: NSObject, ObservableObject {
     private var urlSession: URLSession!
     private var messageSubscriptions = Set<AnyCancellable>()
     
-    let playerId = UUID().uuidString
-
-    private var playerUsername: String = "Player"
-    
     // MARK: - 狀態管理
     @Published var connectionState: ConnectionState = .disconnected
     @Published var queueState: QueueState = .notInQueue
@@ -49,9 +45,16 @@ class WebSocketManager: NSObject, ObservableObject {
     // MARK: - 配對狀態管理
     @Published var queueStatus: QueueStatus = .waiting
     @Published var currentPlayers: [String] = []
+
     @Published var gameId: String? = nil
     @Published var isMatchReady: Bool = false
     @Published var jsonStringMsg: String? = nil
+    
+    
+    @Published var playerId = UUID().uuidString
+    @Published var playerId2 = UUID().uuidString
+    @Published var playerUsername: String = "Player"
+    @Published var playerUsername2: String = "Player2"
     
     enum QueueStatus {
         case waiting
@@ -491,7 +494,8 @@ class WebSocketManager: NSObject, ObservableObject {
             lastError = .notConnected
             return
         }
-        resetQueueStatus()
+//        resetQueueStatus()
+        self.playerId = id
         self.playerUsername = username
         self.currentPlayers.append(username) // new add for queue
         self.playerInQueueForTesting.append(FindMatchPayload(id: id, username: username)) // new add for queu
@@ -499,18 +503,48 @@ class WebSocketManager: NSObject, ObservableObject {
        
         print("Now current player in queue: \(currentPlayers.self.description)")
         print("Now player number: \(self.currentPlayers.count)")
+        print("The player id \(String(describing: self.gameId))")
         
         let action = FindMatchAction(
             action: "find_match",
 //          payload: FindMatchPayload(id: playerId, username: username) // this for when normal case, one phone one id!
             payload: FindMatchPayload(id: id, username: username) // this for testing !!!! MOCK DATA For test manually add players
         )
-        
         Task {
             await sendMessage(action)
             startQueueKeepAlive()
         }
     }
+    
+    /// 尋找遊戲匹配
+    func findMatch2(username: String, id: String) {
+        guard isConnected else {
+            lastError = .notConnected
+            return
+        }
+//        resetQueueStatus()
+        self.playerId2 = id
+        self.playerUsername2 = username
+        self.currentPlayers.append(username) // new add for queue
+        self.playerInQueueForTesting.append(FindMatchPayload(id: id, username: username)) // new add for queu
+        queueState = .searching
+       
+        print("Now current player in queue: \(currentPlayers.self.description)")
+        print("Now player number: \(self.currentPlayers.count)")
+        print("The player id \(String(describing: self.gameId))")
+        
+        let action = FindMatchAction(
+            action: "find_match",
+//          payload: FindMatchPayload(id: playerId, username: username) // this for when normal case, one phone one id!
+            payload: FindMatchPayload(id: id, username: username) // this for testing !!!! MOCK DATA For test manually add players
+        )
+        Task {
+            await sendMessage(action)
+            startQueueKeepAlive()
+        }
+    }
+    
+    
     
     /// 取消排隊
     func cancelQueue() {
@@ -653,12 +687,17 @@ class WebSocketManager: NSObject, ObservableObject {
         stopQueueKeepAlive()
     }
     
-    func checkCurrentPlayerQueue(username: String, id: String) -> String {
-        
-        
-        
-        return ""
+    func checkPlayerQueuePosition(playerId: String, queueList: [FindMatchPayload]) -> (Int,String) {
+        for (index, payload) in queueList.enumerated() {
+            if payload.id == playerId {
+                
+                
+                return (index, "") // Return 1-based position, if we have to index + 1
+            }
+        }
+        return (0, "Player not found in queue")
     }
+    
 }
 
 // MARK: - === URLSessionWebSocketDelegate ===
