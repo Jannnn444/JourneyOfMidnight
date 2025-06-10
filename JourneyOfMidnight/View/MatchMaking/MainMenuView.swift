@@ -282,8 +282,10 @@ struct MainMenuView: View {
                             QueueView(navigation: $navigation)
                             
                         } else {
+                            QueueView(navigation: $navigation)
+                            /*
                             VStack {
-                                // MARK: QUEUE: Shows when no server found
+                                // MARK: QUEUE: Shows message when no server found !!
                                 
                                 Text("Cannot connect to server")
                                     .font(.headline.bold())
@@ -306,9 +308,8 @@ struct MainMenuView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                 }
-                                
-                          
                             }
+                            */
                         }
                     }
                 }
