@@ -22,12 +22,12 @@ struct QueueView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(" Game Lobby ")
+                Text("  ") // Game Lobby
                     .font(.title)
                     .fontWeight(.bold)
                     .fontDesign(.monospaced)
                     .foregroundColor(.white)
-                    .padding()
+                    .padding(.horizontal)
                 
                 // MARK: QUEUE ! show alarm text
                 
@@ -168,7 +168,7 @@ struct QueueView: View {
                             .padding()
                     }
                     
-                    // Player Info (shown after 5 seconds, by onAppear)
+                    // Player Info (shown after 3 seconds, by onAppear)
                     if showPlayerInfo {
                         VStack(spacing: 10) {
                             Text("Players in queue: \(websocketManager.currentPlayers.count)/2")
@@ -340,9 +340,9 @@ struct QueueView: View {
             }
         }
         .onAppear {
-            // Show player info after 5 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                withAnimation(.easeInOut(duration: 0.5)) {
+            // Show player info after 3 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                withAnimation(.easeInOut(duration: 0.6)) {
                     showPlayerInfo = true
                 }
             }
