@@ -30,16 +30,6 @@ struct QueueView: View {
                     .padding()
                 
                 // MARK: QUEUE ! show alarm text
-//                if Int(websocketManager.checkCurrentPlayerQueuePosition(playerId: websocketManager.playerId, queueList: websocketManager.playerInQueueForTesting))  == 1 {
-//                    Text("You are next")
-//                        .padding()
-//                        .font(.headline.bold())
-//                        .foregroundColor(.black)
-//                        .background(Color.white.opacity(0.6))
-//                        .cornerRadius(12)
-//                        .padding()
-//                }
-//                
                 
                 // check by count
                 if websocketManager.currentPlayers.count == 1 {
@@ -133,7 +123,7 @@ struct QueueView: View {
                                 .font(.title)
                             Text("Match Found!")
                                 .fontWeight(.bold)
-                check                .fontDesign(.monospaced)
+                                .fontDesign(.monospaced)
                                 .foregroundColor(.green)
                                 .padding()
                             Text("Starting game...")
@@ -203,18 +193,18 @@ struct QueueView: View {
                     // MARK: QUEUE ! player button - testing use player data - Queue Mock Datas
                         HStack {
                             // Player 1
-                            Button("🐶") {
-//                                websocketManager.findMatch(username: "Player 1")
-                                websocketManager.findMatch2(username: "2", id: "11111111-1111-1111-1111-111111111112")
-//                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
-//                                websocketManager.currentPlayers.append("Player2")
-                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                print("Now player number: \(websocketManager.currentPlayers.count)")
-                            }
-                            .padding()
-                            .background(Color.fromHex(selectedColorName).opacity(0.7))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+//                            Button("🐶") {
+////                                websocketManager.findMatch(username: "Player 1")
+//                                websocketManager.findMatch2(username: "2", id: "11111111-1111-1111-1111-111111111112")
+////                                websocketManager.playerInQueueForTesting.append(FindMatchPayload(id: websocketManager.playerId, username: "Player2"))
+////                                websocketManager.currentPlayers.append("Player2")
+//                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+//                                print("Now player number: \(websocketManager.currentPlayers.count)")
+//                            }
+//                            .padding()
+//                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
                             
 //                            // Player 2
 //                            Button("🦊") {
@@ -287,37 +277,37 @@ struct QueueView: View {
 //                            .cornerRadius(10)
 //                            
                             // Clear, remove all
-                            Button("🥚") {
-                                websocketManager.playerInQueueForTesting.removeAll()
-                                websocketManager.currentPlayers.removeAll()
-                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                print("Now player number: \(websocketManager.currentPlayers.count)")
-                            }
-                            .padding()
-                            .background(Color.fromHex(selectedColorName).opacity(0.7))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                            
-                            Button("😇") {
-                                let checkNow = websocketManager.checkPlayerQueuePosition(playerId: websocketManager.playerId, queueList: websocketManager.playerInQueueForTesting)
-                                print("Check the index for potion now: \(checkNow)")
-                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
-                                print("Now player index number: \(websocketManager.currentPlayers.count)")
-                            }
-                            .padding()
-                            .background(Color.fromHex(selectedColorName).opacity(0.7))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+//                            Button("🥚") {
+//                                websocketManager.playerInQueueForTesting.removeAll()
+//                                websocketManager.currentPlayers.removeAll()
+//                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+//                                print("Now player number: \(websocketManager.currentPlayers.count)")
+//                            }
+//                            .padding()
+//                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                            
+//                            Button("😇") {
+//                                let checkNow = websocketManager.checkPlayerQueuePosition(playerId: websocketManager.playerId, queueList: websocketManager.playerInQueueForTesting)
+//                                print("Check the index for potion now: \(checkNow)")
+//                                print("Now current player in queue: \(websocketManager.currentPlayers.description)")
+//                                print("Now player index number: \(websocketManager.currentPlayers.count)")
+//                            }
+//                            .padding()
+//                            .background(Color.fromHex(selectedColorName).opacity(0.7))
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
                             
                             // back menu
-                            Button("Back") {
-                                navigation = .home
-                                websocketManager.currentPlayers = []
-                            }
-                            .padding()
-                            .background(Color.fromHex(selectedColorName))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+//                            Button("Back") {
+//                                navigation = .home
+//                                websocketManager.currentPlayers = []
+//                            }
+//                            .padding()
+//                            .background(Color.fromHex(selectedColorName))
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
                             
                             
                         } // MOCK DATA - add players maniually but mock data!
@@ -345,7 +335,7 @@ struct QueueView: View {
         }
         .onAppear {
             // Show player info after 5 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 withAnimation(.easeInOut(duration: 0.5)) {
                     showPlayerInfo = true
                 }

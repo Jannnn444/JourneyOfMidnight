@@ -83,18 +83,18 @@ struct MainMenuView: View {
                         }
                         HStack {
                             Button(action: {
-                                //                          navigation = .queue
+                                navigation = .queue
                                 setupWebsocketConnection()
                             }) {
                                 MenuButton(text: "Find Match1", icon: "magnifyingglass")
                             }
                             
-                            Button(action: {
-                                navigation = .queue
-                                setupWebsocketConnection2()
-                            }) {
-                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
-                            }
+//                            Button(action: {
+//                                navigation = .queue
+//                                setupWebsocketConnection2()
+//                            }) {
+//                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
+//                            }
                         }
                         
                         Button(action: {
@@ -419,8 +419,8 @@ struct MainMenuView: View {
                 if websocketManager.isConnected {
                     print("WebSocket connected! player 1: Finding match  ...")
                     //                    websocketManager.findMatch(username: "PlayerOfC")
-                    websocketManager.findMatch(username: "Player1", id: "11111111-1111-1111-1111-111111111111")
-                //  websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test
+                    websocketManager.findMatch(username: "Player1", id: "11111111-1111-1111-1111-111111111111") // -> 1 player
+                    websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test -> 2 players add
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }
@@ -437,8 +437,6 @@ struct MainMenuView: View {
                 await MainActor.run {
                     if websocketManager.isConnected {
                         print("WebSocket connected! player 2: Finding match  ...")
-                        //                    websocketManager.findMatch(username: "PlayerOfC")
-//                        websocketManager.findMatch(username: "Player1", id: "11111111-1111-1111-1111-111111111111")
                        websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test
                     } else {
                         print("WebSocket not connected after 2 seconds")

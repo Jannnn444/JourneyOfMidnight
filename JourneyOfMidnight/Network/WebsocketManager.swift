@@ -503,7 +503,7 @@ class WebSocketManager: NSObject, ObservableObject {
        
         print("Now current player in queue: \(currentPlayers.self.description)")
         print("Now player number: \(self.currentPlayers.count)")
-        print("The player id \(String(describing: self.gameId))")
+        print("The player id \(String(describing: self.playerId))")
         
         let action = FindMatchAction(
             action: "find_match",
@@ -531,7 +531,7 @@ class WebSocketManager: NSObject, ObservableObject {
        
         print("Now current player in queue: \(currentPlayers.self.description)")
         print("Now player number: \(self.currentPlayers.count)")
-        print("The player id \(String(describing: self.gameId))")
+        print("The player id \(String(describing: self.playerId2))")
         
         let action = FindMatchAction(
             action: "find_match",
@@ -687,21 +687,71 @@ class WebSocketManager: NSObject, ObservableObject {
         stopQueueKeepAlive()
     }
     
-    func checkPlayerQueuePosition(playerId: String, queueList: [FindMatchPayload]) -> (Int,String) {
+//    func checkPlayerQueuePosition(playerId: String, queueList: [FindMatchPayload]) -> (Int,String) {
+//        for (index, payload) in queueList.enumerated() {
+//            var result = ""
+//            if payload.id == playerId {
+//               
+//                if index == 0 {
+//                    result = "You are next!"
+//                } else if index == 1 {
+//                    result = "Congrats! You found match! \nReady to fight? :)"
+//                } else if index == 2 && index == 3 {
+//                    result = "Queuing: Short waiting ! "
+//                } else if index > 4 {
+//                    result = "Queuing: Medium waiting ! "
+//                }
+//                return (index, result) // Return 1-based position, if we have to index + 1
+//            }
+//        }
+//        return (0, "Player not found in queue")
+//    }
+    
+    // MARK: - Fixed Queue Position Function
+    func checkPlayerQueuePosition(playerId: String, queueList: [FindMatchPayload]) -> (Int, String) {
         for (index, payload) in queueList.enumerated() {
-            var result = ""
             if payload.id == playerId {
-               
+                let position = index + 1 // Convert to 1-based position
+                var result = ""
+                
+                // Logic based on total players in queue (similar to your count logic)
+                let totalPlayers = queueList.count
+                
+                if totalPlayers == 1 {
+                    result = "You are next!"
+                } else if totalPlayers == 2 {
+                    result = "Congrats! You found match! \nReady to fight? :)"
+                } else if totalPlayers == 3 || totalPlayers == 4 {
+                    result = "Queuing: Short waiting ! "
+                } else if totalPlayers >= 5 {
+                    result = "Queuing: Medium waiting ! "
+                }
+                
+                return (position, result)
+            }
+        }
+        return (0, "Player not found in queue")
+    }
+
+    // MARK: - Alternative: Position-based logic function
+    func checkPlayerQueuePositionByIndex(playerId: String, queueList: [FindMatchPayload]) -> (Int, String) {
+        for (index, payload) in queueList.enumerated() {
+            if payload.id == playerId {
+                let position = index + 1 // Convert to 1-based position
+                var result = ""
+                
+                // Logic based on player's actual position in queue
                 if index == 0 {
                     result = "You are next!"
                 } else if index == 1 {
-                    result = "Congrats! You found match! \nReady to fight? :)"
-                } else if index == 2 && index == 3 {
+                    result = "You are 2nd in line"
+                } else if index >= 2 && index <= 3 {
                     result = "Queuing: Short waiting ! "
-                } else if index > 4 {
+                } else if index >= 4 {
                     result = "Queuing: Medium waiting ! "
                 }
-                return (index, result) // Return 1-based position, if we have to index + 1
+                
+                return (position, result)
             }
         }
         return (0, "Player not found in queue")
