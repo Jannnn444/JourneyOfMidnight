@@ -689,10 +689,19 @@ class WebSocketManager: NSObject, ObservableObject {
     
     func checkPlayerQueuePosition(playerId: String, queueList: [FindMatchPayload]) -> (Int,String) {
         for (index, payload) in queueList.enumerated() {
+            var result = ""
             if payload.id == playerId {
-                
-                
-                return (index, "") // Return 1-based position, if we have to index + 1
+               
+                if index == 0 {
+                    result = "You are next!"
+                } else if index == 1 {
+                    result = "Congrats! You found match! \nReady to fight? :)"
+                } else if index == 2 && index == 3 {
+                    result = "Queuing: Short waiting ! "
+                } else if index > 4 {
+                    result = "Queuing: Medium waiting ! "
+                }
+                return (index, result) // Return 1-based position, if we have to index + 1
             }
         }
         return (0, "Player not found in queue")
