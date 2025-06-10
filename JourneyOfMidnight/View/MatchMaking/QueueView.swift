@@ -31,78 +31,79 @@ struct QueueView: View {
                 
                 // MARK: QUEUE ! show alarm text
                 
-                // check by count
-                if websocketManager.currentPlayers.count == 1 {
-                    Text("You are next")
-                        .padding()
-                        .font(.headline.bold())
-                        .foregroundColor(.black)
-                        .background(Color.white.opacity(0.6))
-                        .cornerRadius(12)
-                        .padding()
-                } else if websocketManager.currentPlayers.count == 2 {
-                    VStack{
-                        Text("Congrats! You found match! \nReady to fight? :)")
-                            .lineLimit(nil)
-                            .padding()
-                            .font(.headline.bold())
-                            .foregroundColor(.black)
-                            .background(Color.white.opacity(0.6))
-                            .cornerRadius(12)
-                            .padding()
-                        HStack {
-                            Button("Yes") {
-                                // action to yes
-                                // when yes -> go to game
-                                EventCombat()
-                            } .padding()
-                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                            Button("No") {
-                                // action to no
-                                // back to main!
-                                navigation = .home
-                            } .padding()
-                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                            // back menu
-                            Button("Back") {
-                                navigation = .home
-                                websocketManager.currentPlayers = []
-                            }
-                            .padding()
-                            .background(Color.fromHex(selectedColorName))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                        }.padding()
-                    } // count == 2
-                } else if websocketManager.currentPlayers.count == 3 {
-                    Text("Queuing: Short waiting ! ")
-                        .padding()
-                        .font(.headline.bold())
-                        .foregroundColor(.black)
-                        .background(Color.white.opacity(0.6))
-                        .cornerRadius(12)
-                        .padding()
-                } else if websocketManager.currentPlayers.count == 4 {
-                    Text("Queuing: Short waiting ! ")
-                        .padding()
-                        .font(.headline.bold())
-                        .foregroundColor(.black)
-                        .background(Color.white.opacity(0.6))
-                        .cornerRadius(12)
-                        .padding()
-                } else if websocketManager.currentPlayers.count >= 5 {
-                    Text("Queuing: Medium waiting ! ")
-                        .padding()
-                        .font(.headline.bold())
-                        .foregroundColor(.black)
-                        .background(Color.white.opacity(0.6))
-                        .cornerRadius(12)
-                        .padding()
-                }
+                // CHECK BY IF ELSE
+                
+//                if websocketManager.currentPlayers.count == 1 {
+//                    Text("You are next")
+//                        .padding()
+//                        .font(.headline.bold())
+//                        .foregroundColor(.black)
+//                        .background(Color.white.opacity(0.6))
+//                        .cornerRadius(12)
+//                        .padding()
+//                } else if websocketManager.currentPlayers.count == 2 {
+//                    VStack{
+//                        Text("Congrats! You found match! \nReady to fight? :)")
+//                            .lineLimit(nil)
+//                            .padding()
+//                            .font(.headline.bold())
+//                            .foregroundColor(.black)
+//                            .background(Color.white.opacity(0.6))
+//                            .cornerRadius(12)
+//                            .padding()
+//                        HStack {
+////                            Button("Yes") {
+////                                // action to yes
+////                                // when yes -> go to game
+////                                EventCombat()
+////                            } .padding()
+////                                .background(Color.fromHex(selectedColorName).opacity(0.6))
+////                                .foregroundColor(.white)
+////                                .cornerRadius(10)
+////                            Button("No") {
+////                                // action to no
+////                                // back to main!
+////                                navigation = .home
+////                            } .padding()
+////                                .background(Color.fromHex(selectedColorName).opacity(0.6))
+////                                .foregroundColor(.white)
+////                                .cornerRadius(10)
+////                            // back menu
+////                            Button("Back") {
+////                                navigation = .home
+////                                websocketManager.currentPlayers = []
+////                            }
+////                            .padding()
+////                            .background(Color.fromHex(selectedColorName))
+////                            .foregroundColor(.white)
+////                            .cornerRadius(10)
+//                        }.padding()
+//                    } // count == 2
+//                } else if websocketManager.currentPlayers.count == 3 {
+//                    Text("Queuing: Short waiting ! ")
+//                        .padding()
+//                        .font(.headline.bold())
+//                        .foregroundColor(.black)
+//                        .background(Color.white.opacity(0.6))
+//                        .cornerRadius(12)
+//                        .padding()
+//                } else if websocketManager.currentPlayers.count == 4 {
+//                    Text("Queuing: Short waiting ! ")
+//                        .padding()
+//                        .font(.headline.bold())
+//                        .foregroundColor(.black)
+//                        .background(Color.white.opacity(0.6))
+//                        .cornerRadius(12)
+//                        .padding()
+//                } else if websocketManager.currentPlayers.count >= 5 {
+//                    Text("Queuing: Medium waiting ! ")
+//                        .padding()
+//                        .font(.headline.bold())
+//                        .foregroundColor(.black)
+//                        .background(Color.white.opacity(0.6))
+//                        .cornerRadius(12)
+//                        .padding()
+//                }
 
                 Spacer()
                 
@@ -115,6 +116,22 @@ struct QueueView: View {
                             .fontDesign(.monospaced)
                             .foregroundColor(.white)
                             .padding()
+                        // Cancel Button
+                        Button(action: {
+                            navigation = .home
+                            websocketManager.cancelQueue()
+                            websocketManager.disconnect()
+                        }) {
+                            Text("Cancel")
+                                .fontWeight(.bold)
+                                .fontDesign(.monospaced)
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding(.top, 30)
+                        .padding(.bottom, 20)
                         
                     case .found:
                         VStack(spacing: 10) {
@@ -188,7 +205,11 @@ struct QueueView: View {
                             }
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
+                        .onAppear {  // Inside the if block
+                               websocketManager.queueStatus = .found
+                        }
                     }
+                     
                     
                     // MARK: QUEUE ! player button - testing use player data - Queue Mock Datas
                         HStack {
@@ -315,27 +336,12 @@ struct QueueView: View {
                 
                 Spacer()
                 
-                // Cancel Button
-                Button(action: {
-                    navigation = .home
-                    websocketManager.cancelQueue()
-                    websocketManager.disconnect()
-                }) {
-                    Text("Cancel")
-                        .fontWeight(.bold)
-                        .fontDesign(.monospaced)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.top, 30)
-                .padding(.bottom, 20)
+               
             }
         }
         .onAppear {
             // Show player info after 5 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                 withAnimation(.easeInOut(duration: 0.5)) {
                     showPlayerInfo = true
                 }

@@ -85,8 +85,9 @@ struct MainMenuView: View {
                             Button(action: {
                                 navigation = .queue
                                 setupWebsocketConnection()
+                                websocketManager.resetQueueStatus() //!
                             }) {
-                                MenuButton(text: "Find Match1", icon: "magnifyingglass")
+                                MenuButton(text: "Find Match", icon: "magnifyingglass")
                             }
                             
 //                            Button(action: {

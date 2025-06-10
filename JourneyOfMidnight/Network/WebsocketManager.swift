@@ -116,7 +116,7 @@ class WebSocketManager: NSObject, ObservableObject {
     }
     
     /// 重置隊列狀態
-    private func resetQueueStatus() {
+    func resetQueueStatus() {
         queueStatus = .waiting
         currentPlayers = []
         gameId = nil
