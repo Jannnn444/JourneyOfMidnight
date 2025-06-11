@@ -17,11 +17,6 @@ struct EventVendorShop: View {
     var body: some View {
         ZStack {
         // MARK: - Banner and Event title
-//            Rectangle()
-//                .frame(width: 500, height: 350)
-//                .foregroundColor(.indigo.opacity(0.8))
-//                .cornerRadius(20)
-            
             VStack {
                 HStack {
                     Image("vendor")
