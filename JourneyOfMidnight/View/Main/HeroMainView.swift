@@ -18,7 +18,8 @@ struct HeroMainView: View {
     
     @State var selectedHeros: [Hero] = []
     @State var selectedEnemies: [Hero] = []
-    @State var selectedItems: [VendorGoods] = []
+//  @State var selectedItems: [VendorGoods] = []
+    @State var selectedItem: Item? = nil // when selected only need to show one item
     
     @State var eventState: Events
     @State var gold: Gold
@@ -39,8 +40,11 @@ struct HeroMainView: View {
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi) 
                 Spacer()
                 
+//            case .vendor:
+//                EventVendorShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
+//                Spacer()
             case .vendor:
-                EventVendorShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
+                EventVendorShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItem: $selectedItem)
                 Spacer()
                 
             case .inTheWoods:
@@ -53,7 +57,8 @@ struct HeroMainView: View {
             // MARK: PopUp (Hero & Enemy &Grocery)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-            EventVendorPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
+//            EventVendorPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
+            EventVendorSingleItemPopup(selectedItem: $selectedItem, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView)
             
             // MARK: Shuffle Button
             ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
@@ -100,42 +105,6 @@ struct CombatEventExample: View {
     }
 }
 
-// MARK: - Vendor Example with Popup
-struct VendorEventExample: View {
-    @State private var eventState: Events = .vendor
-    @State private var gold: Gold = Gold(gold: 1500)
-    @State private var selectedItems: [VendorGoods] = []
-    @State private var showDetailItemView: Bool = false
-    @State private var showMoreDetailItems: Bool = false
-    
-    var body: some View {
-        // Usage with popup content
-        MainTemplateWithPopupEvent(
-            content: EventVendorShop(
-                IsShowDetailItemView: $showDetailItemView,
-                showMoreDetail: $showDetailItemView,
-                selectedItems: $selectedItems
-            ),
-            eventState: $eventState,
-            gold: $gold,
-            popup: {
-                // Use Group with conditional content for the popup
-                Group {
-                    if !selectedItems.isEmpty && showMoreDetailItems {
-                        EventVendorPopup(
-                            selectedItems: $selectedItems,
-                            showDetailSkillView: $showDetailItemView,
-                            showMoreDetailItems: $showMoreDetailItems
-                        )
-                    } else {
-                        EmptyView()
-                    }
-                }
-            }
-        )
-    }
-}
-
 // MARK: - Forest Story Example
 struct ForestEventExample: View {
     @State private var eventState: Events = .inTheWoods
@@ -152,18 +121,3 @@ struct ForestEventExample: View {
     }
 }
 
-// Preview provider
-struct TemplateUsageExample_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CombatEventExample()
-                .previewDisplayName("Combat Event")
-            
-            VendorEventExample()
-                .previewDisplayName("Vendor Event")
-            
-            ForestEventExample()
-                .previewDisplayName("Forest Event")
-        }
-    }
-}

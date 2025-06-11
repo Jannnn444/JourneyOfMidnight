@@ -31,7 +31,7 @@ struct MainMenuView: View {
     // State for popup views
     @State private var selectedHeros: [Hero] = []
     @State private var selectedEnemies: [Hero] = []
-    @State private var selectedItems: [VendorGoods] = []
+    @State private var selectedItem: Item? = nil
     
     @State private var showDetailSkillViewHero: Bool = false
     @State private var showDetailSkillViewEnemi: Bool = false
@@ -117,7 +117,7 @@ struct MainMenuView: View {
                 
             case .game:
                 // Show the appropriate event screen based on eventState
-                Group {
+                
                     switch eventState {
                     case .combat:
                         ZStack {
@@ -143,7 +143,7 @@ struct MainMenuView: View {
                             EventScreenTemplate(
                                 eventState: $eventState,
                                 gold: $gold,
-                                selectedItems: $selectedItems,
+                                selectedItem: $selectedItem,
                                 showDetailItemView: $showDetailItemView,
                                 showMoreDetailItems: $showMoreDetailItems
                             )
@@ -172,7 +172,7 @@ struct MainMenuView: View {
                             )
                         }
                     }
-                }
+                
                 
                 // Add back button to return to main menu
                 VStack {

@@ -1,5 +1,5 @@
 //
-//  EventGroceryShop.swift
+//  EventVendorShop.swift
 //  JourneyOfMidnight
 //
 //  Created by yucian huang on 2025/4/19.
@@ -12,7 +12,7 @@ struct EventVendorShop: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var IsShowDetailItemView:  Bool
     @Binding var showMoreDetail: Bool
-    @Binding var selectedItems : [VendorGoods]
+    @Binding var selectedItem: Item?
     
     var body: some View {
         ZStack {
@@ -22,9 +22,6 @@ struct EventVendorShop: View {
 //                .foregroundColor(.indigo.opacity(0.8))
 //                .cornerRadius(20)
             
-//            Image("banner")
-//                .frame(width: 400, height: 200)
-//                .padding()
             VStack {
                 HStack {
                     Image("vendor")
@@ -48,6 +45,8 @@ struct EventVendorShop: View {
                 ForEach(item.item) { i in
                 Button(action: {
                     IsShowDetailItemView.toggle() // Button for shows brief skill
+                    cardManager.showMoreDetailItems = true
+                    selectedItem = i
                 }) {
                     ZStack {
                         Rectangle()
@@ -105,16 +104,10 @@ struct EventVendorShop: View {
                                 
                             if IsShowDetailItemView {
                                 VStack(alignment: .leading) {
-                                  Button(action: {
-                                      cardManager.showMoreDetailItems = true
-                                      selectedItems.append(item)   // add the whole struct
-                                  }) {
-                                      DetailItemView(item: i)
-                                      
-                                  }
+                                    // Updated to use DetailItemView instead of the old logic
+                                    DetailItemView(item: i)
                                 }
                             }
-                            
                             }
                         }
                     } // Zstack

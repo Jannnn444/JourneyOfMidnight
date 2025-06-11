@@ -81,6 +81,7 @@ class CardManager: ObservableObject {
             Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "god", power: 8)], items: [Item(name: "holybook", intro: "Spirit"), Item(name: "cross", intro: "Belief")], stats: Stats(health: 100, endurance: 500)),
             Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7),Skill(name: "fist", power: 6)], items: [Item(name: "fakeID", intro: "detect using"), Item(name: "letter", intro: "read")], stats: Stats(health: 100, endurance: 500))
         ]
+        
         self.vendorGoods = [VendorGoods(item: [
             Item(name: "Artifacts", intro: "Power"),
             Item(name: "Morning Star", intro: "Brutal Weapon"),

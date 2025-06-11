@@ -5,6 +5,13 @@
 //  Created by Hualiteq International on 2025/5/1.
 //
 
+//
+//  EventScreenTemplate.swift
+//  JourneyOfMidnight
+//
+//  Created by Hualiteq International on 2025/5/1.
+//
+
 import SwiftUI
 
 // A concrete implementation of a template for event screens without generics
@@ -61,7 +68,7 @@ struct EventScreenTemplate: View {
     init(
         eventState: Binding<Events>,
         gold: Binding<Gold>,
-        selectedItems: Binding<[VendorGoods]>,
+        selectedItem: Binding<Item?>,
         showDetailItemView: Binding<Bool>,
         showMoreDetailItems: Binding<Bool>
     ) {
@@ -73,14 +80,14 @@ struct EventScreenTemplate: View {
             EventVendorShop(
                 IsShowDetailItemView: showDetailItemView,
                 showMoreDetail: showDetailItemView,
-                selectedItems: selectedItems
+                selectedItem: selectedItem
             )
         )
         
         // Create event popup content
         self.eventPopupContent = AnyView(
             EventVendorPopup(
-                selectedItems: selectedItems,
+                selectedItem: selectedItem,
                 showDetailSkillView: showDetailItemView,
                 showMoreDetailItems: showMoreDetailItems
             )
@@ -170,7 +177,7 @@ struct CombatScreenExample: View {
 struct VendorScreenExample: View {
     @State private var eventState: Events = .vendor
     @State private var gold: Gold = Gold(gold: 1500)
-    @State private var selectedItems: [VendorGoods] = []
+    @State private var selectedItem: Item? = nil
     @State private var showDetailItemView: Bool = false
     @State private var showMoreDetailItems: Bool = false
     
@@ -178,7 +185,7 @@ struct VendorScreenExample: View {
         EventScreenTemplate(
             eventState: $eventState,
             gold: $gold,
-            selectedItems: $selectedItems,
+            selectedItem: $selectedItem,
             showDetailItemView: $showDetailItemView,
             showMoreDetailItems: $showMoreDetailItems
         )
