@@ -90,12 +90,12 @@ struct MainMenuView: View {
                                 MenuButton(text: "Find Match", icon: "magnifyingglass")
                             }
                             
-//                            Button(action: {
+//                          Button(action: {
 //                                navigation = .queue
 //                                setupWebsocketConnection2()
-//                            }) {
+//                          }) {
 //                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
-//                            }
+//                          }
                         }
                         
                         Button(action: {
@@ -420,9 +420,9 @@ struct MainMenuView: View {
             await MainActor.run {
                 if websocketManager.isConnected {
                     print("WebSocket connected! player 1: Finding match  ...")
-                    //                    websocketManager.findMatch(username: "PlayerOfC")
+                    //  websocketManager.findMatch(username: "PlayerOfC")
                     websocketManager.findMatch(username: "Player1", id: "11111111-1111-1111-1111-111111111111") // -> 1 player
-                    websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test -> 2 players add
+                    // tmp for test -> 2 players add
                 } else {
                     print("WebSocket not connected after 2 seconds")
                 }

@@ -5,7 +5,6 @@
 //  Created by yucian huang on 2025/4/19.
 //
 
-import Foundation
 import SwiftUI
 
 struct EnemyCardSetWSkill: View {
