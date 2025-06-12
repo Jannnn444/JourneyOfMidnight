@@ -494,7 +494,7 @@ class WebSocketManager: NSObject, ObservableObject {
             lastError = .notConnected
             return
         }
-//        resetQueueStatus()
+        resetQueueStatus()
         self.playerId = id
         self.playerUsername = username
         self.currentPlayers.append(username) // new add for queue
