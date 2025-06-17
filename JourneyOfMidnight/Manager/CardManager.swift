@@ -14,7 +14,7 @@ class CardManager: ObservableObject {
     @Published var skillName: String = ""
     @Published var skillType: SkillType = .Defense
     @Published var showAbilityDetailView: Bool = false
-    @Published var hero: [Hero]
+    @Published var myHeroCards: [Hero] // Note: this for player' s card set
     @Published var enemy: [Hero]
     @Published var showMoreDetailItems: Bool = false
     @Published var showMoreDetail: Bool = false
@@ -42,7 +42,7 @@ class CardManager: ObservableObject {
     let abilityBoxHeight: CGFloat = 15
     
     private init() {
-        self.hero = [Hero(
+        self.myHeroCards = [Hero(
             heroClass:
                 HeroClass(name: .fighter, level: 10),
             attributes: Attributes(

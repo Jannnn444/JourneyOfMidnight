@@ -12,7 +12,7 @@ struct ABILITYVIEW: View {
     
     var body: some View {
         VStack {
-            ForEach(cardManager.hero) { hero in
+            ForEach(cardManager.myHeroCards) { hero in
                 Text(hero.heroClass.name.rawValue)
                 Text(hero.skills[0].name)
                 Text(hero.items[0].name)

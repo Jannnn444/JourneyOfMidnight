@@ -17,7 +17,7 @@ struct CardHeroSetView: View {
     var body: some View {
         
         HStack {
-            ForEach(cardManager.hero) { hero in
+            ForEach(cardManager.myHeroCards) { hero in
                 Button(action: {
                     IsShowDetailSkillView.toggle() // Button for shows brief skill
                 }) {
