@@ -167,7 +167,7 @@ class WebSocketManager: NSObject, ObservableObject {
 //            throw WebSocketError.sendFailed(error)
 //        }
 //    }
-//  
+  
     /// 底層消息發送（會拋出錯誤）- Updated to differentiate sent vs received
     private func sendGameAction<T: Codable>(_ action: T) async throws {
         guard isConnected else {
@@ -494,7 +494,7 @@ class WebSocketManager: NSObject, ObservableObject {
             lastError = .notConnected
             return
         }
-//        resetQueueStatus()
+        resetQueueStatus()
         self.playerId = id
         self.playerUsername = username
         self.currentPlayers.append(username) // new add for queue
