@@ -167,7 +167,7 @@ class WebSocketManager: NSObject, ObservableObject {
 //            throw WebSocketError.sendFailed(error)
 //        }
 //    }
-//  
+  
     /// 底層消息發送（會拋出錯誤）- Updated to differentiate sent vs received
     private func sendGameAction<T: Codable>(_ action: T) async throws {
         guard isConnected else {
