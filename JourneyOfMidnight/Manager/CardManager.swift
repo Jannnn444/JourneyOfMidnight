@@ -140,6 +140,15 @@ struct Hero: Identifiable {
     var stats: Stats
 }
 
+struct Follower: Identifiable {
+    var id = UUID()
+    var heroClass: HeroClass
+    var attributes: Attributes
+    var skills: [Skill]
+    var items: [Item]
+    var stas: Stats
+}
+
 struct HeroClass {
     var name: HeroClassName
     var level: Int
