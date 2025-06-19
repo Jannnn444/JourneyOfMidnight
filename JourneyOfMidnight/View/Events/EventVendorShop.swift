@@ -104,8 +104,7 @@ struct EventVendorShop: View {
                                 
                             if IsShowDetailItemView {
                                 VStack(alignment: .leading) {
-                                    // Updated to use DetailItemView instead of the old logic
-                                    DetailItemView(item: i)
+                                    DetailItemView(item: i)  //maybe show detail when finger hover it?
                                 }
                             }
                             }

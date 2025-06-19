@@ -25,7 +25,7 @@ struct DetailItemView: View {
                 Button(action: {
                     // Purchase Logic TBD
                 }) {
-                    Text("Purchase")
+                    Text("Buy")   // add this into my bag! -->>> now we need a bag
                         .font(.caption)
                         .foregroundStyle(.black)
                         .fontDesign(.monospaced)
