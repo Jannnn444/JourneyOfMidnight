@@ -2,7 +2,7 @@
 //  PickerBar.swift
 //  JourneyOfMidnight
 //
-//  Created by Jan    on 2025/6/5.
+//  Created by Jan on 2025/6/5.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ struct PickerBar: View {
                             .tag(color)
                     }
                 }
-            
+
         }
     }
 }
