@@ -141,12 +141,27 @@ struct EventScreenTemplate: View {
             if let popup = eventPopupContent {
                 popup
             }
-            
-            // Next day button
-            ButtomButton(eventState: $eventState, textOnButton: "Next Day")
-                .padding()
-                .padding(.bottom, 40)
-            
+            VStack {
+                Spacer() // push to the buttom
+                HStack {
+                    Spacer()  // push to right
+                    // Next day button
+                    ButtomButton(eventState: $eventState, textOnButton: "Next Day")
+                    Button(action: {
+                        //bag view
+                    }) {
+                        Text("Bag")
+                            .padding()
+                            .fontDesign(.monospaced)
+                            .background(.blue.opacity(0.6))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+            }
+            .padding(.bottom, 60)
+            .padding()
+                
             // Gold display
             GoldView(gold: $gold)
                 .padding()

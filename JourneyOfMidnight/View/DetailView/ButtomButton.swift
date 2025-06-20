@@ -13,23 +13,22 @@ struct ButtomButton: View {
     let textOnButton: String
     
     var body: some View {
-        VStack {
-            Spacer() // push to the buttom
-            HStack {
-                Spacer()  // push to right
+//        VStack {
+//            Spacer() // push to the buttom
+//            HStack {
+//                Spacer()  // push to right
                 Button(action: {
                     eventState = shuffleEvents()
                 }) {
                     Text(textOnButton)
                         .padding()
                         .fontDesign(.monospaced)
-//                      .background(Color.green)
                         .background(Color.fromHex(selectedColorName).opacity(0.6))
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-                .padding()
+//                .padding()
             }
-        }
-    }
+//        }
+//    }
 }

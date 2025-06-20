@@ -64,6 +64,8 @@ struct SimpleTemplateWithPopup: View {
                 .padding()
                 .padding(.bottom, 40)
             
+            
+            
             // Gold display
             GoldView(gold: $gold)
                 .padding()

@@ -60,9 +60,10 @@ struct HeroMainView: View {
 //            EventVendorPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
             EventVendorSingleItemPopup(selectedItem: $selectedItem, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView)
             
-            // MARK: Shuffle Button
-            ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
-            
+            HStack {
+                // MARK: Shuffle Button
+//                ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
+            }
             // MARK: Gold
             GoldView(gold: $gold).padding()
         }
