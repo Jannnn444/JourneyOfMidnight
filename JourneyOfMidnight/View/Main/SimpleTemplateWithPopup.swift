@@ -59,11 +59,11 @@ struct SimpleTemplateWithPopup: View {
                 popupContent()
             }
             
-            // Next day button
-            ButtomButton(eventState: $eventState, textOnButton: "Next Day")
-                .padding()
-                .padding(.bottom, 40)
-            
+//            // Next day button
+//            ButtomButton(eventState: $eventState, textOnButton: "Next Day")
+//                .padding()
+//                .padding(.bottom, 40)
+//            
             
             
             // Gold display
