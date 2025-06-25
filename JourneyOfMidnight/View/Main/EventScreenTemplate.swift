@@ -29,6 +29,7 @@ struct EventScreenTemplate: View {
     @State private var selectedHeros: [Hero] = []
     @State private var showDetailSkillViewHero: Bool = false
     @State private var showMoreDetailHero: Bool = false
+    @State private var showBagView = false
     
     // For combat events
     init(
@@ -148,7 +149,8 @@ struct EventScreenTemplate: View {
                     // Next day button
                     ButtomButton(eventState: $eventState, textOnButton: "Next Day")
                     Button(action: {
-                        //bag view
+                        //bag vie
+                        showBagView = true
                     }) {
                         Text("Bag")
                             .padding()
@@ -158,6 +160,11 @@ struct EventScreenTemplate: View {
                             .cornerRadius(10)
                     }
                 }
+                
+                if(self.showBagView) {
+                    
+                }
+                
             }
             .padding(.bottom, 60)
             .padding()

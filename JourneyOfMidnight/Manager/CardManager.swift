@@ -22,6 +22,7 @@ class CardManager: ObservableObject {
     @Published var vendorGoods: [VendorGoods]
     @Published var gold: Gold
     @Published var stories: [Story]
+    @Published var itemInMyBag: [Item]
     
     @Published var navigation: Navigation = .home
     
@@ -99,6 +100,8 @@ class CardManager: ObservableObject {
                 Option(option: "Go village and look for food", effect: 6, effectType: .Faith), Option(option: "Rather eat yourself to stay loyal to the vow you have compromised the lord", effect: 3, effectType: .Vitality), Option(option: "Take this hunger to be better", effect: 3, effectType: .Charisma)
             ])
         ]
+        
+        self.itemInMyBag = [Item(name: "Apple", intro: "Sanity bar -10"), Item(name: "doggo", intro: "Sleep pal")]
     }
 }
 
