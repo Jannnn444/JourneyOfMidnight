@@ -16,7 +16,7 @@ struct BagView : View {
         Text("Here is my bag")
         Text("my gold number: \(gold)")
         ForEach(itemInMyBag) { item in
-            Text("Items in bag \(item)")
+            Text("Items in bag \(item.name)")
         }
        
     }

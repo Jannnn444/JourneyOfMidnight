@@ -62,7 +62,7 @@ struct HeroMainView: View {
             
             HStack {
                 // MARK: Shuffle Button
-//                ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
+//          ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
             }
             // MARK: Gold
             GoldView(gold: $gold).padding()

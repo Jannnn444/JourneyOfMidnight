@@ -150,7 +150,7 @@ struct EventScreenTemplate: View {
                     ButtomButton(eventState: $eventState, textOnButton: "Next Day")
                     Button(action: {
                         //bag vie
-                        showBagView = true
+                        showBagView.toggle()
                     }) {
                         Text("Bag")
                             .padding()
@@ -160,11 +160,6 @@ struct EventScreenTemplate: View {
                             .cornerRadius(10)
                     }
                 }
-                
-                if(self.showBagView) {
-                    
-                }
-                
             }
             .padding(.bottom, 60)
             .padding()
@@ -172,6 +167,11 @@ struct EventScreenTemplate: View {
             // Gold display
             GoldView(gold: $gold)
                 .padding()
+            if(self.showBagView) {
+                PopupView(content: {
+                    BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag)
+                })
+            }
         }
         .ignoresSafeArea()
     }
