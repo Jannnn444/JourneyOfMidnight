@@ -14,10 +14,20 @@ struct BagView : View {
     
     var body: some View {
         Text("Here is my bag")
-        Text("my gold number: \(gold)")
-        ForEach(itemInMyBag) { item in
-            Text("Items in bag \(item.name)")
+            .font(.largeTitle)
+            .fontDesign(.monospaced)
+        Text("Gold: \(gold.gold.description)")
+            .font(.title)
+            .fontDesign(.monospaced)
+        HStack {
+            ForEach(itemInMyBag) { item in
+                Image(item.name)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                Text("Items in bag \(item.name)")
+                    .font(.headline)
+                    .fontDesign(.monospaced)
+            }
         }
-       
     }
 }

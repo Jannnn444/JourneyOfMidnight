@@ -101,7 +101,7 @@ class CardManager: ObservableObject {
             ])
         ]
         
-        self.itemInMyBag = [Item(name: "Apple", intro: "Sanity bar -10"), Item(name: "doggo", intro: "Sleep pal")]
+        self.itemInMyBag = [Item(name: "apple", intro: "Sanity bar -10"), Item(name: "doggo", intro: "Sleep pal")]
     }
 }
 
