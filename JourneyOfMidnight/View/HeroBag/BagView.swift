@@ -19,21 +19,35 @@ struct BagView : View {
         Text("Gold: \(gold.gold.description)")
             .font(.title)
             .fontDesign(.monospaced)
-       
-            ForEach(itemInMyBag) { item in
-                HStack {
-                    Image(item.name)
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                    Text("\(item.name)")
-                        .font(.headline)
-                        .fontDesign(.monospaced)
-                    // MARK: - TBD:
-                    /*
-                     Click to show name below?
-                     Make a grid for bag.
-                     */
+        ZStack {
+            HStack(alignment: .top) {
+                // make grid
+                ForEach(0..<6, id: \.self) { index in
+                    HStack {
+                        Rectangle()
+                            .frame(width: 50, height: 50)
+                            .foregroundStyle(.brown)
+                    }
                 }
+            }
+            HStack(alignment: .top) {
+                ForEach(itemInMyBag) { item in
+                    HStack {
+                        Image(item.name)
+                            .resizable()
+                            .frame(width: 50, height: 50)
+//                        Text("\(item.name)")
+//                            .font(.headline)
+//                            .fontDesign(.monospaced)
+                        // MARK: - TBD:
+                        /*
+                         Click to show name below?
+                         Make a grid for bag.
+                         */
+                    }
+                }
+                
+            }
         }
     }
 }
