@@ -74,8 +74,7 @@ class CardManager: ObservableObject {
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                         skills: [Skill(name: "Moon", power: 8), Skill(name: "WolveCry", power: 9)],
                         items: [Item(name: "wands", intro: "Nature power needed"), Item(name: "Handbook", intro: "Cant be exchanged")],
-                        stats: Stats(health: 100, endurance: 500))
-        ]
+                        stats: Stats(health: 100, endurance: 500))]
         
         self.enemy = [
             Hero(heroClass: HeroClass(name: .wizard, level: 10), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4), Skill(name: "lightling", power: 3)], items: [Item(name: "cat", intro: "pet"), Item(name: "staff", intro: "weapon")], stats: Stats(health: 100, endurance: 500)),
