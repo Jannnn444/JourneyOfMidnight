@@ -19,15 +19,21 @@ struct BagView : View {
         Text("Gold: \(gold.gold.description)")
             .font(.title)
             .fontDesign(.monospaced)
-        HStack {
+       
             ForEach(itemInMyBag) { item in
-                Image(item.name)
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                Text("Items in bag \(item.name)")
-                    .font(.headline)
-                    .fontDesign(.monospaced)
-            }
+                HStack {
+                    Image(item.name)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                    Text("\(item.name)")
+                        .font(.headline)
+                        .fontDesign(.monospaced)
+                    // MARK: - TBD:
+                    /*
+                     Click to show name below?
+                     Make a grid for bag.
+                     */
+                }
         }
     }
 }
