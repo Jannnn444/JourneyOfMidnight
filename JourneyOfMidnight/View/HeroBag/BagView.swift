@@ -15,31 +15,33 @@ struct BagView: View {
     
     // Define grid layout - 3 columns for horizontal grid
     let columns = [
-        GridItem(.fixed(60), spacing: 10),
-        GridItem(.fixed(60), spacing: 10),
-        GridItem(.fixed(60), spacing: 10)
+        GridItem(.fixed(45), spacing: 8),
+        GridItem(.fixed(45), spacing: 8),
+        GridItem(.fixed(45), spacing: 8),
     ]
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Here is my bag")
-                .font(.title2)
-                .fontDesign(.monospaced)
-            
-            Text("Gold: \(gold.gold.description)")
+        VStack(spacing: 12) {
+            Text("My bag")
                 .font(.headline)
                 .fontDesign(.monospaced)
+                .foregroundStyle(.black)
+            
+            Text("Gold: \(gold.gold.description)")
+                .font(.subheadline)
+                .fontDesign(.monospaced)
+                .foregroundStyle(.black)
             
             // Grid container
-            LazyVGrid(columns: columns, spacing: 10) {
+            LazyVGrid(columns: columns, spacing: 8) {
                 // Create 6 slots (2 rows x 3 columns)
                 ForEach(0..<6, id: \.self) { index in
                     ZStack {
                         // Background slot
                         Rectangle()
-                            .frame(width: 60, height: 60)
-                            .foregroundStyle(.brown.opacity(0.3))
-                            .border(.brown, width: 2)
+                            .frame(width: 45, height: 45)
+                            .foregroundStyle(.brown.opacity(0.4))
+                            .border(.brown, width: 1)
                         
                         // Item if it exists
                         if index < itemInMyBag.count {
@@ -48,27 +50,34 @@ struct BagView: View {
                             }) {
                                 Image(itemInMyBag[index].name)
                                     .resizable()
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 38, height: 38)
                             }
                         }
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal, 8)
             
             // Show selected item name
             if let selectedItem = selectedItem {
                 Text("Selected: \(selectedItem.name)")
-                    .font(.headline)
+                    .font(.caption)
                     .fontDesign(.monospaced)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(8)
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(6)
+            } else {
+                // Placeholder to maintain layout
+                Text(" ")
+                    .font(.caption)
+                    .padding(.vertical, 4)
             }
-            
-            Spacer()
         }
-        .padding()
+        .frame(maxWidth: 380, maxHeight: 260)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
     }
 }
 
