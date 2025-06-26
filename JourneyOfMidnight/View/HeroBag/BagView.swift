@@ -11,7 +11,9 @@ import SwiftUI
 struct BagView: View {
     @State var gold: Gold
     @State var itemInMyBag: [Item]
-    @State private var selectedItem: Item?
+    @State var selectedItem: Item?
+    @ObservedObject var cardManager = CardManager.shared
+    @State var selectedHeroBag: [Item]
     
     // Define grid layout - 3 columns for horizontal grid
     let columns = [
@@ -76,6 +78,30 @@ struct BagView: View {
                     .font(.caption)
                     .padding(.vertical, 4)
             }
+            HStack {
+                ForEach(cardManager.myHeroCards) { hero in
+                    HStack {
+                        Circle()
+                            .fill(Color.gray.opacity(0.3))
+                            .frame(width: 60, height: 60)
+                            .overlay(
+                                Image(heroImage(for: hero.heroClass.name))
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                            )
+                            .overlay(
+                                Text("\(hero.heroClass.level)")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.white)
+                                    .padding(4)
+                                    .background(Color.black.opacity(0.7))
+                                    .clipShape(Circle())
+                                    .offset(x:20, y:-20)
+                            )
+                    }
+                }
+            }
         }
         .frame(maxWidth: 380, maxHeight: 260)
         .padding(.horizontal, 10)
@@ -83,17 +109,14 @@ struct BagView: View {
     }
 }
 
-// Preview
-struct BagView_Previews: PreviewProvider {
-    static var previews: some View {
-        BagView(
-            gold: Gold(gold: 1500),
-            itemInMyBag: [
-                Item(name: "Artifacts", intro: "Power"),
-                Item(name: "Morning Star", intro: "Brutal Weapon"),
-                Item(name: "Lucky Coin", intro: "Savethrows +1"),
-                Item(name: "Potion", intro: "Not a heal")
-            ]
-        )
-    }
-}
+private func heroImage(for heroClass: HeroClassName) -> String {
+    switch heroClass {
+       case .fighter: return "knight"
+       case .wizard: return "princess"
+       case .priest: return "priest"
+       case .duelist: return "duelist"
+       case .rogue: return "king"
+       case .templar: return "templar"
+       }
+   }
+

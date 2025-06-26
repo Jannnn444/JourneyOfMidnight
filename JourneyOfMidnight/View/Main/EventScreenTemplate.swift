@@ -169,7 +169,7 @@ struct EventScreenTemplate: View {
                 .padding()
             if(self.showBagView) {
                 PopupView(content: {
-                    BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag)
+                    BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag, selectedHeroBag: cardManager.itemInMyBagByHero)
                 })
             }
         }
