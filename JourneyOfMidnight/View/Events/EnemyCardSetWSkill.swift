@@ -53,7 +53,7 @@ struct EnemyCardSetWSkill: View {
                             .fontDesign(.monospaced)
                             .bold()
                             .font(.headline)
-                            .background(Color.secondary)
+                            .background(Color.gray)
                             .cornerRadius(10)
                     }
                 }

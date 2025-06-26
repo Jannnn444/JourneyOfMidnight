@@ -18,6 +18,8 @@ struct BagView: View {
         GridItem(.fixed(45), spacing: 8),
         GridItem(.fixed(45), spacing: 8),
         GridItem(.fixed(45), spacing: 8),
+        GridItem(.fixed(45), spacing: 8),
+        GridItem(.fixed(45), spacing: 8),
     ]
     
     var body: some View {
@@ -25,23 +27,23 @@ struct BagView: View {
             Text("My bag")
                 .font(.headline)
                 .fontDesign(.monospaced)
-                .foregroundStyle(.black)
+                .foregroundStyle(.white)
             
             Text("Gold: \(gold.gold.description)")
                 .font(.subheadline)
                 .fontDesign(.monospaced)
-                .foregroundStyle(.black)
+                .foregroundStyle(.white)
             
             // Grid container
             LazyVGrid(columns: columns, spacing: 8) {
                 // Create 6 slots (2 rows x 3 columns)
-                ForEach(0..<6, id: \.self) { index in
+                ForEach(0..<10, id: \.self) { index in
                     ZStack {
                         // Background slot
                         Rectangle()
                             .frame(width: 45, height: 45)
-                            .foregroundStyle(.brown.opacity(0.4))
-                            .border(.brown, width: 1)
+                            .foregroundStyle(.black.opacity(0.9))
+                            .border(.gray, width: 2)
                         
                         // Item if it exists
                         if index < itemInMyBag.count {
@@ -63,7 +65,7 @@ struct BagView: View {
                 Text("Selected: \(selectedItem.name)")
                     .font(.caption)
                     .fontDesign(.monospaced)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .background(Color.gray.opacity(0.3))

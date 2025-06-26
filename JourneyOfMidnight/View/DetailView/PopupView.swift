@@ -11,10 +11,12 @@ import SwiftUI
 struct PopupView<Content: View>: View {
     // store content
     let content: Content
+    var color: Color
     
     // init with content
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
+        self.color = Color.black
     }
     
     var body: some View {
@@ -24,7 +26,8 @@ struct PopupView<Content: View>: View {
         }.background(
             Rectangle()
                 .cornerRadius(20)
-                .foregroundColor(.gray)
+                .foregroundColor(color)
                 .frame(width: 400, height: 280))
+               
     }
 }
