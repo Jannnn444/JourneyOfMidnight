@@ -72,7 +72,7 @@ class CardManager: ObservableObject {
                         skills: [Skill(name: "Flower", power: 8), Skill(name: "WolveCry", power: 5)],
                         items: [Item(name: "wands", intro: "Nature source is needed"), Item(name: "Handbook", intro: "Handwritten")],
                         stats: Stats(health: 100, endurance: 500),
-                        bag: [Item(name: "apple", intro: "Food")]),
+                        bag: [Item(name: "doggo", intro: "Sleepy pal")]),
                      Hero(
                         heroClass: HeroClass(name: .priest, level: 50),
                         attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
@@ -109,7 +109,7 @@ class CardManager: ObservableObject {
             ])
         ]
         
-        self.itemInMyBag = [Item(name: "apple", intro: "Sanity bar -10"), Item(name: "doggo", intro: "Sleep pal")]
+        self.itemInMyBag = [Item(name: "apple", intro: "Sanity bar -10"), Item(name: "doggo", intro: "Sleepy pal")]
         self.itemInMyBagByHero = [Item(name: "apple", intro: "Sanity bar -10")]
     }
 }

@@ -99,6 +99,7 @@ struct BagView: View {
                                     .clipShape(Circle())
                                     .offset(x:20, y:-20)
                             )
+                            // when click on the icon, bag shows hero.bag ....
                     }
                 }
             }
