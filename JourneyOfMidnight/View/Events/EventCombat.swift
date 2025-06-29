@@ -22,14 +22,14 @@ struct EventCombat: View {
             HStack {
                 Image("fight")
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 30, height: 30)
                 Text("Battle For Glory")
-                    .font(.title)
+                    .font(.caption)
                     .bold()
                     .fontDesign(.monospaced)
                     .foregroundStyle(.black)
             } .padding()
-                .background(Color.white.opacity(0.8))
+//                .background(Color.white.opacity(0.8))
                 .cornerRadius(10)
             Spacer()
         }
