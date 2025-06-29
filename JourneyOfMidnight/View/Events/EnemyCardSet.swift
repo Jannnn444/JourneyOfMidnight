@@ -22,14 +22,18 @@ struct EnemyCardSet: View {
                 }) {
                     ZStack {
                         Rectangle()
-                            .frame(width: 100, height: 130)
-                            .foregroundColor(.brown)
+                            .frame(
+                                width: enemy.items.count == 2 ? 140 : 100,
+                                height: 130)
+                            .foregroundColor(.gray)
                             .cornerRadius(10)
                             .offset(x: 5)
                             .offset(y: 8)
                         Rectangle()
-                            .frame(width: 100, height: 130)
-                            .foregroundColor(.yellow)
+                            .frame(
+                                width: enemy.items.count == 2 ? 140 : 100,
+                                height: 130)
+                            .foregroundColor(.orange)
                             .cornerRadius(10)
                         
                         VStack() {
