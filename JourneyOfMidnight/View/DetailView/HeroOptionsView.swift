@@ -11,6 +11,19 @@
 //
 //  Created by Jan    on 2025/6/30.
 //
+//
+//  HeroOptionsView.swift
+//  JourneyOfMidnight
+//
+//  Created by Jan    on 2025/6/30.
+//
+
+//
+//  HeroOptionsView.swift
+//  JourneyOfMidnight
+//
+//  Created by Jan    on 2025/6/30.
+//
 
 import Foundation
 import SwiftUI
@@ -18,6 +31,8 @@ import SwiftUI
 struct HeroOptionsView: View {
     var hero: Hero
     @State var selectedItem: Item?
+    @ObservedObject var cardManager = CardManager.shared
+    @Binding var selectedHeros: [Hero]
     
     let columns = [
         GridItem(.fixed(45), spacing: 8),
@@ -28,7 +43,7 @@ struct HeroOptionsView: View {
     ]
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 8) {
             // Hero Header
             HStack(spacing: 12) {
                 Image(heroImage(for: hero.heroClass.name))
@@ -59,30 +74,30 @@ struct HeroOptionsView: View {
             }
             
             // Skills Section
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text("Skills:")
                     .foregroundStyle(.white)
                     .fontDesign(.monospaced)
-                    .font(.subheadline)
+                    .font(.caption)
                     .bold()
                 
                 ForEach(hero.skills) { skill in
                     Text("• \(skill.name): DPS-\(skill.power)")
                         .foregroundStyle(.white)
                         .fontDesign(.monospaced)
-                        .font(.caption)
+                        .font(.caption2)
                 }
             }
             
             // Equipment Grid
-            VStack(spacing: 8) {
+            VStack(spacing: 4) {
                 Text("Equipment:")
                     .foregroundStyle(.white)
                     .fontDesign(.monospaced)
-                    .font(.subheadline)
+                    .font(.caption)
                     .bold()
                 
-                LazyVGrid(columns: columns, spacing: 8) {
+                LazyVGrid(columns: columns, spacing: 6) {
                     // Create 10 slots (2 rows x 5 columns)
                     ForEach(0..<10, id: \.self) { index in
                         ZStack {
@@ -99,20 +114,20 @@ struct HeroOptionsView: View {
                                 }) {
                                     Image(hero.items[index].name)
                                         .resizable()
-                                        .frame(width: 38, height: 38)
+                                        .frame(width: 35, height: 35)
                                 }
                             }
                         }
                     }
                 }
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 6)
             }
             
             // Show selected item info
             if let selectedItem = selectedItem {
-                VStack(spacing: 4) {
+                VStack(spacing: 2) {
                     Text("Selected: \(selectedItem.name)")
-                        .font(.caption)
+                        .font(.caption2)
                         .fontDesign(.monospaced)
                         .foregroundStyle(.white)
                         .bold()
@@ -123,20 +138,30 @@ struct HeroOptionsView: View {
                         .foregroundStyle(.gray)
                         .multilineTextAlignment(.center)
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
                 .background(Color.gray.opacity(0.3))
-                .cornerRadius(6)
-            } else {
-                // Placeholder to maintain layout
-                Text(" ")
+                .cornerRadius(4)
+            }
+            
+            // Close Button
+            Button(action: {
+                cardManager.showMoreDetail = false
+            }) {
+                Text("Close")
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 6)
+                    .foregroundColor(.black)
+                    .fontDesign(.monospaced)
+                    .bold()
                     .font(.caption)
-                    .padding(.vertical, 4)
+                    .background(Color.gray)
+                    .cornerRadius(8)
             }
         }
-        .frame(maxWidth: 380, maxHeight: 300)
+        .frame(maxWidth: 380, maxHeight: 260)
         .padding(.horizontal, 12)
-        .padding(.vertical, 12)
+        .padding(.vertical, 8)
     }
 }
 

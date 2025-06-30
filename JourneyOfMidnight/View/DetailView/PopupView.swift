@@ -27,7 +27,7 @@ struct PopupView<Content: View>: View {
             Rectangle()
                 .cornerRadius(20)
                 .foregroundColor(color)
-                .frame(width: 400, height: 280))
+                .frame(width: 500, height: 330))
                
     }
 }
