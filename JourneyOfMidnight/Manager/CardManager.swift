@@ -71,7 +71,7 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .wizard, level: 50),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Rainy", power: 7), Skill(name: "Flower", power: 8)],
-                items: [Item(name: "wands", intro: "weapon"), Item(name: "Handbook", intro: "Handwritten")],
+                items: [Item(name: "cat", intro: "killer"), Item(name: "Handbook", intro: "Handwritten")],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food")]),
             

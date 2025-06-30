@@ -17,30 +17,31 @@ struct EnemyCardSetWSkill: View {
         ZStack(alignment: .leading) {
             ForEach(selectedEnemies) { hero in
                 PopupView{
-                    VStack {
-                        Text("\(hero.heroClass.name.rawValue.capitalized)")
-                            .foregroundStyle(.white)
-                            .fontDesign(.monospaced)
-                            .font(.title)
-                            .bold()
-                        
-                        ForEach(hero.skills) { skill in
-                            Text("\(skill.name): \(skill.power)")
-                                .foregroundStyle(.white)
-                                .font(.headline)
-                                .fontDesign(.monospaced)
-                        }
-                        ForEach(hero.items) { item in
-                            Text("\(item.name)")
-                                .foregroundStyle(.white)
-                                .font(.headline)
-                                .fontDesign(.monospaced)
-                        }
-                        Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
-                            .foregroundStyle(.white)
-                            .font(.headline)
-                            .fontDesign(.monospaced)
-                    }
+//                    VStack {
+//                        Text("\(hero.heroClass.name.rawValue.capitalized)")
+//                            .foregroundStyle(.white)
+//                            .fontDesign(.monospaced)
+//                            .font(.title)
+//                            .bold()
+//                        
+//                        ForEach(hero.skills) { skill in
+//                            Text("\(skill.name): \(skill.power)")
+//                                .foregroundStyle(.white)
+//                                .font(.headline)
+//                                .fontDesign(.monospaced)
+//                        }
+//                        ForEach(hero.items) { item in
+//                            Text("\(item.name)")
+//                                .foregroundStyle(.white)
+//                                .font(.headline)
+//                                .fontDesign(.monospaced)
+//                        }
+//                        Text("Wisdom: \(String(describing: hero.attributes.Wisdom))")
+//                            .foregroundStyle(.white)
+//                            .font(.headline)
+//                            .fontDesign(.monospaced)
+//                    }
+                    HeroOptionsView(hero: hero)
                     
                     // Close Button
                     Button(action: {
