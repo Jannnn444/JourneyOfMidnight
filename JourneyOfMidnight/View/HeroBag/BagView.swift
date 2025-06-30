@@ -38,7 +38,7 @@ struct BagView: View {
             
             // Grid container
             LazyVGrid(columns: columns, spacing: 8) {
-                // Create 6 slots (2 rows x 3 columns)
+                // Create 10 slots (2 rows x 5 columns)
                 ForEach(0..<10, id: \.self) { index in
                     ZStack {
                         // Background slot
