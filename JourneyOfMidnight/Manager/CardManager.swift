@@ -27,21 +27,21 @@ class CardManager: ObservableObject {
     
     @Published var navigation: Navigation = .home
     
-    // MARK: 📦 Board Width/Height
+    // MARK: 📦 Board
     let boardWidth: CGFloat = 650
     let boardHeight: CGFloat = 150
     
-    // MARK: 🃏 Card Width/Height
-    let heroCardWidth: CGFloat = 160
-    let heroCarHeight: CGFloat = 100
+    // MARK: 🃏 Card
+    let heroCardWidth: CGFloat = 200
+    let heroCarHeight: CGFloat = 200
     
-    // MARK: 🦸🏻 Hero Width/ Height
+    // MARK: 🦸🏻 Hero
     let followerCardWidth: CGFloat = 100
     let followerCardHeight: CGFloat = 100
     
-    // MARK: 🎲 Ability Box Width/Height
-    let abilityBoxWidth: CGFloat =  20
-    let abilityBoxHeight: CGFloat = 15
+    // MARK: 🎲 Ability Box
+    let abilityBoxWidth: CGFloat =  40
+    let abilityBoxHeight: CGFloat = 40
     
     
     // NOTE: When myCardHeroCards.items.count == 2 -->>> Hero else is Followes !
@@ -71,7 +71,7 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .wizard, level: 50),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Rainy", power: 7), Skill(name: "Flower", power: 8)],
-                items: [Item(name: "cat", intro: "killer"), Item(name: "Handbook", intro: "Handwritten")],
+                items: [Item(name: "cat", intro: "brutal killer"), Item(name: "Handbook", intro: "Handwritten")],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food")]),
             

@@ -57,7 +57,6 @@ struct HeroMainView: View {
             // MARK: PopUp (Hero & Enemy &Grocery)
             CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
-//            EventVendorPopup(selectedItems: $selectedItems, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView) 
             EventVendorSingleItemPopup(selectedItem: $selectedItem, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView)
             
             HStack {
@@ -121,4 +120,5 @@ struct ForestEventExample: View {
         )
     }
 }
+
 

@@ -17,7 +17,22 @@ struct EnemyCardSetWSkill: View {
         ZStack(alignment: .leading) {
             ForEach(selectedEnemies) { hero in
                 PopupView{
-                    HeroOptionsView(hero: hero, selectedHeros: $selectedEnemies)
+                    HeroOptionsView(hero: hero)
+                    
+                    // Close Button
+                    Button(action: {
+                        cardManager.showMoreDetail = false
+                        selectedEnemies = []
+                    }) {
+                        Text("Close")
+                            .padding()
+                            .foregroundColor(.black)
+                            .fontDesign(.monospaced)
+                            .bold()
+                            .font(.headline)
+                            .background(Color.gray)
+                            .cornerRadius(10)
+                    }
                 }
             }
         }

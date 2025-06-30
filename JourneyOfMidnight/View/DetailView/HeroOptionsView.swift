@@ -32,7 +32,6 @@ struct HeroOptionsView: View {
     var hero: Hero
     @State var selectedItem: Item?
     @ObservedObject var cardManager = CardManager.shared
-    @Binding var selectedHeros: [Hero]
     
     let columns = [
         GridItem(.fixed(45), spacing: 8),
@@ -143,23 +142,8 @@ struct HeroOptionsView: View {
                 .background(Color.gray.opacity(0.3))
                 .cornerRadius(4)
             }
-            
-            // Close Button
-            Button(action: {
-                cardManager.showMoreDetail = false
-            }) {
-                Text("Close")
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 6)
-                    .foregroundColor(.black)
-                    .fontDesign(.monospaced)
-                    .bold()
-                    .font(.caption)
-                    .background(Color.gray)
-                    .cornerRadius(8)
-            }
         }
-        .frame(maxWidth: 380, maxHeight: 260)
+        .frame(maxWidth: 380, maxHeight: 230)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
     }
