@@ -114,11 +114,11 @@ struct SettingMainView: View {
             .padding(.top, 20)
         }
         .onChange(of: musicManager.isMusicEnabled) { oldValue, newValue in
-            handleMusicToggle(enabled: newValue)
+//            handleMusicToggle(enabled: newValue)
         }
         .onAppear {
             // Initialize music state when view appears
-            handleMusicToggle(enabled: musicManager.isMusicEnabled)
+//            handleMusicToggle(enabled: musicManager.isMusicEnabled)
         }.padding()
     }
     
