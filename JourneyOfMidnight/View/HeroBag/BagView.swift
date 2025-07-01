@@ -16,6 +16,7 @@ struct BagView: View {
     @State var selectedHeroBag: [Item]
     @State private var showActionMenu = false
     @State private var actionMenuItemIndex: Int?
+    @State private var buttonPositions: [Int: CGRect] = [:]
     
     // Define grid layout - 3 columns for horizontal grid
     let columns = [
@@ -63,6 +64,16 @@ struct BagView: View {
                                         .resizable()
                                         .frame(width: 38, height: 38)
                                 }
+                                .background(
+                                    GeometryReader { geometry in
+                                        Color.clear
+                                            .onAppear {
+                                                // Store button position for popup placement
+                                                let frame = geometry.frame(in: .global)
+                                                buttonPositions[index] = frame
+                                            }
+                                    }
+                                )
                             }
                         }
                     }
@@ -117,15 +128,15 @@ struct BagView: View {
             .padding(.vertical, 10)
             
             // ✅ FIXED: Popup is now inside the main ZStack
-            if showActionMenu, let selectedItem = selectedItem {
+            if showActionMenu, let selectedItem = selectedItem, let index = actionMenuItemIndex {
                 // Background overlay to dismiss popup
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
+                Color.clear
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         dismissActionMenu()
                     }
                 
-                // MARK: - Action menu
+                // Action menu positioned to the right of the clicked item
                 VStack(alignment: .leading, spacing: 0) {
                     // Header with item name
                     HStack(spacing: 4) {
@@ -147,7 +158,7 @@ struct BagView: View {
                     Divider()
                     
                     // Action buttons
-                    actionButton("⭐ Add Favorites") {
+                    actionButton("⭐ Add to Favorites") {
                         addToFavorites(item: selectedItem)
                     }
                     
@@ -155,7 +166,7 @@ struct BagView: View {
                     
                     // Dynamic hero list
                     ForEach(cardManager.myHeroCards, id: \.id) { hero in
-                        actionButton("👤 Send to \(hero.heroClass.name.rawValue.capitalized)") {
+                        actionButton("👤 Add to \(hero.heroClass.name.rawValue.capitalized)") {
                             addToHero(item: selectedItem, hero: hero)
                         }
                         if hero.id != cardManager.myHeroCards.last?.id {
@@ -179,7 +190,10 @@ struct BagView: View {
                 .cornerRadius(8)
                 .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
                 .fixedSize(horizontal: true, vertical: false)
-                .padding(30)
+                .position(
+                    x: (buttonPositions[index]?.maxX ?? 200) + 80, // Position to the right of item
+                    y: buttonPositions[index]?.midY ?? 150 // Align vertically with item
+                )
                 .transition(.scale.combined(with: .opacity))
                 .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showActionMenu)
             }
@@ -197,9 +211,9 @@ struct BagView: View {
                     .font(.caption)
                     .fontDesign(.monospaced)
                     .foregroundColor(.black)
-//                Image(systemName: "chevron.right")
-//                    .font(.caption2)
-//                    .foregroundColor(.gray)
+                Image(systemName: "chevron.right")
+                    .font(.caption2)
+                    .foregroundColor(.gray)
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
