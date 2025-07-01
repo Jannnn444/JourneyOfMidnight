@@ -43,6 +43,7 @@ struct Hero: Identifiable {
     var items: [Item]
     var stats: Stats
     var bag: [Item] //new!
+    var heroLoad: Int
 }
 
 struct Follower: Identifiable {
