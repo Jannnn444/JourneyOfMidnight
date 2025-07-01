@@ -23,16 +23,28 @@ struct EnemyCardSet: View {
                     VStack {
                         HStack {
                         ForEach(enemy.skills) { skill in
+                            ZStack {
                                 Rectangle()
                                     .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
                                     .foregroundStyle(.white)
                                     .cornerRadius(12)
+                                
+                                Image("\(skill.name)")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                              }
                             }
                             ForEach(enemy.items) { item in
-                                Rectangle()
-                                    .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
-                                    .foregroundStyle(.pink)
-                                    .cornerRadius(12)
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
+                                        .foregroundStyle(.pink)
+                                        .cornerRadius(12)
+                                    
+                                    Image("\(item.name)")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
                             }
                         }
                         ZStack {
