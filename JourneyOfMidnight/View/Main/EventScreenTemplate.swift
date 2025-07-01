@@ -142,23 +142,34 @@ struct EventScreenTemplate: View {
             if let popup = eventPopupContent {
                 popup
             }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    // button bag at top-right
+                    Button(action: {
+                        showBagView.toggle()
+                    }) {
+                        Image("bag")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
+                    .padding(.leading)
+                }
+                Spacer()
+            }
+            .padding()
+            .padding(.top, 10)
+            .padding(.trailing, 110)
+            
+            // bottom UI elements
             VStack {
                 Spacer() // push to the buttom
                 HStack {
                     Spacer()  // push to right
                     // Next day button
                     ButtomButton(eventState: $eventState, textOnButton: "Next Day")
-                    Button(action: {
-                        //bag vie
-                        showBagView.toggle()
-                    }) {
-                        Text("Bag")
-                            .padding()
-                            .fontDesign(.monospaced)
-                            .background(.blue.opacity(0.6))
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
+                  
                 }
             }
             .padding(.bottom, 60)
@@ -167,6 +178,7 @@ struct EventScreenTemplate: View {
             // Gold display
             GoldView(gold: $gold)
                 .padding()
+            
             if(self.showBagView) {
                 PopupView(content: {
                     BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag, selectedHeroBag: cardManager.itemInMyBagByHero)
