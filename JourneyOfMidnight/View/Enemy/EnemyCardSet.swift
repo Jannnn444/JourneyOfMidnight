@@ -40,7 +40,6 @@ struct EnemyCardSet: View {
                                         .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
                                         .foregroundStyle(.pink)
                                         .cornerRadius(12)
-                                    
                                     Image("\(item.name)")
                                         .resizable()
                                         .frame(width: 30, height: 30)
