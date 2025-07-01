@@ -15,7 +15,6 @@ struct CardHeroSetView: View {
     @Binding var selectedHeros: [Hero]
  
     var body: some View {
-        
         HStack {
             ForEach(cardManager.myHeroCards) { hero in
                 Button(action: {
@@ -23,17 +22,28 @@ struct CardHeroSetView: View {
                 }) {
                     VStack {
                         HStack {
-                        ForEach(hero.skills) { skill in
-                                Rectangle()
-                                    .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
-                                    .foregroundStyle(.white)
-                                    .cornerRadius(12)
+                            ForEach(hero.skills) { skill in
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
+                                        .foregroundStyle(.white)
+                                        .cornerRadius(12)
+                                    Image("\(skill.name)")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
                             }
                             ForEach(hero.items) { item in
-                                Rectangle()
-                                    .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
-                                    .foregroundStyle(.pink)
-                                    .cornerRadius(12)
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
+                                        .foregroundStyle(.pink)
+                                        .cornerRadius(12)
+                                    
+                                    Image("\(item.name)")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
                             }
                         }
                         ZStack {
