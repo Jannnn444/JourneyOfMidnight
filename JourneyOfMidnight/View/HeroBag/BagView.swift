@@ -125,30 +125,29 @@ struct BagView: View {
                         dismissActionMenu()
                     }
                 
-                // Action menu
-                VStack(spacing: 0) {
+                // MARK: - Action menu
+                VStack(alignment: .leading, spacing: 0) {
                     // Header with item name
-                    HStack {
+                    HStack(spacing: 4) {
                         Text(selectedItem.name.capitalized)
                             .font(.caption)
                             .fontWeight(.bold)
                             .fontDesign(.monospaced)
                             .foregroundStyle(.black)
-                        Spacer()
                         Button("✕") {
                             dismissActionMenu()
                         }
                         .font(.caption)
                         .foregroundStyle(.gray)
                     }
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 8)
                     .padding(.vertical, 6)
                     .background(Color.gray.opacity(0.1))
                     
                     Divider()
                     
                     // Action buttons
-                    actionButton("⭐ Add to Favorites") {
+                    actionButton("⭐ Add Favorites") {
                         addToFavorites(item: selectedItem)
                     }
                     
@@ -156,7 +155,7 @@ struct BagView: View {
                     
                     // Dynamic hero list
                     ForEach(cardManager.myHeroCards, id: \.id) { hero in
-                        actionButton("👤 Add to \(hero.heroClass.name.rawValue.capitalized)") {
+                        actionButton("👤 Send to \(hero.heroClass.name.rawValue.capitalized)") {
                             addToHero(item: selectedItem, hero: hero)
                         }
                         if hero.id != cardManager.myHeroCards.last?.id {
@@ -179,6 +178,7 @@ struct BagView: View {
                 .background(Color.white)
                 .cornerRadius(8)
                 .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+                .fixedSize(horizontal: true, vertical: false)
                 .padding(30)
                 .transition(.scale.combined(with: .opacity))
                 .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showActionMenu)
@@ -192,17 +192,16 @@ struct BagView: View {
             action()
             dismissActionMenu()
         }) {
-            HStack {
+            HStack(spacing: 4) {
                 Text(title)
                     .font(.caption)
                     .fontDesign(.monospaced)
                     .foregroundColor(.black)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.caption2)
-                    .foregroundColor(.gray)
+//                Image(systemName: "chevron.right")
+//                    .font(.caption2)
+//                    .foregroundColor(.gray)
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 8)
             .padding(.vertical, 6)
         }
         .background(Color.white)
