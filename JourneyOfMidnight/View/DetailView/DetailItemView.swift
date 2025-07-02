@@ -15,25 +15,25 @@ struct DetailItemView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("💠\(item.intro)")
-                    .font(.caption2)
-                    .foregroundStyle(.black)
-                    .fontDesign(.monospaced)
-                    .bold()
-                    .padding(.bottom, 5)
+//                Text("💠\(item.intro)")
+//                    .font(.caption2)
+//                    .foregroundStyle(.black)
+//                    .fontDesign(.monospaced)
+//                    .bold()
+//                    .padding(.bottom, 5)
                 
-                Button(action: {
-                    // Purchase Logic TBD
-                }) {
-                    Text("Purchase")
-                        .font(.caption)
-                        .foregroundStyle(.black)
-                        .fontDesign(.monospaced)
-                        .bold()
-                       
-                }   .padding(5)
-                    .background(Color.white.opacity(0.8))
-                    .cornerRadius(10)
+//                Button(action: {
+//                    // Purchase Logic TBD
+//                }) {
+//                    Text("Purchase")
+//                        .font(.caption)
+//                        .foregroundStyle(.black)
+//                        .fontDesign(.monospaced)
+//                        .bold()
+//                       
+//                }   .padding(5)
+//                    .background(Color.white.opacity(0.8))
+//                    .cornerRadius(10)
             }
         }
     }

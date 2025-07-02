@@ -99,10 +99,10 @@ struct Item: Identifiable {
     var size: itemSizes
 }
 
-enum itemSizes {
-    case small
-    case medium
-    case large
+enum itemSizes: Int {
+    case small = 1
+    case medium = 2
+    case large = 3
 }
 
 struct Stats {
@@ -147,3 +147,13 @@ enum EffectTypes {
     case Faith
     case Charisma
 }
+
+// NOTE: 20250702
+
+/*
+ Wheres that pink bubble we need ?
+ All around the world be loved be cared be remembered
+ maybe we should celebrate on the day or just go on weekend ?
+ No ideas and Crazy sense of knowing some ideas are bothering me a lot
+ Cruel or not is that they have no sensation or any ability to love and be pathetic
+ */
