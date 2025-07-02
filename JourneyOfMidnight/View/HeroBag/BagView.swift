@@ -226,6 +226,7 @@ struct BagView: View {
     private func dismissActionMenu() {
         showActionMenu = false
         actionMenuItemIndex = nil
+        selectedItem = nil // clear dismissing item when dismissing
         print("Action menu dismissed") // Debug
     }
     
