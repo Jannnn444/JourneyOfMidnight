@@ -28,6 +28,11 @@ struct CardHeroSetView: View {
                                         .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
                                         .foregroundStyle(.white)
                                         .cornerRadius(12)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.red, lineWidth: 2)
+                                        )
+                                    
                                     Image("\(skill.name)")
                                         .resizable()
                                         .frame(width: 30, height: 30)
@@ -37,8 +42,12 @@ struct CardHeroSetView: View {
                                 ZStack {
                                     Rectangle()
                                         .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
-                                        .foregroundStyle(.pink)
+                                        .foregroundStyle(.white)
                                         .cornerRadius(12)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.green, lineWidth: 2)
+                                        )
                                     
                                     Image("\(item.name)")
                                         .resizable()
