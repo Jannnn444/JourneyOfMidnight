@@ -18,7 +18,7 @@ struct HeroMainView: View {
     
     @State var selectedHeros: [Hero] = []
     @State var selectedEnemies: [Hero] = []
-//  @State var selectedItems: [VendorGoods] = []
+//  @State var selectedItems: [VendorGoods] = [] // array for picking up atuffs?
     @State var selectedItem: Item? = nil // when selected only need to show one item
     
     @State var eventState: Events
@@ -40,9 +40,6 @@ struct HeroMainView: View {
                 EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi) 
                 Spacer()
                 
-//            case .vendor:
-//                EventVendorShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItems: $selectedItems)
-//                Spacer()
             case .vendor:
                 EventVendorShop(IsShowDetailItemView: $showDetailItemView, showMoreDetail: $showDetailItemView, selectedItem: $selectedItem)
                 Spacer()
@@ -59,17 +56,12 @@ struct HeroMainView: View {
             EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
             EventVendorSingleItemPopup(selectedItem: $selectedItem, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView)
             
-            HStack {
-                // MARK: Shuffle Button
-//          ButtomButton(eventState: $eventState, textOnButton: "Next Day").padding().padding(.bottom, 40)
-            }
             // MARK: Gold
             GoldView(gold: $gold).padding()
         }
         .ignoresSafeArea()
     }
 }
-
 
 
 

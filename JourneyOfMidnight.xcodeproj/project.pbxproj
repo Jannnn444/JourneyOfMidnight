@@ -161,7 +161,6 @@
 				5455ED262DAC077700157005 /* PopupView.swift */,
 				541C593A2DB3BDC200AB0AC6 /* ButtomButton.swift */,
 				1E64C21B2DB88E4F001DFAF5 /* GoldView.swift */,
-				3D17B6372E1272090024DD24 /* HeroOptionsView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -219,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				3D2F3B5F2E0590EA00E182E4 /* BagView.swift */,
+				3D17B6372E1272090024DD24 /* HeroOptionsView.swift */,
 			);
 			path = HeroBag;
 			sourceTree = "<group>";

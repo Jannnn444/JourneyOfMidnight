@@ -88,13 +88,21 @@ struct Skill: Identifiable {
     var id = UUID()
     var name: String
     var power: Int
+//    var size: itemSizes
 }
 
 struct Item: Identifiable {
     var id = UUID()
     var name: String
     var intro: String
-    //  var price: Int   // Future TBD
+    var price: Int
+    var size: itemSizes
+}
+
+enum itemSizes {
+    case small
+    case medium
+    case large
 }
 
 struct Stats {

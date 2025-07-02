@@ -62,9 +62,9 @@ class CardManager: ObservableObject {
                     Faith: 10,
                     Charisma: 10),
                 skills: [Skill(name: "Meteor", power: 9)/*, Skill(name: "Dodge", power: 8)*/],
-                items: [Item(name: "Armore", intro: "Love")/*, Item(name: "pants", intro: "Armour")*/],
+                items: [Item(name: "Armore", intro: "Love", price: 1000, size: .small)/*, Item(name: "pants", intro: "Armour")*/],
                 stats: Stats(health: 100, endurance: 500),
-                bag: [Item(name: "apple", intro: "Food")],
+                bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],
                 heroLoad: 2
             ),
             
@@ -73,9 +73,9 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .wizard, level: 50),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Rainy", power: 7), Skill(name: "Flower", power: 8)],
-                items: [Item(name: "cat", intro: "brutal killer"), Item(name: "holybook", intro: "Handwritten")],
+                items: [Item(name: "cat", intro: "brutal killer", price: 50, size: .large), Item(name: "holybook", intro: "Handwritten", price: 20,size: .small)],
                 stats: Stats(health: 100, endurance: 500),
-                bag: [Item(name: "apple", intro: "Food")],
+                bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],
                 heroLoad: 4
             ),
             
@@ -84,9 +84,9 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .rogue, level: 50),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "WolveCry", power: 5)],
-                items: [Item(name: "wands", intro: "Nature source is needed"), /*Item(name: "Handbook", intro: "Handwritten")*/],
+                items: [Item(name: "wands", intro: "Nature source is needed",price: 20, size: .small), /*Item(name: "Handbook", intro: "Handwritten")*/],
                 stats: Stats(health: 100, endurance: 500),
-                bag: [Item(name: "doggo", intro: "Sleepy pal")],
+                bag: [Item(name: "doggo", intro: "Sleepy pal", price: 10, size: .medium)],
                 heroLoad: 2
             ),
             // 4 - Follower
@@ -94,40 +94,40 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .priest, level: 50),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Moon", power: 8)/*, Skill(name: "WolveCry", power: 9)*/],
-                items: [/*Item(name: "wands", intro: "Nature power needed")*/ Item(name: "Handbook", intro: "Cant be exchanged")],
+                items: [/*Item(name: "wands", intro: "Nature power needed")*/ Item(name: "Handbook", intro: "Cant be exchanged", price: 5,size: .small)],
                 stats: Stats(health: 100, endurance: 500),
-                bag: [Item(name: "apple", intro: "Food")],
+                bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                 heroLoad: 2
             ),
         ]
         
         self.enemy = [
             // 1 - Follower
-            Hero(heroClass: HeroClass(name: .wizard, level: 10), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4)], items: [Item(name: "cat", intro: "pet")/*, Item(name: "staff", intro: "weapon")*/], stats: Stats(health: 100, endurance: 500),
-                 bag: [Item(name: "apple", intro: "Food")],
+            Hero(heroClass: HeroClass(name: .wizard, level: 10), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4)], items: [Item(name: "cat", intro: "pet", price: 500, size: .small)/*, Item(name: "staff", intro: "weapon")*/], stats: Stats(health: 100, endurance: 500),
+                 bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: 2
                 ),
             
             // 2 - Hero !!
-            Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "lightling", power: 3)], items: [Item(name: "holybook", intro: "Spirit"), Item(name: "cross", intro: "Belief")], stats: Stats(health: 100, endurance: 500),
-                 bag: [Item(name: "apple", intro: "Food")],
+            Hero(heroClass: HeroClass(name: .templar, level: 11), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "lightling", power: 3)], items: [Item(name: "holybook", intro: "Spirit", price: 20, size: .small), Item(name: "cross", intro: "Belief", price: 20, size: .small)], stats: Stats(health: 100, endurance: 500),
+                 bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: 4
                 ),
             
             // 3 - Follower
-            Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7)/*,Skill(name: "fist", power: 6)*/], items: [Item(name: "fakeID", intro: "detect using")/*, Item(name: "letter", intro: "read")*/], stats: Stats(health: 100, endurance: 500),
-                 bag: [Item(name: "apple", intro: "Food")],
+            Hero(heroClass: HeroClass(name: .duelist, level: 12), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gunslinger", power: 7)/*,Skill(name: "fist", power: 6)*/], items: [Item(name: "fakeID", intro: "detect using", price: 20, size: .small)/*, Item(name: "letter", intro: "read")*/], stats: Stats(health: 100, endurance: 500),
+                 bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: 2
                 )
         ]
         
         self.vendorGoods = [VendorGoods(item: [
-            Item(name: "Artifacts", intro: "Power"),
-            Item(name: "Morning Star", intro: "Brutal Weapon"),
-            Item(name: "Lucky Coin",intro: "Savethrows +1"),
-            Item(name: "Goblin Journal", intro: "Lost myth"),
-            Item(name: "Potion",intro: "Not a heal \nstrength -3")]
-                                       )]
+            Item(name: "Artifacts", intro: "Power", price: 100, size: .medium),
+            Item(name: "Morning Star", intro: "Brutal Weapon", price: 150, size: .medium),
+            Item(name: "Lucky Coin",intro: "Savethrows +1", price: 100, size: .small),
+            Item(name: "Goblin Journal", intro: "Lost myth", price: 250, size: .large),
+            Item(name: "Potion",intro: "Not a heal \nstrength -3", price: 300, size: .small)]
+            )]
         self.gold = Gold(gold: 10000)
         
         self.stories = [
@@ -139,8 +139,8 @@ class CardManager: ObservableObject {
             ])
         ]
         
-        self.itemInMyBag = [Item(name: "apple", intro: "Sanity bar -10"), Item(name: "doggo", intro: "Sleepy pal")]
-        self.itemInMyBagByHero = [Item(name: "apple", intro: "Sanity bar -10")]
+        self.itemInMyBag = [Item(name: "apple", intro: "Sanity bar -10", price: 200, size: .small), Item(name: "doggo", intro: "Sleepy pal", price: 100, size: .small)]
+        self.itemInMyBagByHero = [Item(name: "apple", intro: "Sanity bar -10", price: 300, size: .small)]
     }
 }
 

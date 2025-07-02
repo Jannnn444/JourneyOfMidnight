@@ -60,9 +60,9 @@ struct BagView: View {
                                     showActionMenu = true
                                     print("Item clicked: \(itemInMyBag[index].name)") // Debug
                                 }) {
-                                    Image(itemInMyBag[index].name)
-                                        .resizable()
-                                        .frame(width: 38, height: 38)
+                                        Image(itemInMyBag[index].name)
+                                            .resizable()
+                                            .frame(width: 38, height: 38)
                                 }
                                 .background(
                                     GeometryReader { geometry in

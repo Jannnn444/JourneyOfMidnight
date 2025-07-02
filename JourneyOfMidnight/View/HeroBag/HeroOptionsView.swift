@@ -45,9 +45,14 @@ struct HeroOptionsView: View {
         VStack(spacing: 8) {
             // Hero Header
             HStack(spacing: 12) {
-                Image(heroImage(for: hero.heroClass.name))
-                    .resizable()
-                    .frame(width: 50, height: 50)
+                ZStack {
+                    Circle()
+                        .fill(Color.white.opacity(0.3))
+                        .frame(width: 70, height: 70)
+                    Image(heroImage(for: hero.heroClass.name))
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                }
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
