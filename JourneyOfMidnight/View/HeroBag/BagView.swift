@@ -191,8 +191,8 @@ struct BagView: View {
                 .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
                 .fixedSize(horizontal: true, vertical: false)
                 .position(
-                    x: (buttonPositions[index]?.maxX ?? 200) + 80, // Position to the right of item
-                    y: buttonPositions[index]?.midY ?? 150 // Align vertically with item
+                    x: (buttonPositions[index]?.maxX ?? 200) + 90, // Position to the right of item
+                    y: (buttonPositions[index]?.midY ?? 150) + 80  // Align vertically with item
                 )
                 .transition(.scale.combined(with: .opacity))
                 .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showActionMenu)
