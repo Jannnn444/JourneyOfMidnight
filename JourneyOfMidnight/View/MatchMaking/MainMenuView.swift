@@ -54,12 +54,11 @@ struct MainMenuView: View {
                 VStack {
                     Spacer()
                     
-                    // Title with logo
-                    //                    Image("banner")
-                    //                        .resizable()
-                    //                        .aspectRatio(contentMode: .fit)
-                    //                        .frame(width: 400)
-                    //                        .padding(.bottom, 40)
+                //  Image("banner")
+                //     .resizable()
+                //     .aspectRatio(contentMode: .fit)
+                //     .frame(width: 400)
+                //     .padding(.bottom, 40)
                     
                     Text("Journey Of Midnight")
                         .font(.largeTitle)
