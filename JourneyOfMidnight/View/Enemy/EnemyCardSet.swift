@@ -72,6 +72,14 @@ struct EnemyCardSet: View {
                                 .cornerRadius(10)
                             
                             VStack() {
+                                
+                                // MARK : - Life Bar
+                                Rectangle()
+                                    .frame(width: CGFloat(enemy.heroClass.life), height: 3)
+                                    .foregroundColor(.red)
+                                    .cornerRadius(12)
+                                
+                                // MARK : - Yellow card
                                 var myHero = enemy.heroClass.name
                                 if myHero == HeroClassName.fighter {
                                     Image("knight")
@@ -99,11 +107,10 @@ struct EnemyCardSet: View {
                                         .frame(width: 50, height: 50)
                                 }
                                 
-                                Text("\(enemy.heroClass.life)")
-                                    .font(.headline)
-                                    .fontDesign(.monospaced)
-                                    .bold()
-                                
+//                                Text("\(enemy.heroClass.life)")
+//                                    .font(.headline)
+//                                    .fontDesign(.monospaced)
+//                                    .bold()
                                 
                                 Text(enemy.heroClass.name.rawValue.capitalized)
                                     .font(.headline)
@@ -130,7 +137,7 @@ struct EnemyCardSet: View {
                     } // Vstack aboved the Cards
                 }
             } // ForEach hero
-        } .position(x: 450, y: 150)  // y: for the height!
+        } .position(x: 430, y: 150)  // y: for the height!
     }
 }
 

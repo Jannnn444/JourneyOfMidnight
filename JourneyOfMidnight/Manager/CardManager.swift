@@ -50,7 +50,7 @@ class CardManager: ObservableObject {
             // 1 - Follower
             Hero(
                 heroClass:
-                    HeroClass(name: .fighter, level: 10, life: 100),
+                    HeroClass(name: .fighter, level: 10, life: 80),
                 attributes: Attributes(
                     Strength: 10,
                     Intelligence: 101,
@@ -68,7 +68,7 @@ class CardManager: ObservableObject {
             
             // 2 - Hero !!
             Hero(
-                heroClass: HeroClass(name: .wizard, level: 50, life: 100),
+                heroClass: HeroClass(name: .wizard, level: 50, life: 180),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Rainy", power: 7), Skill(name: "Flower", power: 8)],
                 items: [Item(name: "cat", intro: "brutal killer", price: 50, size: .large), Item(name: "holybook", intro: "Handwritten", price: 20,size: .small)],
@@ -79,7 +79,7 @@ class CardManager: ObservableObject {
             
             // 3 - Follower
             Hero(
-                heroClass: HeroClass(name: .rogue, level: 50, life: 100),
+                heroClass: HeroClass(name: .rogue, level: 50, life: 80),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "WolveCry", power: 5)],
                 items: [Item(name: "wands", intro: "Nature source is needed",price: 20, size: .small), /*Item(name: "Handbook", intro: "Handwritten")*/],
@@ -87,33 +87,34 @@ class CardManager: ObservableObject {
                 bag: [Item(name: "doggo", intro: "Sleepy pal", price: 10, size: .medium)],
                 heroLoad: 2
             ),
+            
             // 4 - Follower
-            Hero(
-                heroClass: HeroClass(name: .priest, level: 50, life: 100),
-                attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
-                skills: [Skill(name: "Moon", power: 8)/*, Skill(name: "WolveCry", power: 9)*/],
-                items: [/*Item(name: "wands", intro: "Nature power needed")*/ Item(name: "Handbook", intro: "Cant be exchanged", price: 5,size: .small)],
-                stats: Stats(health: 100, endurance: 500),
-                bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
-                heroLoad: 2
-            ),
+//            Hero(
+//                heroClass: HeroClass(name: .priest, level: 50, life: 80),
+//                attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
+//                skills: [Skill(name: "Moon", power: 8)/*, Skill(name: "WolveCry", power: 9)*/],
+//                items: [/*Item(name: "wands", intro: "Nature power needed")*/ Item(name: "Handbook", intro: "Cant be exchanged", price: 5,size: .small)],
+//                stats: Stats(health: 100, endurance: 500),
+//                bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
+//                heroLoad: 2
+//            ),
         ]
         
         self.enemy = [
             // 1 - Follower
-            Hero(heroClass: HeroClass(name: .wizard, level: 10, life: 100), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4)], items: [Item(name: "cat", intro: "pet", price: 500, size: .small)/*, Item(name: "staff", intro: "weapon")*/], stats: Stats(health: 100, endurance: 500),
+            Hero(heroClass: HeroClass(name: .wizard, level: 10, life: 80), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4)], items: [Item(name: "cat", intro: "pet", price: 500, size: .small)/*, Item(name: "staff", intro: "weapon")*/], stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: 2
                 ),
             
             // 2 - Hero !!
-            Hero(heroClass: HeroClass(name: .templar, level: 11, life: 100), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "lightling", power: 3)], items: [Item(name: "holybook", intro: "Spirit", price: 20, size: .small), Item(name: "cross", intro: "Belief", price: 20, size: .small)], stats: Stats(health: 100, endurance: 500),
+            Hero(heroClass: HeroClass(name: .templar, level: 11, life: 180), attributes: Attributes(Strength: 5, Intelligence: 10, Wisdom: 7, Agility: 7, Vitality: 7, Faith: 7, Charisma: 7), skills: [Skill(name: "Holy", power: 5), Skill(name: "lightling", power: 3)], items: [Item(name: "holybook", intro: "Spirit", price: 20, size: .small), Item(name: "cross", intro: "Belief", price: 20, size: .small)], stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: 4
                 ),
             
             // 3 - Follower
-            Hero(heroClass: HeroClass(name: .duelist, level: 12, life: 100), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gun", power: 7)/*,Skill(name: "fist", power: 6)*/], items: [Item(name: "fakeID", intro: "detect using", price: 20, size: .small)/*, Item(name: "letter", intro: "read")*/], stats: Stats(health: 100, endurance: 500),
+            Hero(heroClass: HeroClass(name: .duelist, level: 12, life: 80), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gun", power: 7)/*,Skill(name: "fist", power: 6)*/], items: [Item(name: "fakeID", intro: "detect using", price: 20, size: .small)/*, Item(name: "letter", intro: "read")*/], stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: 2
                 )

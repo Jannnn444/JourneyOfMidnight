@@ -20,7 +20,8 @@ struct CardHeroSetView: View {
                 Button(action: {
                     IsShowDetailSkillView.toggle() // Button for shows brief skill
                 }) {
-                    VStack {
+                    VStack { // Vstack above cards
+                     
                         HStack {
                             ForEach(hero.skills) { skill in
                                 ZStack {
@@ -55,6 +56,7 @@ struct CardHeroSetView: View {
                                 }
                             }
                         }
+                        
                         ZStack {
                             Rectangle()
                                 .frame(
@@ -72,6 +74,13 @@ struct CardHeroSetView: View {
                                 .cornerRadius(10)
                             
                             VStack() {
+                                // MARK : - Life Bar
+                                Rectangle()
+                                    .frame(width: CGFloat(hero.heroClass.life), height: 3)
+                                    .foregroundColor(.red)
+                                    .cornerRadius(12)
+                                
+                                // MARK : - Yellow card
                                 var myHero = hero.heroClass.name
                                 if myHero == HeroClassName.fighter {
                                     Image("knight")
@@ -99,10 +108,10 @@ struct CardHeroSetView: View {
                                         .frame(width: 50, height: 50)
                                 }
                                 
-                                Text("\(hero.heroClass.life)")
-                                    .font(.headline)
-                                    .fontDesign(.monospaced)
-                                    .bold()
+//                                Text("\(hero.heroClass.life)")
+//                                    .font(.headline)
+//                                    .fontDesign(.monospaced)
+//                                    .bold()
                                 
                                 Text(hero.heroClass.name.rawValue.capitalized)
                                     .font(.headline)
