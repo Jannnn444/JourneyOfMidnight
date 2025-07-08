@@ -516,35 +516,6 @@ class WebSocketManager: NSObject, ObservableObject {
         }
     }
     
-    /// 尋找遊戲匹配
-    func findMatch2(username: String, id: String) {
-        guard isConnected else {
-            lastError = .notConnected
-            return
-        }
-//        resetQueueStatus()
-        self.playerId2 = id
-        self.playerUsername2 = username
-        self.currentPlayers.append(username) // new add for queue
-        self.playerInQueueForTesting.append(FindMatchPayload(id: id, username: username)) // new add for queu
-        queueState = .searching
-       
-        print("Now current player in queue: \(currentPlayers.self.description)")
-        print("Now player number: \(self.currentPlayers.count)")
-        print("The player id \(String(describing: self.playerId2))")
-        
-        let action = FindMatchAction(
-            action: "find_match",
-//          payload: FindMatchPayload(id: playerId, username: username) // this for when normal case, one phone one id!
-            payload: FindMatchPayload(id: id, username: username) // this for testing !!!! MOCK DATA For test manually add players
-        )
-        Task {
-            await sendMessage(action)
-            startQueueKeepAlive()
-        }
-    }
-    
-    
     
     /// 取消排隊
     func cancelQueue() {

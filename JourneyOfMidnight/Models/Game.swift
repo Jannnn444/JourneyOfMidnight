@@ -58,6 +58,7 @@ struct Follower: Identifiable {
 struct HeroClass {
     var name: HeroClassName
     var level: Int
+    var life: Int
 }
 
 struct VendorGoods: Identifiable {
