@@ -99,6 +99,11 @@ struct EnemyCardSet: View {
                                         .frame(width: 50, height: 50)
                                 }
                                 
+                                Text("\(enemy.heroClass.life)")
+                                    .font(.headline)
+                                    .fontDesign(.monospaced)
+                                    .bold()
+                                
                                 
                                 Text(enemy.heroClass.name.rawValue.capitalized)
                                     .font(.headline)

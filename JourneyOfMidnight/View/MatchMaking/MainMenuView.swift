@@ -429,23 +429,7 @@ struct MainMenuView: View {
             }
         }
     }
-        private func setupWebsocketConnection2() {
-            websocketManager.connect()
-            Task {
-                // Wait 2 seconds
-                try await Task.sleep(nanoseconds: 2_000_000_000)
-                
-                // Check connection on main actor
-                await MainActor.run {
-                    if websocketManager.isConnected {
-                        print("WebSocket connected! player 2: Finding match  ...")
-                       websocketManager.findMatch2(username: "Player2", id: "11111111-1111-1111-1111-111111111112") // tmp for test
-                    } else {
-                        print("WebSocket not connected after 2 seconds")
-                    }
-                }
-            }
-        }
+       
         /*
          -
          asyncAfter + 2.0
