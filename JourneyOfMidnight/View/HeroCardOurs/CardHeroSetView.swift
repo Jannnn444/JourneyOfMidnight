@@ -121,7 +121,7 @@ struct CardHeroSetView: View {
                                 if IsShowDetailSkillView {
                                     // if showDetailView shows
                                     // heres what we gotta do makes the view clickable and will click popup new more detail view
-                                    VStack(alignment: .leading) {
+                                   HStack() {
                                         ForEach(hero.skills) { skill in
                                             // SKILLS CLICKABLE, UI -> skills title, Action -> SHOW POPUP
                                             Button(action: {
@@ -138,7 +138,7 @@ struct CardHeroSetView: View {
                     } // Vstack above the Hero Cards
                 }
             } // ForEach hero
-        } .position(x: 430, y: 330)
+        } .position(x: 430, y: 310)
 
           /*
            

@@ -120,7 +120,7 @@ struct EnemyCardSet: View {
                                 if showDetailSkillViewEnemi {
                                     // heres what we gotta do
                                     // makes the view clickable
-                                    VStack(alignment: .leading) {
+                                    HStack() {
                                         ForEach(enemy.skills) { skill in
                                             // Have the skills able to be buttons and expand to show more popup infos
                                             Button(action: {
@@ -137,7 +137,7 @@ struct EnemyCardSet: View {
                     } // Vstack aboved the Cards
                 }
             } // ForEach hero
-        } .position(x: 430, y: 150)  // y: for the height!
+        } .position(x: 430, y: 130)  // y: for the height!
     }
 }
 

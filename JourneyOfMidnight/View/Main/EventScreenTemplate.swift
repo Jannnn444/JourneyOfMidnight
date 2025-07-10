@@ -19,6 +19,7 @@ struct EventScreenTemplate: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var eventState: Events
     @Binding var gold: Gold
+    @AppStorage("selectedAppColor") private var selectedColorName = "black"
     
     // Event-specific content
     let eventContent: AnyView
@@ -167,9 +168,20 @@ struct EventScreenTemplate: View {
                 Spacer() // push to the buttom
                 HStack {
                     Spacer()  // push to right
-                    // Next day button
-                    ButtomButton(eventState: $eventState, textOnButton: "Next Day")
-                  
+                    
+                    VStack {
+                        Button(action: {
+                            // attack func
+                        }) {
+                            Text("Attack")
+                                .padding()
+                                .fontDesign(.monospaced)
+                                .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        ButtomButton(eventState: $eventState, textOnButton: "Next Day")
+                    }
                 }
             }
             .padding(.bottom, 60)
