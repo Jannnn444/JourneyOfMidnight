@@ -5,13 +5,6 @@
 //  Created by Hualiteq International on 2025/5/1.
 //
 
-//
-//  EventScreenTemplate.swift
-//  JourneyOfMidnight
-//
-//  Created by Hualiteq International on 2025/5/1.
-//
-
 import SwiftUI
 
 // A concrete implementation of a template for event screens without generics
@@ -32,6 +25,16 @@ struct EventScreenTemplate: View {
     @State private var showMoreDetailHero: Bool = false
     @State private var showBagView = false
     
+    // Battle state
+    @State private var isBattleInProgress = false
+    @State private var battleLog: [String] = []
+    @State private var showBattleLog = false
+    
+    // Combat-specific bindings
+    private var selectedEnemies: Binding<[Hero]>?
+    private var showDetailSkillViewEnemi: Binding<Bool>?
+    private var showMoreDetailEnemi: Binding<Bool>?
+    
     // For combat events
     init(
         eventState: Binding<Events>,
@@ -42,6 +45,9 @@ struct EventScreenTemplate: View {
     ) {
         self._eventState = eventState
         self._gold = gold
+        self.selectedEnemies = selectedEnemies
+        self.showDetailSkillViewEnemi = showDetailSkillViewEnemi
+        self.showMoreDetailEnemi = showMoreDetailEnemi
         
         // Create the combat event content
         self.eventContent = AnyView(
@@ -76,6 +82,9 @@ struct EventScreenTemplate: View {
     ) {
         self._eventState = eventState
         self._gold = gold
+        self.selectedEnemies = nil
+        self.showDetailSkillViewEnemi = nil
+        self.showMoreDetailEnemi = nil
         
         // Create the vendor event content
         self.eventContent = AnyView(
@@ -104,6 +113,9 @@ struct EventScreenTemplate: View {
     ) {
         self._eventState = eventState
         self._gold = gold
+        self.selectedEnemies = nil
+        self.showDetailSkillViewEnemi = nil
+        self.showMoreDetailEnemi = nil
         
         // Create the forest event content
         self.eventContent = AnyView(
@@ -148,6 +160,18 @@ struct EventScreenTemplate: View {
                 HStack {
                     Spacer()
                     // button bag at top-right
+                    
+                    // Battle log button (only show in combat)
+                    if eventState == .combat {
+                        Button(action: {
+                            showBattleLog.toggle()
+                        }) {
+                            Image(systemName: "doc.text")
+                                .foregroundColor(.white)
+                                .font(.title2)
+                        }
+                    }
+                    
                     Button(action: {
                         showBagView.toggle()
                     }) {
@@ -156,6 +180,8 @@ struct EventScreenTemplate: View {
                             .frame(width: 30, height: 30)
                     }
                     .padding(.leading)
+                    
+                  
                 }
                 Spacer()
             }
@@ -170,16 +196,21 @@ struct EventScreenTemplate: View {
                     Spacer()  // push to right
                     
                     VStack {
-                        Button(action: {
-                            // attack func
-                        }) {
-                            Text("Attack")
-                                .padding()
-                                .fontDesign(.monospaced)
-                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                        // Only show attack button in combat mode
+                        if eventState == .combat {
+                            Button(action: {
+                                performBattleAction()
+                            }) {
+                                Text(isBattleInProgress ? "Auto Battle" : "Attack")
+                                    .padding()
+                                    .fontDesign(.monospaced)
+                                    .background(Color.fromHex(selectedColorName).opacity(0.6))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                            .disabled(isBattleInProgress)
                         }
+                        
                         ButtomButton(eventState: $eventState, textOnButton: "Next Day")
                     }
                 }
@@ -191,70 +222,170 @@ struct EventScreenTemplate: View {
             GoldView(gold: $gold)
                 .padding()
             
-            if(self.showBagView) {
+            // Bag popup
+            if showBagView {
                 PopupView(content: {
                     BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag, selectedHeroBag: cardManager.itemInMyBagByHero)
+                })
+            }
+            
+            // Battle log popup
+            if showBattleLog {
+                PopupView(content: {
+                    BattleLogView(battleLog: battleLog, onClose: {
+                        showBattleLog = false
+                    })
                 })
             }
         }
         .ignoresSafeArea()
     }
-}
-
-// MARK: - Usage examples
-struct CombatScreenExample: View {
-    @State private var eventState: Events = .combat
-    @State private var gold: Gold = Gold(gold: 1000)
-    @State private var selectedEnemies: [Hero] = []
-    @State private var showDetailSkillViewEnemi: Bool = false
-    @State private var showMoreDetailEnemi: Bool = false
     
-    var body: some View {
-        EventScreenTemplate(
-            eventState: $eventState,
-            gold: $gold,
-            selectedEnemies: $selectedEnemies,
-            showDetailSkillViewEnemi: $showDetailSkillViewEnemi,
-            showMoreDetailEnemi: $showMoreDetailEnemi
-        )
+    // MARK: - Battle Functions
+    
+    private func performBattleAction() {
+        guard eventState == .combat else { return }
+        
+        isBattleInProgress = true
+        battleLog = []
+        
+        // Add battle start message
+        battleLog.append("🗡️ Battle begins!")
+        
+        // Perform the battle with animation delays
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.executeBattleSequence()
+        }
+    }
+    
+    private func executeBattleSequence() {
+        var battleRound = 1
+        let maxRounds = 10 // Prevent infinite loops
+        
+        func executeRound() {
+            guard battleRound <= maxRounds,
+                  cardManager.myHeroCards.contains(where: { $0.stats.health > 0 }),
+                  cardManager.enemy.contains(where: { $0.stats.health > 0 }) else {
+                // Battle ended
+                finalizeBattle()
+                return
+            }
+            
+            battleLog.append("\n--- Round \(battleRound) ---")
+            
+            // Heroes attack
+            for (heroIndex, hero) in cardManager.myHeroCards.enumerated() {
+                guard hero.stats.health > 0 else { continue }
+                
+                if let enemyIndex = cardManager.enemy.firstIndex(where: { $0.stats.health > 0 }) {
+                    let damage = cardManager.calculateAttackPower(for: hero)
+                    cardManager.enemy[enemyIndex].stats.health = max(0, cardManager.enemy[enemyIndex].stats.health - damage)
+                    
+                    battleLog.append("\(hero.heroClass.name.rawValue) attacks \(cardManager.enemy[enemyIndex].heroClass.name.rawValue) for \(damage) damage!")
+                    
+                    if cardManager.enemy[enemyIndex].stats.health <= 0 {
+                        battleLog.append("\(cardManager.enemy[enemyIndex].heroClass.name.rawValue) has been defeated!")
+                        handleEnemyDefeat(enemyIndex: enemyIndex)
+                    }
+                }
+            }
+            
+            // Check if all enemies defeated
+            if cardManager.enemy.allSatisfy({ $0.stats.health <= 0 }) {
+                battleLog.append("\n🎉 Victory! All enemies defeated!")
+                finalizeBattle()
+                return
+            }
+            
+            // Enemies counter-attack
+            for (enemyIndex, enemy) in cardManager.enemy.enumerated() {
+                guard enemy.stats.health > 0 else { continue }
+                
+                if let heroIndex = cardManager.myHeroCards.firstIndex(where: { $0.stats.health > 0 }) {
+                    let damage = cardManager.calculateAttackPower(for: enemy)
+                    cardManager.myHeroCards[heroIndex].stats.health = max(0, cardManager.myHeroCards[heroIndex].stats.health - damage)
+                    
+                    battleLog.append("\(enemy.heroClass.name.rawValue) attacks \(cardManager.myHeroCards[heroIndex].heroClass.name.rawValue) for \(damage) damage!")
+                    
+                    if cardManager.myHeroCards[heroIndex].stats.health <= 0 {
+                        battleLog.append("\(cardManager.myHeroCards[heroIndex].heroClass.name.rawValue) has fallen!")
+                    }
+                }
+            }
+            
+            // Check if all heroes defeated
+            if cardManager.myHeroCards.allSatisfy({ $0.stats.health <= 0 }) {
+                battleLog.append("\n💀 Defeat! All heroes have fallen!")
+                finalizeBattle()
+                return
+            }
+            
+            battleRound += 1
+            
+            // Continue to next round with delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                executeRound()
+            }
+        }
+        
+        executeRound()
+    }
+    
+    private func handleEnemyDefeat(enemyIndex: Int) {
+        let defeatedEnemy = cardManager.enemy[enemyIndex]
+        let goldReward = defeatedEnemy.heroClass.level * 10
+        gold = Gold(gold: gold.gold + goldReward)
+        battleLog.append("Gained \(goldReward) gold!")
+    }
+    
+    private func finalizeBattle() {
+        // Clean up defeated enemies
+//        cardManager.enemy.removeAll { $0.stats.health <= 0 }
+        
+        isBattleInProgress = false
+        showBattleLog = true
+        
+        // Update the UI
+        DispatchQueue.main.async {
+            
+        }
     }
 }
 
-struct VendorScreenExample: View {
-    @State private var eventState: Events = .vendor
-    @State private var gold: Gold = Gold(gold: 1500)
-    @State private var selectedItem: Item? = nil
-    @State private var showDetailItemView: Bool = false
-    @State private var showMoreDetailItems: Bool = false
+// MARK: - Battle Log View
+struct BattleLogView: View {
+    let battleLog: [String]
+    let onClose: () -> Void
     
     var body: some View {
-        EventScreenTemplate(
-            eventState: $eventState,
-            gold: $gold,
-            selectedItem: $selectedItem,
-            showDetailItemView: $showDetailItemView,
-            showMoreDetailItems: $showMoreDetailItems
-        )
-    }
-}
-
-struct ForestScreenExample: View {
-    @State private var eventState: Events = .inTheWoods
-    @State private var gold: Gold = Gold(gold: 2000)
-    @State private var stories: [Story] = CardManager.shared.stories
-    
-    var body: some View {
-        EventScreenTemplate(
-            eventState: $eventState,
-            gold: $gold,
-            stories: $stories
-        )
-    }
-}
-
-// Preview provider
-struct EventScreenTemplate_Previews: PreviewProvider {
-    static var previews: some View {
-        ForestScreenExample()
+        VStack {
+            Text("Battle Log")
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding()
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 4) {
+                    ForEach(battleLog, id: \.self) { logEntry in
+                        Text(logEntry)
+                            .font(.caption)
+                            .fontDesign(.monospaced)
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding()
+            }
+            .frame(maxHeight: 200)
+            
+            Button("Close") {
+                onClose()
+            }
+            .padding()
+            .background(Color.secondary)
+            .cornerRadius(8)
+        }
+        .frame(width: 300, height: 300)
+        .background(Color.gray)
+        .cornerRadius(15)
     }
 }

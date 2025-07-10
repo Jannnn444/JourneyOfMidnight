@@ -143,3 +143,45 @@ class CardManager: ObservableObject {
     }
 }
 
+
+    // MARK: - CardManager Extension for Attack Functions
+    extension CardManager {
+        
+        // Calculate Attack Power
+        func calculateAttackPower(for character: Hero) -> Int {
+            var totalAttack = 0
+            
+            // Base attack from attributes (using Strength as primary)
+            totalAttack += character.attributes.Strength
+            
+            // Add skill power (sum of all skills or highest skill)
+            let skillPower = character.skills.map { $0.power }.max() ?? 0
+            totalAttack += skillPower
+            
+            // Add item bonuses (you can expand this based on item effects)
+            totalAttack += character.items.count * 2
+            
+            return max(1, totalAttack) // Minimum 1 damage
+        }
+        
+        // Single hero attack function
+        func heroAttack(heroIndex: Int, enemyIndex: Int) -> String {
+            guard heroIndex < myHeroCards.count,
+                  enemyIndex < enemy.count else {
+                return "Invalid target"
+            }
+            
+            let attackingHero = myHeroCards[heroIndex]
+            let attackPower = calculateAttackPower(for: attackingHero)
+            
+            enemy[enemyIndex].stats.health = max(0, enemy[enemyIndex].stats.health - attackPower)
+            
+            let message = "\(attackingHero.heroClass.name.rawValue) attacks for \(attackPower) damage!"
+            
+            if enemy[enemyIndex].stats.health <= 0 {
+                return message + " \(enemy[enemyIndex].heroClass.name.rawValue) defeated!"
+            }
+            
+            return message
+        }
+    }
