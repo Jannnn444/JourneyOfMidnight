@@ -29,6 +29,7 @@ struct EventScreenTemplate: View {
     @State private var isBattleInProgress = false
     @State private var battleLog: [String] = []
     @State private var showBattleLog = false
+    @State private var showFightingAnimation = false
     
     // Combat-specific bindings
     private var selectedEnemies: Binding<[Hero]>?
@@ -159,7 +160,7 @@ struct EventScreenTemplate: View {
             VStack {
                 HStack {
                     Spacer()
-                    // button bag at top-right
+                    
                     
                     // Battle log button (only show in combat)
                     if eventState == .combat {
@@ -170,8 +171,10 @@ struct EventScreenTemplate: View {
                                 .foregroundColor(.white)
                                 .font(.title2)
                         }
+                        .padding(.leading)
                     }
                     
+                    // button bag at top-right
                     Button(action: {
                         showBagView.toggle()
                     }) {
@@ -181,7 +184,7 @@ struct EventScreenTemplate: View {
                     }
                     .padding(.leading)
                     
-                  
+                    
                 }
                 Spacer()
             }
@@ -237,6 +240,11 @@ struct EventScreenTemplate: View {
                     })
                 })
             }
+            
+            // Fighting animation popup
+            if showFightingAnimation {
+                FightingAnimationView()
+            }
         }
         .ignoresSafeArea()
     }
@@ -247,6 +255,7 @@ struct EventScreenTemplate: View {
         guard eventState == .combat else { return }
         
         isBattleInProgress = true
+        showFightingAnimation = true
         battleLog = []
         
         // Add battle start message
@@ -342,12 +351,110 @@ struct EventScreenTemplate: View {
         // Clean up defeated enemies
 //        cardManager.enemy.removeAll { $0.stats.health <= 0 }
         
+        // Hide fighting animation and show battle log
+        showFightingAnimation = false
         isBattleInProgress = false
         showBattleLog = true
         
         // Update the UI
         DispatchQueue.main.async {
+           
+        }
+    }
+}
+
+// MARK: - Fighting Animation View
+struct FightingAnimationView: View {
+    @State private var isAnimating = false
+    @State private var rotationAngle: Double = 0
+    @State private var pulseScale: CGFloat = 1.0
+    @State private var textOpacity: Double = 1.0
+    
+    var body: some View {
+        ZStack {
+            // Semi-transparent background
+            Color.black.opacity(0.7)
+                .ignoresSafeArea()
             
+            VStack(spacing: 30) {
+                // Animated sword
+                ZStack {
+                    // Glow effect behind sword
+                    Image(systemName: "sword.fill")
+                        .font(.system(size: 80))
+                        .foregroundColor(.yellow)
+                        .opacity(0.3)
+                        .scaleEffect(pulseScale * 1.3)
+                        .blur(radius: 10)
+                    
+                    // Main sword
+                    Image(systemName: "sword.fill")
+                        .font(.system(size: 80))
+                        .foregroundColor(.white)
+                        .rotationEffect(.degrees(rotationAngle))
+                        .scaleEffect(pulseScale)
+                        .shadow(color: .yellow, radius: 10)
+                }
+                .onAppear {
+                    startAnimations()
+                }
+                
+                // Fighting text with animated dots
+                HStack(spacing: 4) {
+                    Text("Fighting")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .fontDesign(.monospaced)
+                        .foregroundColor(.white)
+                    
+                    // Animated dots
+                    ForEach(0..<3, id: \.self) { index in
+                        Text(".")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .opacity(textOpacity)
+                            .animation(
+                                Animation.easeInOut(duration: 0.8)
+                                    .repeatForever()
+                                    .delay(Double(index) * 0.2),
+                                value: textOpacity
+                            )
+                    }
+                }
+                
+                // Battle progress indicator
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    .scaleEffect(1.5)
+            }
+        }
+        .transition(.opacity)
+    }
+    
+    private func startAnimations() {
+        // Sword rotation animation
+        withAnimation(
+            Animation.linear(duration: 2.0)
+                .repeatForever(autoreverses: false)
+        ) {
+            rotationAngle = 360
+        }
+        
+        // Pulse animation
+        withAnimation(
+            Animation.easeInOut(duration: 1.0)
+                .repeatForever(autoreverses: true)
+        ) {
+            pulseScale = 1.2
+        }
+        
+        // Text opacity animation for dots
+        withAnimation(
+            Animation.easeInOut(duration: 0.8)
+                .repeatForever(autoreverses: true)
+        ) {
+            textOpacity = 0.3
         }
     }
 }
