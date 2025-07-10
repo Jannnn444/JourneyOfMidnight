@@ -3,158 +3,164 @@
 //  JourneyOfMidnight
 //
 //  Created by Hualiteq International on 2025/4/27.
-//
-
-import Foundation
-
-// MARK: Build Character
-
+//import Foundation// MARK: - Character/// Represents a character in the game, which can be a hero or a follower.
 struct Character: Identifiable {
-    var id = UUID()
+    let id = UUID()
     var name: String
     var type: CharacterType
-    var ability: [Ability]
-}
-
-enum CharacterType {
+    var abilities: [Ability]
+}enum CharacterType {
     case hero
     case follower
-}
-
+}/// Represents an ability that a character can have.
 struct Ability: Identifiable {
-    var id = UUID()
+    let id = UUID()
     var skillName: String
-    var boxAmt: Int
+    var boxAmt: Int // TODO: Clarify what 'boxAmt' means; consider renaming for clarity
     var skillType: SkillType
-}
-
-enum SkillType: String {
-    case Attack
-    case Heal
-    case Defense
-}
-
-// MARK: - Hero
-struct Hero: Identifiable {
-    var id = UUID()
+}enum SkillType: String, Codable {
+    case attack = "Attack"
+    case heal = "Heal"
+    case defense = "Defense"
+}// MARK: - Hero and Follower/// Represents the hero in the game.
+struct Hero: Identifiable, Codable {
+    let id = UUID()
     var heroClass: HeroClass
     var attributes: Attributes
     var skills: [Skill]
-    var items: [Item]
+    var items: [Item] // Equipped items
     var stats: Stats
-    var bag: [Item] //new!
-    var heroLoad: Int
+    var bag: [Item] // Inventory
+    var heroLoad: Int // Possibly carrying capacity or load/// Calculates the maximum health based on vitality.
+var maxHealth: Int {
+    stats.health + attributes.vitality * 10 // Example calculation
 }
 
-struct Follower: Identifiable {
-    var id = UUID()
+/// Adds an item to the bag if there's space.
+mutating func addItemToBag(_ item: Item) -> Bool {
+    let currentLoad = bag.reduce(0) { $0 + $1.size.rawValue } + heroLoad
+    if currentLoad + item.size.rawValue <= maxLoad {
+        bag.append(item)
+        return true
+    }
+    return false
+}
+
+/// Maximum load the hero can carry.
+var maxLoad: Int {
+    attributes.strength * 5 // Example
+}}/// Represents a follower in the game.
+struct Follower: Identifiable, Codable {
+    let id = UUID()
     var heroClass: HeroClass
     var attributes: Attributes
     var skills: [Skill]
     var items: [Item]
-    var stas: Stats
-}
+    var stats: Stats // Fixed typo from 'stas' to 'stats'// Added bag and heroLoad for consistency with Hero
+var bag: [Item] = []
+var heroLoad: Int = 0
 
-struct HeroClass {
+/// Calculates the maximum health based on vitality.
+var maxHealth: Int {
+    stats.health + attributes.vitality * 5 // Slightly less than hero
+}}// MARK: - Hero Class/// Defines the class of a hero or follower.
+struct HeroClass: Codable {
     var name: HeroClassName
     var level: Int
-    var life: Int
-}
-
-struct VendorGoods: Identifiable {
-    var id = UUID()
-    var item: [Item]
-}
-
-enum HeroClassName: String {
+    var life: Int // Possibly lives or max endurance
+}enum HeroClassName: String, Codable {
     case fighter = "Fighter"
-    case wizard = "wizard"
-    case rogue = "rogue"
-    case priest = "priest"
-    case duelist = "duelist"
-    case templar = "templar"
+    case wizard = "Wizard" // Capitalized for consistency
+    case rogue = "Rogue"
+    case priest = "Priest"
+    case duelist = "Duelist"
+    case templar = "Templar"
+}// MARK: - Vendor/// Goods available from a vendor.
+struct VendorGoods: Identifiable {
+    let id = UUID()
+    var items: [Item]
+}// MARK: - Attributes, Skills, Items, Stats/// Attributes that define a character's capabilities.
+struct Attributes: Codable {
+    var strength: Int = 5
+    var intelligence: Int = 5
+    var wisdom: Int = 5
+    var agility: Int = 5
+    var vitality: Int = 5
+    var faith: Int = 5
+    var charisma: Int = 5/// Total attribute points.
+var total: Int {
+    strength + intelligence + wisdom + agility + vitality + faith + charisma
 }
 
-struct Attributes {
-    var Strength: Int = 5
-    var Intelligence: Int = 5
-    var Wisdom: Int = 5
-    var Agility: Int = 5
-    var Vitality: Int = 5
-    var Faith: Int = 5
-    var Charisma: Int = 5
-}
-
-struct Skill: Identifiable {
-    var id = UUID()
+/// Mutates an attribute by a given amount.
+mutating func modify(_ type: EffectTypes, by amount: Int) {
+    switch type {
+    case .strength: strength += amount
+    case .intelligence: intelligence += amount
+    case .wisdom: wisdom += amount
+    case .agility: agility += amount
+    case .vitality: vitality += amount
+    case .faith: faith += amount
+    case .charisma: charisma += amount
+    }
+}}/// A skill that a character can use.
+struct Skill: Identifiable, Codable {
+    let id = UUID()
     var name: String
     var power: Int
-//    var size: itemSizes
-}
-
-struct Item: Identifiable {
-    var id = UUID()
+    // var size: itemSizes // Commented out; unclear purpose
+}/// An item in the game.
+struct Item: Identifiable, Codable {
+    let id = UUID()
     var name: String
-    var intro: String
+    var intro: String // Description
     var price: Int
-    var size: itemSizes
-}
-
-enum itemSizes: Int {
+    var size: ItemSize// Added for more depth
+var weight: Int {
+    size.rawValue * 2 // Example
+}}enum ItemSize: Int, Codable {
     case small = 1
     case medium = 2
     case large = 3
-}
-
-struct Stats {
-    var health: Int  // max health for each fight
-    var endurance: Int // total health for the entire night
-}
-
-enum Events {
+}/// Stats for health and endurance.
+struct Stats: Codable {
+    var health: Int  // Max health for each fight
+    var endurance: Int // Total health for the entire night
+}// MARK: - Eventsenum EventType {
     case combat
     case vendor
     case inTheWoods
-}
-
-func shuffleEvents() -> Events {
-    let allEvents: [Events] = [.combat, .inTheWoods, .vendor]
+}/// Shuffles and returns a random event.
+func generateRandomEvent() -> EventType {
+    let allEvents: [EventType] = [.combat, .inTheWoods, .vendor]
     return allEvents.randomElement() ?? .combat
-}
-
+}// MARK: - Gold, Story, Option/// Represents gold currency.
 struct Gold {
-    let gold: Int
-}
-
+    let amount: Int // Renamed from 'gold' for clarity
+}/// A story segment with choices.
 struct Story: Identifiable {
-    var id = UUID()
+    let id = UUID()
     var topic: String
-    var choice: [Option]
-}
-
+    var choices: [Option] // Renamed from 'choice' for plural consistency
+}/// An option in a story.
 struct Option: Identifiable {
-    var id = UUID()
-    var option: String
+    let id = UUID()
+    var text: String // Renamed from 'option' for clarity
     var effect: Int
     var effectType: EffectTypes
-}
-
-enum EffectTypes {
-    case Strength
-    case Intelligence
-    case Wisdom
-    case Agility
-    case Vitality
-    case Faith
-    case Charisma
-}
-
-// NOTE: 20250702
-
-/*
+}enum EffectTypes {
+    case strength
+    case intelligence
+    case wisdom
+    case agility
+    case vitality
+    case faith
+    case charisma
+}// NOTE: 20250702/*
  Wheres that pink bubble we need ?
  All around the world be loved be cared be remembered
  maybe we should celebrate on the day or just go on weekend ?
  No ideas and Crazy sense of knowing some ideas are bothering me a lot
  Cruel or not is that they have no sensation or any ability to love and be pathetic
  */
+
