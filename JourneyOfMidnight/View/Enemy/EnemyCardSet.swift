@@ -22,10 +22,10 @@ struct EnemyCardSet: View {
                 }) {
                     VStack {
                         HStack {
-                        ForEach(enemy.skills) { skill in
+                            ForEach(enemy.activeSkills) { skill in
                             ZStack {
                                 Rectangle()
-                                    .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
+                                    .frame(width: CGFloat(skill.size.rawValue) * cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
                                     .foregroundStyle(.white)
                                     .cornerRadius(12)
                                     .overlay(
@@ -38,22 +38,22 @@ struct EnemyCardSet: View {
                                     .frame(width: 30, height: 30)
                               }
                             }
-                            ForEach(enemy.items) { item in
-                                ZStack {
-                                    Rectangle()
-                                        .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
-                                        .foregroundStyle(.white)
-                                        .cornerRadius(12)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.green, lineWidth: 2)
-                                        )
-                                    
-                                    Image("\(item.name)")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                }
-                            }
+//                            ForEach(enemy.items) { item in
+//                                ZStack {
+//                                    Rectangle()
+//                                        .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
+//                                        .foregroundStyle(.white)
+//                                        .cornerRadius(12)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 10)
+//                                                .stroke(Color.green, lineWidth: 2)
+//                                        )
+//                                    
+//                                    Image("\(item.name)")
+//                                        .resizable()
+//                                        .frame(width: 30, height: 30)
+//                                }
+//                            }
                         }
                         ZStack {
                             Rectangle()
