@@ -44,6 +44,7 @@ struct Hero: Identifiable {
     var stats: Stats
     var bag: [Item] //new!
     var heroLoad: Int
+    var activeSkills : [Skill]
 }
 
 struct Follower: Identifiable {
@@ -89,7 +90,7 @@ struct Skill: Identifiable {
     var id = UUID()
     var name: String
     var power: Int
-//    var size: itemSizes
+    var size: itemSizes
 }
 
 struct Item: Identifiable {

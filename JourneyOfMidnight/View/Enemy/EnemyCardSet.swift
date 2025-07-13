@@ -107,6 +107,7 @@ struct EnemyCardSet: View {
                                         .frame(width: 50, height: 50)
                                 }
                                 
+                                // Zstack this! on blood bar
 //                                Text("\(enemy.heroClass.life)")
 //                                    .font(.headline)
 //                                    .fontDesign(.monospaced)
