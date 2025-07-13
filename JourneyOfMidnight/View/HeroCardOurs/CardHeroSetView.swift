@@ -60,7 +60,7 @@ struct CardHeroSetView: View {
                         ZStack {
                             Rectangle()
                                 .frame(
-                                    width: hero.items.count == 2 ? 200 : 100,
+                                    width: hero.heroLoad == 4 ? 200 : 100,
                                     height: 130)
                                 .foregroundColor(.brown)
                                 .cornerRadius(10)
@@ -68,7 +68,7 @@ struct CardHeroSetView: View {
                                 .offset(y: 8)
                             Rectangle()
                                 .frame(
-                                    width: hero.items.count == 2 ? 200 : 100,
+                                    width: hero.heroLoad == 4 ? 200 : 100,
                                     height: 130)
                                 .foregroundColor(.yellow)
                                 .cornerRadius(10)

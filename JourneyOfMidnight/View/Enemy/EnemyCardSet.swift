@@ -58,7 +58,7 @@ struct EnemyCardSet: View {
                         ZStack {
                             Rectangle()
                                 .frame(
-                                    width: enemy.items.count == 2 ? 200 : 100,
+                                    width: enemy.heroLoad == 4 ? 200 : 100,
                                     height: 130)
                                 .foregroundColor(.gray)
                                 .cornerRadius(10)
@@ -66,7 +66,7 @@ struct EnemyCardSet: View {
                                 .offset(y: 8)
                             Rectangle()
                                 .frame(
-                                    width: enemy.items.count == 2 ? 200 : 100,
+                                    width: enemy.heroLoad == 4 ? 200 : 100,
                                     height: 130)
                                 .foregroundColor(.orange)
                                 .cornerRadius(10)
