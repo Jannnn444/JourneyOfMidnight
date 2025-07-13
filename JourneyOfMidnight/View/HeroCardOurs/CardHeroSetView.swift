@@ -13,10 +13,23 @@ struct CardHeroSetView: View {
     @Binding var IsShowDetailSkillView: Bool
     @Binding var showMoreDetail: Bool
     @Binding var selectedHeros: [Hero]
- 
+    var hero: Bool = true
+    
+    func itemSizesToWidth(itemSize: itemSizes) -> CGFloat {
+        var result: CGFloat = 0
+        if itemSize == .small {
+            result = 1 * cardManager.abilityBoxWidth
+        } else if itemSize == .medium {
+            result =  2 * cardManager.abilityBoxWidth
+        } else if itemSize == .large {
+            result =  4 * cardManager.abilityBoxWidth
+        }
+        return result
+    }
+    
     var body: some View {
         HStack {
-            ForEach(cardManager.myHeroCards) { hero in
+            ForEach(self.hero ? cardManager.myHeroCards : cardManager.enemy) { hero in
                 Button(action: {
                     IsShowDetailSkillView.toggle() // Button for shows brief skill
                 }) {
@@ -25,8 +38,9 @@ struct CardHeroSetView: View {
                         HStack {
                             ForEach(hero.activeSkills) { skill in
                                 ZStack {
+                                    
                                     Rectangle()
-                                        .frame(width: CGFloat(skill.size.rawValue) * cardManager.abilityBoxWidth , height: cardManager.abilityBoxHeight)
+                                        .frame(width: itemSizesToWidth(itemSize: skill.size) , height: cardManager.abilityBoxHeight)
                                         .foregroundStyle(.white)
                                         .cornerRadius(12)
                                         .overlay(
@@ -138,7 +152,7 @@ struct CardHeroSetView: View {
                     } // Vstack above the Hero Cards
                 }
             } // ForEach hero
-        } .position(x: 430, y: 310)
+        } .position(x: 430, y: self.hero ? 310 : 130)
 
           /*
            

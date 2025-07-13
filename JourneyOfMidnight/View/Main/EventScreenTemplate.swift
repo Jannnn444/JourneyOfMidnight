@@ -55,11 +55,11 @@ struct EventScreenTemplate: View {
             ZStack {
                 EventCombat()
                 
-                EnemyCardSet(
-                    selectedEnemies: selectedEnemies,
-                    showDetailSkillViewEnemi: showDetailSkillViewEnemi,
-                    showMoreDetailEnemi: showMoreDetailEnemi
-                )
+//                EnemyCardSet(
+//                    selectedEnemies: selectedEnemies,
+//                    showDetailSkillViewEnemi: showDetailSkillViewEnemi,
+//                    showMoreDetailEnemi: showMoreDetailEnemi
+//                )
             }
         )
         
@@ -136,9 +136,17 @@ struct EventScreenTemplate: View {
                 .ignoresSafeArea()
             
             // The event-specific content
-            eventContent
+//            eventContent
             
-            // Hero cards at the bottom
+            // Enemies
+            CardHeroSetView(
+                IsShowDetailSkillView: $showDetailSkillViewHero,
+                showMoreDetail: $showMoreDetailHero,
+                selectedHeros: $selectedHeros,
+                hero: false
+            )
+            
+            // Heros
             CardHeroSetView(
                 IsShowDetailSkillView: $showDetailSkillViewHero,
                 showMoreDetail: $showMoreDetailHero,
