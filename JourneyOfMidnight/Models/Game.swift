@@ -103,7 +103,7 @@ struct Item: Identifiable {
 enum itemSizes: Int {
     case small = 1
     case medium = 2
-    case large = 3
+    case large = 4
 }
 
 struct Stats {
