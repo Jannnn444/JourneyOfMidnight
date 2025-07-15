@@ -15,7 +15,7 @@ struct CardHeroSetView: View {
     @Binding var selectedHeros: [Hero]
     var hero: Bool = true
     
-    func itemSizesToWidth(itemSize: itemSizes) -> CGFloat {
+    func itemSizesToWidth(itemSize: itizes) -> CGFloat {
         var result: CGFloat = 0
         if itemSize == .small {
             result = 1 * cardManager.abilityBoxWidth
