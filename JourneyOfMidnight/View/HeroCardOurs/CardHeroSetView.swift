@@ -15,7 +15,7 @@ struct CardHeroSetView: View {
     @Binding var selectedHeros: [Hero]
     var hero: Bool = true
     
-    func itemSizesToWidth(itemSize: itizes) -> CGFloat {
+    func itemSizesToWidth(itemSize: itemSizes) -> CGFloat {
         var result: CGFloat = 0
         if itemSize == .small {
             result = 1 * cardManager.abilityBoxWidth
@@ -30,15 +30,12 @@ struct CardHeroSetView: View {
     var body: some View {
         HStack {
             ForEach(self.hero ? cardManager.myHeroCards : cardManager.enemy) { hero in
-                Button(action: {
-                    IsShowDetailSkillView.toggle() // Button for shows brief skill
-                }) {
+               
                     VStack { // Vstack above cards
                      
                         HStack {
                             ForEach(hero.activeSkills) { skill in
                                 ZStack {
-                                    
                                     Rectangle()
                                         .frame(width: itemSizesToWidth(itemSize: skill.size) , height: cardManager.abilityBoxHeight)
                                         .foregroundStyle(.white)
@@ -53,24 +50,10 @@ struct CardHeroSetView: View {
                                         .frame(width: 30, height: 30)
                                 }
                             }
-//                            ForEach(hero.items) { item in
-//                                ZStack {
-//                                    Rectangle()
-//                                        .frame(width: cardManager.abilityBoxWidth, height: cardManager.abilityBoxHeight)
-//                                        .foregroundStyle(.white)
-//                                        .cornerRadius(12)
-//                                        .overlay(
-//                                            RoundedRectangle(cornerRadius: 10)
-//                                                .stroke(Color.green, lineWidth: 2)
-//                                        )
-//                                    
-//                                    Image("\(item.name)")
-//                                        .resizable()
-//                                        .frame(width: 30, height: 30)
-//                                }
-//                            }
                         }
-                        
+                        Button(action: {
+                            IsShowDetailSkillView.toggle() // Button for shows brief skill
+                        }) {
                         ZStack {
                             Rectangle()
                                 .frame(
