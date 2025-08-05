@@ -37,7 +37,7 @@ struct HeroMainView: View {
             switch eventState {
             case .combat:
                 EventCombat()
-//                EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi) 
+//              EnemyCardSet(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi) 
                 Spacer()
                 
             case .vendor:
