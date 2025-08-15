@@ -236,7 +236,7 @@ struct EventScreenTemplate: View {
             // Bag popup
             if showBagView {
                 PopupView(content: {
-                    BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag, selectedHeroBag: cardManager.itemInMyBagByHero)
+                    BagView(gold: gold, itemInMyBag: cardManager.itemInMyBag, selectedHeroBag: cardManager.itemInMyBagByHero, isPresented: $showBagView)
                 })
             }
             

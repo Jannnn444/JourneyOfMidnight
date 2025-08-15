@@ -105,10 +105,6 @@ struct CardHeroSetView: View {
                                         .frame(width: 50, height: 50)
                                 }
                                 
-//                                Text("\(hero.heroClass.life)")
-//                                    .font(.headline)
-//                                    .fontDesign(.monospaced)
-//                                    .bold()
                                 
                                 Text(hero.heroClass.name.rawValue.capitalized)
                                     .font(.headline)

@@ -2,7 +2,7 @@
 //  HeroOptionsView.swift
 //  JourneyOfMidnight
 //
-//  Created by Jan    on 2025/6/30.
+//  Created by Jan on 2025/6/30.
 //
 
 import Foundation
@@ -87,6 +87,8 @@ struct HeroOptionsView: View {
                                         .resizable()
                                         .frame(width: 35, height: 35)
                                 }
+                                // here to be add : how to swap the items or skills
+                                
                             } else if (index - hero.items.count) < hero.skills.count {
                                 // Show skill
                                 let skillIndex = index - hero.items.count

@@ -2,7 +2,7 @@
 //  BagView.swift
 //  JourneyOfMidnight
 //
-//  Created by Jan    on 2025/6/20.
+//  Created by Jan on 2025/6/20.
 //
 
 import Foundation
@@ -17,6 +17,7 @@ struct BagView: View {
     @State private var showActionMenu = false
     @State private var actionMenuItemIndex: Int?
     @State private var buttonPositions: [Int: CGRect] = [:]
+    @Binding var isPresented: Bool
     
     // Define grid layout - 3 columns for horizontal grid
     let columns = [
@@ -29,6 +30,12 @@ struct BagView: View {
     
     var body: some View {
         ZStack { // ✅ FIXED: Wrap entire body in ZStack
+            Color.black.opacity(0.3)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    dismissBagView()
+                }
+            
             VStack(spacing: 12) {
                 Text("My bag")
                     .font(.headline)
@@ -257,6 +264,17 @@ struct BagView: View {
             selectedItem = nil
         }
     }
+    
+    // MARK: - Dismiss Functions
+      private func dismissBagView() {
+          // Close action menu first if it's open
+          if showActionMenu {
+              dismissActionMenu()
+          } else {
+              // Dismiss the entire bag view
+              isPresented = false
+          }
+      }
 }
 
 // MARK: - Helper Function (keep outside the struct)
