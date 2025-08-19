@@ -13,12 +13,10 @@ struct ButtomButton: View {
     let textOnButton: String
     
     var body: some View {
-//        VStack {
-//            Spacer() // push to the buttom
-//            HStack {
-//                Spacer()  // push to right
+
                 Button(action: {
                     eventState = shuffleEvents()
+                    print("\(eventState)")
                 }) {
                     Text(textOnButton)
                         .padding()
@@ -27,8 +25,6 @@ struct ButtomButton: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-//                .padding()
+
             }
-//        }
-//    }
 }
