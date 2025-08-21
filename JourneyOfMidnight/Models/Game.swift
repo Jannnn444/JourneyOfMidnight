@@ -99,6 +99,7 @@ struct Item: Identifiable {
     var intro: String
     var price: Int
     var size: itemSizes
+    var heroPicked: Bool
 }
 
 enum itemSizes: Int {
