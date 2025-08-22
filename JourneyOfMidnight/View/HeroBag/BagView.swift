@@ -167,6 +167,7 @@ struct BagView: View {
                     // Action buttons
                     actionButton("⭐ Add to Favorites") {
                         addToFavorites(item: selectedItem)
+                        
                     }
                     
                     Divider()

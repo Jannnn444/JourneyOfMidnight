@@ -60,7 +60,9 @@ class CardManager: ObservableObject {
                     Faith: 10,
                     Charisma: 10),
                 skills: [Skill(name: "Meteor", power: 9, size: .small)]/*, Skill(name: "Dodge", power: 8)*/,
-                items: [Item(name: "Armore", intro: "Love", price: 1000, size: .small, heroPicked: false)/*, Item(name: "pants", intro: "Armour")*/],
+                items: [
+                    Item(name: "Armore", intro: "Love", price: 1000, size: .small, heroPicked: false)/*,
+                    Item(name: "pants", intro: "Armour")*/],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small, heroPicked: false)],
                 heroLoad: 2,
@@ -72,7 +74,9 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .wizard, level: 50, life: 180),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Flower", power: 8, size: .small)],
-                items: [Item(name: "cat", intro: "brutal killer", price: 50, size: .large, heroPicked: false), Item(name: "holybook", intro: "Handwritten", price: 20,size: .small, heroPicked: false)],
+                items: [
+                    Item(name: "cat", intro: "brutal killer", price: 50, size: .large, heroPicked: false),
+                    Item(name: "holybook", intro: "Handwritten", price: 20,size: .small, heroPicked: false)],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small, heroPicked: false)],
                 heroLoad: 4,
