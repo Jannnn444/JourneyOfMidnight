@@ -28,14 +28,14 @@ struct CardHeroSetViewWSkill : View {
                                 selectedHeros = []
                             }) {
                                 Text("Close")
-                                    .padding()
+                                    .padding(5)
                                     .foregroundColor(.black)
                                     .fontDesign(.monospaced)
                                     .bold()
-                                    .font(.headline)
+                                    .font(.caption)
                                     .background(Color.gray)
-                                    .cornerRadius(10)
-                            }
+                                    .cornerRadius(8)
+                            }.padding(.bottom, 10)
                         }
                     }
                 }

@@ -210,7 +210,7 @@ struct HeroOptionsView: View {
             }
             .padding(.horizontal)
             
-            // Here for Button Close and sendout new bag data ?
+            // Here for Button Close  and sendout new bag data ?
         }
         .frame(maxWidth: 380, maxHeight: 280)
         .padding(.horizontal, 12)
