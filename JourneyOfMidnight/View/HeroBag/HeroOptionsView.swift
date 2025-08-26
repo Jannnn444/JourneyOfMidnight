@@ -133,12 +133,30 @@ struct HeroOptionsView: View {
                 .padding(.horizontal, 6)
             }
             
-            // Optional: Display current bags
+            // MARK: Items
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Items: \(myBag.count)/3")
+                    Text("Items: \(myBag.count)/2")
                         .foregroundStyle(.white)
                         .font(.caption)
+                    
+                    HStack(spacing: 2) {
+                        ForEach(myBag, id: \.name) {  item in
+                            Image(item.name)
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .background(Color.black.opacity(0.3))
+                                .border(.yellow, width: 1)
+                        }
+                        
+                        ForEach(0..<(2 - myBag.count), id:  \.self) { _ in
+                            Rectangle()
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(.gray.opacity(0.3))
+                                .border(.gray, width: 1)
+                        }
+                    }
+                    
                     
                     if myBag.count >= 2 {
                         Text("Item bag is full! Cannot add more items.")
@@ -150,11 +168,36 @@ struct HeroOptionsView: View {
                 }
                 
                 Spacer()
-                
                 VStack(alignment: .trailing) {
-                    Text("Skills: \(mySkillBag.count)/3")
+                    // MARK: Skills
+                    Text("Skills: \(mySkillBag.count)/1")
                         .foregroundStyle(.white)
                         .font(.caption)
+                    
+                    
+                    HStack(spacing: 2) {
+                        ForEach(mySkillBag, id: \.name) { skill in
+                            ZStack {
+                                Circle()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundStyle(.white.opacity(0.5))
+                                    .overlay(Circle().stroke(.blue, lineWidth: 1))
+                                
+                                Image(skillImage(for: skill.name))
+                                    .resizable()
+                                    .frame(width: 14, height: 14)
+                            }
+                        }
+                        
+                        // Show empty slots
+                        ForEach(0..<(1 - mySkillBag.count), id: \.self) { _ in
+                            Circle()
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(.gray.opacity(0.3))
+                                .overlay(Circle().stroke(.gray))
+                        }
+                    }
+                    
                     
                     if mySkillBag.count >= 1 {
                         Text("Skill is full!")
@@ -166,6 +209,8 @@ struct HeroOptionsView: View {
                 }
             }
             .padding(.horizontal)
+            
+            // Here for Button Close and sendout new bag data ?
         }
         .frame(maxWidth: 380, maxHeight: 280)
         .padding(.horizontal, 12)
@@ -212,31 +257,31 @@ struct HeroOptionsView: View {
     
     private func heroImage(for heroClass: HeroClassName) -> String {
         switch heroClass {
-           case .fighter: return "knight"
-           case .wizard: return "princess"
-           case .priest: return "priest"
-           case .duelist: return "duelist"
-           case .rogue: return "king"
-           case .templar: return "templar"
-       }
+        case .fighter: return "knight"
+        case .wizard: return "princess"
+        case .priest: return "priest"
+        case .duelist: return "duelist"
+        case .rogue: return "king"
+        case .templar: return "templar"
+        }
     }
     
     private func skillImage(for skillName: String) -> String {
         switch skillName.lowercased() {
-            case "meteor": return "Meteor"
-            case "dodge": return "dodge"
-            case "rainy": return "Rainy"
-            case "wolve": return "Meow"
-            case "flower": return "Flower"
-            case "wolvecry": return "WolveCry"
-            case "moon": return "Moon"
-            case "meow": return "meow"
-            case "lightling": return "lightling"
-            case "holy": return "Holy"
-            case "god": return "god"
-            case "gun": return "gun"
-            case "fist": return "fist"
-            default: return "defaultSkill" // fallback image
+        case "meteor": return "Meteor"
+        case "dodge": return "dodge"
+        case "rainy": return "Rainy"
+        case "wolve": return "Meow"
+        case "flower": return "Flower"
+        case "wolvecry": return "WolveCry"
+        case "moon": return "Moon"
+        case "meow": return "meow"
+        case "lightling": return "lightling"
+        case "holy": return "Holy"
+        case "god": return "god"
+        case "gun": return "gun"
+        case "fist": return "fist"
+        default: return "defaultSkill" // fallback image
         }
     }
 }
