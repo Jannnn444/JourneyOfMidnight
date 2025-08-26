@@ -162,7 +162,7 @@ struct HeroOptionsView: View {
         
         if hero.items[index].isChose {
             // Item was just selected - try to add to bag
-            if myBag.count < 3 {
+            if myBag.count < 1 {
                 myBag.append(hero.items[index])
             } else {
                 // Bag is full - revert the selection
@@ -181,7 +181,7 @@ struct HeroOptionsView: View {
         
         if hero.skills[index].isSelected {
             // Skill was just selected - try to add to bag
-            if mySkillBag.count < 3 {
+            if mySkillBag.count < 1 {
                 mySkillBag.append(hero.skills[index])
             } else {
                 // Bag is full - revert the selection
