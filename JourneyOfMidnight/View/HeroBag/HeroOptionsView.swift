@@ -135,18 +135,34 @@ struct HeroOptionsView: View {
             
             // Optional: Display current bags
             HStack {
-                VStack {
+                VStack(alignment: .leading) {
                     Text("Items: \(myBag.count)/3")
                         .foregroundStyle(.white)
                         .font(.caption)
+                    
+                    if myBag.count >= 2 {
+                        Text("Item bag is full! Cannot add more items.")
+                            .foregroundStyle(.red)
+                            .bold()
+                            .font(.caption)
+                            .italic()
+                    }
                 }
                 
                 Spacer()
                 
-                VStack {
+                VStack(alignment: .trailing) {
                     Text("Skills: \(mySkillBag.count)/3")
                         .foregroundStyle(.white)
                         .font(.caption)
+                    
+                    if mySkillBag.count >= 1 {
+                        Text("Skill is full!")
+                            .foregroundStyle(.red)
+                            .bold()
+                            .font(.caption)
+                            .italic()
+                    }
                 }
             }
             .padding(.horizontal)
@@ -162,7 +178,7 @@ struct HeroOptionsView: View {
         
         if hero.items[index].isChose {
             // Item was just selected - try to add to bag
-            if myBag.count < 1 {
+            if myBag.count < 2 {
                 myBag.append(hero.items[index])
             } else {
                 // Bag is full - revert the selection
