@@ -16,7 +16,7 @@ struct CardHeroSetViewWSkill : View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            ForEach(selectedHeros) { hero in
+            ForEach($selectedHeros) { hero in
                 PopupView{
                     HeroOptionsView(hero: hero)
                     

@@ -270,8 +270,7 @@ struct BagView: View {
       private func dismissBagView() {
           // Close action menu first if it's open
           if showActionMenu {
-              dismissActionMenu()
-          } else {
+              dismissActionMenu()       } else {
               // Dismiss the entire bag view
               isPresented = false
           }

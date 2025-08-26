@@ -95,6 +95,8 @@ struct MainMenuView: View {
 //                          }) {
 //                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
 //                          }
+                            
+                           
                         }
                         
                         Button(action: {

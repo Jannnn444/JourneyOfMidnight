@@ -45,7 +45,9 @@ struct Hero: Identifiable {
     var bag: [Item] //new!
     var heroLoad: Int
     var activeSkills : [Skill]
+    var isChose: Bool
 }
+
 
 struct Follower: Identifiable {
     var id = UUID()
@@ -99,7 +101,7 @@ struct Item: Identifiable {
     var intro: String
     var price: Int
     var size: itemSizes
-    var heroPicked: Bool
+    var isChose: Bool
 }
 
 enum itemSizes: Int {

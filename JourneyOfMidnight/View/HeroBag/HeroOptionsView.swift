@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct HeroOptionsView: View {
-    var hero: Hero
+    @Binding var hero: Hero
     @State var selectedItem: Item?
     @State var selectedSkill: Skill?
     @ObservedObject var cardManager = CardManager.shared
@@ -21,6 +21,7 @@ struct HeroOptionsView: View {
         GridItem(.fixed(45), spacing: 8),
         GridItem(.fixed(45), spacing: 8)
     ]
+    @State var myBag: [Item] = []
     
     var body: some View {
         VStack(spacing: 8) {
@@ -82,12 +83,14 @@ struct HeroOptionsView: View {
                                 Button(action: {
                                     selectedItem = hero.items[index]
                                     selectedSkill = nil // Clear skill selection
+                                    toggleItem(at: index, itemList: &hero.items, destinationBag: &myBag)
+                                    print("Hero items: \(hero.items[index].name)")
+                                    print("hero bags: \(myBag) ")
                                 }) {
                                     Image(hero.items[index].name)
                                         .resizable()
                                         .frame(width: 35, height: 35)
                                 }
-                                // here to be add : how to swap the items or skills
                                 
                             } else if (index - hero.items.count) < hero.skills.count {
                                 // Show skill
@@ -110,56 +113,38 @@ struct HeroOptionsView: View {
                                     }
                                 }
                             }
+                            
+                       
                         }
-                    }
+                    } // ForEach
                 }
                 .padding(.horizontal, 6)
             }
-            
-            // Show selected item or skill info
-            if let selectedItem = selectedItem {
-                VStack(spacing: 2) {
-                    Text("Selected Item: \(selectedItem.name)")
-                        .font(.caption2)
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.white)
-                        .bold()
-                    
-                    Text(selectedItem.intro)
-                        .font(.caption2)
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.gray)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(Color.gray.opacity(0.3))
-                .cornerRadius(4)
-            } else if let selectedSkill = selectedSkill {
-                VStack(spacing: 2) {
-                    Text("Selected Skill: \(selectedSkill.name)")
-                        .font(.caption2)
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.white)
-                        .bold()
-                    
-                    Text("Power: \(selectedSkill.power)")
-                        .font(.caption2)
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.blue)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(Color.blue.opacity(0.3))
-                .cornerRadius(4)
-            }
+           
         }
         .frame(maxWidth: 380, maxHeight: 250)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
     }
 }
+
+private func toggleItem(at index: Int, itemList: inout [Item], destinationBag: inout [Item]) {
+      itemList[index].isChose.toggle()
+      
+      if itemList[index].isChose {
+          // Item was just selected - try to add to bag
+          if destinationBag.count < 3 {
+              destinationBag.append(itemList[index])
+          } else {
+              // Bag is full - revert the selection
+              itemList[index].isChose = false
+              print("Bag is full! Cannot add more items.")
+          }
+      } else {
+          // Item was just deselected - remove from bag
+          destinationBag.removeAll { $0.name == itemList[index].name }
+      }
+  }
 
 private func heroImage(for heroClass: HeroClassName) -> String {
     switch heroClass {
