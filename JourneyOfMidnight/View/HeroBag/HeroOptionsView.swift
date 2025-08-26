@@ -1,10 +1,3 @@
-//
-//  HeroOptionsView.swift
-//  JourneyOfMidnight
-//
-//  Created by Jan on 2025/6/30.
-//
-
 import Foundation
 import SwiftUI
 
@@ -22,6 +15,7 @@ struct HeroOptionsView: View {
         GridItem(.fixed(45), spacing: 8)
     ]
     @State var myBag: [Item] = []
+    @State var mySkillBag: [Skill] = [] // Separate bag for skills if needed
     
     var body: some View {
         VStack(spacing: 8) {
@@ -79,26 +73,40 @@ struct HeroOptionsView: View {
                             
                             // Items first, then skills
                             if index < hero.items.count {
-                                // Show item
+                                // Show item - FIXED: Use correct index
                                 Button(action: {
                                     selectedItem = hero.items[index]
                                     selectedSkill = nil // Clear skill selection
-                                    toggleItem(at: index, itemList: &hero.items, destinationBag: &myBag)
+                                    toggleItem(at: index)
                                     print("Hero items: \(hero.items[index].name)")
-                                    print("hero bags: \(myBag) ")
+                                    print("Item bags: \(myBag.map { $0.name })")
                                 }) {
-                                    Image(hero.items[index].name)
-                                        .resizable()
-                                        .frame(width: 35, height: 35)
+                                    ZStack {
+                                        Image(hero.items[index].name)
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                        
+                                        // Visual indicator if item is selected
+                                        if hero.items[index].isChose {
+                                            Rectangle()
+                                                .stroke(.yellow, lineWidth: 3)
+                                                .frame(width: 35, height: 35)
+                                        }
+                                    }
                                 }
                                 
                             } else if (index - hero.items.count) < hero.skills.count {
-                                // Show skill
+                                // Show skill - FIXED: Use skillIndex, not grid index
                                 let skillIndex = index - hero.items.count
                                 let currentSkill = hero.skills[skillIndex]
+                                
                                 Button(action: {
                                     selectedSkill = currentSkill
                                     selectedItem = nil // Clear item selection
+                                    // FIXED: Use skill-specific toggle if needed
+                                    toggleSkill(at: skillIndex)
+                                    print("Selected skill: \(currentSkill.name)")
+                                    print("Skill bags: \(mySkillBag.map { $0.name })")
                                 }) {
                                     ZStack {
                                         // Skill background with different color
@@ -106,72 +114,113 @@ struct HeroOptionsView: View {
                                             .fill(Color.white.opacity(0.5))
                                             .frame(width: 35, height: 35)
                                         
-                                        // Use skill name for image, with fallback
                                         Image("\(skillImage(for: currentSkill.name))")
                                             .resizable()
                                             .frame(width: 25, height: 25)
+                                        
+                                        // Visual indicator if skill is selected
+                                        if currentSkill.isSelected {
+                                            Circle()
+                                                .stroke(.blue, lineWidth: 3)
+                                                .frame(width: 35, height: 35)
+                                        }
                                     }
                                 }
                             }
-                            
-                       
                         }
                     } // ForEach
                 }
                 .padding(.horizontal, 6)
             }
-           
+            
+            // Optional: Display current bags
+            HStack {
+                VStack {
+                    Text("Items: \(myBag.count)/3")
+                        .foregroundStyle(.white)
+                        .font(.caption)
+                }
+                
+                Spacer()
+                
+                VStack {
+                    Text("Skills: \(mySkillBag.count)/3")
+                        .foregroundStyle(.white)
+                        .font(.caption)
+                }
+            }
+            .padding(.horizontal)
         }
-        .frame(maxWidth: 380, maxHeight: 250)
+        .frame(maxWidth: 380, maxHeight: 280)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
     }
-}
-
-private func toggleItem(at index: Int, itemList: inout [Item], destinationBag: inout [Item]) {
-      itemList[index].isChose.toggle()
-      
-      if itemList[index].isChose {
-          // Item was just selected - try to add to bag
-          if destinationBag.count < 3 {
-              destinationBag.append(itemList[index])
-          } else {
-              // Bag is full - revert the selection
-              itemList[index].isChose = false
-              print("Bag is full! Cannot add more items.")
-          }
-      } else {
-          // Item was just deselected - remove from bag
-          destinationBag.removeAll { $0.name == itemList[index].name }
-      }
-  }
-
-private func heroImage(for heroClass: HeroClassName) -> String {
-    switch heroClass {
-       case .fighter: return "knight"
-       case .wizard: return "princess"
-       case .priest: return "priest"
-       case .duelist: return "duelist"
-       case .rogue: return "king"
-       case .templar: return "templar"
-   }
-}
-
-private func skillImage(for skillName: String) -> String {
-    switch skillName.lowercased() {
-        case "meteor": return "Meteor"
-        case "dodge": return "dodge"
-        case "rainy": return "Rainy"
-        case "wolve": return "Meow"
-        case "flower": return "Flower"
-        case "wolvecry": return "WolveCry"
-        case "moon": return "Moon"
-        case "meow": return "meow"
-        case "lightling": return "lightling"
-        case "holy": return "Holy"
-        case "god": return "god"
-        case "gun": return "gun"
-        case "fist": return "fist"
-        default: return "defaultSkill" // fallback image
+    
+    // FIXED: Move function inside struct and simplify parameters
+    private func toggleItem(at index: Int) {
+        hero.items[index].isChose.toggle()
+        
+        if hero.items[index].isChose {
+            // Item was just selected - try to add to bag
+            if myBag.count < 3 {
+                myBag.append(hero.items[index])
+            } else {
+                // Bag is full - revert the selection
+                hero.items[index].isChose = false
+                print("Item bag is full! Cannot add more items.")
+            }
+        } else {
+            // Item was just deselected - remove from bag
+            myBag.removeAll { $0.name == hero.items[index].name }
+        }
+    }
+    
+    // FIXED: Add separate function for skills
+    private func toggleSkill(at index: Int) {
+        hero.skills[index].isSelected.toggle()
+        
+        if hero.skills[index].isSelected {
+            // Skill was just selected - try to add to bag
+            if mySkillBag.count < 3 {
+                mySkillBag.append(hero.skills[index])
+            } else {
+                // Bag is full - revert the selection
+                hero.skills[index].isSelected = false
+                print("Skill bag is full! Cannot add more skills.")
+            }
+        } else {
+            // Skill was just deselected - remove from bag
+            mySkillBag.removeAll { $0.name == hero.skills[index].name }
+        }
+    }
+    
+    private func heroImage(for heroClass: HeroClassName) -> String {
+        switch heroClass {
+           case .fighter: return "knight"
+           case .wizard: return "princess"
+           case .priest: return "priest"
+           case .duelist: return "duelist"
+           case .rogue: return "king"
+           case .templar: return "templar"
+       }
+    }
+    
+    private func skillImage(for skillName: String) -> String {
+        switch skillName.lowercased() {
+            case "meteor": return "Meteor"
+            case "dodge": return "dodge"
+            case "rainy": return "Rainy"
+            case "wolve": return "Meow"
+            case "flower": return "Flower"
+            case "wolvecry": return "WolveCry"
+            case "moon": return "Moon"
+            case "meow": return "meow"
+            case "lightling": return "lightling"
+            case "holy": return "Holy"
+            case "god": return "god"
+            case "gun": return "gun"
+            case "fist": return "fist"
+            default: return "defaultSkill" // fallback image
+        }
     }
 }

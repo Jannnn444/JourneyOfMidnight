@@ -45,7 +45,6 @@ struct Hero: Identifiable {
     var bag: [Item] //new!
     var heroLoad: Int
     var activeSkills : [Skill]
-    var isChose: Bool
 }
 
 
@@ -93,6 +92,7 @@ struct Skill: Identifiable {
     var name: String
     var power: Int
     var size: itemSizes
+    var isSelected: Bool = false
 }
 
 struct Item: Identifiable {
