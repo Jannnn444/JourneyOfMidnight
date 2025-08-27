@@ -2,12 +2,15 @@ import Foundation
 import SwiftUI
 
 struct HeroItemOptionsView: View {
+    @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
     @State var selectedItem: Item?
     @State var selectedSkill: Skill?
-    @ObservedObject var cardManager = CardManager.shared
+
+    @State var myBag: [Item] = []
+    @State var mySkillBag: [Skill] = []
     
-    let onClose: () -> Void // Add closure!
+    let onClose: () -> Void
     
     let columns = [
         GridItem(.fixed(45), spacing: 8),
@@ -16,8 +19,41 @@ struct HeroItemOptionsView: View {
         GridItem(.fixed(45), spacing: 8),
         GridItem(.fixed(45), spacing: 8)
     ]
-    @State var myBag: [Item] = []
-    @State var mySkillBag: [Skill] = [] // Separate bag for skills
+    
+    private func saveSelections() {
+        // Save currently selected items and skills from the hero's arrays
+        let selectedItems = hero.items.filter { $0.isChose }
+        let selectedSkills = hero.skills.filter { $0.isSelected }
+        
+        hero.activeSkills = selectedSkills
+        // hero.activeItems = selectedItems // if you add this property
+        
+        print("Saved skills: \(selectedSkills.map { $0.name })")
+        print("Saved items: \(selectedItems.map { $0.name })")
+    }
+    
+    private func initializeBags() {
+        // FIRST: Set the isSelected flags from activeSkills
+        if !hero.activeSkills.isEmpty {
+            // Clear existing selections first
+            for i in 0..<hero.skills.count {
+                hero.skills[i].isSelected = false
+            }
+            
+            // Set selected skills from activeSkills
+            for skill in hero.activeSkills {
+                if let index = hero.skills.firstIndex(where: { $0.name == skill.name }) {
+                    hero.skills[index].isSelected = true
+                }
+            }
+        }
+        
+        // THEN: Filter to populate the bags
+        myBag = hero.items.filter { $0.isChose }
+        mySkillBag = hero.skills.filter { $0.isSelected }
+        
+        print("Initialized bags - Items: \(myBag.map { $0.name }), Skills: \(mySkillBag.map { $0.name })")
+    }
     
     var body: some View {
         VStack(spacing: 8) {
@@ -75,10 +111,10 @@ struct HeroItemOptionsView: View {
                             
                             // Items first, then skills
                             if index < hero.items.count {
-                                // Show item - FIXED: Use correct index
+                                // Show item
                                 Button(action: {
                                     selectedItem = hero.items[index]
-                                    selectedSkill = nil // Clear skill selection
+                                    selectedSkill = nil
                                     toggleItem(at: index)
                                     print("Hero items: \(hero.items[index].name)")
                                     print("Item bags: \(myBag.map { $0.name })")
@@ -98,14 +134,13 @@ struct HeroItemOptionsView: View {
                                 }
                                 
                             } else if (index - hero.items.count) < hero.skills.count {
-                                // Show skill - FIXED: Use skillIndex, not grid index
+                                // Show skill
                                 let skillIndex = index - hero.items.count
                                 let currentSkill = hero.skills[skillIndex]
                                 
                                 Button(action: {
                                     selectedSkill = currentSkill
-                                    selectedItem = nil // Clear item selection
-                                    // FIXED: Use skill-specific toggle if needed
+                                    selectedItem = nil
                                     toggleSkill(at: skillIndex)
                                     print("Selected skill: \(currentSkill.name)")
                                     print("Skill bags: \(mySkillBag.map { $0.name })")
@@ -135,7 +170,7 @@ struct HeroItemOptionsView: View {
                 .padding(.horizontal, 6)
             }
             
-            // MARK: Items
+            // MARK: Items & Skills Display
             HStack {
                 VStack(alignment: .leading) {
                     Text("Items: \(myBag.count)/2")
@@ -143,7 +178,7 @@ struct HeroItemOptionsView: View {
                         .font(.caption)
                     
                     HStack(spacing: 2) {
-                        ForEach(myBag, id: \.name) {  item in
+                        ForEach(myBag, id: \.name) { item in
                             Image(item.name)
                                 .resizable()
                                 .frame(width: 20, height: 20)
@@ -151,14 +186,13 @@ struct HeroItemOptionsView: View {
                                 .border(.yellow, width: 1)
                         }
                         
-                        ForEach(0..<(2 - myBag.count), id:  \.self) { _ in
+                        ForEach(0..<(2 - myBag.count), id: \.self) { _ in
                             Rectangle()
                                 .frame(width: 20, height: 20)
                                 .foregroundStyle(.gray.opacity(0.3))
                                 .border(.gray, width: 1)
                         }
                     }
-                    
                     
                     if myBag.count >= 2 {
                         Text("Item bag is full! Cannot add more items.")
@@ -170,12 +204,11 @@ struct HeroItemOptionsView: View {
                 }
                 
                 Spacer()
+                
                 VStack(alignment: .trailing) {
-                    // MARK: Skills
                     Text("Skills: \(mySkillBag.count)/1")
                         .foregroundStyle(.white)
                         .font(.caption)
-                    
                     
                     HStack(spacing: 2) {
                         ForEach(mySkillBag, id: \.name) { skill in
@@ -200,7 +233,6 @@ struct HeroItemOptionsView: View {
                         }
                     }
                     
-                    
                     if mySkillBag.count >= 1 {
                         Text("Skill is full!")
                             .foregroundStyle(.red)
@@ -212,10 +244,12 @@ struct HeroItemOptionsView: View {
             }
             .padding(.horizontal)
             
-            // Here for Button Close and SAVE new hero bag data ?!
             // MARK: - Close Button
-            Button(action: onClose) {
-                Text("Close")
+            Button(action: {
+                saveSelections()
+                onClose()
+            }) {
+                Text("Save & Close")
                     .padding(10)
                     .foregroundColor(.black)
                     .fontDesign(.monospaced)
@@ -227,9 +261,16 @@ struct HeroItemOptionsView: View {
         }
         .frame(maxWidth: 380, maxHeight: 280)
         .padding()
+        .onAppear {
+            initializeBags()
+        }
+        .onChange(of: hero.id) { _ in
+            initializeBags()
+        }
+        // MARK: refresh logic hererere
     }
     
-    // FIXED: Move function inside struct and simplify parameters
+    // MARK: - Toggle Functions
     private func toggleItem(at index: Int) {
         hero.items[index].isChose.toggle()
         
@@ -248,7 +289,6 @@ struct HeroItemOptionsView: View {
         }
     }
     
-    // FIXED: Add separate function for skills
     private func toggleSkill(at index: Int) {
         hero.skills[index].isSelected.toggle()
         
@@ -267,6 +307,7 @@ struct HeroItemOptionsView: View {
         }
     }
     
+    // MARK: - Helper Functions
     private func heroImage(for heroClass: HeroClassName) -> String {
         switch heroClass {
         case .fighter: return "knight"
@@ -293,7 +334,7 @@ struct HeroItemOptionsView: View {
         case "god": return "god"
         case "gun": return "gun"
         case "fist": return "fist"
-        default: return "defaultSkill" // fallback image
+        default: return "defaultSkill"
         }
     }
 }

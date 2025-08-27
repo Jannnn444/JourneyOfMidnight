@@ -11,8 +11,6 @@ import SwiftUI
 struct CardHeroSetViewWSkill : View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var selectedHeros: [Hero]
-//    @Binding var showDetailSkillView: Bool
-//    @Binding var showMoreDetail: Bool
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -21,6 +19,11 @@ struct CardHeroSetViewWSkill : View {
                     ZStack {
                         VStack {
                             HeroItemOptionsView(hero: hero) {
+                                if let heroIndex = cardManager.myHeroCards.firstIndex(where: { $0.id == hero.id }) {
+                                    // try to make changes async!
+                                    // Update the specific hero in the array
+                                    cardManager.myHeroCards[heroIndex] = hero.wrappedValue
+                                }
                                 cardManager.showMoreDetail = false
                                 selectedHeros = []
                             }

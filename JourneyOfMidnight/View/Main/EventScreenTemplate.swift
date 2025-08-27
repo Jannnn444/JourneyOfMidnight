@@ -279,7 +279,7 @@ struct EventScreenTemplate: View {
         func executeRound() {
             guard battleRound <= maxRounds,
                   cardManager.myHeroCards.contains(where: { $0.stats.health > 0 }),
-                  cardManager.enemy.contains(where: { $0.stats.health > 0 }) else {
+                  cardManager.myEnemyCards.contains(where: { $0.stats.health > 0 }) else {
                 // Battle ended
                 finalizeBattle()
                 return
@@ -291,28 +291,28 @@ struct EventScreenTemplate: View {
             for (heroIndex, hero) in cardManager.myHeroCards.enumerated() {
                 guard hero.stats.health > 0 else { continue }
                 
-                if let enemyIndex = cardManager.enemy.firstIndex(where: { $0.stats.health > 0 }) {
+                if let enemyIndex = cardManager.myEnemyCards.firstIndex(where: { $0.stats.health > 0 }) {
                     let damage = cardManager.calculateAttackPower(for: hero)
-                    cardManager.enemy[enemyIndex].stats.health = max(0, cardManager.enemy[enemyIndex].stats.health - damage)
+                    cardManager.myEnemyCards[enemyIndex].stats.health = max(0, cardManager.myEnemyCards[enemyIndex].stats.health - damage)
                     
-                    battleLog.append("\(hero.heroClass.name.rawValue) attacks \(cardManager.enemy[enemyIndex].heroClass.name.rawValue) for \(damage) damage!")
+                    battleLog.append("\(hero.heroClass.name.rawValue) attacks \(cardManager.myEnemyCards[enemyIndex].heroClass.name.rawValue) for \(damage) damage!")
                     
-                    if cardManager.enemy[enemyIndex].stats.health <= 0 {
-                        battleLog.append("\(cardManager.enemy[enemyIndex].heroClass.name.rawValue) has been defeated!")
+                    if cardManager.myEnemyCards[enemyIndex].stats.health <= 0 {
+                        battleLog.append("\(cardManager.myEnemyCards[enemyIndex].heroClass.name.rawValue) has been defeated!")
                         handleEnemyDefeat(enemyIndex: enemyIndex)
                     }
                 }
             }
             
             // Check if all enemies defeated
-            if cardManager.enemy.allSatisfy({ $0.stats.health <= 0 }) {
+            if cardManager.myEnemyCards.allSatisfy({ $0.stats.health <= 0 }) {
                 battleLog.append("\n🎉 Victory! All enemies defeated!")
                 finalizeBattle()
                 return
             }
             
             // Enemies counter-attack
-            for (enemyIndex, enemy) in cardManager.enemy.enumerated() {
+            for (enemyIndex, enemy) in cardManager.myEnemyCards.enumerated() {
                 guard enemy.stats.health > 0 else { continue }
                 
                 if let heroIndex = cardManager.myHeroCards.firstIndex(where: { $0.stats.health > 0 }) {
@@ -346,7 +346,7 @@ struct EventScreenTemplate: View {
     }
     
     private func handleEnemyDefeat(enemyIndex: Int) {
-        let defeatedEnemy = cardManager.enemy[enemyIndex]
+        let defeatedEnemy = cardManager.myEnemyCards[enemyIndex]
         let goldReward = defeatedEnemy.heroClass.level * 10
         gold = Gold(gold: gold.gold + goldReward)
         battleLog.append("Gained \(goldReward) gold!")

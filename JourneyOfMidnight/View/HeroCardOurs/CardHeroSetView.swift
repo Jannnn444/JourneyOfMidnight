@@ -29,7 +29,7 @@ struct CardHeroSetView: View {
     
     var body: some View {
         HStack {
-            ForEach(self.hero ? cardManager.myHeroCards : cardManager.enemy) { hero in
+            ForEach(self.hero ? cardManager.myHeroCards : cardManager.myEnemyCards) { hero in
                
                     VStack { // Vstack above cards
                      

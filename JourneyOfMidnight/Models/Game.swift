@@ -36,7 +36,7 @@ enum SkillType: String {
 
 // MARK: - Hero
 struct Hero: Identifiable {
-    var id = UUID()
+    let id = UUID()
     var heroClass: HeroClass
     var attributes: Attributes
     var skills: [Skill]

@@ -15,7 +15,7 @@ class CardManager: ObservableObject {
     @Published var skillType: SkillType = .Defense
     @Published var showAbilityDetailView: Bool = false
     @Published var myHeroCards: [Hero] // Note: this for player' s card set
-    @Published var enemy: [Hero]
+    @Published var myEnemyCards: [Hero]
     @Published var showMoreDetailItems: Bool = false
     @Published var showMoreDetail: Bool = false
     @Published var vendorGoods: [VendorGoods]
@@ -109,7 +109,7 @@ class CardManager: ObservableObject {
 //            ),
         ]
         
-        self.enemy = [
+        self.myEnemyCards = [
             // 1 - Follower
             Hero(heroClass: HeroClass(name: .wizard, level: 10, life: 80), attributes: Attributes(Strength: 6, Intelligence: 3, Wisdom: 3, Agility: 3, Vitality: 3, Faith: 3, Charisma: 3), skills: [Skill(name: "meow", power: 4, size: .small,isSelected: false)], items: [Item(name: "cat", intro: "pet", price: 500, size: .small, isChose: false)/*, Item(name: "staff", intro: "weapon")*/], stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small, isChose: false)],
@@ -180,19 +180,19 @@ class CardManager: ObservableObject {
         // Single hero attack function
         func heroAttack(heroIndex: Int, enemyIndex: Int) -> String {
             guard heroIndex < myHeroCards.count,
-                  enemyIndex < enemy.count else {
+                  enemyIndex < myEnemyCards.count else {
                 return "Invalid target"
             }
             
             let attackingHero = myHeroCards[heroIndex]
             let attackPower = calculateAttackPower(for: attackingHero)
             
-            enemy[enemyIndex].stats.health = max(0, enemy[enemyIndex].stats.health - attackPower)
+            myEnemyCards[enemyIndex].stats.health = max(0, myEnemyCards[enemyIndex].stats.health - attackPower)
             
             let message = "\(attackingHero.heroClass.name.rawValue) attacks for \(attackPower) damage!"
             
-            if enemy[enemyIndex].stats.health <= 0 {
-                return message + " \(enemy[enemyIndex].heroClass.name.rawValue) defeated!"
+            if myEnemyCards[enemyIndex].stats.health <= 0 {
+                return message + " \(myEnemyCards[enemyIndex].heroClass.name.rawValue) defeated!"
             }
             
             return message
