@@ -20,9 +20,13 @@ struct CardHeroSetViewWSkill : View {
                 PopupView{
                     ZStack {
                         VStack {
-                            HeroOptionsView(hero: hero)
+                            HeroOptionsView(hero: hero) {
+                                cardManager.showMoreDetail = false
+                                selectedHeros = []
+                            }
                             
                             // Close Button
+                            /*
                             Button(action: {
                                 cardManager.showMoreDetail = false
                                 selectedHeros = []
@@ -36,6 +40,7 @@ struct CardHeroSetViewWSkill : View {
                                     .background(Color.gray)
                                     .cornerRadius(8)
                             }.padding(.bottom, 10)
+                             */
                         }
                     }
                 }

@@ -7,6 +7,8 @@ struct HeroOptionsView: View {
     @State var selectedSkill: Skill?
     @ObservedObject var cardManager = CardManager.shared
     
+    let onClose: () -> Void // Add closure!
+    
     let columns = [
         GridItem(.fixed(45), spacing: 8),
         GridItem(.fixed(45), spacing: 8),
@@ -210,7 +212,18 @@ struct HeroOptionsView: View {
             }
             .padding(.horizontal)
             
-            // Here for Button Close  and sendout new bag data ?
+            // Here for Button Close and SAVE new hero bag data ?!
+            // MARK: - Close Button
+            Button(action: onClose) {
+                Text("Close")
+                    .padding(10)
+                    .foregroundColor(.black)
+                    .fontDesign(.monospaced)
+                    .bold()
+                    .font(.caption2)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+            }
         }
         .frame(maxWidth: 380, maxHeight: 280)
         .padding(.horizontal, 12)

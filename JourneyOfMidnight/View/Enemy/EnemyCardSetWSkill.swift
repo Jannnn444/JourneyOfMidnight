@@ -17,9 +17,13 @@ struct EnemyCardSetWSkill: View {
         ZStack(alignment: .leading) {
             ForEach($selectedEnemies) { hero in
                 PopupView{
-                    HeroOptionsView(hero: hero)
+                    HeroOptionsView(hero: hero) {
+                        cardManager.showMoreDetail = false
+                        selectedEnemies = []
+                    }
                     
                     // Close Button
+                    /*
                     Button(action: {
                         cardManager.showMoreDetail = false
                         selectedEnemies = []
@@ -33,6 +37,7 @@ struct EnemyCardSetWSkill: View {
                             .background(Color.gray)
                             .cornerRadius(10)
                     }
+                     */
                 }
             }
         }
