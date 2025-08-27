@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct HeroOptionsView: View {
+struct HeroItemOptionsView.swift: View {
     @Binding var hero: Hero
     @State var selectedItem: Item?
     @State var selectedSkill: Skill?

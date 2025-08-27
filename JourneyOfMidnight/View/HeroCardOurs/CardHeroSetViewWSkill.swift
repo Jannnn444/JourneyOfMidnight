@@ -20,7 +20,7 @@ struct CardHeroSetViewWSkill : View {
                 PopupView{
                     ZStack {
                         VStack {
-                            HeroOptionsView(hero: hero) {
+                            HeroItemOptionsView.swift(hero: hero) {
                                 cardManager.showMoreDetail = false
                                 selectedHeros = []
                             }
