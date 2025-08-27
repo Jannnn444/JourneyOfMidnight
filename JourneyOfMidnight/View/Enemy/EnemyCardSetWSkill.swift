@@ -10,8 +10,8 @@ import SwiftUI
 struct EnemyCardSetWSkill: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var selectedEnemies: [Hero]
-    @Binding var showDetailSkillViewEnemi: Bool
-    @Binding var showMoreDetailEnemi: Bool
+//    @Binding var showDetailSkillViewEnemi: Bool
+//    @Binding var showMoreDetailEnemi: Bool
     
     var body: some View {
         ZStack(alignment: .leading) {

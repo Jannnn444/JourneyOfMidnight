@@ -66,9 +66,7 @@ struct EventScreenTemplate: View {
         // Create event popup content
         self.eventPopupContent = AnyView(
             EnemyCardSetWSkill(
-                selectedEnemies: selectedEnemies,
-                showDetailSkillViewEnemi: showDetailSkillViewEnemi,
-                showMoreDetailEnemi: showMoreDetailEnemi
+                selectedEnemies: selectedEnemies
             )
         )
     }
@@ -155,9 +153,8 @@ struct EventScreenTemplate: View {
             
             // Hero skills popup
             CardHeroSetViewWSkill(
-                selectedHeros: $selectedHeros,
-                showDetailSkillView: $showDetailSkillViewHero,
-                showMoreDetail: $showMoreDetailHero
+                selectedHeros: $selectedHeros
+               
             )
             
             // Event-specific popup content if available

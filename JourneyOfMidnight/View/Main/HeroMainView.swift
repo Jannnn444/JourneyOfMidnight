@@ -52,8 +52,8 @@ struct HeroMainView: View {
             CardHeroSetView(IsShowDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero, selectedHeros: $selectedHeros)
             
             // MARK: PopUp (Hero & Enemy &Grocery)
-            CardHeroSetViewWSkill(selectedHeros: $selectedHeros, showDetailSkillView: $showDetailSkillViewHero, showMoreDetail: $showDetailSkillViewHero)
-            EnemyCardSetWSkill(selectedEnemies: $selectedEnemies, showDetailSkillViewEnemi: $showDetailSkillViewEnemi, showMoreDetailEnemi: $showMoreDetailEnemi)
+            CardHeroSetViewWSkill(selectedHeros: $selectedHeros)
+            EnemyCardSetWSkill(selectedEnemies: $selectedEnemies)
             EventVendorSingleItemPopup(selectedItem: $selectedItem, showDetailSkillView: $showDetailItemView, showMoreDetailItems: $showDetailItemView)
             
             // MARK: Gold

@@ -133,9 +133,8 @@ struct MainMenuView: View {
                             
                             // Additional hero popup that needs to be at the ZStack level
                             CardHeroSetViewWSkill(
-                                selectedHeros: $selectedHeros,
-                                showDetailSkillView: $showDetailSkillViewHero,
-                                showMoreDetail: $showMoreDetailHero
+                                selectedHeros: $selectedHeros
+                               
                             )
                         }
                         
@@ -151,9 +150,8 @@ struct MainMenuView: View {
                             
                             // Additional hero popup that needs to be at the ZStack level
                             CardHeroSetViewWSkill(
-                                selectedHeros: $selectedHeros,
-                                showDetailSkillView: $showDetailSkillViewHero,
-                                showMoreDetail: $showMoreDetailHero
+                                selectedHeros: $selectedHeros
+                                
                             )
                         }
                         
@@ -167,9 +165,8 @@ struct MainMenuView: View {
                             
                             // Additional hero popup that needs to be at the ZStack level
                             CardHeroSetViewWSkill(
-                                selectedHeros: $selectedHeros,
-                                showDetailSkillView: $showDetailSkillViewHero,
-                                showMoreDetail: $showMoreDetailHero
+                                selectedHeros: $selectedHeros
+                              
                             )
                         }
                     }

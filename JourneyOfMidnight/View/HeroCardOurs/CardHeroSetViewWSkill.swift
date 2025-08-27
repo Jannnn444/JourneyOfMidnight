@@ -11,8 +11,8 @@ import SwiftUI
 struct CardHeroSetViewWSkill : View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var selectedHeros: [Hero]
-    @Binding var showDetailSkillView: Bool
-    @Binding var showMoreDetail: Bool
+//    @Binding var showDetailSkillView: Bool
+//    @Binding var showMoreDetail: Bool
     
     var body: some View {
         ZStack(alignment: .leading) {
