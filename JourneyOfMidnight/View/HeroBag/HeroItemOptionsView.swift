@@ -17,7 +17,7 @@ struct HeroItemOptionsView: View {
         GridItem(.fixed(45), spacing: 8)
     ]
     @State var myBag: [Item] = []
-    @State var mySkillBag: [Skill] = [] // Separate bag for skills if needed
+    @State var mySkillBag: [Skill] = [] // Separate bag for skills
     
     var body: some View {
         VStack(spacing: 8) {
