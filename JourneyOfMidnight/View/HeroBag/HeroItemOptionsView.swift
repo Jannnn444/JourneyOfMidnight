@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct HeroItemOptionsView.swift: View {
+struct HeroItemOptionsView: View {
     @Binding var hero: Hero
     @State var selectedItem: Item?
     @State var selectedSkill: Skill?
@@ -226,8 +226,7 @@ struct HeroItemOptionsView.swift: View {
             }
         }
         .frame(maxWidth: 380, maxHeight: 280)
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding()
     }
     
     // FIXED: Move function inside struct and simplify parameters

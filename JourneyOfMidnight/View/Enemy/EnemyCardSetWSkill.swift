@@ -17,7 +17,7 @@ struct EnemyCardSetWSkill: View {
         ZStack(alignment: .leading) {
             ForEach($selectedEnemies) { hero in
                 PopupView{
-                    HeroItemOptionsView.swift(hero: hero) {
+                    HeroItemOptionsView(hero: hero) {
                         cardManager.showMoreDetail = false
                         selectedEnemies = []
                     }
