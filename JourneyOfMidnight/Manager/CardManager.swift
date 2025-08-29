@@ -198,3 +198,4 @@ class CardManager: ObservableObject {
             return message
         }
     }
+ 
