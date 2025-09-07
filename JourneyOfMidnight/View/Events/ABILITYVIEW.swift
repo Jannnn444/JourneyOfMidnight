@@ -15,7 +15,7 @@ struct ABILITYVIEW: View {
             ForEach(cardManager.myHeroCards) { hero in
                 Text(hero.heroClass.name.rawValue)
                 Text(hero.skills[0].name)
-                Text(hero.items[0].name)
+                Text(hero.inventory[0].name)
                 
             }
         }

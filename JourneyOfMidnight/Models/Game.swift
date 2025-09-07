@@ -40,7 +40,7 @@ struct Hero: Identifiable {
     var heroClass: HeroClass
     var attributes: Attributes
     var skills: [Skill]
-    var items: [Item]
+    var inventory: [Item]
     var stats: Stats
     var bag: [Item] //new!
     var heroLoad: Int
