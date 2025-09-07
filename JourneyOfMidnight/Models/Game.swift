@@ -92,7 +92,6 @@ struct Skill: Identifiable {
     var name: String
     var power: Int
     var size: itemSizes
-    var isSelected: Bool = false
 }
 
 struct Item: Identifiable {
@@ -101,7 +100,6 @@ struct Item: Identifiable {
     var intro: String
     var price: Int
     var size: itemSizes
-    var isChose: Bool
 }
 
 enum itemSizes: Int {

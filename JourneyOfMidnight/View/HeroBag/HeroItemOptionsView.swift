@@ -4,9 +4,6 @@ import SwiftUI
 struct HeroItemOptionsView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
-    @State var selectedItem: Item?
-    @State var selectedSkill: Skill?
-
     @State var myBag: [Item] = []
     @State var mySkillBag: [Skill] = []
     
@@ -21,35 +18,20 @@ struct HeroItemOptionsView: View {
     ]
     
     private func saveSelections() {
-        // Save currently selected items and skills from the hero's arrays
-        let selectedItems = hero.inventory.filter { $0.isChose }
-        let selectedSkills = hero.skills.filter { $0.isSelected }
-        
-        hero.activeSkills = selectedSkills
-        
-        print("Saved skills: \(selectedSkills.map { $0.name })")
-        print("Saved items: \(selectedItems.map { $0.name })")
     }
     
     private func initializeBags() {
-        // FIRST: Set the isSelected flags from activeSkills
         if !hero.activeSkills.isEmpty {
-            // Clear existing selections first
-            for i in 0..<hero.skills.count {
-                hero.skills[i].isSelected = false
-            }
             
             // Set selected skills from activeSkills
             for skill in hero.activeSkills {
                 if let index = hero.skills.firstIndex(where: { $0.name == skill.name }) {
-                    hero.skills[index].isSelected = true
+              
                 }
             }
         }
         
-        // THEN: Filter to populate the bags
-        myBag = hero.inventory.filter { $0.isChose }
-        mySkillBag = hero.skills.filter { $0.isSelected }
+
         
         print("Initialized bags - Items: \(myBag.map { $0.name }), Skills: \(mySkillBag.map { $0.name })")
     }
@@ -112,9 +94,7 @@ struct HeroItemOptionsView: View {
                             if index < $hero.inventory.count {
                                 // Show item
                                 Button(action: {
-                                    selectedItem = hero.inventory[index]
-                                    selectedSkill = nil
-                                    toggleItem(at: index)
+                               
                                     print("Hero items: \(hero.inventory[index].name)")
                                     print("Item bags: \(myBag.map { $0.name })")
                                 }) {
@@ -124,11 +104,11 @@ struct HeroItemOptionsView: View {
                                             .frame(width: 35, height: 35)
                                         
                                         // Visual indicator if item is selected
-                                        if hero.inventory[index].isChose {
-                                            Rectangle()
-                                                .stroke(.yellow, lineWidth: 3)
-                                                .frame(width: 35, height: 35)
-                                        }
+//                                        if hero.inventory[index].isChose {
+//                                            Rectangle()
+//                                                .stroke(.yellow, lineWidth: 3)
+//                                                .frame(width: 35, height: 35)
+//                                        }
                                     }
                                 }
                                 
@@ -138,9 +118,7 @@ struct HeroItemOptionsView: View {
                                 let currentSkill = hero.skills[skillIndex]
                                 
                                 Button(action: {
-                                    selectedSkill = currentSkill
-                                    selectedItem = nil
-                                    toggleSkill(at: skillIndex)
+                                   
                                     print("Selected skill: \(currentSkill.name)")
                                     print("Skill bags: \(mySkillBag.map { $0.name })")
                                 }) {
@@ -153,13 +131,7 @@ struct HeroItemOptionsView: View {
                                         Image("\(skillImage(for: currentSkill.name))")
                                             .resizable()
                                             .frame(width: 25, height: 25)
-                                        
-                                        // Visual indicator if skill is selected
-                                        if currentSkill.isSelected {
-                                            Circle()
-                                                .stroke(.blue, lineWidth: 3)
-                                                .frame(width: 35, height: 35)
-                                        }
+                           
                                     }
                                 }
                             }
@@ -269,42 +241,8 @@ struct HeroItemOptionsView: View {
         // MARK: refresh logic hererere
     }
     
-    // MARK: - Toggle Functions
-    private func toggleItem(at index: Int) {
-        hero.inventory[index].isChose.toggle()
-        
-        if hero.inventory[index].isChose {
-            // Item was just selected - try to add to bag
-            if myBag.count < 2 {
-                myBag.append(hero.inventory[index])
-            } else {
-                // Bag is full - revert the selection
-                hero.inventory[index].isChose = false
-                print("Item bag is full! Cannot add more items.")
-            }
-        } else {
-            // Item was just deselected - remove from bag
-            myBag.removeAll { $0.name == hero.inventory[index].name }
-        }
-    }
-    
-    private func toggleSkill(at index: Int) {
-        hero.skills[index].isSelected.toggle()
-        
-        if hero.skills[index].isSelected {
-            // Skill was just selected - try to add to bag
-            if mySkillBag.count < 1 {
-                mySkillBag.append(hero.skills[index])
-            } else {
-                // Bag is full - revert the selection
-                hero.skills[index].isSelected = false
-                print("Skill bag is full! Cannot add more skills.")
-            }
-        } else {
-            // Skill was just deselected - remove from bag
-            mySkillBag.removeAll { $0.name == hero.skills[index].name }
-        }
-    }
+
+   
     
     // MARK: - Helper Functions
     private func heroImage(for heroClass: HeroClassName) -> String {
