@@ -96,6 +96,8 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
 //                                   was toggleItem(at: index)
                                     // here add into the active Bag
+                                    
+                                    myBag.append(<#T##Element#>)
                                     print("Hero items: \(hero.inventory[index].name)")
                                     print("Item bags: \(myBag.map { $0.name })")
                                 }) {
@@ -122,6 +124,7 @@ struct HeroItemOptionsView: View {
 //                                  was  toggleSkill(at: skillIndex)
                                     // here add skills into bag
                                     
+                                    
                                     print("Clicked skill: \(currentSkill.name)")
                                     print("Bag: \(myBag.map { $0.name })")
                                 }) {
@@ -144,10 +147,10 @@ struct HeroItemOptionsView: View {
                 .padding(.horizontal, 6)
             }
             
-            // MARK: Items & Skills Display
+            // MARK: Items & Skills Bar
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Items: \(myBag.count)/2")
+                VStack() {
+                    Text("Items and Skills: \(myBag.count)")
                         .foregroundStyle(.white)
                         .font(.caption)
                     
@@ -160,31 +163,6 @@ struct HeroItemOptionsView: View {
                                 .border(.yellow, width: 1)
                         }
                         
-                        ForEach(0..<(2 - myBag.count), id: \.self) { _ in
-                            Rectangle()
-                                .frame(width: 20, height: 20)
-                                .foregroundStyle(.gray.opacity(0.3))
-                                .border(.gray, width: 1)
-                        }
-                    }
-                    
-                    if myBag.count >= 2 {
-                        Text("Item bag is full! Cannot add more items.")
-                            .foregroundStyle(.red)
-                            .bold()
-                            .font(.caption)
-                            .italic()
-                    }
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("Skills: \(myBag.count)")
-                        .foregroundStyle(.white)
-                        .font(.caption)
-                    
-                    HStack(spacing: 2) {
                         ForEach(myBag, id: \.name) { skill in
                             ZStack {
                                 Circle()
@@ -198,23 +176,24 @@ struct HeroItemOptionsView: View {
                             }
                         }
                         
-                        // Show empty slots
-                        ForEach(0..<(1 - myBag.count), id: \.self) { _ in
-                            Circle()
-                                .frame(width: 20, height: 20)
+                        // Empty Slots
+                        ForEach(0..<(5 - myBag.count), id: \.self) { _ in
+                            Rectangle()
+                                .frame(width: 50, height: 50)
                                 .foregroundStyle(.gray.opacity(0.3))
-                                .overlay(Circle().stroke(.gray))
+                                .border(.gray, width: 1)
                         }
                     }
                     
-                    if myBag.count >= 3 {
-                        Text("Skill is full!")
+                    if myBag.count >= 5 {
+                        Text("Item bag is full! Cannot add more items.")
                             .foregroundStyle(.red)
                             .bold()
                             .font(.caption)
                             .italic()
                     }
                 }
+                 
             }
             .padding(.horizontal)
             
