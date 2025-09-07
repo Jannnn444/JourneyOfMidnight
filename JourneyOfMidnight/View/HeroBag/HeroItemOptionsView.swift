@@ -5,7 +5,6 @@ struct HeroItemOptionsView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
     @State var myBag: [Item] = []
-    @State var mySkillBag: [Skill] = []
     
     let onClose: () -> Void
     
@@ -33,7 +32,8 @@ struct HeroItemOptionsView: View {
         
 
         
-        print("Initialized bags - Items: \(myBag.map { $0.name }), Skills: \(mySkillBag.map { $0.name })")
+//      print("Initialized bags - Items: \(myBag.map { $0.name }), Skills: \(mySkillBag.map { $0.name })")
+        print("Initialized bags - : \(myBag.map { $0.name })")
     }
     
     var body: some View {
@@ -94,7 +94,8 @@ struct HeroItemOptionsView: View {
                             if index < $hero.inventory.count {
                                 // Show item
                                 Button(action: {
-                               
+//                                   was toggleItem(at: index)
+                                    // here add into the active Bag
                                     print("Hero items: \(hero.inventory[index].name)")
                                     print("Item bags: \(myBag.map { $0.name })")
                                 }) {
@@ -118,9 +119,11 @@ struct HeroItemOptionsView: View {
                                 let currentSkill = hero.skills[skillIndex]
                                 
                                 Button(action: {
-                                   
-                                    print("Selected skill: \(currentSkill.name)")
-                                    print("Skill bags: \(mySkillBag.map { $0.name })")
+//                                  was  toggleSkill(at: skillIndex)
+                                    // here add skills into bag
+                                    
+                                    print("Clicked skill: \(currentSkill.name)")
+                                    print("Bag: \(myBag.map { $0.name })")
                                 }) {
                                     ZStack {
                                         // Skill background with different color
@@ -177,12 +180,12 @@ struct HeroItemOptionsView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text("Skills: \(mySkillBag.count)/1")
+                    Text("Skills: \(myBag.count)")
                         .foregroundStyle(.white)
                         .font(.caption)
                     
                     HStack(spacing: 2) {
-                        ForEach(mySkillBag, id: \.name) { skill in
+                        ForEach(myBag, id: \.name) { skill in
                             ZStack {
                                 Circle()
                                     .frame(width: 20, height: 20)
@@ -196,7 +199,7 @@ struct HeroItemOptionsView: View {
                         }
                         
                         // Show empty slots
-                        ForEach(0..<(1 - mySkillBag.count), id: \.self) { _ in
+                        ForEach(0..<(1 - myBag.count), id: \.self) { _ in
                             Circle()
                                 .frame(width: 20, height: 20)
                                 .foregroundStyle(.gray.opacity(0.3))
@@ -204,7 +207,7 @@ struct HeroItemOptionsView: View {
                         }
                     }
                     
-                    if mySkillBag.count >= 1 {
+                    if myBag.count >= 3 {
                         Text("Skill is full!")
                             .foregroundStyle(.red)
                             .bold()
