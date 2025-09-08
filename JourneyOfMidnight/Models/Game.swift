@@ -87,14 +87,18 @@ struct Attributes {
     var Charisma: Int = 5
 }
 
-struct Skill: Identifiable {
+protocol tagBag {
+    var name: String { get }
+}
+
+struct Skill: Identifiable, tagBag {
     var id = UUID()
     var name: String
     var power: Int
     var size: itemSizes
 }
 
-struct Item: Identifiable {
+struct Item: Identifiable, tagBag {
     var id = UUID()
     var name: String
     var intro: String

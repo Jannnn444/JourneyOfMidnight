@@ -4,7 +4,7 @@ import SwiftUI
 struct HeroItemOptionsView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
-    @State var myBag: [Item] = []
+    @State var myBag: [tagBag] = []
     
     let onClose: () -> Void
     
@@ -96,10 +96,11 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
 //                                   was toggleItem(at: index)
                                     // here add into the active Bag
+                                    // for each item ---> should be clicked the icon and add into the array?
+                                    myBag.append(hero.inventory[index])
                                     
-                                    myBag.append(<#T##Element#>)
                                     print("Hero items: \(hero.inventory[index].name)")
-                                    print("Item bags: \(myBag.map { $0.name })")
+                                    print("Item myBag now: \(myBag.map { $0.name })")
                                 }) {
                                     ZStack {
                                         Image(hero.inventory[index].name)
@@ -123,10 +124,11 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
 //                                  was  toggleSkill(at: skillIndex)
                                     // here add skills into bag
+                                    myBag.append(hero.skills[skillIndex])
                                     
+                                    print("Hero skill: \(currentSkill.name)")
+                                    print("Skill in myBag now: \(myBag.map { $0.name })")
                                     
-                                    print("Clicked skill: \(currentSkill.name)")
-                                    print("Bag: \(myBag.map { $0.name })")
                                 }) {
                                     ZStack {
                                         // Skill background with different color
@@ -162,27 +164,18 @@ struct HeroItemOptionsView: View {
                                 .background(Color.black.opacity(0.3))
                                 .border(.yellow, width: 1)
                         }
-                        
-                        ForEach(myBag, id: \.name) { skill in
-                            ZStack {
-                                Circle()
-                                    .frame(width: 20, height: 20)
-                                    .foregroundStyle(.white.opacity(0.5))
-                                    .overlay(Circle().stroke(.blue, lineWidth: 1))
-                                
-                                Image(skillImage(for: skill.name))
-                                    .resizable()
-                                    .frame(width: 14, height: 14)
-                            }
                         }
                         
                         // Empty Slots
-                        ForEach(0..<(5 - myBag.count), id: \.self) { _ in
-                            Rectangle()
-                                .frame(width: 50, height: 50)
-                                .foregroundStyle(.gray.opacity(0.3))
-                                .border(.gray, width: 1)
-                        }
+                        /*
+                         ForEach(0..<(5 ), id: \.self) { _ in
+                             Rectangle()
+                                 .frame(width: 50, height: 50)
+                                 .foregroundStyle(.gray.opacity(0.3))
+                                 .border(.gray, width: 1)
+                         }
+                         */
+                     
                     }
                     
                     if myBag.count >= 5 {
@@ -194,7 +187,6 @@ struct HeroItemOptionsView: View {
                     }
                 }
                  
-            }
             .padding(.horizontal)
             
             // MARK: - Close Button
