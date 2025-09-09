@@ -7,8 +7,6 @@
 
 import Foundation
 
-// MARK: Build Character
-
 struct Character: Identifiable {
     var id = UUID()
     var name: String
@@ -154,13 +152,3 @@ enum EffectTypes {
     case Faith
     case Charisma
 }
-
-// NOTE: 20250702
-
-/*
- Wheres that pink bubble we need ?
- All around the world be loved be cared be remembered
- maybe we should celebrate on the day or just go on weekend ?
- No ideas and Crazy sense of knowing some ideas are bothering me a lot
- Cruel or not is that they have no sensation or any ability to love and be pathetic
- */
