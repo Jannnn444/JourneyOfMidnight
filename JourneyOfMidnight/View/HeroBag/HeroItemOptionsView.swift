@@ -97,8 +97,11 @@ struct HeroItemOptionsView: View {
 //                                   was toggleItem(at: index)
                                     // here add into the active Bag
                                     // for each item ---> should be clicked the icon and add into the array?
-                                    myBag.append(hero.inventory[index])
-                                    
+                                    if myBag.count < 5 {
+                                        myBag.append(hero.inventory[index])
+                                    } else if myBag.count == 5 {
+                                            print("Bag is full now, declined add request")
+                                        }
                                     print("Hero items: \(hero.inventory[index].name)")
                                     print("Item myBag now: \(myBag.map { $0.name })")
                                 }) {
@@ -124,8 +127,12 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
 //                                  was  toggleSkill(at: skillIndex)
                                     // here add skills into bag
-                                    myBag.append(hero.skills[skillIndex])
                                     
+                                    if myBag.count < 5 {
+                                        myBag.append(hero.skills[skillIndex])
+                                    } else if myBag.count == 5 {
+                                            print("Bag is full now, declined add request")
+                                        }
                                     print("Hero skill: \(currentSkill.name)")
                                     print("Skill in myBag now: \(myBag.map { $0.name })")
                                     
