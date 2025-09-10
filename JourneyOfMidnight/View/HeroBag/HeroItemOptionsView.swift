@@ -187,8 +187,9 @@ struct HeroItemOptionsView: View {
                             }
                         }
                     }
-                    
                 }
+                // NOTE: Stop selectin when load limit reached !
+                
                     if myBag.count >= 5 {
                         Text("Item bag is full! Cannot add more items.")
                             .foregroundStyle(.red)
