@@ -87,6 +87,7 @@ struct Attributes {
 
 protocol tagBag {
     var name: String { get }
+    var size: itemSizes { get }
 }
 
 struct Skill: Identifiable, tagBag {

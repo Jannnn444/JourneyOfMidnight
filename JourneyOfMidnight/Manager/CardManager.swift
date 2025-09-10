@@ -96,17 +96,6 @@ class CardManager: ObservableObject {
                 activeSkills: [Skill(name: "Rainy", power: 7, size: .small), Skill(name: "WolveCry", power: 5, size: .small)]
                 
             ),
-            
-            // 4 - Follower
-//            Hero(
-//                heroClass: HeroClass(name: .priest, level: 50, life: 80),
-//                attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
-//                skills: [Skill(name: "Moon", power: 8)/*, Skill(name: "WolveCry", power: 9)*/],
-//                items: [/*Item(name: "wands", intro: "Nature power needed")*/ Item(name: "Handbook", intro: "Cant be exchanged", price: 5,size: .small)],
-//                stats: Stats(health: 100, endurance: 500),
-//                bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
-//                heroLoad: 2
-//            ),
         ]
         
         self.myEnemyCards = [

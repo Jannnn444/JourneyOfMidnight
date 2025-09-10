@@ -4,7 +4,7 @@ import SwiftUI
 struct HeroItemOptionsView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
-    @State var myBag: [tagBag] = []
+    @State var myBag: [any tagBag] = []
     
     let onClose: () -> Void
     
@@ -17,23 +17,31 @@ struct HeroItemOptionsView: View {
     ]
     
     private func saveSelections() {
+//        myBag = hero.activeSkills
+        
+            // Skills from myBag
+            let selectedSkills = myBag.compactMap { $0 as? Skill }
+            // Items from myBag
+            let selectedItems = myBag.compactMap { $0 as? Item }
+           
+            
+            // Update hero's active skills
+            hero.activeSkills = selectedSkills
+    
+            
+            print("Saved \(selectedSkills.count) skills to hero.activeSkills: \(selectedSkills.map { $0.name })")
+            print("Skills: \(selectedSkills.map { $0.name })")
+            print("Items: \(selectedItems.map { $0.name })")
     }
     
     private func initializeBags() {
-        if !hero.activeSkills.isEmpty {
-            
-            // Set selected skills from activeSkills
-            for skill in hero.activeSkills {
-                if let index = hero.skills.firstIndex(where: { $0.name == skill.name }) {
-              
-                }
-            }
-        }
+        // Clear the bag first
+        myBag.removeAll()
         
-
+        // Add hero's active skills to myBag
+//        myBag.append(contentsOf: hero.activeSkills)
         
-//      print("Initialized bags - Items: \(myBag.map { $0.name }), Skills: \(mySkillBag.map { $0.name })")
-        print("Initialized bags - : \(myBag.map { $0.name })")
+        print("Initialized bags with active skills: \(myBag.map { $0.name })")
     }
     
     var body: some View {
