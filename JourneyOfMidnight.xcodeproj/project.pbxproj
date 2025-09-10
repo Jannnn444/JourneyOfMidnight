@@ -136,9 +136,9 @@
 			children = (
 				3D5B20E82DF9C0C1001D242D /* ABILITYVIEW.swift */,
 				541C59302DB3B89400AB0AC6 /* EventCombat.swift */,
+				3D5B20E62DF96B94001D242D /* EventVendorSingleItemPopup.swift */,
 				541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */,
 				1E64C2162DB77BCF001DFAF5 /* EventVendorPopup.swift */,
-				3D5B20E62DF96B94001D242D /* EventVendorSingleItemPopup.swift */,
 				541C59382DB3B9EC00AB0AC6 /* EventForest.swift */,
 			);
 			path = Events;

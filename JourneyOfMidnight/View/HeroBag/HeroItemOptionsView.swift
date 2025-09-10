@@ -167,30 +167,28 @@ struct HeroItemOptionsView: View {
                 VStack() {
                     Text("Items and Skills: \(myBag.count)")
                         .foregroundStyle(.white)
-                        .font(.caption)
+                        .font(.body)
                     
                     HStack(spacing: 2) {
                         ForEach(myBag, id: \.name) { item in
-                            Image(item.name)
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .background(Color.black.opacity(0.3))
-                                .border(.yellow, width: 1)
+                            Button(action: {
+                                // Remove item from myBag when tapped
+                                if let index = myBag.firstIndex(where: { $0.name == item.name }) {
+                                    myBag.remove(at: index)
+                                    print("Removed \(item.name) from bag")
+                                    print("myBag now: \(myBag.map { $0.name })")
+                                }
+                            }) {
+                                Image(item.name)
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .background(Color.black.opacity(0.3))
+                                    .border(.yellow, width: 1)
+                            }
                         }
-                        }
-                        
-                        // Empty Slots
-                        /*
-                         ForEach(0..<(5 ), id: \.self) { _ in
-                             Rectangle()
-                                 .frame(width: 50, height: 50)
-                                 .foregroundStyle(.gray.opacity(0.3))
-                                 .border(.gray, width: 1)
-                         }
-                         */
-                     
                     }
                     
+                }
                     if myBag.count >= 5 {
                         Text("Item bag is full! Cannot add more items.")
                             .foregroundStyle(.red)
