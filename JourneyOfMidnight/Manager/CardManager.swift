@@ -76,7 +76,7 @@ class CardManager: ObservableObject {
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "Flower", power: 8, size: .small)],
                 inventory: [
-                    Item(name: "cat", intro: "brutal killer", price: 50, size: .large),
+                    Item(name: "cat", intro: "brutal killer", price: 50, size: .medium),
                     Item(name: "holybook", intro: "Handwritten", price: 20,size: .small)],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],

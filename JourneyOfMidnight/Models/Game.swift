@@ -42,7 +42,7 @@ struct Hero: Identifiable {
     var stats: Stats
     var bag: [Item] //new!
     var heroLoad: Int
-    var activeSkills : [Skill]
+    var activeSkills : [any tagBag] = []
 }
 
 
@@ -85,7 +85,7 @@ struct Attributes {
     var Charisma: Int = 5
 }
 
-protocol tagBag {
+protocol tagBag: Identifiable {
     var name: String { get }
     var size: itemSizes { get }
 }

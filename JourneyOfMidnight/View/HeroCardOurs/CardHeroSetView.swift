@@ -34,7 +34,7 @@ struct CardHeroSetView: View {
                     VStack { // Vstack above cards
                      
                         HStack {
-                            ForEach(hero.activeSkills) { skill in
+                            ForEach(hero.activeSkills, id: \.name) { skill in
                                 ZStack {
                                     Rectangle()
                                         .frame(width: itemSizesToWidth(itemSize: skill.size) , height: cardManager.abilityBoxHeight)

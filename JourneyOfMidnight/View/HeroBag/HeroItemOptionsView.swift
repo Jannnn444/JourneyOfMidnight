@@ -17,18 +17,16 @@ struct HeroItemOptionsView: View {
     ]
     
     private func saveSelections() {
-//        myBag = hero.activeSkills
         
-            // Skills from myBag
+        // Save all selected items and skills directly to activeSkills
+            hero.activeSkills = Array(myBag)
+        
             let selectedSkills = myBag.compactMap { $0 as? Skill }
-            // Items from myBag
             let selectedItems = myBag.compactMap { $0 as? Item }
            
-            
-            // Update hero's active skills
-            hero.activeSkills = selectedSkills
-    
-            
+//            Update hero's active skills
+//            hero.activeSkills = selectedSkills
+             
             print("Saved \(selectedSkills.count) skills to hero.activeSkills: \(selectedSkills.map { $0.name })")
             print("Skills: \(selectedSkills.map { $0.name })")
             print("Items: \(selectedItems.map { $0.name })")
