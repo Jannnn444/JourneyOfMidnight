@@ -23,14 +23,14 @@ struct HeroItemOptionsView: View {
     
     private func saveSelections() {
         // Save all selected items and skills directly to activeSkills
-            hero.activeSkills = Array(selectionBar)
+        hero.activeSkills = Array(selectionBar)
         
-            let selectedSkills = selectionBar.compactMap { $0 as? Skill }
-            let selectedItems = selectionBar.compactMap { $0 as? Item }
-    
-            print("Saved \(selectedSkills.count) skills to hero.activeSkills: \(selectedSkills.map { $0.name })")
-            print("Skills: \(selectedSkills.map { $0.name })")
-            print("Items: \(selectedItems.map { $0.name })")
+        let selectedSkills = selectionBar.compactMap { $0 as? Skill }
+        let selectedItems = selectionBar.compactMap { $0 as? Item }
+        
+        print("Saved \(selectedSkills.count) skills to hero.activeSkills: \(selectedSkills.map { $0.name })")
+        print("Skills: \(selectedSkills.map { $0.name })")
+        print("Items: \(selectedItems.map { $0.name })")
     }
     
     private func initializeBags() {
@@ -140,7 +140,7 @@ struct HeroItemOptionsView: View {
                                         Image("\(skillImage(for: currentSkill.name))")
                                             .resizable()
                                             .frame(width: 25, height: 25)
-                           
+                                        
                                     }
                                 }
                             }
@@ -174,29 +174,18 @@ struct HeroItemOptionsView: View {
                                         .background(Color.black.opacity(0.3))
                                         .border(.yellow, width: 1)
                                     Text("\(item.size.rawValue)")
-                                        .font(.caption2)
+                                        .font(.footnote)
+                                        .fontDesign(.monospaced)
                                         .foregroundStyle(.white)
                                         .background(Color.red, in: Circle())
                                         .frame(width: 8, height: 8)
                                 }
-                                
                             }
                         }
                     }
                 }
-                // NOTE: Stop selectin when load limit reached !
-                
-//                    if myBag.count >= 5 {
-//                        Text("Item bag is full! Cannot add more items.")
-//                            .foregroundStyle(.red)
-//                            .bold()
-//                            .font(.caption)
-//                            .italic()
-//                    }
-
-                
-                }
-                 
+            }
+            
             .padding(.horizontal)
             
             if selectionBar.isEmpty {
@@ -214,16 +203,16 @@ struct HeroItemOptionsView: View {
                     saveSelections()
                     onClose()
                 }
-            
+                
             }) {
                 Text("Save & Close")
                     .padding(10)
-                          .foregroundColor(.black)
-                          .fontDesign(.monospaced)
-                          .bold()
-                          .font(.caption2)
-                          .background(selectionBar.isEmpty ? Color.gray.opacity(0.5) : Color.gray)
-                          .cornerRadius(10)
+                    .foregroundColor(.black)
+                    .fontDesign(.monospaced)
+                    .bold()
+                    .font(.caption2)
+                    .background(selectionBar.isEmpty ? Color.gray.opacity(0.5) : Color.gray)
+                    .cornerRadius(10)
             }
             .alert("EmptySelection", isPresented: $showEmptyAlert) {
                 Button("Ok") {}
