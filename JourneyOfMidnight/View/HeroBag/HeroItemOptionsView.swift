@@ -10,6 +10,7 @@ struct HeroItemOptionsView: View {
             total + item.size.rawValue
         }
     }
+    @State private var showEmptyAlert = false
     
     let onClose: () -> Void
     let columns = [
@@ -21,7 +22,6 @@ struct HeroItemOptionsView: View {
     ]
     
     private func saveSelections() {
-        
         // Save all selected items and skills directly to activeSkills
             hero.activeSkills = Array(myBag)
         
@@ -225,19 +225,36 @@ struct HeroItemOptionsView: View {
                  
             .padding(.horizontal)
             
+            if myBag.isEmpty {
+                Text("Select items or skills to activate")
+                    .foregroundStyle(.orange)
+                    .font(.caption)
+                    .italic()
+            }
+            
             // MARK: - Close Button
             Button(action: {
-                saveSelections()
-                onClose()
+                if myBag.isEmpty {
+                    showEmptyAlert = true
+                } else {
+                    saveSelections()
+                    onClose()
+                }
+            
             }) {
                 Text("Save & Close")
                     .padding(10)
-                    .foregroundColor(.black)
-                    .fontDesign(.monospaced)
-                    .bold()
-                    .font(.caption2)
-                    .background(Color.gray)
-                    .cornerRadius(10)
+                          .foregroundColor(.black)
+                          .fontDesign(.monospaced)
+                          .bold()
+                          .font(.caption2)
+                          .background(myBag.isEmpty ? Color.gray.opacity(0.5) : Color.gray)
+                          .cornerRadius(10)
+            }
+            .alert("EmptySelection", isPresented: $showEmptyAlert) {
+                Button("Ok") {}
+            } message: {
+                Text("Please select at least one item or skill before saving.")
             }
         }
         .frame(maxWidth: 380, maxHeight: 280)
