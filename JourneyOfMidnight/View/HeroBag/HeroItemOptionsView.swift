@@ -4,9 +4,9 @@ import SwiftUI
 struct HeroItemOptionsView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
-    @State var myBag: [any tagBag] = []
-    private var totalBagSize: Int {
-        return myBag.reduce(0) { total, item in
+    @State var selectionBar: [any tagBagBar] = []
+    private var totalBarSize: Int {
+        return selectionBar.reduce(0) { total, item in
             total + item.size.rawValue
         }
     }
@@ -23,10 +23,10 @@ struct HeroItemOptionsView: View {
     
     private func saveSelections() {
         // Save all selected items and skills directly to activeSkills
-            hero.activeSkills = Array(myBag)
+            hero.activeSkills = Array(selectionBar)
         
-            let selectedSkills = myBag.compactMap { $0 as? Skill }
-            let selectedItems = myBag.compactMap { $0 as? Item }
+            let selectedSkills = selectionBar.compactMap { $0 as? Skill }
+            let selectedItems = selectionBar.compactMap { $0 as? Item }
     
             print("Saved \(selectedSkills.count) skills to hero.activeSkills: \(selectedSkills.map { $0.name })")
             print("Skills: \(selectedSkills.map { $0.name })")
@@ -34,8 +34,8 @@ struct HeroItemOptionsView: View {
     }
     
     private func initializeBags() {
-        myBag.removeAll()
-        print("Initialized bags with active skills: \(myBag.map { $0.name })")
+        selectionBar.removeAll()
+        print("Initialized bags with active skills: \(selectionBar.map { $0.name })")
     }
     
     var body: some View {
@@ -96,37 +96,19 @@ struct HeroItemOptionsView: View {
                             if index < $hero.inventory.count {
                                 Button(action: {
                                     let itemSize = hero.inventory[index].size.rawValue
-                                    if totalBagSize + itemSize <= 5 {
-                                        myBag.append(hero.inventory[index])
+                                    if totalBarSize + itemSize <= 5 {
+                                        selectionBar.append(hero.inventory[index])
                                         print("Added \(hero.inventory[index].name)(size: \(itemSize)")
                                     } else {
-                                        print("Cannot add item - would exceed size limit (current: \(totalBagSize), item: \(itemSize)")
+                                        print("Cannot add item - would exceed size limit (current: \(totalBarSize), item: \(itemSize)")
                                     }
-                                    print("Total bag size: \(totalBagSize)")
-                                    print("Item myBag now: \(myBag.map {$0.name})")
-                                    
-                                    /*
-                                    if myBag.count < 5 {
-                                        myBag.append(hero.inventory[index])
-                                    } else if myBag.count == 5 {
-                                            print("Bag is full now, declined add request")
-                                        }
-                                    print("Hero items: \(hero.inventory[index].name)")
-                                    print("Item myBag now: \(myBag.map { $0.name })")
-                                    */
+                                    print("Total bag size: \(totalBarSize)")
+                                    print("Item myBag now: \(selectionBar.map {$0.name})")
                                 }) {
                                     ZStack {
                                         Image(hero.inventory[index].name)
                                             .resizable()
                                             .frame(width: 35, height: 35)
-                                        
-                                        // Visual indicator if item is selected //
-                                        /*
-                                         if hero.inventory[index].isChose {
-                                            Rectangle()
-                                                .stroke(.yellow, lineWidth: 3)
-                                                .frame(width: 35, height: 35)
-                                         }*/
                                     }
                                 }
                                 
@@ -139,22 +121,14 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
                                     // here add skills into bag
                                     let skillSize = hero.skills[skillIndex].size.rawValue
-                                    if totalBagSize + skillSize <= 5 {
-                                        myBag.append(hero.skills[skillIndex])
+                                    if totalBarSize + skillSize <= 5 {
+                                        selectionBar.append(hero.skills[skillIndex])
                                         print("Added \(currentSkill.name) (size: \(skillSize)")
                                     } else {
-                                        print("Cannot add skill - would exceed size limit (current: \(totalBagSize), skill: \(skillSize)")
+                                        print("Cannot add skill - would exceed size limit (current: \(totalBarSize), skill: \(skillSize)")
                                     }
-                                    print("Total bag size: \(totalBagSize)")
-                                    print("Skill in myBag now: \(myBag.map { $0.name } )")
-                                    /*
-                                     if myBag.count < 5 {
-                                        myBag.append(hero.skills[skillIndex])
-                                    } else if myBag.count == 5 {
-                                            print("Bag is full now, declined add request")
-                                        }
-                                    print("Hero skill: \(currentSkill.name)")
-                                    print("Skill in myBag now: \(myBag.map { $0.name })") */
+                                    print("Total bag size: \(totalBarSize)")
+                                    print("Skill in myBag now: \(selectionBar.map { $0.name } )")
                                     
                                 }) {
                                     ZStack {
@@ -171,7 +145,7 @@ struct HeroItemOptionsView: View {
                                 }
                             }
                         }
-                    } // ForEach
+                    }
                 }
                 .padding(.horizontal, 6)
             }
@@ -179,18 +153,18 @@ struct HeroItemOptionsView: View {
             // MARK: Items & Skills Bar
             HStack {
                 VStack() {
-                    Text("Items and Skills: \(myBag.count) (Sizes:\(totalBagSize)/5")
+                    Text("Items and Skills: \(selectionBar.count) (Sizes:\(totalBarSize)/5")
                         .foregroundStyle(.white)
                         .font(.body)
                     
                     HStack(spacing: 2) {
-                        ForEach(myBag, id: \.name) { item in
+                        ForEach(selectionBar, id: \.name) { item in
                             Button(action: {
                                 // Remove item from myBag when tapped
-                                if let index = myBag.firstIndex(where: { $0.name == item.name }) {
-                                    myBag.remove(at: index)
+                                if let index = selectionBar.firstIndex(where: { $0.name == item.name }) {
+                                    selectionBar.remove(at: index)
                                     print("Removed \(item.name) from bag")
-                                    print("myBag now: \(myBag.map { $0.name })")
+                                    print("myBag now: \(selectionBar.map { $0.name })")
                                 }
                             }) {
                                 ZStack(alignment: .bottomTrailing) {
@@ -225,7 +199,7 @@ struct HeroItemOptionsView: View {
                  
             .padding(.horizontal)
             
-            if myBag.isEmpty {
+            if selectionBar.isEmpty {
                 Text("Select items or skills to activate")
                     .foregroundStyle(.orange)
                     .font(.caption)
@@ -234,7 +208,7 @@ struct HeroItemOptionsView: View {
             
             // MARK: - Close Button
             Button(action: {
-                if myBag.isEmpty {
+                if selectionBar.isEmpty {
                     showEmptyAlert = true
                 } else {
                     saveSelections()
@@ -248,7 +222,7 @@ struct HeroItemOptionsView: View {
                           .fontDesign(.monospaced)
                           .bold()
                           .font(.caption2)
-                          .background(myBag.isEmpty ? Color.gray.opacity(0.5) : Color.gray)
+                          .background(selectionBar.isEmpty ? Color.gray.opacity(0.5) : Color.gray)
                           .cornerRadius(10)
             }
             .alert("EmptySelection", isPresented: $showEmptyAlert) {
