@@ -179,7 +179,7 @@ struct HeroItemOptionsView: View {
             // MARK: Items & Skills Bar
             HStack {
                 VStack() {
-                    Text("Items and Skills: \(myBag.count)")
+                    Text("Items and Skills: \(myBag.count) (Sizes:\(totalBagSize)/5")
                         .foregroundStyle(.white)
                         .font(.body)
                     
@@ -193,11 +193,19 @@ struct HeroItemOptionsView: View {
                                     print("myBag now: \(myBag.map { $0.name })")
                                 }
                             }) {
-                                Image(item.name)
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                    .background(Color.black.opacity(0.3))
-                                    .border(.yellow, width: 1)
+                                ZStack(alignment: .bottomTrailing) {
+                                    Image(item.name)
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .background(Color.black.opacity(0.3))
+                                        .border(.yellow, width: 1)
+                                    Text("\(item.size.rawValue)")
+                                        .font(.caption2)
+                                        .foregroundStyle(.white)
+                                        .background(Color.red, in: Circle())
+                                        .frame(width: 8, height: 8)
+                                }
+                                
                             }
                         }
                     }
