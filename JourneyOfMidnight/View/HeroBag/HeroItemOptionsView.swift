@@ -5,9 +5,13 @@ struct HeroItemOptionsView: View {
     @ObservedObject var cardManager = CardManager.shared
     @Binding var hero: Hero
     @State var myBag: [any tagBag] = []
+    private var totalBagSize: Int {
+        return myBag.reduce(0) { total, item in
+            total + item.size.rawValue
+        }
+    }
     
     let onClose: () -> Void
-    
     let columns = [
         GridItem(.fixed(45), spacing: 8),
         GridItem(.fixed(45), spacing: 8),
@@ -23,22 +27,14 @@ struct HeroItemOptionsView: View {
         
             let selectedSkills = myBag.compactMap { $0 as? Skill }
             let selectedItems = myBag.compactMap { $0 as? Item }
-           
-//            Update hero's active skills
-//            hero.activeSkills = selectedSkills
-             
+    
             print("Saved \(selectedSkills.count) skills to hero.activeSkills: \(selectedSkills.map { $0.name })")
             print("Skills: \(selectedSkills.map { $0.name })")
             print("Items: \(selectedItems.map { $0.name })")
     }
     
     private func initializeBags() {
-        // Clear the bag first
         myBag.removeAll()
-        
-        // Add hero's active skills to myBag
-//        myBag.append(contentsOf: hero.activeSkills)
-        
         print("Initialized bags with active skills: \(myBag.map { $0.name })")
     }
     
@@ -96,13 +92,20 @@ struct HeroItemOptionsView: View {
                                 .foregroundStyle(.black.opacity(0.9))
                                 .border(.gray, width: 2)
                             
-                            // Items first, then skills
+                            // MARK: Item
                             if index < $hero.inventory.count {
-                                // Show item
                                 Button(action: {
-//                                   was toggleItem(at: index)
-                                    // here add into the active Bag
-                                    // for each item ---> should be clicked the icon and add into the array?
+                                    let itemSize = hero.inventory[index].size.rawValue
+                                    if totalBagSize + itemSize <= 5 {
+                                        myBag.append(hero.inventory[index])
+                                        print("Added \(hero.inventory[index].name)(size: \(itemSize)")
+                                    } else {
+                                        print("Cannot add item - would exceed size limit (current: \(totalBagSize), item: \(itemSize)")
+                                    }
+                                    print("Total bag size: \(totalBagSize)")
+                                    print("Item myBag now: \(myBag.map {$0.name})")
+                                    
+                                    /*
                                     if myBag.count < 5 {
                                         myBag.append(hero.inventory[index])
                                     } else if myBag.count == 5 {
@@ -110,18 +113,20 @@ struct HeroItemOptionsView: View {
                                         }
                                     print("Hero items: \(hero.inventory[index].name)")
                                     print("Item myBag now: \(myBag.map { $0.name })")
+                                    */
                                 }) {
                                     ZStack {
                                         Image(hero.inventory[index].name)
                                             .resizable()
                                             .frame(width: 35, height: 35)
                                         
-                                        // Visual indicator if item is selected
-//                                        if hero.inventory[index].isChose {
-//                                            Rectangle()
-//                                                .stroke(.yellow, lineWidth: 3)
-//                                                .frame(width: 35, height: 35)
-//                                        }
+                                        // Visual indicator if item is selected //
+                                        /*
+                                         if hero.inventory[index].isChose {
+                                            Rectangle()
+                                                .stroke(.yellow, lineWidth: 3)
+                                                .frame(width: 35, height: 35)
+                                         }*/
                                     }
                                 }
                                 
@@ -130,17 +135,26 @@ struct HeroItemOptionsView: View {
                                 let skillIndex = index - hero.inventory.count
                                 let currentSkill = hero.skills[skillIndex]
                                 
+                                // MARK: Skill
                                 Button(action: {
-//                                  was  toggleSkill(at: skillIndex)
                                     // here add skills into bag
-                                    
-                                    if myBag.count < 5 {
+                                    let skillSize = hero.skills[skillIndex].size.rawValue
+                                    if totalBagSize + skillSize <= 5 {
+                                        myBag.append(hero.skills[skillIndex])
+                                        print("Added \(currentSkill.name) (size: \(skillSize)")
+                                    } else {
+                                        print("Cannot add skill - would exceed size limit (current: \(totalBagSize), skill: \(skillSize)")
+                                    }
+                                    print("Total bag size: \(totalBagSize)")
+                                    print("Skill in myBag now: \(myBag.map { $0.name } )")
+                                    /*
+                                     if myBag.count < 5 {
                                         myBag.append(hero.skills[skillIndex])
                                     } else if myBag.count == 5 {
                                             print("Bag is full now, declined add request")
                                         }
                                     print("Hero skill: \(currentSkill.name)")
-                                    print("Skill in myBag now: \(myBag.map { $0.name })")
+                                    print("Skill in myBag now: \(myBag.map { $0.name })") */
                                     
                                 }) {
                                     ZStack {
@@ -190,13 +204,15 @@ struct HeroItemOptionsView: View {
                 }
                 // NOTE: Stop selectin when load limit reached !
                 
-                    if myBag.count >= 5 {
-                        Text("Item bag is full! Cannot add more items.")
-                            .foregroundStyle(.red)
-                            .bold()
-                            .font(.caption)
-                            .italic()
-                    }
+//                    if myBag.count >= 5 {
+//                        Text("Item bag is full! Cannot add more items.")
+//                            .foregroundStyle(.red)
+//                            .bold()
+//                            .font(.caption)
+//                            .italic()
+//                    }
+
+                
                 }
                  
             .padding(.horizontal)
@@ -226,9 +242,6 @@ struct HeroItemOptionsView: View {
         }
         // MARK: refresh logic hererere
     }
-    
-
-   
     
     // MARK: - Helper Functions
     private func heroImage(for heroClass: HeroClassName) -> String {

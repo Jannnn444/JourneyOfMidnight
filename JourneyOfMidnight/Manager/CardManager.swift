@@ -65,7 +65,7 @@ class CardManager: ObservableObject {
                     Item(name: "pants", intro: "Armour")*/],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],
-                heroLoad: 3,
+                heroLoad: 2,
                 activeSkills: [Skill(name: "Rainy", power: 7, size: .small), Skill(name: "Meteor", power: 9, size: .small)]
               
             ),
@@ -80,7 +80,7 @@ class CardManager: ObservableObject {
                     Item(name: "holybook", intro: "Handwritten", price: 20,size: .small)],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],
-                heroLoad: 5,
+                heroLoad: 4,
                 activeSkills: [Skill(name: "Rainy", power: 7, size: .large), ]
             ),
             
@@ -92,7 +92,7 @@ class CardManager: ObservableObject {
                 inventory: [Item(name: "wands", intro: "Nature source is needed",price: 20, size: .small), /*Item(name: "Handbook", intro: "Handwritten")*/],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "doggo", intro: "Sleepy pal", price: 10, size: .medium)],
-                heroLoad: 3,
+                heroLoad: 2,
                 activeSkills: [Skill(name: "Rainy", power: 7, size: .small), Skill(name: "WolveCry", power: 5, size: .small)]
                 
             ),
@@ -106,7 +106,7 @@ class CardManager: ObservableObject {
                  inventory: [Item(name: "cat", intro: "pet", price: 500, size: .small)/*, Item(name: "staff", intro: "weapon")*/],
                  stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
-                 heroLoad: 3,
+                 heroLoad: 2,
                  activeSkills: [Skill(name: "Rainy", power: 7,size: .small), Skill(name: "meow", power: 4, size: .small)]
                 
                 ),
@@ -121,14 +121,14 @@ class CardManager: ObservableObject {
                              Item(name: "cross", intro: "Belief", price: 20, size: .small)],
                  stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
-                 heroLoad: 5,
+                 heroLoad: 4,
                  activeSkills: [Skill(name: "lightling", power: 3, size: .large)]
                 ),
             
             // 3 - Follower
             Hero(heroClass: HeroClass(name: .duelist, level: 12, life: 80), attributes: Attributes(Strength: 6, Intelligence: 1, Wisdom: 9, Agility: 1, Vitality: 5, Faith: 1, Charisma: 5), skills: [Skill(name: "gun", power: 7,size: .small)/*,Skill(name: "fist", power: 6)*/], inventory: [Item(name: "fakeID", intro: "detect using", price: 20, size: .small)/*, Item(name: "letter", intro: "read")*/], stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
-                 heroLoad: 3,
+                 heroLoad: 2,
                  activeSkills: [Skill(name: "Rainy", power: 7,size: .small), Skill(name: "gun", power: 7,size: .small)]
                 )
         ]
