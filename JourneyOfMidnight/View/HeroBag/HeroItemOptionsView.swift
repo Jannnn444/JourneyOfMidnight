@@ -121,14 +121,28 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
                                     // here add skills into bag
                                     let skillSize = hero.skills[skillIndex].size.rawValue
-                                    if totalBarSize + skillSize <= 5 {
-                                        selectionBar.append(hero.skills[skillIndex])
-                                        print("Added \(currentSkill.name) (size: \(skillSize)")
+                                    
+                                    if hero.heroLoad == .hero {
+                                        // hero herolaod == 5
+                                        if totalBarSize + skillSize <= hero.heroLoad.rawValue {
+                                            selectionBar.append(hero.skills[skillIndex])
+                                            print("Added \(currentSkill.name) (size: \(skillSize)")
+                                        } else {
+                                            print("Cannot add skill - would exceed size limit (current: \(totalBarSize), skill: \(skillSize)")
+                                        }
+                                        print("Total bag size: \(totalBarSize)")
+                                        print("Skill in myBag now: \(selectionBar.map { $0.name } )")
                                     } else {
-                                        print("Cannot add skill - would exceed size limit (current: \(totalBarSize), skill: \(skillSize)")
+                                        // follower heroLoad == 3
+                                        if totalBarSize + skillSize <= hero.heroLoad.rawValue {
+                                            selectionBar.append(hero.skills[skillIndex])
+                                            print("Added \(currentSkill.name) (size: \(skillSize)")
+                                        } else {
+                                            print("Cannot add skill - would exceed size limit (current: \(totalBarSize), skill: \(skillSize)")
+                                        }
+                                        print("Total bag size: \(totalBarSize)")
+                                        print("Skill in myBag now: \(selectionBar.map { $0.name } )")
                                     }
-                                    print("Total bag size: \(totalBarSize)")
-                                    print("Skill in myBag now: \(selectionBar.map { $0.name } )")
                                     
                                 }) {
                                     ZStack {

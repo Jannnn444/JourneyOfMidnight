@@ -14,9 +14,9 @@ struct Character: Identifiable {
     var ability: [Ability]
 }
 
-enum CharacterType {
-    case hero
-    case follower
+enum CharacterType : Int {
+    case hero = 5
+    case follower = 3
 }
 
 struct Ability: Identifiable {
@@ -41,10 +41,9 @@ struct Hero: Identifiable {
     var inventory: [Item]
     var stats: Stats
     var bag: [Item] //new!
-    var heroLoad: Int
+    var heroLoad: CharacterType
     var activeSkills : [any tagBagBar] = []
 }
-
 
 struct Follower: Identifiable {
     var id = UUID()
