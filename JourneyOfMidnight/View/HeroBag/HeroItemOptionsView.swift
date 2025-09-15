@@ -86,7 +86,7 @@ struct HeroItemOptionsView: View {
                     // Create 10 slots (2 rows x 5 columns)
                     ForEach(0..<10, id: \.self) { index in
                         ZStack {
-                            // Background slot
+                            // Background Empty Slot
                             Rectangle()
                                 .frame(width: 45, height: 45)
                                 .foregroundStyle(.black.opacity(0.9))
@@ -100,16 +100,6 @@ struct HeroItemOptionsView: View {
                                 
                                 Button(action: {
                                     addItemToSelection(currentItem)
-                                    /*
-                                    let itemSize = hero.inventory[index].size.rawValue
-                                    if totalBarSize + itemSize <= 5 {
-                                        selectionBar.append(hero.inventory[index])
-                                        print("Added \(hero.inventory[index].name)(size: \(itemSize)")
-                                    } else {
-                                        print("Cannot add item - would exceed size limit (current: \(totalBarSize), item: \(itemSize)")
-                                    }
-                                    print("Total bag size: \(totalBarSize)")
-                                    print("Item myBag now: \(selectionBar.map {$0.name})") */
                                 }) {
                                     ZStack {
                                         Image(hero.inventory[index].name)
@@ -126,44 +116,14 @@ struct HeroItemOptionsView: View {
                                 }.disabled(!canAdd) // Disabled if cant add either selected or would exceed limit
                                 
                             } else if (index - hero.inventory.count) < hero.skills.count {
-                                // Show skill
+                               // MARK: Skill
                                 let skillIndex = index - hero.inventory.count
                                 let currentSkill = hero.skills[skillIndex]
                                 let canAdd = canAddItem(currentSkill)
                                 let isSelected = isItemSelected(currentSkill)
                                 
-                                // MARK: Skill
                                 Button(action: {
-                                    // here add skills into bag
                                     addItemToSelection(currentSkill)
-                                    
-                                    /*
-                                    let skillSize = hero.skills[skillIndex].size.rawValue
-                                    let maxLoad = hero.heroLoad.rawValue
-                                    
-                                    if hero.heroLoad == .hero {
-                                        // hero herolaod == 5
-                                        if totalBarSize + skillSize <= maxLoad {
-                                            selectionBar.append(hero.skills[skillIndex])
-                                            print("Added \(currentSkill.name) (size: \(skillSize)")
-                                        } else {
-                                            print("Cannot add skill - would exceed size limit (current: \(totalBarSize), skill: \(skillSize)")
-                                        }
-                                        print("Total bag size: \(totalBarSize)")
-                                        print("Skill in myBag now: \(selectionBar.map { $0.name } )")
-                                    } else {
-                                        // follower heroLoad == 3
-                                        if totalBarSize + skillSize <= maxLoad {
-                                            selectionBar.append(hero.skills[skillIndex])
-                                            print("Added \(currentSkill.name) (size: \(skillSize)")
-                                        } else {
-                                            print("Cannot add skill - would exceed size limit (current: \(totalBarSize), skill: \(skillSize)")
-                                        }
-                                        print("Total bag size: \(totalBarSize)")
-                                        print("Skill in myBag now: \(selectionBar.map { $0.name } )")
-                                    }
-                                    */
-                                    
                                 }) {
                                     ZStack {
                                         // Skill background with different color
@@ -193,6 +153,18 @@ struct HeroItemOptionsView: View {
             HStack {
                 VStack() {
                     HStack(spacing: 2) {
+                        
+                        // Beside the grid shows: Capacity indicator
+                        /*
+                        HStack {
+                            Text("Capacity: \(totalBarSize)/\(hero.heroLoad.rawValue)")
+                                .foregroundStyle(totalBarSize >= hero.heroLoad.rawValue ? .red : .white)
+                                .fontDesign(.monospaced)
+                                .font(.caption)
+                                .bold()
+                        }
+                        .padding(.horizontal, 6) */
+                        
                         ForEach(selectionBar, id: \.name) { item in
                             Button(action: {
                                 // Remove item from myBag when tapped
@@ -218,20 +190,15 @@ struct HeroItemOptionsView: View {
                                         .frame(width: 40, height: 40)
                                         .cornerRadius(12)
                                     
-                                    /*
-                                    Text("\(item.size.rawValue)")
-                                        .font(.footnote)
-                                        .fontDesign(.monospaced)
-                                        .foregroundStyle(.white)
-                                        .background(Color.red, in: Circle())
-                                        .frame(width: 8, height: 8)
-                                    */
-                                    
-                                    
                                 }
                             }
-                        }
+                        } //loop
+                        
                     }
+                    // Progress bar
+                    ProgressView(value: Double(totalBarSize), total: Double(hero.heroLoad.rawValue))
+                        .frame(width: 100)
+                        .tint(totalBarSize >= hero.heroLoad.rawValue ? .red : .yellow)
                 }
             }
             
