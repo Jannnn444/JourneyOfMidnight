@@ -15,8 +15,8 @@ struct Character: Identifiable {
 }
 
 enum CharacterType : Int {
-    case hero = 5
-    case follower = 3
+    case hero = 4
+    case follower = 2
 }
 
 struct Ability: Identifiable {
