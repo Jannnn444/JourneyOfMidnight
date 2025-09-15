@@ -94,7 +94,13 @@ struct HeroItemOptionsView: View {
                             
                             // MARK: Item
                             if index < $hero.inventory.count {
+                                let currentItem = hero.inventory[index]
+                                let canAdd = canAddItem(currentItem)
+                                let isSelected = isItemSelected(currentItem)
+                                
                                 Button(action: {
+                                    addItemToSelection(currentItem)
+                                    /*
                                     let itemSize = hero.inventory[index].size.rawValue
                                     if totalBarSize + itemSize <= 5 {
                                         selectionBar.append(hero.inventory[index])
@@ -103,23 +109,35 @@ struct HeroItemOptionsView: View {
                                         print("Cannot add item - would exceed size limit (current: \(totalBarSize), item: \(itemSize)")
                                     }
                                     print("Total bag size: \(totalBarSize)")
-                                    print("Item myBag now: \(selectionBar.map {$0.name})")
+                                    print("Item myBag now: \(selectionBar.map {$0.name})") */
                                 }) {
                                     ZStack {
                                         Image(hero.inventory[index].name)
                                             .resizable()
                                             .frame(width: 35, height: 35)
+                                            .opacity(isSelected ? 0.5 : (canAdd ? 1.0 : 0.3))
+                                        
+                                        if isSelected {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .foregroundStyle(.green)
+                                                .background(Color.white, in: Circle())
+                                        }
                                     }
-                                }
+                                }.disabled(!canAdd) // Disabled if cant add either selected or would exceed limit
                                 
                             } else if (index - hero.inventory.count) < hero.skills.count {
                                 // Show skill
                                 let skillIndex = index - hero.inventory.count
                                 let currentSkill = hero.skills[skillIndex]
+                                let canAdd = canAddItem(currentSkill)
+                                let isSelected = isItemSelected(currentSkill)
                                 
                                 // MARK: Skill
                                 Button(action: {
                                     // here add skills into bag
+                                    addItemToSelection(currentSkill)
+                                    
+                                    /*
                                     let skillSize = hero.skills[skillIndex].size.rawValue
                                     let maxLoad = hero.heroLoad.rawValue
                                     
@@ -144,6 +162,7 @@ struct HeroItemOptionsView: View {
                                         print("Total bag size: \(totalBarSize)")
                                         print("Skill in myBag now: \(selectionBar.map { $0.name } )")
                                     }
+                                    */
                                     
                                 }) {
                                     ZStack {
@@ -155,9 +174,14 @@ struct HeroItemOptionsView: View {
                                         Image("\(skillImage(for: currentSkill.name))")
                                             .resizable()
                                             .frame(width: 25, height: 25)
-                                        
+                                        if isSelected {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .foregroundStyle(.green)
+                                                .background(Color.white, in: Circle())
+                                                .scaleEffect(0.8)
+                                        }
                                     }
-                                }
+                                } .disabled(!canAdd) //Disable if can't add
                             }
                         }
                     }
@@ -266,6 +290,30 @@ struct HeroItemOptionsView: View {
             result =  4 * cardManager.abilityBoxWidth
         }
         return result
+    }
+    
+    private func canAddItem(_ item: any tagBagBar) -> Bool {
+        let itemSize = item.size.rawValue
+        let maxLoad = hero.heroLoad.rawValue
+        let wouldExceedLimit = totalBarSize + itemSize > maxLoad
+        let isAlreadySelected = isItemSelected(item)
+        
+        return !wouldExceedLimit && !isAlreadySelected
+    }
+    
+    private func addItemToSelection(_ item: any tagBagBar) {
+        guard canAddItem(item) else {
+            if isItemSelected(item) {
+                print("itme \(item.name) is already selected")
+            } else {
+                print("Cannot add \(item.name) - would exceed size limit (current: \(totalBarSize), item: \(item.size.rawValue)")
+            }
+            return
+        }
+        selectionBar.append(item)
+        print("Added \(item.name) (size: \(item.size.rawValue))")
+        print("Total bag size: \(totalBarSize)/\(hero.heroLoad.rawValue)")
+        print("Selection bar now: \(selectionBar.map { $0.name })")
     }
     
     private func isItemSelected(_ item: any tagBagBar) -> Bool {
