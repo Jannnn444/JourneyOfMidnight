@@ -158,15 +158,7 @@ struct HeroItemOptionsView: View {
                     Text("Items and Skills: \(selectionBar.count) (Sizes:\(totalBarSize)/5")
                         .foregroundStyle(.white)
                         .font(.body) */
-                    ZStack(alignment: .center) {
-                        Rectangle()
-                            .frame(width: cardManager.abilityBoxWidth * 5 + 5, height: cardManager.abilityBoxHeight)
-                            .foregroundStyle(.black.opacity(0.3))
-                            .cornerRadius(12)
-                            .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.yellow, lineWidth: 3)
-                            )
+                    
                     HStack(spacing: 2) {
                         ForEach(selectionBar, id: \.name) { item in
                             Button(action: {
@@ -177,20 +169,26 @@ struct HeroItemOptionsView: View {
                                     print("myBag now: \(selectionBar.map { $0.name })")
                                 }
                             }) {
+                                ZStack(alignment: .center) {
+                                    
+                                    Rectangle()
+                                        .frame(width: itemSizesToWidth(itemSize: item.size), height: cardManager.abilityBoxHeight)
+                                        .foregroundStyle(.black.opacity(0.3))
+                                        .cornerRadius(12)
+                                        .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color.yellow, lineWidth: 3)
+                                        )
+                                    
                                     Image(item.name)
                                         .resizable()
                                         .frame(width: 40, height: 40)
-                                        .overlay(
-                                         Rectangle()
-                                            .stroke(Color.white.opacity(0.4))
-                                            .frame(width: itemSizesToWidth(itemSize: item.size), height: 40)
-                                        )
-                                
+                                        .cornerRadius(12)
                                     
                                     /*
                                     Text("\(item.size.rawValue)")
                                         .font(.footnote)
-                                        .fontDesign(.monospaced)lin
+                                        .fontDesign(.monospaced)
                                         .foregroundStyle(.white)
                                         .background(Color.red, in: Circle())
                                         .frame(width: 8, height: 8)
