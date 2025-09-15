@@ -174,8 +174,11 @@ struct HeroItemOptionsView: View {
                                     Rectangle()
                                         .frame(width: itemSizesToWidth(itemSize: item.size), height: cardManager.abilityBoxHeight)
                                         .foregroundStyle(.black.opacity(0.3))
-                                        .border(.yellow, width:  3)
                                         .cornerRadius(12)
+                                        .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color.yellow, lineWidth: 3)
+                                        )
                                     
                                     Image(item.name)
                                         .resizable()
