@@ -121,10 +121,11 @@ struct HeroItemOptionsView: View {
                                 Button(action: {
                                     // here add skills into bag
                                     let skillSize = hero.skills[skillIndex].size.rawValue
+                                    let maxLoad = hero.heroLoad.rawValue
                                     
                                     if hero.heroLoad == .hero {
                                         // hero herolaod == 5
-                                        if totalBarSize + skillSize <= hero.heroLoad.rawValue {
+                                        if totalBarSize + skillSize <= maxLoad {
                                             selectionBar.append(hero.skills[skillIndex])
                                             print("Added \(currentSkill.name) (size: \(skillSize)")
                                         } else {
@@ -134,7 +135,7 @@ struct HeroItemOptionsView: View {
                                         print("Skill in myBag now: \(selectionBar.map { $0.name } )")
                                     } else {
                                         // follower heroLoad == 3
-                                        if totalBarSize + skillSize <= hero.heroLoad.rawValue {
+                                        if totalBarSize + skillSize <= maxLoad {
                                             selectionBar.append(hero.skills[skillIndex])
                                             print("Added \(currentSkill.name) (size: \(skillSize)")
                                         } else {
@@ -167,12 +168,6 @@ struct HeroItemOptionsView: View {
             // MARK: Items & Skills Bar
             HStack {
                 VStack() {
-                    
-                    /*
-                    Text("Items and Skills: \(selectionBar.count) (Sizes:\(totalBarSize)/5")
-                        .foregroundStyle(.white)
-                        .font(.body) */
-                    
                     HStack(spacing: 2) {
                         ForEach(selectionBar, id: \.name) { item in
                             Button(action: {
@@ -271,6 +266,10 @@ struct HeroItemOptionsView: View {
             result =  4 * cardManager.abilityBoxWidth
         }
         return result
+    }
+    
+    private func isItemSelected(_ item: any tagBagBar) -> Bool {
+        return selectionBar.contains { $0.name == item.name}
     }
     
     // MARK: - Helper Functions
