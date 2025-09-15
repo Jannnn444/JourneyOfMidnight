@@ -153,9 +153,11 @@ struct HeroItemOptionsView: View {
             // MARK: Items & Skills Bar
             HStack {
                 VStack() {
+                    
+                    /*
                     Text("Items and Skills: \(selectionBar.count) (Sizes:\(totalBarSize)/5")
                         .foregroundStyle(.white)
-                        .font(.body)
+                        .font(.body) */
                     
                     HStack(spacing: 2) {
                         ForEach(selectionBar, id: \.name) { item in
@@ -167,18 +169,29 @@ struct HeroItemOptionsView: View {
                                     print("myBag now: \(selectionBar.map { $0.name })")
                                 }
                             }) {
-                                ZStack(alignment: .bottomTrailing) {
+                                ZStack(alignment: .center) {
+                                    
+                                    Rectangle()
+                                        .frame(width: itemSizesToWidth(itemSize: item.size), height: cardManager.abilityBoxHeight)
+                                        .foregroundStyle(.black.opacity(0.3))
+                                        .border(.yellow, width:  3)
+                                        .cornerRadius(12)
+                                    
                                     Image(item.name)
                                         .resizable()
-                                        .frame(width: 20, height: 20)
-                                        .background(Color.black.opacity(0.3))
-                                        .border(.yellow, width: 1)
+                                        .frame(width: 40, height: 40)
+                                        .cornerRadius(12)
+                                    
+                                    /*
                                     Text("\(item.size.rawValue)")
                                         .font(.footnote)
                                         .fontDesign(.monospaced)
                                         .foregroundStyle(.white)
                                         .background(Color.red, in: Circle())
                                         .frame(width: 8, height: 8)
+                                    */
+                                    
+                                    
                                 }
                             }
                         }
@@ -229,6 +242,18 @@ struct HeroItemOptionsView: View {
             initializeBags()
         }
         // MARK: refresh logic hererere
+    }
+    
+    private func itemSizesToWidth(itemSize: itemSizes) -> CGFloat {
+        var result: CGFloat = 0
+        if itemSize == .small {
+            result = 1 * cardManager.abilityBoxWidth
+        } else if itemSize == .medium {
+            result =  2 * cardManager.abilityBoxWidth
+        } else if itemSize == .large {
+            result =  4 * cardManager.abilityBoxWidth
+        }
+        return result
     }
     
     // MARK: - Helper Functions
