@@ -202,7 +202,7 @@ struct HeroItemOptionsView: View {
                 }
             }
             
-            .padding(.horizontal)
+            .padding(.horizontal) 
             
             if selectionBar.isEmpty {
                 Text("Select items or skills to activate")
