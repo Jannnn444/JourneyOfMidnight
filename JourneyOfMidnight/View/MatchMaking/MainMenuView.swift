@@ -69,7 +69,7 @@ struct MainMenuView: View {
                         .padding()
                         .background(Color.fromHex(selectedColorName).opacity(0.6))
                         .cornerRadius(10)
-                        .padding(.bottom, 60)
+//                        .padding(.bottom, 60)
                     
                     // Main menu buttons
                     VStack(spacing: 20) {

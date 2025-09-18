@@ -15,7 +15,6 @@ class UserService: ObservableObject {
     @Published var errorMessage: String?
     
     func fetchUser(id: Int = 1) async {
-        // MainActor --> Mainthread, but make sure the UI async
         await MainActor.run {
             isLoading = true
             errorMessage = nil
@@ -43,7 +42,7 @@ class UserService: ObservableObject {
                 self.isLoading = false
             }
         }
-        
     }
-    
 }
+
+

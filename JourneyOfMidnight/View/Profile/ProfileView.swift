@@ -9,6 +9,7 @@ import SwiftUI
 
 // MARK: - Profile View
 struct ProfileView: View {
+    @ObservedObject var cardManager = CardManager.shared
     @StateObject private var userService = UserService()
     @State private var selectedUserId = 1
     
@@ -16,18 +17,6 @@ struct ProfileView: View {
         NavigationView {
             ScrollView {
             VStack(spacing: 20) {
-                // User Selection
-                Picker("Select User", selection: $selectedUserId) {
-                    ForEach(1...10, id: \.self) { id in
-                        Text("User \(id)").tag(id)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .onChange(of: selectedUserId) { newId in
-                    Task {
-                        await userService.fetchUser(id: newId)
-                    }
-                }
                 
                 // Content
                 if userService.isLoading {
@@ -67,6 +56,12 @@ struct ProfileView: View {
                         .padding()
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(8)
+                        
+                        Button(action: {
+                            cardManager.showProfile = false
+                        }) {
+                            Text("Back")
+                        }
                     }
                     .padding()
                 } else if let error = userService.errorMessage {
@@ -77,7 +72,6 @@ struct ProfileView: View {
                 
                 Spacer()
             }
-//          .navigationTitle("Profile")
             .padding()
         }
         }
@@ -85,9 +79,6 @@ struct ProfileView: View {
             await userService.fetchUser(id: selectedUserId)
         }
     }
-    
-    // add button for go back to main menu
-    // add button for return
 }
 
 // MARK: - Reusable Components
