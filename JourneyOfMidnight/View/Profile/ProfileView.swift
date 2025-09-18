@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-import SwiftUI
-
 // MARK: - Horizontal Profile View
 struct ProfileView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State private var userService = UserService()
+    @State private var userService = UserServiceViewModel()
     @State private var selectedUserId = 1
     
     var body: some View {
@@ -99,7 +97,7 @@ struct ProfileView: View {
 // MARK: - Alternative: Card-based Horizontal Layout
 struct ProfileViewCards: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State private var userService = UserService()
+    @State private var userService = UserServiceViewModel()
     @State private var selectedUserId = 1
     
     var body: some View {
@@ -217,7 +215,7 @@ struct ProfileViewCards: View {
 // MARK: - Alternative: Grid Layout (2x2)
 struct ProfileViewGrid: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State private var userService = UserService()
+    @State private var userService = UserServiceViewModel()
     @State private var selectedUserId = 1
     
     let columns = [
