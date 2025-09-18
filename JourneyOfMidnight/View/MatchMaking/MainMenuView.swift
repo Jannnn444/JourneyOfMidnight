@@ -69,7 +69,7 @@ struct MainMenuView: View {
                         .padding()
                         .background(Color.fromHex(selectedColorName).opacity(0.6))
                         .cornerRadius(10)
-//                        .padding(.bottom, 60)
+//                      .padding(.bottom, 60)
                     
                     // Main menu buttons
                     VStack(spacing: 20) {
@@ -96,8 +96,6 @@ struct MainMenuView: View {
 //                          }) {
 //                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
 //                          }
-                            
-                           
                         }
                         
                         Button(action: {
@@ -121,7 +119,7 @@ struct MainMenuView: View {
                     Text("Created by Yucian Huang © 2025")
                         .font(.caption)
                         .foregroundColor(.white)
-                        .padding()
+                       
                 }.padding()
                 
             case .game:
@@ -192,10 +190,9 @@ struct MainMenuView: View {
                                     .fontDesign(.monospaced)
                                     .fontWeight(.bold)
                             }
-                            .padding(10)
-                            //                            .background(Color.black.opacity(0.7))
-                            .background(Color.fromHex(selectedColorName).opacity(0.6)
-                                .foregroundColor(.white))
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 30)
+                            .background(Color.fromHex(selectedColorName).opacity(0.6))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                         }
@@ -436,13 +433,13 @@ struct MenuButton: View {
     var body: some View {
         HStack {
             Image(systemName: icon)
-                .font(.title2)
+                .font(.title)
             Text(text)
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.bold)
                 .fontDesign(.monospaced)
         }
-        .padding(.vertical, 12)
+        .padding(.vertical, 10)
         .padding(.horizontal, 30)
         .background(Color.fromHex(selectedColorName).opacity(0.6))
         .foregroundColor(.white)
