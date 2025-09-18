@@ -12,6 +12,7 @@ enum Navigation {
     case game
     case queue
     case settings
+    case profile
 }
 
 struct MainMenuView: View {
@@ -40,7 +41,7 @@ struct MainMenuView: View {
     @State private var showMoreDetailHero: Bool = false
     @State private var showMoreDetailEnemi: Bool = false
     @State private var showMoreDetailItems: Bool = false
-    
+
     var body: some View {
         ZStack {
             // Background image for the entire app
@@ -104,6 +105,13 @@ struct MainMenuView: View {
                             musicManager.showSettings.toggle()
                         }) {
                             MenuButton(text: "Settings", icon: "gearshape")
+                        }
+                        
+                        Button(action: {
+                            navigation = .profile
+                            cardManager.showProfile.toggle()
+                        }) {
+                            MenuButton(text: "Profile", icon: "person.fill")
                         }
                     }
                     
@@ -321,30 +329,10 @@ struct MainMenuView: View {
                     } else {
                         MainMenuView()
                     }
+                }
+            case .profile:
+                ZStack {
                     
-                    // Add BACK button for settings
-                    //                    VStack(alignment: .leading) {
-                    //                        HStack(alignment: .top) {
-                    //                            Button(action: {
-                    //                                navigation = .home
-                    //                            }) {
-                    //                                HStack {
-                    //                                    Image(systemName: "chevron.left")
-                    //                                    Text("Back")
-                    //                                        .fontDesign(.monospaced)
-                    //                                        .fontWeight(.bold)
-                    //                                }
-                    //                                .padding(10)
-                    //                                .background(Color.fromHex(selectedColorName).opacity(0.6))
-                    //                                .foregroundColor(.white)
-                    //                                .cornerRadius(10)
-                    //                            }
-                    //
-                    //                           Spacer()
-                    //                        }
-                    //                        Spacer()
-                    //
-                    //                    }.ignoresSafeArea()
                 }
             }
         }
@@ -381,14 +369,8 @@ struct MainMenuView: View {
         }
     }
     private func startMultiplayerGame() {
-        // Set up game state for multiplayer
         eventState = .combat
         stories = cardManager.stories
-        
-        // Store multiplayer game info for use in game
-        // You might want to pass gameId and players to your EventScreenTemplate
-        
-        // Transition to game
         navigation = .game
         
         print("🚀 Multiplayer game started!")
@@ -427,7 +409,6 @@ struct MainMenuView: View {
             }
         }
     }
-       
         /*
          -
          asyncAfter + 2.0
@@ -441,7 +422,6 @@ struct MainMenuView: View {
          }
          }
          */
-    
 }
 
 // Helper view for menu buttons
@@ -460,7 +440,6 @@ struct MenuButton: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 30)
-        //      .background(Color.black.opacity(0.7))
         .background(Color.fromHex(selectedColorName).opacity(0.6))
         .foregroundColor(.white)
         .cornerRadius(10)

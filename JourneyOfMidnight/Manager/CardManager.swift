@@ -24,6 +24,8 @@ class CardManager: ObservableObject {
     @Published var itemInMyBag: [Item]
     @Published var itemInMyBagByHero: [Item]
     @Published var navigation: Navigation = .home
+    @Published var showProfile: Bool = false
+    
     
     // MARK: 📦 Board
     let boardWidth: CGFloat = 650
