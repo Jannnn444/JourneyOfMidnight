@@ -55,7 +55,7 @@ struct ProfileView: View {
                             .foregroundColor(.blue)
                         
 //                        Text(user.phone)
-//                            .foregroundColor(.gray)
+//                          .foregroundColor(.gray)
                         
                         // Simple Info List
                         VStack(alignment: .leading, spacing: 8) {
@@ -77,7 +77,7 @@ struct ProfileView: View {
                 
                 Spacer()
             }
-//            .navigationTitle("Profile")
+//          .navigationTitle("Profile")
             .padding()
         }
         }

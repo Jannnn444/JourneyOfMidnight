@@ -16,11 +16,11 @@ struct EventVendorShop: View {
     
     var body: some View {
         ZStack {
-            // MARK: - Banner and Event title
-            //            Rectangle()
-            //                .frame(width: 500, height: 350)
-            //                .foregroundColor(.indigo.opacity(0.8))
-            //                .cornerRadius(20)
+//             MARK: - Banner and Event title
+//              Rectangle()
+//                      .frame(width: 500, height: 350)
+//                      .foregroundColor(.indigo.opacity(0.8))
+//                      .cornerRadius(20)
             
             VStack {
                 HStack {
@@ -33,7 +33,7 @@ struct EventVendorShop: View {
                         .fontDesign(.monospaced)
                         .foregroundStyle(.black)
                 }   .padding()
-                //                    .background(Color.white.opacity(0.8))
+                //  .background(Color.white.opacity(0.8))
                     .cornerRadius(10)
                 Spacer()
             }

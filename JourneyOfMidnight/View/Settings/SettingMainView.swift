@@ -14,7 +14,6 @@ struct SettingMainView: View {
     var body: some View {
         
         ZStack {
-            // Background with better visual hierarchy
             Color.black.opacity(0.8)
                 .ignoresSafeArea()
             
@@ -30,7 +29,6 @@ struct SettingMainView: View {
                     
                     // Close button
                     Button(action: {
-//                      showSettings = false
                         musicManager.showSettings = false
                         
                     }) {
@@ -41,10 +39,8 @@ struct SettingMainView: View {
                 }
                 .padding(.horizontal)
                 
-                // Settings Content
                 VStack(spacing: 25) {
                     
-                    // Music Settings Section
                     settingsSection {
                         HStack {
                             VStack(alignment: .leading, spacing: 5) {
