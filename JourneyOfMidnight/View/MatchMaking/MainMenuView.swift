@@ -90,12 +90,6 @@ struct MainMenuView: View {
                                 MenuButton(text: "Find Match", icon: "magnifyingglass")
                             }
                             
-//                          Button(action: {
-//                                navigation = .queue
-//                                setupWebsocketConnection2()
-//                          }) {
-//                                MenuButton(text: "Find Match2 & QueueView", icon: "magnifyingglass")
-//                          }
                         }
                         
                         Button(action: {

@@ -206,7 +206,7 @@ struct QueueView: View {
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
                         .onAppear {  // Inside the if block
-                               websocketManager.queueStatus = .found
+//                               websocketManager.queueStatus = .found //static found
                         }
                     }
                 }

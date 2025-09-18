@@ -12,7 +12,7 @@ import SwiftUI
 // MARK: - Horizontal Profile View
 struct ProfileView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @StateObject private var userService = UserService()
+    @State private var userService = UserService()
     @State private var selectedUserId = 1
     
     var body: some View {
@@ -22,8 +22,11 @@ struct ProfileView: View {
                     
                     // Content
                     if userService.isLoading {
-                        ProgressView("Loading...")
-                            .padding()
+                        VStack {
+                            ProgressView()
+                            Text("Loading user...")
+                                .foregroundColor(.secondary)
+                        }
                     } else if let user = userService.user {
                         
                         // Profile Picture Section
@@ -96,7 +99,7 @@ struct ProfileView: View {
 // MARK: - Alternative: Card-based Horizontal Layout
 struct ProfileViewCards: View {
     @ObservedObject var cardManager = CardManager.shared
-    @StateObject private var userService = UserService()
+    @State private var userService = UserService()
     @State private var selectedUserId = 1
     
     var body: some View {
@@ -214,7 +217,7 @@ struct ProfileViewCards: View {
 // MARK: - Alternative: Grid Layout (2x2)
 struct ProfileViewGrid: View {
     @ObservedObject var cardManager = CardManager.shared
-    @StateObject private var userService = UserService()
+    @State private var userService = UserService()
     @State private var selectedUserId = 1
     
     let columns = [
