@@ -332,7 +332,11 @@ struct MainMenuView: View {
                 }
             case .profile:
                 ZStack {
-                    
+                    if cardManager.showProfile {
+                        ProfileView().ignoresSafeArea()
+                    } else {
+                        MainMenuView()
+                    }
                 }
             }
         }
