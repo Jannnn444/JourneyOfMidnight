@@ -43,7 +43,9 @@ struct ProfileView: View {
                                         .fill(Color.blue)
                                         .frame(width: 120, height: 120)
                                         .overlay(
-                                            Text(String(user.name.prefix(1)))
+                                            Image(String(user.name.prefix(1)).lowercased()+"ightling")
+                                                .resizable()
+                                                .frame(width: 100, height: 100)
                                                 .font(.largeTitle)
                                                 .foregroundColor(.white)
                                         )
@@ -66,9 +68,30 @@ struct ProfileView: View {
                                         .foregroundColor(.white)
                                     
                                     VStack(alignment: .leading, spacing: 8) {
-                                        Text("Username: \(user.username)")
-                                        Text("Website: \(user.website)")
-                                        Text("City: \(user.address.city)")
+                                        HStack {
+                                            Image("star")
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                            Text("Username: \(user.username)")
+                                        }
+                                       
+                                        HStack {
+                                            Image("star")
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                            Text("Website: \(user.website)")
+                                        }
+                                        HStack {
+                                            Image("star")
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                            Text("City: \(user.address.city)")
+                                        }
+                                        HStack {
+                                            Image("star")
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                        }
                                         Text("Company: \(user.company.name)")
                                     }
                                     .foregroundColor(.white)
@@ -76,7 +99,7 @@ struct ProfileView: View {
                                 .padding()
                                 .background(Color.black.opacity(0.4))
                                 .cornerRadius(8)
-                                .frame(minWidth: 250) // Flexible width
+                                .frame(minWidth: 400) // Flexible width
                                 
                                 // Action Section - Flexible width
                                 VStack {
