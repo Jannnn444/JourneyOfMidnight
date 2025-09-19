@@ -15,7 +15,6 @@
 		1E1FFF842DBE3EB4002382B0 /* MainTemplateWithPopupEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF832DBE3EB4002382B0 /* MainTemplateWithPopupEvent.swift */; };
 		1E1FFF892DBE5D6C002382B0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF882DBE5D6C002382B0 /* Game.swift */; };
 		1E1FFF8B2DBE5D88002382B0 /* WebsocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF8A2DBE5D88002382B0 /* WebsocketManager.swift */; };
-		1E1FFF8F2DBE5DEE002382B0 /* MatchMakingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF8E2DBE5DEE002382B0 /* MatchMakingViewModel.swift */; };
 		1E1FFF922DBE64EE002382B0 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF912DBE64EE002382B0 /* MainMenuView.swift */; };
 		1E1FFF942DBE64F6002382B0 /* QueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1FFF932DBE64F6002382B0 /* QueueView.swift */; };
 		1E64C2022DAE47FF001DFAF5 /* DetailSkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */; };
@@ -60,7 +59,6 @@
 		1E1FFF832DBE3EB4002382B0 /* MainTemplateWithPopupEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTemplateWithPopupEvent.swift; sourceTree = "<group>"; };
 		1E1FFF882DBE5D6C002382B0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		1E1FFF8A2DBE5D88002382B0 /* WebsocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketManager.swift; sourceTree = "<group>"; };
-		1E1FFF8E2DBE5DEE002382B0 /* MatchMakingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMakingViewModel.swift; sourceTree = "<group>"; };
 		1E1FFF912DBE64EE002382B0 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		1E1FFF932DBE64F6002382B0 /* QueueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueView.swift; sourceTree = "<group>"; };
 		1E64C2012DAE47FF001DFAF5 /* DetailSkillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSkillView.swift; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				1E1FFF762DBCEB74002382B0 /* Config.swift */,
 				1E1FFF782DBCEB7B002382B0 /* NetworkManager.swift */,
 				1E1FFF8A2DBE5D88002382B0 /* WebsocketManager.swift */,
-				1E07AEA72E7BD8270035CE48 /* UserServiceViewModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -208,7 +205,7 @@
 		1E1FFF8D2DBE5DCC002382B0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1E1FFF8E2DBE5DEE002382B0 /* MatchMakingViewModel.swift */,
+				1E07AEA72E7BD8270035CE48 /* UserServiceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -391,7 +388,6 @@
 				3D5B20742DF144D4001D242D /* SettingMainView.swift in Sources */,
 				1E1FFF922DBE64EE002382B0 /* MainMenuView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
-				1E1FFF8F2DBE5DEE002382B0 /* MatchMakingViewModel.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				3D5B20762DF1486C001D242D /* PickerBar.swift in Sources */,
 				1E1FFF772DBCEB74002382B0 /* Config.swift in Sources */,
