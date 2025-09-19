@@ -22,7 +22,6 @@ class UserServiceViewModel {
         
         
         guard let url = URL(string: "\(baseURL)/users/\(id)") else {
-         
                 errorMessage = "Invalid URL"
                 isLoading = false
             return
