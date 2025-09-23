@@ -152,53 +152,53 @@ struct HeroItemOptionsView: View {
             // MARK: Items & Skills Bar
             HStack {
                 VStack() {
-                    HStack(spacing: 2) {
+                    ZStack {
+                        // MARK: Progress bar
+//                        ProgressView(value: Double(totalBarSize), total: Double(hero.heroLoad.rawValue))
+//                            .frame(width: 100, height: 70)
+//                            .tint(totalBarSize >= hero.heroLoad.rawValue ? .red : .yellow)
                         
-                        // Beside the grid shows: Capacity indicator
-                        /*
-                        HStack {
-                            Text("Capacity: \(totalBarSize)/\(hero.heroLoad.rawValue)")
-                                .foregroundStyle(totalBarSize >= hero.heroLoad.rawValue ? .red : .white)
-                                .fontDesign(.monospaced)
-                                .font(.caption)
-                                .bold()
+                        // More rounded
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+                            .frame(width: 170, height: 50)
+
+                        HStack(spacing: 2) {
+                            
+                            ForEach(selectionBar, id: \.name) { item in
+                                Button(action: {
+                                    // Remove item from myBag when tapped
+                                    if let index = selectionBar.firstIndex(where: { $0.name == item.name }) {
+                                        selectionBar.remove(at: index)
+                                        print("Removed \(item.name) from bag")
+                                        print("myBag now: \(selectionBar.map { $0.name })")
+                                    }
+                                }) {
+                                    ZStack(alignment: .center) {
+                                        
+                                        Rectangle()
+                                            .frame(width: itemSizesToWidth(itemSize: item.size), height: cardManager.abilityBoxHeight)
+                                            .foregroundStyle(.black.opacity(0.3))
+                                            .cornerRadius(12)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 12)
+                                                    .stroke(Color.yellow, lineWidth: 3)
+                                            )
+                                        
+                                        Image(item.name)
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                            .cornerRadius(12)
+                                        
+                                    }
+                                    .background(Color.accentColor)
+                                    .cornerRadius(12)
+                                }
+                            } //loop
+                            
                         }
-                        .padding(.horizontal, 6) */
-                        
-                        ForEach(selectionBar, id: \.name) { item in
-                            Button(action: {
-                                // Remove item from myBag when tapped
-                                if let index = selectionBar.firstIndex(where: { $0.name == item.name }) {
-                                    selectionBar.remove(at: index)
-                                    print("Removed \(item.name) from bag")
-                                    print("myBag now: \(selectionBar.map { $0.name })")
-                                }
-                            }) {
-                                ZStack(alignment: .center) {
-                                    
-                                    Rectangle()
-                                        .frame(width: itemSizesToWidth(itemSize: item.size), height: cardManager.abilityBoxHeight)
-                                        .foregroundStyle(.black.opacity(0.3))
-                                        .cornerRadius(12)
-                                        .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.yellow, lineWidth: 3)
-                                        )
-                                    
-                                    Image(item.name)
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .cornerRadius(12)
-                                    
-                                }
-                            }
-                        } //loop
-                        
+                     
                     }
-                    // Progress bar
-                    ProgressView(value: Double(totalBarSize), total: Double(hero.heroLoad.rawValue))
-                        .frame(width: 100)
-                        .tint(totalBarSize >= hero.heroLoad.rawValue ? .red : .yellow)
                 }
             }
             
