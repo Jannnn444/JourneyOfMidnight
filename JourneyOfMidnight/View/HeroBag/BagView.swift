@@ -18,6 +18,7 @@ struct BagView: View {
     @State private var actionMenuItemIndex: Int?
     @State private var buttonPositions: [Int: CGRect] = [:]
     @Binding var isPresented: Bool
+    @State var showIntroView: Bool
     
     // Define grid layout - 3 columns for horizontal grid
     let columns = [
@@ -143,67 +144,78 @@ struct BagView: View {
                         dismissActionMenu()
                     }
                 
-                // Action menu positioned to the right of the clicked item
-                VStack(alignment: .leading, spacing: 0) {
-                    // Header with item name
-                    HStack(spacing: 4) {
-                        Text(selectedItem.name.capitalized)
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .fontDesign(.monospaced)
+                ZStack {
+                    // Show view when showIntro = true
+                    if showActionMenu == true {
+                        Rectangle()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.white)
+                        Text("123456789/n987654321")
                             .foregroundStyle(.black)
-                        Button("✕") {
-                            dismissActionMenu()
-                        }
-                        .font(.caption)
-                        .foregroundStyle(.gray)
                     }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 6)
-                    .background(Color.gray.opacity(0.1))
                     
-                    Divider()
-                    
-                    // Action buttons
-                    actionButton("⭐ Add to Favorites") {
-                        addToFavorites(item: selectedItem)
+                    // Action menu positioned to the right of the clicked item
+                    VStack(alignment: .leading, spacing: 0) {
+                        // Header with item name
+                        HStack(spacing: 4) {
+                            Text(selectedItem.name.capitalized)
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .fontDesign(.monospaced)
+                                .foregroundStyle(.black)
+                            Button("✕") {
+                                dismissActionMenu()
+                            }
+                            .font(.caption)
+                            .foregroundStyle(.gray)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 6)
+                        .background(Color.gray.opacity(0.1))
                         
-                    }
-                    
-                    Divider()
-                    
-                    // Dynamic hero list
-                    ForEach(cardManager.myHeroCards, id: \.id) { hero in
-                        actionButton("👤 Add to \(hero.heroClass.name.rawValue.capitalized)") {
-                            addToHero(item: selectedItem, hero: hero)
+                        Divider()
+                        
+                        // Action buttons
+                        actionButton("⭐ Add to Favorites") {
+                            addToFavorites(item: selectedItem)
+                            
                         }
-                        if hero.id != cardManager.myHeroCards.last?.id {
-                            Divider()
+                        
+                        Divider()
+                        
+                        // Dynamic hero list
+                        ForEach(cardManager.myHeroCards, id: \.id) { hero in
+                            actionButton("👤 Add to \(hero.heroClass.name.rawValue.capitalized)") {
+                                addToHero(item: selectedItem, hero: hero)
+                            }
+                            if hero.id != cardManager.myHeroCards.last?.id {
+                                Divider()
+                            }
+                        }
+                        
+                        Divider()
+                        
+                        actionButton("📖 Read Intro") {
+                            readIntro(item: selectedItem)
+                        }
+                        
+                        Divider()
+                        
+                        actionButton("🗑️ Drop Item") {
+                            dropItem(item: selectedItem, at: actionMenuItemIndex ?? 0)
                         }
                     }
-                    
-                    Divider()
-                    
-                    actionButton("📖 Read Intro") {
-                        readIntro(item: selectedItem)
-                    }
-                    
-                    Divider()
-                    
-                    actionButton("🗑️ Drop Item") {
-                        dropItem(item: selectedItem, at: actionMenuItemIndex ?? 0)
-                    }
+                    .background(Color.white)
+                    .cornerRadius(8)
+                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .position(
+                        x: (buttonPositions[index]?.maxX ?? 200) + 90, // Position to the right of item
+                        y: (buttonPositions[index]?.midY ?? 150) + 80  // Align vertically with item
+                    )
+                    .transition(.scale.combined(with: .opacity))
+                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showActionMenu)
                 }
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-                .fixedSize(horizontal: true, vertical: false)
-                .position(
-                    x: (buttonPositions[index]?.maxX ?? 200) + 90, // Position to the right of item
-                    y: (buttonPositions[index]?.midY ?? 150) + 80  // Align vertically with item
-                )
-                .transition(.scale.combined(with: .opacity))
-                .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showActionMenu)
             }
         } // ✅ FIXED: ZStack closing brace
     }
@@ -252,6 +264,8 @@ struct BagView: View {
     private func readIntro(item: Item) {
         print("Reading intro for \(item.name): \(item.intro)")
         // TODO: Show item intro in a separate popup or detail view
+        // show intro view = true , set a var for above
+        showIntroView = true
     }
     
     private func dropItem(item: Item, at index: Int) {
