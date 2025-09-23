@@ -264,7 +264,6 @@ struct BagView: View {
     private func readIntro(item: Item) {
         print("Reading intro for \(item.name): \(item.intro)")
         // TODO: Show item intro in a separate popup or detail view
-        // show intro view = true , set a var for above
         showIntroView = true
     }
     
