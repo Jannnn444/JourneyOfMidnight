@@ -192,7 +192,7 @@ struct HeroItemOptionsView: View {
                                         
                                         Image(item.name)
                                             .resizable()
-                                            .frame(width: 40, height: 40)
+                                            .frame(width: 35, height: 35)
                                             .cornerRadius(12)
                                         
                                     }
