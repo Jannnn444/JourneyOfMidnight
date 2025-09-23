@@ -22,6 +22,11 @@ struct HeroItemOptionsView: View {
     ]
     
     private func saveSelections() {
+        guard !selectionBar.isEmpty else {
+               print("Selection bar is empty")
+               hero.activeSkills = []
+               return
+           }
         // Save all selected items and skills directly to activeSkills
         hero.activeSkills = Array(selectionBar)
         
