@@ -69,7 +69,6 @@ class CardManager: ObservableObject {
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],
                 heroLoad: .follower,
                 activeSkills: [Skill(name: "Rainy", power: 7, size: .small), Skill(name: "Meteor", power: 9, size: .small)]
-              
             ),
             
             // 2 - Hero !!
