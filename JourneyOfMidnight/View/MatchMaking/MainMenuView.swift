@@ -110,6 +110,8 @@ struct MainMenuView: View {
                                 cardManager.showLoginPage = true
                             }) {
                                 MenuButton(text: "Login", icon: "door.lef.hand.close")
+                            }.sheet(isPresented: $cardManager.showLoginPage) {
+                                LoginViewPage()
                             }
                         }
                     }
