@@ -25,6 +25,7 @@ class CardManager: ObservableObject {
     @Published var itemInMyBagByHero: [Item]
     @Published var navigation: Navigation = .home
     @Published var showProfile: Bool = false
+    @Published var showLoginPage: Bool = false
     
     
     // MARK: 📦 Board

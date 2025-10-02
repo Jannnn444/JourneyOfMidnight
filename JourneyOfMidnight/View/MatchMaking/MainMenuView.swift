@@ -41,7 +41,7 @@ struct MainMenuView: View {
     @State private var showMoreDetailHero: Bool = false
     @State private var showMoreDetailEnemi: Bool = false
     @State private var showMoreDetailItems: Bool = false
-
+    
     var body: some View {
         ZStack {
             // Background image for the entire app
@@ -107,7 +107,7 @@ struct MainMenuView: View {
                             }
                             
                             Button(action: {
-                                // showLogin == true
+                                cardManager.showLoginPage = true
                             }) {
                                 MenuButton(text: "Login", icon: "door.lef.hand.close")
                             }
