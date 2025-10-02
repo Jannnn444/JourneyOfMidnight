@@ -38,7 +38,7 @@ struct SignInResponse: Codable {
 }
 
 struct User: Codable, Identifiable {
-    let id: String
+    let id = UUID()
     let email: String
     let emailVerified: Bool
     let isActive: Bool
