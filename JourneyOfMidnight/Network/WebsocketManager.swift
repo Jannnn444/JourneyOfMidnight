@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 // MARK: - WebSocket Manager
+// todo: add user server api
 @MainActor
 class WebSocketManager: NSObject, ObservableObject {
     

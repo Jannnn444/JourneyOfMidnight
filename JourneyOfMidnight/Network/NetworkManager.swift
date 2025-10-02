@@ -52,7 +52,6 @@ class NetworkManager {
             }
             
             // MARK: JsonData DEBUG Print
-                
                 do {
                     // attempt to decode the data
                     let decodedData = try JSONDecoder().decode(T.self, from: data)
@@ -71,7 +70,6 @@ class NetworkManager {
                     }
                 }
         }
-        
         // initiate async request
         task.resume()
         

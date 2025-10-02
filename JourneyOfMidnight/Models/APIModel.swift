@@ -6,105 +6,82 @@
 //
 
 import Foundation
+import SwiftUI
 
-// Endpoint.swift
-enum Endpoint {
-    // Game Data API
-    case getHeroes
-    case getEnemies(level: Int)
-    case getStories
+// MARK: - Models
+
+struct SignUpRequest: Codable {
+    let email: String
+    let username: String
+    let password: String
+}
+
+struct SignUpResponse: Codable {
+    let message: String
+}
+
+struct SignInRequest: Codable {
+    let email: String
+    let password: String
+}
+
+struct SignInResponse: Codable {
+    let accessToken: String
+    let refreshToken: String
+    let user: User
     
-    // User API
-    case login(email: String, password: String)
-    case saveProgress(userId: String, state: GameState)
-    
-    // Shop API
-    case getVendorGoods
-    case purchaseItem(itemId: String, userId: String)
-    
-    var baseURL: String {
-        switch self {
-        case .getHeroes, .getEnemies, .getStories:
-            return "https://api.yourgame.com/v1/gamedata"
-        case .login, .saveProgress:
-            return "https://api.yourgame.com/v1/user"
-        case .getVendorGoods, .purchaseItem:
-            return "https://api.yourgame.com/v1/shop"
-        }
-    }
-    
-    var path: String {
-        switch self {
-        case .getHeroes: return "/heroes"
-        case .getEnemies: return "/enemies"
-        case .getStories: return "/stories"
-        case .login: return "/login"
-        case .saveProgress: return "/progress"
-        case .getVendorGoods: return "/goods"
-        case .purchaseItem: return "/purchase"
-        }
-    }
-    
-    var method: HTTPMethod {
-        switch self {
-        case .getHeroes, .getEnemies, .getStories, .getVendorGoods:
-            return .get
-        case .login, .saveProgress, .purchaseItem:
-            return .post
-        }
-    }
-    
-    func asURLRequest() throws -> URLRequest {
-        guard let url = URL(string: baseURL + path) else {
-            throw APIError.invalidURL
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        // Add query parameters or body based on endpoint
-        switch self {
-        case .getEnemies(let level):
-            var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-            components?.queryItems = [URLQueryItem(name: "level", value: "\(level)")]
-            request.url = components?.url
-            
-        case .login(let email, let password):
-            let body = ["email": email, "password": password]
-            request.httpBody = try? JSONEncoder().encode(body)
-            
-        case .saveProgress(let userId, let state):
-            let body = ["userId": userId, "gameState": state]
-            request.httpBody = try? JSONEncoder().encode(body)
-            
-        case .purchaseItem(let itemId, let userId):
-            let body = ["itemId": itemId, "userId": userId]
-            request.httpBody = try? JSONEncoder().encode(body)
-            
-        default:
-            break
-        }
-        
-        return request
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case refreshToken = "refresh_token"
+        case user
     }
 }
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
+struct User: Codable, Identifiable {
+    let id: String
+    let email: String
+    let emailVerified: Bool
+    let isActive: Bool
+    let createdAt: String
+    let updatedAt: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, email
+        case emailVerified = "email_verified"
+        case isActive = "is_active"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
 }
 
+struct UserProfile: Codable, Identifiable {
+    let id: String
+    let userId: String
+    let username: String
+    let reputation: Int
+    let totalPlaytime: Int
+    let createdAt: String
+    let updatedAt: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userId = "user_id"
+        case username, reputation
+        case totalPlaytime = "total_playtime"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+}
 
-// APIError.swift
-enum APIError: Error, LocalizedError {
+// MARK: - API Error
+
+enum APIError: LocalizedError {
     case invalidURL
     case invalidResponse
-    case httpError(Int)
+    case unauthorized
+    case serverError(String)
     case decodingError
-    case networkError(Error)
+    case noData
     
     var errorDescription: String? {
         switch self {
@@ -112,12 +89,58 @@ enum APIError: Error, LocalizedError {
             return "Invalid URL"
         case .invalidResponse:
             return "Invalid response from server"
-        case .httpError(let code):
-            return "HTTP Error: \(code)"
+        case .unauthorized:
+            return "Unauthorized. Please log in again."
+        case .serverError(let message):
+            return message
         case .decodingError:
             return "Failed to decode response"
-        case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
+        case .noData:
+            return "No data received"
         }
+    }
+}
+
+// MARK: - Keychain Manager
+
+class KeychainManager {
+    static let shared = KeychainManager()
+    
+    private init() {}
+    
+    func save(key: String, value: String) {
+        let data = Data(value.utf8)
+        
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecValueData as String: data
+        ]
+        
+        SecItemDelete(query as CFDictionary)
+        SecItemAdd(query as CFDictionary, nil)
+    }
+    
+    func get(key: String) -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecReturnData as String: true
+        ]
+        
+        var result: AnyObject?
+        SecItemCopyMatching(query as CFDictionary, &result)
+        
+        guard let data = result as? Data else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+    
+    func delete(key: String) {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key
+        ]
+        
+        SecItemDelete(query as CFDictionary)
     }
 }

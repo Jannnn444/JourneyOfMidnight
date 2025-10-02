@@ -98,12 +98,19 @@ struct MainMenuView: View {
                         }) {
                             MenuButton(text: "Settings", icon: "gearshape")
                         }
-                        
-                        Button(action: {
-                            navigation = .profile
-                            cardManager.showProfile.toggle()
-                        }) {
-                            MenuButton(text: "Profile", icon: "person.fill")
+                        HStack {
+                            Button(action: {
+                                navigation = .profile
+                                cardManager.showProfile.toggle()
+                            }) {
+                                MenuButton(text: "Profile", icon: "person.fill")
+                            }
+                            
+                            Button(action: {
+                                // showLogin == true
+                            }) {
+                                MenuButton(text: "Login", icon: "door.lef.hand.close")
+                            }
                         }
                     }
                     
@@ -440,7 +447,7 @@ struct MenuButton: View {
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.white, lineWidth: 2)
+                .stroke(Color.white, lineWidth: 3)
         )
     }
 }
