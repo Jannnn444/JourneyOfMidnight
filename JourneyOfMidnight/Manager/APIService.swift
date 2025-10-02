@@ -13,7 +13,7 @@ class APIService {
     static let shared = APIService()
     
     // Change this to your actual base URL
-    private let baseURL = "ws://10.2.201.208:4333/ws"
+    private let baseURL = "https://10.2.201.208:4333"
     
     private let keychainManager = KeychainManager.shared
     

@@ -38,7 +38,7 @@ struct SignInResponse: Codable {
 }
 
 struct User: Codable, Identifiable {
-    let id = UUID()
+    let id: String
     let email: String
     let emailVerified: Bool
     let isActive: Bool
@@ -144,3 +144,13 @@ class KeychainManager {
         SecItemDelete(query as CFDictionary)
     }
 }
+
+
+/*
+           MARK: TODO LIST
+   -------------------------------
+ 
+   1. Config data to correct syntax
+   2. Design the personal profile
+ 
+ */

@@ -21,12 +21,6 @@ struct LoginViewPage: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
-                Text("Login View")
-                    .padding()
-                    .font(.largeTitle)
-                    .fontDesign(.monospaced)
-                    .foregroundStyle(.white)
-                    .bold()
                 
                 TextField("Email", text: $email)
                     .textFieldStyle(.roundedBorder)

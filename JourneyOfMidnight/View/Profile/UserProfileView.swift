@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserProfileView: View {
+    @ObservedObject var cardManager = CardManager.shared
+    
     var body: some View {
         
         ZStack {
@@ -70,6 +72,17 @@ struct UserProfileView: View {
                     .bold()
                     .background(Color.white)
                     .frame(width: 300, height: 20)
+                
+                Button(action: {
+                    cardManager.showLoginPage = false
+                }) {
+                    Text("Closed")
+                        .padding()
+                        .font(.caption)
+                        .foregroundStyle(.black)
+                        .background(Color.white.opacity(0.8))
+                        .cornerRadius(12)
+                }
                 
             }
         }
