@@ -17,24 +17,27 @@ struct LoginViewPage: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.5)
-                .ignoresSafeArea()
-            
+
             Image("bkg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
                 .opacity(0.5)
+            
+            Color.black.opacity(0.5)
+                .frame(width: 400, height: 200)
 
             VStack(spacing: 30) {
                 
                 TextField("Email", text: $email)
                     .textFieldStyle(.roundedBorder)
+                    .frame(width: 300)
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                 
                 SecureField("Password", text: $password)
                     .textFieldStyle(.roundedBorder)
+                    .frame(width: 300)
                 
                 if let error = authViewModel.errorMessage {
                     Text("error")
@@ -45,12 +48,13 @@ struct LoginViewPage: View {
                     
                 Button(action: {
                     Task {
-                        await authViewModel.signIn(email: email ,password: password)
+                        let result = await authViewModel.signIn(email: email ,password: password)
+                        print(result)
                     }
                 }) {
                     Text("Sign In")
                         .padding()
-                        .font(.title)
+                        .font(.subheadline)
                         .fontDesign(.monospaced)
                         .foregroundStyle(.white)
                         .bold()
@@ -60,12 +64,13 @@ struct LoginViewPage: View {
                 
                 Button(action: {
                     Task {
-                        await authViewModel.signUp(email: email,username: username ,password: password)
+                        let result = await authViewModel.signUp(email: email,username: username ,password: password)
+                        print(result)
                     }
                 }) {
                     Text("Sign Up")
                         .padding()
-                        .font(.title)
+                        .font(.subheadline)
                         .fontDesign(.monospaced)
                         .foregroundColor(.white)
                         .bold()
@@ -80,7 +85,7 @@ struct LoginViewPage: View {
                 }) {
                     Text("Sign Out")
                         .padding()
-                        .font(.title)
+                        .font(.subheadline)
                         .fontDesign(.monospaced)
                         .foregroundColor(.white)
                         .bold()
@@ -94,7 +99,7 @@ struct LoginViewPage: View {
                 }) {
                     Text("Closed")
                         .padding()
-                        .font(.caption)
+                        .font(.subheadline)
                         .foregroundStyle(.black)
                         .background(Color.white.opacity(0.8))
                         .cornerRadius(12)

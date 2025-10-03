@@ -132,22 +132,22 @@ class AuthViewModel {
     private let apiService = APIService.shared
     
     @MainActor
-    func signUp(email: String, username: String, password: String) async {
+    func signUp(email: String, username: String, password: String) async -> String {
         isLoading = true
         errorMessage = nil
         
         do {
             let response = try await apiService.signUp(email: email, username: username, password: password)
             print(response.message)
-            // After successful signup, you might want to auto-login
+            isLoading = false
+            return String("Sign up succeed!")
         } catch {
             errorMessage = error.localizedDescription
+            return String("Sign up failed")
         }
-        
-        isLoading = false
     }
     
-    func signIn(email: String, password: String) async {
+    func signIn(email: String, password: String) async -> String {
         isLoading = true
         errorMessage = nil
         
@@ -155,14 +155,14 @@ class AuthViewModel {
             let response = try await apiService.signIn(email: email, password: password)
             currentUser = response.user
             isAuthenticated = true
-            
             // Optionally fetch profile after login
             await fetchUserProfile()
+            isLoading = false
+            return String("Sign in succeed!")
         } catch {
             errorMessage = error.localizedDescription
+            return String("Sign in failed")
         }
-        
-        isLoading = false
     }
     
     func fetchUserProfile() async {
@@ -173,11 +173,12 @@ class AuthViewModel {
         }
     }
     
-    func signOut() {
+    func signOut() -> String {
         apiService.clearTokens()
         isAuthenticated = false
         currentUser = nil
         userProfile = nil
+        return String("Sign out succeed!")
     }
 }
 
