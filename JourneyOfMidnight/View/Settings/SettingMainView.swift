@@ -39,7 +39,6 @@ struct SettingMainView: View {
                 .padding(.horizontal)
                 
                 VStack(spacing: 25) {
-                    
                     settingsSection {
                         HStack {
                             VStack(alignment: .leading, spacing: 5) {

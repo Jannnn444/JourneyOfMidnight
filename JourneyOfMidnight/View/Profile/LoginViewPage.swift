@@ -17,94 +17,107 @@ struct LoginViewPage: View {
     
     var body: some View {
         ZStack {
-
+            
             Image("bkg")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
-                .opacity(0.5)
             
-            Color.black.opacity(0.5)
-                .frame(width: 400, height: 200)
-
-            VStack(spacing: 30) {
-                
-                TextField("Email", text: $email)
-                    .textFieldStyle(.roundedBorder)
-                    .frame(width: 300)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                
-                SecureField("Password", text: $password)
-                    .textFieldStyle(.roundedBorder)
-                    .frame(width: 300)
-                
-                if let error = authViewModel.errorMessage {
-                    Text("error")
-                        .foregroundStyle(.accent)
-                }
-                
+            Color.black.opacity(0.7)
+                .ignoresSafeArea()
+            
+            VStack(alignment: .center) {
+                // Header
                 HStack {
-                    
-                Button(action: {
-                    Task {
-                        let result = await authViewModel.signIn(email: email ,password: password)
-                        print(result)
-                    }
-                }) {
-                    Text("Sign In")
-                        .padding()
-                        .font(.subheadline)
-                        .fontDesign(.monospaced)
-                        .foregroundStyle(.white)
-                        .bold()
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(12)
-                }
-                
-                Button(action: {
-                    Task {
-                        let result = await authViewModel.signUp(email: email,username: username ,password: password)
-                        print(result)
-                    }
-                }) {
-                    Text("Sign Up")
-                        .padding()
-                        .font(.subheadline)
+                    Text("Welcome Back")
+                        .font(.largeTitle)
                         .fontDesign(.monospaced)
                         .foregroundColor(.white)
                         .bold()
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(12)
-                }
                     
-                Button(action: {
-                    Task {
-                        await authViewModel.signOut()
+                    Spacer()
+                    
+                    // Close button
+                    Button(action: {
+                        cardManager.showLoginPage = false
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.gray)
                     }
-                }) {
-                    Text("Sign Out")
-                        .padding()
-                        .font(.subheadline)
-                        .fontDesign(.monospaced)
-                        .foregroundColor(.white)
-                        .bold()
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(12)
+                    .padding()      // More padding at top for safe area
+                    .padding(.trailing, 20)  // Padding from right edge
                 }
-            }
+                .padding(.horizontal)
                 
-                Button(action: {
-                    cardManager.showLoginPage = false
-                }) {
-                    Text("Closed")
-                        .padding()
-                        .font(.subheadline)
-                        .foregroundStyle(.black)
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(12)
+                VStack(alignment: .leading, spacing: 30) {
+                    TextField("Email", text: $email)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 300)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
+                    
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 300)
+                    
+                    if let error = authViewModel.errorMessage {
+                        Text("error")
+                            .foregroundStyle(.accent)
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            Task {
+                                let result = await authViewModel.signIn(email: email ,password: password)
+                                print(result)
+                            }
+                        }) {
+                            Text("Sign In")
+                                .padding()
+                                .font(.subheadline)
+                                .fontDesign(.monospaced)
+                                .foregroundStyle(.white)
+                                .bold()
+                                .background(Color.white.opacity(0.8))
+                                .cornerRadius(12)
+                        }
+                        
+                        Button(action: {
+                            Task {
+                                let result = await authViewModel.signUp(email: email,username: username ,password: password)
+                                print(result)
+                            }
+                        }) {
+                            Text("Sign Up")
+                                .padding()
+                                .font(.subheadline)
+                                .fontDesign(.monospaced)
+                                .foregroundColor(.white)
+                                .bold()
+                                .background(Color.white.opacity(0.8))
+                                .cornerRadius(12)
+                        }
+                        
+                        Button(action: {
+                            Task {
+                                await authViewModel.signOut()
+                            }
+                        }) {
+                            Text("Sign Out")
+                                .padding()
+                                .font(.subheadline)
+                                .fontDesign(.monospaced)
+                                .foregroundColor(.white)
+                                .bold()
+                                .background(Color.white.opacity(0.8))
+                                .cornerRadius(12)
+                        }
+                    }
+                
                 }
             }
+
         }
     }
 }
