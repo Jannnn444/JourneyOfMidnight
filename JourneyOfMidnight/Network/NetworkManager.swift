@@ -31,6 +31,7 @@ class NetworkManager {
         // convert url endpoint to URL object
 
         guard let urlObject = URL(string: "http://\(apiDomain):\(url)") else {
+            print("http://\(apiDomain):\(url)")
             completion(.failure(NetworkError.urlError))
             return
         }

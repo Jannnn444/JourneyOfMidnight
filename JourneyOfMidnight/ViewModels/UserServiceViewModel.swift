@@ -10,7 +10,6 @@ import Foundation
 @Observable
 class UserServiceViewModel {
     private let baseURL = "https://jsonplaceholder.typicode.com"
-    
      var user: User?
      var isLoading = false
      var errorMessage: String?

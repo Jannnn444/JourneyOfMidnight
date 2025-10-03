@@ -17,9 +17,15 @@ struct LoginViewPage: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.8)
+            Color.black.opacity(0.5)
                 .ignoresSafeArea()
             
+            Image("bkg")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+                .opacity(0.5)
+
             VStack(spacing: 30) {
                 
                 TextField("Email", text: $email)
@@ -58,6 +64,21 @@ struct LoginViewPage: View {
                     }
                 }) {
                     Text("Sign Up")
+                        .padding()
+                        .font(.title)
+                        .fontDesign(.monospaced)
+                        .foregroundColor(.white)
+                        .bold()
+                        .background(Color.white.opacity(0.8))
+                        .cornerRadius(12)
+                }
+                    
+                Button(action: {
+                    Task {
+                        await authViewModel.signOut()
+                    }
+                }) {
+                    Text("Sign Out")
                         .padding()
                         .font(.title)
                         .fontDesign(.monospaced)

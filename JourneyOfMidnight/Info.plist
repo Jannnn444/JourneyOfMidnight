@@ -10,7 +10,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>172.20.10.11</key>
+			<key>10.1.6.21</key>
 			<dict>
 				<key>NSAllowsArbitraryLoads</key>
 				<true/>
