@@ -60,12 +60,7 @@ struct LoginViewPage: View {
                     SecureField("Password", text: $password)
                         .textFieldStyle(.roundedBorder)
                         .frame(width: 300)
-                    
-                    if let error = authViewModel.errorMessage {
-                        Text("error")
-                            .foregroundStyle(.accent)
-                    }
-                    
+
                     HStack {
                         Button(action: {
                             Task {
@@ -78,22 +73,6 @@ struct LoginViewPage: View {
                                 .font(.subheadline)
                                 .fontDesign(.monospaced)
                                 .foregroundStyle(.white)
-                                .bold()
-                                .background(Color.white.opacity(0.8))
-                                .cornerRadius(12)
-                        }
-                        
-                        Button(action: {
-                            Task {
-                                let result = await authViewModel.signUp(email: email,username: username ,password: password)
-                                print(result)
-                            }
-                        }) {
-                            Text("Sign Up")
-                                .padding()
-                                .font(.subheadline)
-                                .fontDesign(.monospaced)
-                                .foregroundColor(.white)
                                 .bold()
                                 .background(Color.white.opacity(0.8))
                                 .cornerRadius(12)
@@ -114,7 +93,35 @@ struct LoginViewPage: View {
                                 .cornerRadius(12)
                         }
                     }
-                
+                    
+                    HStack {
+                        // Vstack
+                        Button(action: {
+                            Task {
+                                let result = await authViewModel.signUp(email: email,username: username ,password: password)
+                                print(result)
+                            }
+                        }) {
+                            Text("No account? Sign Up here")
+                                .font(.subheadline)
+                                .fontDesign(.monospaced)
+                                .foregroundColor(.white)
+                            
+                        }
+                        
+                        if authViewModel.errorMessage != nil {
+                            Text("Error")
+                                .foregroundStyle(.red)
+                                .padding(.horizontal)
+                        }
+                        if authViewModel.succeedMessage != nil {
+                            Text("Succeeded")
+                                .foregroundStyle(.red)
+                                .padding(.horizontal)
+                        }
+                        
+                    }
+                     
                 }
             }
 
