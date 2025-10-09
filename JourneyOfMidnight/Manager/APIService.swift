@@ -126,6 +126,7 @@ class AuthViewModel {
     var isLoading = false
     var errorMessage: String?
     var succeedMessage: String?
+    var succeedSignInMessage: String?
     var isAuthenticated = false
     var currentUser: User?
     var userProfile: UserProfile?
@@ -142,7 +143,7 @@ class AuthViewModel {
             let response = try await apiService.signUp(email: email, username: username, password: password)
             print(response.message)
             isLoading = false
-            succeedMessage = "Signup Succeed"
+            succeedMessage = "Signup Succeeded"
             return String("Sign up succeed!")
         } catch {
             errorMessage = error.localizedDescription
@@ -162,7 +163,7 @@ class AuthViewModel {
             // Optionally fetch profile after login
             await fetchUserProfile()
             isLoading = false
-            succeedMessage = "Signup Succeed"
+            succeedMessage = "Signin succeeded"
             return String("Sign in succeed!")
         } catch {
             errorMessage = error.localizedDescription

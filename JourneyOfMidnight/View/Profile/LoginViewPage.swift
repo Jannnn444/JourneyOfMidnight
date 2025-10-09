@@ -109,19 +109,34 @@ struct LoginViewPage: View {
                             
                         }
                         
-                        if authViewModel.errorMessage != nil {
+                        // here is inside HStack
+                        
+//                        if authViewModel.errorMessage != nil {
+//                            Text("Error")
+//                                .foregroundStyle(.red)
+//                                .padding(.horizontal)
+//                        }
+//                        if authViewModel.succeedMessage != nil {
+//                            Text("Succeeded: \(authViewModel.succeedMessage?.description ?? "") ")
+//                                .foregroundStyle(.red)
+//                                .padding(.horizontal)
+//                        }
+                        
+                        if let errorMessage = authViewModel.errorMessage {
                             Text("Error")
-                                .foregroundStyle(.red)
-                                .padding(.horizontal)
-                        }
-                        if authViewModel.succeedMessage != nil {
-                            Text("Succeeded")
-                                .foregroundStyle(.red)
-                                .padding(.horizontal)
+                                    .foregroundStyle(.red)
+                                    .padding(.horizontal)
                         }
                         
+                        if let message = authViewModel.succeedMessage {
+                            Text("Succeeded")
+                                    .foregroundStyle(.red)
+                                    .padding(.horizontal)
+                        }
                     }
                      
+
+
                 }
             }
 
