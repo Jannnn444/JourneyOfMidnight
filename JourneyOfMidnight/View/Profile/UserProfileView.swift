@@ -74,7 +74,7 @@ struct UserProfileView: View {
                     .frame(width: 300, height: 20)
                 
                 Button(action: {
-                    cardManager.showLoginPage = false
+                    cardManager.showProfile = false
                 }) {
                     Text("Closed")
                         .padding()
