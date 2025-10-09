@@ -14,6 +14,8 @@ struct LoginViewPage: View {
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
+    @State private var showProfile = false
+  
     
     var body: some View {
         ZStack {
@@ -135,14 +137,16 @@ struct LoginViewPage: View {
                         }
                         
                         if let message = authViewModel.succeedSignInMessage {
-                            Text("Login now...")
+                            Text("Succeeded")
                                     .foregroundStyle(.red)
                                     .padding(.horizontal)
+                                    .onAppear {
+                                        showProfile = true
+                                    }
                         }
+                    } .fullScreenCover(isPresented: $showProfile) {
+                        UserProfileView()
                     }
-                     
-
-
                 }
             }
 
