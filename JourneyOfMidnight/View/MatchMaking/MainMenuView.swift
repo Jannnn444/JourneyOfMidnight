@@ -112,7 +112,11 @@ struct MainMenuView: View {
                             }) {
                                 MenuButton(text: "Login", icon: "door.lef.hand.close")
                             }.sheet(isPresented: $cardManager.showLoginPage) {
-                                LoginViewPage(authViewModel: authViewModel)
+                                LoginViewPage(authViewModel: authViewModel) {
+                                       // ✅ MARK: This closure runs when login succeeds
+                                       navigation = .profile
+                                       cardManager.showProfile = true
+                                   }
                             }
                         }
                     }

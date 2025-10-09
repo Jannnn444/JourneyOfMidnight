@@ -10,12 +10,11 @@ import SwiftUI
 @MainActor
 struct LoginViewPage: View {
     @ObservedObject var cardManager = CardManager.shared
-    @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter, don't create new one
+    @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
-    @State private var showProfile = false
-  
+    var onLoginSuccess: () -> Void
     
     var body: some View {
         ZStack {
@@ -119,20 +118,20 @@ struct LoginViewPage: View {
                         
                         if let message = authViewModel.succeedSignupMessage {
                             Text("Succeeded")
-                                    .foregroundStyle(.red)
+                                    .foregroundStyle(.green)
                                     .padding(.horizontal)
                         }
                         
                         if let message = authViewModel.succeedSignInMessage {
                             Text("Succeeded")
-                                    .foregroundStyle(.red)
+                                    .foregroundStyle(.green)
                                     .padding(.horizontal)
                                     .onAppear {
-                                        showProfile = true
+                                        cardManager.showLoginPage = false
+                                        onLoginSuccess()
+                                        // ✅ Close login and navigate to profile
                                     }
                         }
-                    } .fullScreenCover(isPresented: $showProfile) {
-                        UserProfileView(authViewModel: authViewModel)  // ✅ Pass the same instance
                     }
                 }
             }

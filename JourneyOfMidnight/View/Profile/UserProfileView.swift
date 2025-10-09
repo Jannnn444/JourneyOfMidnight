@@ -10,6 +10,7 @@ import SwiftUI
 struct UserProfileView: View {
     @ObservedObject var cardManager = CardManager.shared
     @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter
+    @Environment(\.dismiss) private var dismiss
     
         var body: some View {
             ZStack {
@@ -38,7 +39,7 @@ struct UserProfileView: View {
                                 .fontDesign(.monospaced)
                                 .fontWeight(.bold)
                             
-                            Text(profile.username.isEmpty ? "No username set" : profile.username)
+                            Text(profile.username.isEmpty ? "Empty" : profile.username)
                                 .foregroundStyle(.white)
                                 .font(.title2)
                                 .fontDesign(.monospaced)
@@ -102,6 +103,7 @@ struct UserProfileView: View {
                     
                     Button(action: {
                         cardManager.showProfile = false
+                        dismiss()
                     }) {
                         Text("Close")
                             .padding()
