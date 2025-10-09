@@ -104,7 +104,7 @@ class APIService {
         )
         
         // 🎯 Print the full response
-        print("=== Sign In Response ===")
+        print("=== API Sign In Response ===")
         print("Access Token: \(response.accessToken)")
         print("Refresh Token: \(response.refreshToken)")
         print("\nUser Info:")
@@ -130,7 +130,7 @@ class APIService {
         )
         
         // 🎯 Print the profile response
-           print("=== User Profile Response ===")
+           print("=== API User Profile Response ===")
            print("Profile ID: \(profile.id)")
            print("User ID: \(profile.userId)")
            print("Username: \(profile.username)")
