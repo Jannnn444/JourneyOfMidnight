@@ -8,6 +8,9 @@
 import Foundation
 
 @Observable
+
+// example
+
 class UserServiceViewModel {
     private let baseURL = "https://jsonplaceholder.typicode.com"
      var user: User?
