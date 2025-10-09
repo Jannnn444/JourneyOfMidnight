@@ -73,10 +73,14 @@ class AuthViewModel {
     }
     
     func fetchUserProfile() async {
+        isLoading = true
+               errorMessage = nil
         do {
             userProfile = try await apiService.getUserProfile()
+            isLoading = false
         } catch {
             errorMessage = error.localizedDescription
+            isLoading = false
         }
     }
     
@@ -84,7 +88,7 @@ class AuthViewModel {
         apiService.clearTokens()
         isAuthenticated = false
         currentUser = nil
-        userProfile = nil
+        userProfile = nil  // Clear profile data on sign out
         return String("Sign out succeed!")
     }
 }
