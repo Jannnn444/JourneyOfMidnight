@@ -103,7 +103,7 @@ class APIService {
             body: requestBody
         )
         
-        // Print the full response
+        // 🎯 Print the full response
         print("=== Sign In Response ===")
         print("Access Token: \(response.accessToken)")
         print("Refresh Token: \(response.refreshToken)")
@@ -123,11 +123,25 @@ class APIService {
     }
     
     func getUserProfile() async throws -> UserProfile {
-        return try await performRequest(
+        let profile: UserProfile = try await performRequest(
             endpoint: "/api/user/profile",
             method: "GET",
             requiresAuth: true
         )
+        
+        // 🎯 Print the profile response
+           print("=== User Profile Response ===")
+           print("Profile ID: \(profile.id)")
+           print("User ID: \(profile.userId)")
+           print("Username: \(profile.username)")
+           print("Reputation: \(profile.reputation)")
+           print("Total Playtime: \(profile.totalPlaytime)")
+           print("Created At: \(profile.createdAt)")
+           print("Updated At: \(profile.updatedAt)")
+           print("=============================\n")
+           
+        
+        return profile
     }
 }
 
