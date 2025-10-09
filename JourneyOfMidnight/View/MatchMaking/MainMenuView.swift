@@ -19,6 +19,7 @@ struct MainMenuView: View {
     @ObservedObject var cardManager = CardManager.shared
     @ObservedObject var websocketManager = WebSocketManager.shared
     @ObservedObject var musicManager = MusicManager.shared
+    @ObservedObject var authViewModel : AuthViewModel
     
     @AppStorage("selectedAppColor") private var selectedColorName = "black"
     
@@ -111,7 +112,7 @@ struct MainMenuView: View {
                             }) {
                                 MenuButton(text: "Login", icon: "door.lef.hand.close")
                             }.sheet(isPresented: $cardManager.showLoginPage) {
-                                LoginViewPage()
+                                LoginViewPage(authViewModel: authViewModel)
                             }
                         }
                     }
@@ -327,15 +328,15 @@ struct MainMenuView: View {
                     if musicManager.showSettings {
                         SettingMainView().ignoresSafeArea()
                     } else {
-                        MainMenuView()
+                        MainMenuView(authViewModel: authViewModel)
                     }
                 }
             case .profile:
                 ZStack {
                     if cardManager.showProfile {
-                        UserProfileView().ignoresSafeArea()
+                        UserProfileView(authViewModel: authViewModel).ignoresSafeArea()
                     } else {
-                        MainMenuView()
+                        MainMenuView(authViewModel: authViewModel)
                     }
                 }
             }
@@ -454,9 +455,3 @@ struct MenuButton: View {
     }
 }
 
-// Preview provider
-struct MainMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainMenuView()
-    }
-}

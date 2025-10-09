@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State private var authViewModel = AuthViewModel()
+    @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter
     
         var body: some View {
             ZStack {

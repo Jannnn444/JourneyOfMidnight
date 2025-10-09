@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 struct LoginViewPage: View {
     @ObservedObject var cardManager = CardManager.shared
-    @State private var authViewModel = AuthViewModel()
+    @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter, don't create new one
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
@@ -132,7 +132,7 @@ struct LoginViewPage: View {
                                     }
                         }
                     } .fullScreenCover(isPresented: $showProfile) {
-                        UserProfileView()
+                        UserProfileView(authViewModel: authViewModel)  // ✅ Pass the same instance
                     }
                 }
             }

@@ -5,17 +5,23 @@
 //  Created by Hualiteq International on 2025/10/9.
 //
 
+//
+//  AuthViewModel.swift
+//  JourneyOfMidnight
+//
+//  Created by Hualiteq International on 2025/10/9.
+//
+
 import SwiftUI
 
-@Observable
-class AuthViewModel {
-    var isLoading = false
-    var errorMessage: String?
-    var succeedSignupMessage: String?
-    var succeedSignInMessage: String?
-    var isAuthenticated = false
-    var currentUser: User?
-    var userProfile: UserProfile?
+class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
+    @Published var isLoading = false  // ✅ Added @Published
+    @Published var errorMessage: String?
+    @Published var succeedSignupMessage: String?
+    @Published var succeedSignInMessage: String?
+    @Published var isAuthenticated = false
+    @Published var currentUser: User?
+    @Published var userProfile: UserProfile?
     
     private let apiService = APIService.shared
     
@@ -33,10 +39,12 @@ class AuthViewModel {
             return String("Sign up succeed!")
         } catch {
             errorMessage = error.localizedDescription
+            isLoading = false
             return String("Sign up failed")
         }
     }
     
+    @MainActor
     func signIn(email: String, password: String) async -> String {
         isLoading = true
         errorMessage = nil
@@ -47,19 +55,14 @@ class AuthViewModel {
             currentUser = response.user
             isAuthenticated = true
             
-            
             // 🎯 Print the response here
-                  print("=== Login Success ===")
-                  print("📧 User Email: \(response.user.email)")
-                  print("🆔 User ID: \(response.user.id)")
-                  print("✅ Email Verified: \(response.user.emailVerified)")
-                  print("🔑 Access Token: \(response.accessToken)")
-                  print("🔄 Refresh Token: \(response.refreshToken)")
-                  print("=====================\n")
-                  
-                  currentUser = response.user
-                  isAuthenticated = true
-                  
+            print("=== Login Success ===")
+            print("📧 User Email: \(response.user.email)")
+            print("🆔 User ID: \(response.user.id)")
+            print("✅ Email Verified: \(response.user.emailVerified)")
+            print("🔑 Access Token: \(response.accessToken)")
+            print("🔄 Refresh Token: \(response.refreshToken)")
+            print("=====================\n")
             
             // Optionally fetch profile after login
             await fetchUserProfile()
@@ -68,13 +71,16 @@ class AuthViewModel {
             return String("Sign in succeed!")
         } catch {
             errorMessage = error.localizedDescription
+            isLoading = false
             return String("Sign in failed")
         }
     }
     
+    @MainActor
     func fetchUserProfile() async {
         isLoading = true
-               errorMessage = nil
+        errorMessage = nil
+        
         do {
             userProfile = try await apiService.getUserProfile()
             isLoading = false
@@ -84,6 +90,7 @@ class AuthViewModel {
         }
     }
     
+    @MainActor
     func signOut() -> String {
         apiService.clearTokens()
         isAuthenticated = false
@@ -93,68 +100,3 @@ class AuthViewModel {
     }
 }
 
-// MARK: - Example View Usage
-@MainActor
-struct LoginView: View {
-    @State private var viewModel = AuthViewModel()
-    @State private var email = ""
-    @State private var password = ""
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            TextField("Email", text: $email)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(.roundedBorder)
-            
-            if let error = viewModel.errorMessage {
-                Text(error)
-                    .foregroundColor(.red)
-                    .font(.caption)
-            }
-            
-            Button(action: {
-                Task {
-                    await viewModel.signIn(email: email, password: password)
-                }
-            }) {
-                if viewModel.isLoading {
-                    ProgressView()
-                } else {
-                    Text("Sign In")
-                }
-            }
-            .buttonStyle(.borderedProminent)
-            .disabled(viewModel.isLoading)
-        }
-        .padding()
-    }
-}
-
-@MainActor
-struct ProfileView: View {
-    @State private var viewModel = AuthViewModel()
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            if let profile = viewModel.userProfile {
-                Text("Username: \(profile.username)")
-                Text("Reputation: \(profile.reputation)")
-                Text("Total Playtime: \(profile.totalPlaytime)")
-                
-                Button("Sign Out") {
-                    viewModel.signOut()
-                }
-                .buttonStyle(.bordered)
-            } else if viewModel.isLoading {
-                ProgressView()
-            }
-        }
-        .task {
-            await viewModel.fetchUserProfile()
-        }
-    }
-}
