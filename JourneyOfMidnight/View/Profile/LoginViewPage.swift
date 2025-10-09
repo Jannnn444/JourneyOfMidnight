@@ -128,8 +128,14 @@ struct LoginViewPage: View {
                                     .padding(.horizontal)
                         }
                         
-                        if let message = authViewModel.succeedMessage {
+                        if let message = authViewModel.succeedSignupMessage {
                             Text("Succeeded")
+                                    .foregroundStyle(.red)
+                                    .padding(.horizontal)
+                        }
+                        
+                        if let message = authViewModel.succeedSignInMessage {
+                            Text("Login now...")
                                     .foregroundStyle(.red)
                                     .padding(.horizontal)
                         }

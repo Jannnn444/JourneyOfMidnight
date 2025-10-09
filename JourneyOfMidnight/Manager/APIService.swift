@@ -125,7 +125,7 @@ class APIService {
 class AuthViewModel {
     var isLoading = false
     var errorMessage: String?
-    var succeedMessage: String?
+    var succeedSignupMessage: String?
     var succeedSignInMessage: String?
     var isAuthenticated = false
     var currentUser: User?
@@ -137,13 +137,13 @@ class AuthViewModel {
     func signUp(email: String, username: String, password: String) async -> String {
         isLoading = true
         errorMessage = nil
-        succeedMessage = nil
+        succeedSignupMessage = nil
         
         do {
             let response = try await apiService.signUp(email: email, username: username, password: password)
             print(response.message)
             isLoading = false
-            succeedMessage = "Signup Succeeded"
+            succeedSignupMessage = "Signup Succeeded"
             return String("Sign up succeed!")
         } catch {
             errorMessage = error.localizedDescription
@@ -154,7 +154,7 @@ class AuthViewModel {
     func signIn(email: String, password: String) async -> String {
         isLoading = true
         errorMessage = nil
-        succeedMessage = nil
+        succeedSignInMessage = nil
         
         do {
             let response = try await apiService.signIn(email: email, password: password)
@@ -163,7 +163,7 @@ class AuthViewModel {
             // Optionally fetch profile after login
             await fetchUserProfile()
             isLoading = false
-            succeedMessage = "Signin succeeded"
+            succeedSignInMessage = "Signin succeeded"
             return String("Sign in succeed!")
         } catch {
             errorMessage = error.localizedDescription
