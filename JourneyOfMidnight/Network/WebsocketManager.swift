@@ -17,7 +17,7 @@ class WebSocketManager: NSObject, ObservableObject {
     static let shared = WebSocketManager()
     
     // MARK: - 配置常數
-    private let serverURL = URL(string: "ws://10.2.201.208:4333/ws")!
+    private let serverURL = URL(string: "ws://192.168.66.30:4333/ws")!
     private let heartbeatInterval: TimeInterval = 30.0
     private let queueKeepAliveInterval: TimeInterval = 25.0
     private let reconnectDelay: TimeInterval = 3.0
@@ -26,6 +26,7 @@ class WebSocketManager: NSObject, ObservableObject {
      10.2.201.208 -> office workplace
      172.20.10.11 -> Janus Phone
      192.168.1.163 -> taoyuan house
+     192.168.66.30 -> Ren202
      */
     
     // MARK: - 核心屬性

@@ -135,9 +135,9 @@
 		1E1FFF7B2DBCF07A002382B0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				1E517CE42E8E27A4000D21A2 /* APIService.swift */,
 				546DD1CA2D8EEA2900FAD49B /* CardManager.swift */,
 				3D5B207B2DF16AC7001D242D /* MusicManager.swift */,
+				1E517CE42E8E27A4000D21A2 /* APIService.swift */,
 				1EF694E52E97BFEF00257EBF /* AuthViewModel.swift */,
 			);
 			path = Manager;

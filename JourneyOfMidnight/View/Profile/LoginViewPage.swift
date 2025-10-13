@@ -110,20 +110,16 @@ struct LoginViewPage: View {
                             
                         }
                         
-                        if let errorMessage = authViewModel.errorMessage {
-                            Text("Error")
+                        if authViewModel.errorMessage != nil {
+                            Text("Error: \(authViewModel.errorMessage ?? "")")
                                     .foregroundStyle(.red)
                                     .padding(.horizontal)
-                        }
-                        
-                        if let message = authViewModel.succeedSignupMessage {
-                            Text("Succeeded")
+                        } else if authViewModel.succeedSignupMessage != nil {
+                            Text("Succeeded:\n\(authViewModel.succeedSignupMessage ?? "")")
                                     .foregroundStyle(.green)
                                     .padding(.horizontal)
-                        }
-                        
-                        if let message = authViewModel.succeedSignInMessage {
-                            Text("Succeeded")
+                        } else if authViewModel.succeedSignInMessage != nil {
+                            Text("Succeeded:\n\(authViewModel.succeedSignInMessage ?? "")")
                                     .foregroundStyle(.green)
                                     .padding(.horizontal)
                                     .onAppear {

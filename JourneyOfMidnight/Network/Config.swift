@@ -11,7 +11,8 @@
 /*4041*/
 
 // network IP for API connecting
-let mobileIP = "172.20.10.11" //4 or 11 or 1
+let mobileIP = "172.20.10.11" // 172.20.10.11
+let Ren202 = "192.168.66.30"
 let homeWifiIP = "10.0.0.110"
 let officeIP = "10.1.6.21"
 
