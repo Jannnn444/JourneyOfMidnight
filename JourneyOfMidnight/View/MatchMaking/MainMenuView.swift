@@ -55,7 +55,6 @@ struct MainMenuView: View {
             case .home:
                 VStack {
                     Spacer()
-                    
                 //  Image("banner")
                 //     .resizable()
                 //     .aspectRatio(contentMode: .fit)
@@ -107,18 +106,35 @@ struct MainMenuView: View {
                                 MenuButton(text: "Profile", icon: "person.fill")
                             }
                             
-                            Button(action: {
-                                cardManager.showLoginPage = true
-                            }) {
-                                MenuButton(text: "Login", icon: "door.lef.hand.close")
-                            }.sheet(isPresented: $cardManager.showLoginPage) {
-                                LoginViewPage(authViewModel: authViewModel) {
-                                       // ✅ MARK: This closure runs when login succeeds
-                                       navigation = .profile
-                                       cardManager.showProfile = true
-                                   }
+                            
+                            // MARK: Login Button
+                            if !cardManager.isLoggedIn {
+                                Button(action: {
+                                    cardManager.showLoginPage = true
+                                    authViewModel.errorMessage?.removeAll()
+                                    authViewModel.succeedSignInMessage?.removeAll()
+                                    authViewModel.succeedSignUpMessage?.removeAll()
+                                }) {
+                                    MenuButton(text: "Login", icon: "door.left.hand.close")
+                                }.sheet(isPresented: $cardManager.showLoginPage) {
+                                    // Show LoginView
+                                    LoginViewPage(authViewModel: authViewModel) {
+                                        // ✅ MARK: This closure runs when login succeeds
+                                        navigation = .profile
+                                        cardManager.showProfile = true
+                                    }
+                                }
                             }
-                        }
+                            
+                            Button(action: {
+                                Task {
+                                    authViewModel.signOut()
+                                    cardManager.isLoggedIn = false
+                                }
+                            }) {
+                                MenuButton(text: "Leave", icon: "door.left.hand.closed")
+                            }
+                        } //HStack
                     }
                     
                     Spacer()

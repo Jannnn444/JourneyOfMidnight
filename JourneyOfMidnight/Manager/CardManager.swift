@@ -27,6 +27,7 @@ class CardManager: ObservableObject {
     @Published var showProfile: Bool = false
     @Published var showLoginPage: Bool = false
     @Published var showSignUpView = false
+    @Published var isLoggedIn: Bool = false
     
     // MARK: 📦 Board
     let boardWidth: CGFloat = 650

@@ -17,7 +17,7 @@ import SwiftUI
 class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
     @Published var isLoading = false  // ✅ Added @Published
     @Published var errorMessage: String?
-    @Published var succeedSignupMessage: String?
+    @Published var succeedSignUpMessage: String?
     @Published var succeedSignInMessage: String?
     @Published var isAuthenticated = false
     @Published var currentUser: User?
@@ -29,13 +29,13 @@ class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
     func signUp(email: String, username: String, password: String) async -> String {
         isLoading = true
         errorMessage = nil
-        succeedSignupMessage = nil
+        succeedSignUpMessage = nil
         
         do {
             let response = try await apiService.signUp(email: email, username: username, password: password)
             print(response.message)
             isLoading = false
-            succeedSignupMessage = "Signup Succeeded"
+            succeedSignUpMessage = "Signup Succeeded"
             return String("Sign up succeed!")
         } catch {
             errorMessage = error.localizedDescription

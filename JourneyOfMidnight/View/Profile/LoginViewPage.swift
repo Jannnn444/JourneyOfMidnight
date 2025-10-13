@@ -116,11 +116,11 @@ struct LoginViewPage: View {
                         // NOTE: Control show SignUpView @ CardManager
                         
                         if authViewModel.errorMessage != nil {
-                            Text("Error: \(authViewModel.errorMessage ?? "")")
+                            Text("\(authViewModel.errorMessage ?? "")")
                                     .foregroundStyle(.red)
                                     .padding(.horizontal)
-                        } else if authViewModel.succeedSignupMessage != nil {
-                            Text("Succeeded:\n\(authViewModel.succeedSignupMessage ?? "")")
+                        } else if authViewModel.succeedSignUpMessage != nil {
+                            Text("Succeeded:\n\(authViewModel.succeedSignUpMessage ?? "")")
                                     .foregroundStyle(.green)
                                     .padding(.horizontal)
                         } else if authViewModel.succeedSignInMessage != nil {
@@ -130,6 +130,7 @@ struct LoginViewPage: View {
                                     .onAppear {
                                         cardManager.showLoginPage = false
                                         onLoginSuccess()
+                                        cardManager.isLoggedIn = true
                                         // ✅ Close login and navigate to profile
                                     }
                         }
