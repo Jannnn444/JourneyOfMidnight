@@ -14,6 +14,7 @@ struct LoginViewPage: View {
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
+   
     var onLoginSuccess: () -> Void
     
     var body: some View {
@@ -98,10 +99,10 @@ struct LoginViewPage: View {
                     HStack {
                         // Vstack
                         Button(action: {
-                            Task {
-                                let result = await authViewModel.signUp(email: email,username: username ,password: password)
-                                print(result)
-                            }
+                            // MARK: Pop SignUpView for create new account
+                            cardManager.showSignUpView = true
+                            
+//     Task { await authViewModel.signUp(email: email,username: username ,password: password) }
                         }) {
                             Text("No account? Sign Up here")
                                 .font(.subheadline)
@@ -109,6 +110,10 @@ struct LoginViewPage: View {
                                 .foregroundColor(.white)
                             
                         }
+                        .sheet(isPresented: $cardManager.showSignUpView) {
+                            SignUpView(authViewModel: authViewModel)
+                        }
+                        // NOTE: Control show SignUpView @ CardManager
                         
                         if authViewModel.errorMessage != nil {
                             Text("Error: \(authViewModel.errorMessage ?? "")")

@@ -38,6 +38,7 @@
 		3D5B20E72DF96B94001D242D /* EventVendorSingleItemPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20E62DF96B94001D242D /* EventVendorSingleItemPopup.swift */; };
 		3D5B20E92DF9C0C1001D242D /* ABILITYVIEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B20E82DF9C0C1001D242D /* ABILITYVIEW.swift */; };
 		3D8C04142E88191200293E48 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C04132E88191200293E48 /* UserProfileView.swift */; };
+		3D8C04162E9D265D00293E48 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C04152E9D265D00293E48 /* SignUpView.swift */; };
 		541C59312DB3B89400AB0AC6 /* EventCombat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59302DB3B89400AB0AC6 /* EventCombat.swift */; };
 		541C59352DB3B95A00AB0AC6 /* EventVendorShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */; };
 		541C59392DB3B9EC00AB0AC6 /* EventForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541C59382DB3B9EC00AB0AC6 /* EventForest.swift */; };
@@ -86,6 +87,7 @@
 		3D5B20E62DF96B94001D242D /* EventVendorSingleItemPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorSingleItemPopup.swift; sourceTree = "<group>"; };
 		3D5B20E82DF9C0C1001D242D /* ABILITYVIEW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABILITYVIEW.swift; sourceTree = "<group>"; };
 		3D8C04132E88191200293E48 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		3D8C04152E9D265D00293E48 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		541C59302DB3B89400AB0AC6 /* EventCombat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCombat.swift; sourceTree = "<group>"; };
 		541C59342DB3B95A00AB0AC6 /* EventVendorShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVendorShop.swift; sourceTree = "<group>"; };
 		541C59382DB3B9EC00AB0AC6 /* EventForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForest.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				3D8C04132E88191200293E48 /* UserProfileView.swift */,
 				1E517CE82E8E76C3000D21A2 /* LoginViewPage.swift */,
+				3D8C04152E9D265D00293E48 /* SignUpView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				1E1FFF892DBE5D6C002382B0 /* Game.swift in Sources */,
 				3D5B20742DF144D4001D242D /* SettingMainView.swift in Sources */,
 				1E1FFF922DBE64EE002382B0 /* MainMenuView.swift in Sources */,
+				3D8C04162E9D265D00293E48 /* SignUpView.swift in Sources */,
 				5455ED272DAC077700157005 /* PopupView.swift in Sources */,
 				54561D8D2D8ED0CA00EB042B /* JourneyOfMidnightApp.swift in Sources */,
 				1EF694E62E97BFEF00257EBF /* AuthViewModel.swift in Sources */,
