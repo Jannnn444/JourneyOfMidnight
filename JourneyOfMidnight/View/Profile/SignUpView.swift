@@ -14,6 +14,7 @@ struct SignUpView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var passwordConfirming = ""
+    @State private var showPasswordMismatchAlert = false
     
     var body: some View {
         VStack(alignment: .center) {
@@ -61,11 +62,7 @@ struct SignUpView: View {
                                 print(result)
                             } else {
                                 // MARK: 2 Passwords is different
-                                PopupView(content: {
-                                    Text("Please reconfirm 2 Password is the same!")
-                                        .fontDesign(.monospaced)
-                                        .foregroundStyle(.red)
-                                })
+                              showPasswordMismatchAlert = true
                             }
                         }
                     }) {
@@ -81,6 +78,12 @@ struct SignUpView: View {
                             .cornerRadius(12)
                     }
                 }
+            }.alert("Password Mismatch", isPresented: $showPasswordMismatchAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Please reconfirm 2 Password is correct")
+                    .foregroundStyle(.red)
+                    .fontDesign(.monospaced)
             }
         }
         
