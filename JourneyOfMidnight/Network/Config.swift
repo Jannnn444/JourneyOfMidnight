@@ -14,7 +14,7 @@
 let mobileIP = "172.20.10.11" // 172.20.10.11
 let Ren202 = "192.168.66.30"
 let homeWifiIP = "10.0.0.110"
-let officeIP = "10.1.6.21"
+let officeIP = "10.2.201.208"
 
 // Digital Ocean Server
 let DigitalOceanServerIP = "206.189.40.30"

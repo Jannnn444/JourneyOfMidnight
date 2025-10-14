@@ -115,7 +115,7 @@ struct MainMenuView: View {
                                     authViewModel.succeedSignInMessage?.removeAll()
                                     authViewModel.succeedSignUpMessage?.removeAll()
                                 }) {
-                                    MenuButton(text: "Login", icon: "door.left.hand.close")
+                                    MenuButton(text: "Login", icon: "door.left.hand.closed")
                                 }.sheet(isPresented: $cardManager.showLoginPage) {
                                     // Show LoginView
                                     LoginViewPage(authViewModel: authViewModel) {

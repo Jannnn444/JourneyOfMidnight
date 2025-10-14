@@ -15,6 +15,7 @@ struct SignUpView: View {
     @State private var password = ""
     @State private var passwordConfirming = ""
     @State private var showPasswordMismatchAlert = false
+    @State private var showSuccessSignedUp = false
     
     var body: some View {
         VStack(alignment: .center) {
@@ -42,6 +43,12 @@ struct SignUpView: View {
             // MARK: Fields
             VStack(alignment: .leading, spacing: 30) {
                 TextField("Username", text: $username)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 300)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.default)
+                
+                TextField("Email", text: $email)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 300)
                     .textInputAutocapitalization(.never)
@@ -78,11 +85,21 @@ struct SignUpView: View {
                             .cornerRadius(12)
                     }
                 }
-            }.alert("Password Mismatch", isPresented: $showPasswordMismatchAlert) {
+            }
+            .alert("Password Mismatch", isPresented: $showPasswordMismatchAlert) {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text("Please reconfirm 2 Password is correct")
                     .foregroundStyle(.red)
+                    .fontDesign(.monospaced)
+            }
+            .alert("Welcome!", isPresented: $showSuccessSignedUp) {
+                Button("OK", action: {
+                    cardManager.showSignUpView = false
+                })
+            } message: {
+                Text("Sign up success")
+                    .foregroundStyle(.green)
                     .fontDesign(.monospaced)
             }
         }

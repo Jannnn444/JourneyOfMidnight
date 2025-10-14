@@ -9,7 +9,7 @@
 //  AuthViewModel.swift
 //  JourneyOfMidnight
 //
-//  Created by Hualiteq International on 2025/10/9.
+//  Created by Hualiteq International on 2025/10/9
 //
 
 import SwiftUI
