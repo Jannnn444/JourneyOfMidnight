@@ -45,6 +45,7 @@ struct UserProfileView: View {
                                 .fontDesign(.monospaced)
                             
                             HStack {
+                                
                                 Text("Reputation")
                                     .foregroundStyle(.blue)
                                     .font(.title3)
@@ -64,7 +65,7 @@ struct UserProfileView: View {
                                 .font(.subheadline)
                                 .fontDesign(.monospaced)
                             
-                            Text("Member since: \(formatDate(profile.createdAt))")
+                            Text("Member since: \(formatDate(profile.createdAt).components(separatedBy: "T")[0])")
                                 .foregroundStyle(.gray)
                                 .font(.caption)
                                 .fontDesign(.monospaced)
