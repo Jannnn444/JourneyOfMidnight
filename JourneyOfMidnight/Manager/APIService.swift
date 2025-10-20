@@ -5,14 +5,12 @@
 //  Created by Hualiteq International on 2025/10/2.
 //
 
-import Foundation
 import SwiftUI
 
 // MARK: - API Service
 class APIService {
     static let shared = APIService()
     
-    // Change this to your actual base URL
 //    private let baseURL = "http://\(mobileIP):4333"
     private let baseURL = "http://\(officeIP):4333"
     

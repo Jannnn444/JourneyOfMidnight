@@ -3,7 +3,7 @@
 //  JourneyOfMidnight
 //
 //  Created by Jan    on 2025/9/27.
-//
+// 
 
 import SwiftUI
 
@@ -68,6 +68,9 @@ struct UserProfileView: View {
                                 .foregroundStyle(.gray)
                                 .font(.caption)
                                 .fontDesign(.monospaced)
+                            
+                            Text(" ------------------------------- ")
+                            
                         }
                         .padding()
                     }
@@ -95,11 +98,6 @@ struct UserProfileView: View {
                             .cornerRadius(8)
                         }
                     }
-                    
-                    Divider()
-                        .foregroundStyle(.white)
-                        .frame(width: 300, height: 2)
-                        .padding()
                     
                     Button(action: {
                         cardManager.showProfile = false

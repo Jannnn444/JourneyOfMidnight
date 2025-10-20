@@ -45,7 +45,7 @@ class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
     }
     
     @MainActor
-    func signIn(email: String, password: String) async -> String {
+    func signIn(email: String, password: String) async -> Bool {
         isLoading = true
         errorMessage = nil
         succeedSignInMessage = nil
@@ -68,11 +68,13 @@ class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
             await fetchUserProfile()
             isLoading = false
             succeedSignInMessage = "Signin succeeded"
-            return String("Sign in succeed!")
+            return true
+//          return String("Sign in succeed!")
         } catch {
             errorMessage = error.localizedDescription
             isLoading = false
-            return String("Sign in failed")
+            return false
+//          return String("Sign in failed")
         }
     }
     

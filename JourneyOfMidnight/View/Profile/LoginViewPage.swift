@@ -67,6 +67,11 @@ struct LoginViewPage: View {
                         Button(action: {
                             Task {
                                 let result = await authViewModel.signIn(email: email ,password: password)
+                                if result == true {
+                                    cardManager.showLoginPage = false    // ✅ Close login + navigate to profile
+                                    onLoginSuccess()
+                                    cardManager.isLoggedIn = true
+                                }
                                 print(result)
                             }
                         }) {

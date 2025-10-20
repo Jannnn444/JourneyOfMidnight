@@ -67,8 +67,12 @@ struct SignUpView: View {
                             if self.password == self.passwordConfirming {
                                 let result = await authViewModel.signUp(email: email, username: username, password: password)
                                 print(result)
+
+                                         if authViewModel.succeedSignUpMessage != nil {
+                                             showSuccessSignedUp = true
+                                         }
                             } else {
-                                // MARK: 2 Passwords is different
+                                // MARK: When 2 Passwords is different
                               showPasswordMismatchAlert = true
                             }
                         }
@@ -96,13 +100,23 @@ struct SignUpView: View {
             .alert("Welcome!", isPresented: $showSuccessSignedUp) {
                 Button("OK", action: {
                     cardManager.showSignUpView = false
+                    showSuccessSignedUp = false
                 })
             } message: {
                 Text("Sign up success")
                     .foregroundStyle(.green)
                     .fontDesign(.monospaced)
             }
-        }
+            
+            if authViewModel.succeedSignUpMessage != nil {
+                Text("Succeeded:\n\(authViewModel.succeedSignUpMessage ?? "")")
+                        .foregroundStyle(.green)
+                        .padding(.horizontal)
+            }
+
+            
+        } //VStack
+        
         
     }
 }
