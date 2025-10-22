@@ -82,6 +82,14 @@ struct UserProfileView: View {
                                     .fontDesign(.monospaced)
                                 
                                 Text(" ------------------------------- ")
+                                    .foregroundStyle(.gray)
+                                    .font(.caption)
+                                    .fontDesign(.monospaced)
+                                
+                                Text("Data Updated: \(profile.updatedAt.components(separatedBy: "T")[0])")
+                                    .foregroundStyle(.gray)
+                                    .font(.caption)
+                                    .fontDesign(.monospaced)
                                 
                             }
 //                            .padding()
