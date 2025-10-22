@@ -32,48 +32,62 @@ struct UserProfileView: View {
                     }
                     // ✅ Show profile data when available
                     else if let profile = authViewModel.userProfile {
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("Username")
-                                .foregroundStyle(.blue)
-                                .font(.title)
-                                .fontDesign(.monospaced)
-                                .fontWeight(.bold)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Rectangle()
+                                    .frame(width: 100, height: 100)
+                                    .foregroundStyle(.blue)
+                                    .cornerRadius(12)
+                                    
+                                
+                            }.padding()
                             
-                            Text(profile.username.isEmpty ? "Empty" : profile.username)
-                                .foregroundStyle(.white)
-                                .font(.title2)
-                                .fontDesign(.monospaced)
-                            
-                            HStack {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Username")
+                                    .foregroundStyle(.blue)
+                                    .font(.caption)
+                                    .fontDesign(.monospaced)
+                                    .fontWeight(.bold)
+                                
+                                Text(profile.username.isEmpty ? "Empty" : profile.username)
+                                    .foregroundStyle(.white)
+                                    .font(.title2)
+                                    .fontDesign(.monospaced)
+                                
                                 
                                 Text("Reputation")
                                     .foregroundStyle(.blue)
-                                    .font(.title3)
+                                    .font(.caption)
                                     .fontDesign(.monospaced)
                                 
-                                // ✅ Display reputation stars based on actual value
-                                ForEach(0..<5) { index in
-                                    Image(systemName: index < profile.reputation ? "diamond.fill" : "diamond")
-                                        .resizable()
-                                        .frame(width: 20, height: 20)
-                                        .foregroundStyle(.orange)
+                                HStack {
+                                    // ✅ Display reputation stars based on actual value
+                                    ForEach(0..<5) { index in
+                                        Image(systemName: index < profile.reputation ? "diamond.fill" : "diamond")
+                                            .resizable()
+                                            .frame(width: 15, height: 15)
+                                            .foregroundStyle(.orange)
+                                    }
                                 }
+  
+                                
+                                Text("Total Playtime: \(profile.totalPlaytime) minutes")
+                                    .foregroundStyle(.gray)
+                                    .font(.subheadline)
+                                    .fontDesign(.monospaced)
+                                
+                                Text("Member since: \(formatDate(profile.createdAt).components(separatedBy: "T")[0])")
+                                    .foregroundStyle(.gray)
+                                    .font(.caption)
+                                    .fontDesign(.monospaced)
+                                
+                                Text(" ------------------------------- ")
+                                
                             }
+//                            .padding()
                             
-                            Text("Total Playtime: \(profile.totalPlaytime) minutes")
-                                .foregroundStyle(.gray)
-                                .font(.subheadline)
-                                .fontDesign(.monospaced)
-                            
-                            Text("Member since: \(formatDate(profile.createdAt).components(separatedBy: "T")[0])")
-                                .foregroundStyle(.gray)
-                                .font(.caption)
-                                .fontDesign(.monospaced)
-                            
-                            Text(" ------------------------------- ")
-                            
-                        }
-                        .padding()
+                                
+                        }.padding()
                     }
                     // ✅ Show error if any
                     else if let error = authViewModel.errorMessage {
