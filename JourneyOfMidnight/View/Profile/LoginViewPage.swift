@@ -68,7 +68,7 @@ struct LoginViewPage: View {
                             Task {
                                 let result = await authViewModel.signIn(email: email ,password: password)
                                 if result == true {
-                                    cardManager.showLoginPage = false    // ✅ Close login + navigate to profile
+                                    cardManager.showLoginPage = false  // ✅ Close login + navigate to profile
                                     onLoginSuccess()
                                     cardManager.isLoggedIn = true
                                 }
@@ -113,7 +113,6 @@ struct LoginViewPage: View {
                                 .font(.subheadline)
                                 .fontDesign(.monospaced)
                                 .foregroundColor(.white)
-                            
                         }
                         .sheet(isPresented: $cardManager.showSignUpView) {
                             SignUpView(authViewModel: authViewModel)
@@ -137,11 +136,11 @@ struct LoginViewPage: View {
                                         onLoginSuccess()
                                         cardManager.isLoggedIn = true
                                         // ✅ Close login and navigate to profile
-                                    }
+                            }
                         }
                     }
                 }
-            }
+            }d
         }
     }
 }

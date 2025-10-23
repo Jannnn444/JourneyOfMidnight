@@ -38,8 +38,6 @@ struct UserProfileView: View {
                                     .frame(width: 100, height: 100)
                                     .foregroundStyle(.blue)
                                     .cornerRadius(12)
-                                    
-                                
                             }.padding()
                             
                             VStack(alignment: .leading, spacing: 12) {
@@ -69,7 +67,6 @@ struct UserProfileView: View {
                                             .foregroundStyle(.orange)
                                     }
                                 }
-  
                                 
                                 Text("Total Playtime: \(profile.totalPlaytime) minutes")
                                     .foregroundStyle(.gray)
@@ -92,9 +89,6 @@ struct UserProfileView: View {
                                     .fontDesign(.monospaced)
                                 
                             }
-//                            .padding()
-                            
-                                
                         }.padding()
                     }
                     // ✅ Show error if any
@@ -122,6 +116,7 @@ struct UserProfileView: View {
                         }
                     }
                     
+                    // MARK: Close to main page
                     Button(action: {
                         cardManager.showProfile = false
                         dismiss()
