@@ -17,10 +17,10 @@ struct UserProfileView: View {
                 Color.black.opacity(0.9).ignoresSafeArea()
                
                 Rectangle()
-                    .foregroundStyle(.clear)
+                    .foregroundStyle(.blue.opacity(0.5))
                     .frame(width: 450, height: 300)
                     .cornerRadius(20)
-                    .border(Color(.blue), width: 12)
+                    .border(Color(.blue), width: 8)
                     .cornerRadius(20)
                 
                 VStack {
@@ -34,10 +34,16 @@ struct UserProfileView: View {
                     else if let profile = authViewModel.userProfile {
                         HStack {
                             VStack(alignment: .leading, spacing: 12) {
-                                Rectangle()
-                                    .frame(width: 100, height: 100)
-                                    .foregroundStyle(.blue)
-                                    .cornerRadius(12)
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 100, height: 100)
+                                        .foregroundStyle(.blue)
+                                        .cornerRadius(12)
+                                    
+                                    Image("villager")
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                }
                             }.padding()
                             
                             VStack(alignment: .leading, spacing: 12) {
@@ -147,3 +153,7 @@ struct UserProfileView: View {
             return dateString
         }
     }
+
+#Preview {
+    UserProfileView(authViewModel: AuthViewModel())
+}

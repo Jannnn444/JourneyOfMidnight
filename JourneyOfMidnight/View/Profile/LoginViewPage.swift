@@ -140,7 +140,7 @@ struct LoginViewPage: View {
                         }
                     }
                 }
-            }d
+            }
         }
     }
 }

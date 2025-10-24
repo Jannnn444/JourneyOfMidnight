@@ -11,8 +11,8 @@ import SwiftUI
 class APIService {
     static let shared = APIService()
     
-//    private let baseURL = "http://\(mobileIP):4333"
-    private let baseURL = "http://\(officeIP):4333"
+    private let baseURL = "http://\(mobileIP):4333"
+//    private let baseURL = "http://\(officeIP):4333"
     
     private let keychainManager = KeychainManager.shared
     
