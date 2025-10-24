@@ -39,6 +39,7 @@ struct SignInResponse: Codable {
 
 struct User: Codable, Identifiable {
     let id: String
+    // let icon: Int
     let email: String
     let emailVerified: Bool
     let isActive: Bool
@@ -46,12 +47,51 @@ struct User: Codable, Identifiable {
     let updatedAt: String
     
     enum CodingKeys: String, CodingKey {
-        case id, email
+        case id, email /*, icon*/
         case emailVerified = "email_verified"
         case isActive = "is_active"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
+}
+
+
+struct UserUpdate: Codable {
+    let id: String?
+    let icon: Int?
+    let email: String?
+    let emailVerified: Bool?
+    let isActive: Bool?
+    let createdAt: String?
+    let updatedAt: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, icon, email
+        case emailVerified = "email_verified"
+        case isActive = "is_active"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+    
+    init(icon: Int) {
+        self.icon = icon
+        self.email = nil
+        self.id = nil
+        self.emailVerified = nil
+        self.isActive = nil
+        self.createdAt = nil
+        self.updatedAt = nil
+    }
+}
+
+struct Person: Codable {
+    let name: String
+    let email: String
+}
+
+struct UpdatePerson: Codable {
+    let name: String?
+    let email: String?
 }
 
 struct UserProfile: Codable, Identifiable {

@@ -13,7 +13,7 @@ struct UserProfileView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State var isOpenCharacterIcon: Bool = false
-    @State var myIoon: String = "villager"
+    @State var myIcon: String = "villager"
     
         var body: some View {
             ZStack {
@@ -51,7 +51,7 @@ struct UserProfileView: View {
                                     Button(action: {
                                         isOpenCharacterIcon.toggle()
                                     }) {
-                                        Image(myIoon)
+                                        Image(myIcon)
                                             .resizable()
                                             .frame(width: 100, height: 100)
                                     }
@@ -137,7 +137,6 @@ struct UserProfileView: View {
                             }
                         }.padding()
                     }
-                    // ✅ Show error if any
                     else if let error = authViewModel.errorMessage {
                         VStack {
                             Text("Failed to load profile")
@@ -184,7 +183,6 @@ struct UserProfileView: View {
             }
         }
         
-        // Helper function to format date
         private func formatDate(_ dateString: String) -> String {
             let formatter = ISO8601DateFormatter()
             if let date = formatter.date(from: dateString) {

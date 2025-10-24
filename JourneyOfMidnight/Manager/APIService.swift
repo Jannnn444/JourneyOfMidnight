@@ -139,8 +139,11 @@ class APIService {
            print("Updated At: \(profile.updatedAt)")
            print("=============================\n")
            
-        
         return profile
+    }
+    
+    func patchProfileIcon() async throws -> UserProfile {
+        
     }
 }
 
