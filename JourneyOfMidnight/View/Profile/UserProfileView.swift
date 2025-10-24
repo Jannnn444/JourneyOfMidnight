@@ -12,6 +12,9 @@ struct UserProfileView: View {
     @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter
     @Environment(\.dismiss) private var dismiss
     
+    @State var isOpenCharacterIcon: Bool = false
+    @State var myIoon: String = "villager"
+    
         var body: some View {
             ZStack {
                 Color.black.opacity(0.9).ignoresSafeArea()
@@ -35,17 +38,34 @@ struct UserProfileView: View {
                     // ✅ Show profile data when available
                     else if let profile = authViewModel.userProfile {
                         HStack {
-                            VStack(alignment: .leading, spacing: 12) {
+                            VStack(alignment: .center, spacing: 12) {
                                 ZStack {
+                                    
                                     Rectangle()
                                         .frame(width: 100, height: 100)
-                                        .foregroundStyle(.blue)
+                                        .foregroundStyle(.pink)
                                         .cornerRadius(12)
+                                   
+                                    Button(action: {
+                                        isOpenCharacterIcon = true
+                                    }) {
+                                        Image(myIoon)
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                    }
                                     
-                                    Image("villager")
-                                        .resizable()
-                                        .frame(width: 100, height: 100)
                                 }
+                                
+                                // expand area for choose head icon
+                                VStack {
+                                    if isOpenCharacterIcon {
+                                        Rectangle()
+                                            .frame(width: 130, height: 60)
+                                            .foregroundStyle(.black.opacity(0.7))
+                                            .cornerRadius(12)
+                                    }
+                                }
+                           
                             }.padding()
                             
                             VStack(alignment: .leading, spacing: 12) {
@@ -137,6 +157,8 @@ struct UserProfileView: View {
                             .cornerRadius(12)
                     }
                 }
+                .frame(width: 450, height: 280) // constrain VStack to Rectangle size
+                .padding()
             }
             // ✅ Fetch profile when view appears
             .task {
@@ -156,6 +178,3 @@ struct UserProfileView: View {
         }
     }
 
-#Preview {
-    UserProfileView(authViewModel: AuthViewModel())
-}
