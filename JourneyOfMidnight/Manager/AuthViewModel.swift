@@ -69,12 +69,10 @@ class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
             isLoading = false
             succeedSignInMessage = "Signin succeeded"
             return true
-//          return String("Sign in succeed!")
         } catch {
             errorMessage = error.localizedDescription
             isLoading = false
             return false
-//          return String("Sign in failed")
         }
     }
     
@@ -92,6 +90,7 @@ class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
         }
     }
     
+
     @MainActor
     func signOut() -> String {
         apiService.clearTokens()

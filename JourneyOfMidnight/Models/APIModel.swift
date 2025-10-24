@@ -56,43 +56,35 @@ struct User: Codable, Identifiable {
 }
 
 
-struct UserUpdate: Codable {
-    let id: String?
-    let icon: Int?
-    let email: String?
-    let emailVerified: Bool?
-    let isActive: Bool?
-    let createdAt: String?
-    let updatedAt: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id, icon, email
-        case emailVerified = "email_verified"
-        case isActive = "is_active"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-    }
-    
-    init(icon: Int) {
-        self.icon = icon
-        self.email = nil
-        self.id = nil
-        self.emailVerified = nil
-        self.isActive = nil
-        self.createdAt = nil
-        self.updatedAt = nil
-    }
-}
+//struct UserUpdate: Codable {
+//    let id: String?
+//    let icon: Int?
+//    let email: String?
+//    let emailVerified: Bool?
+//    let isActive: Bool?
+//    let createdAt: String?
+//    let updatedAt: String?
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case id, icon, email
+//        case emailVerified = "email_verified"
+//        case isActive = "is_active"
+//        case createdAt = "created_at"
+//        case updatedAt = "updated_at"
+//    }
+//    
+//    init(icon: Int) {
+//        self.icon = icon
+//        self.email = nil
+//        self.id = nil
+//        self.emailVerified = nil
+//        self.isActive = nil
+//        self.createdAt = nil
+//        self.updatedAt = nil
+//    }
+//}
 
-struct Person: Codable {
-    let name: String
-    let email: String
-}
 
-struct UpdatePerson: Codable {
-    let name: String?
-    let email: String?
-}
 
 struct UserProfile: Codable, Identifiable {
     let id: String
@@ -105,6 +97,26 @@ struct UserProfile: Codable, Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case id
+        case userId = "user_id"
+        case username, reputation
+        case totalPlaytime = "total_playtime"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+}
+
+struct UserProfileUpdate: Codable {
+    let id: String?
+    let icon: Int?
+    let userId: String?
+    let username: String?
+    let reputation: Int?
+    let totalPlaytime: Int?
+    let createdAt: String?
+    let updatedAt: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, icon
         case userId = "user_id"
         case username, reputation
         case totalPlaytime = "total_playtime"

@@ -142,9 +142,27 @@ class APIService {
         return profile
     }
     
-    func patchProfileIcon() async throws -> UserProfile {
+   /* func updateUserIcon(userId: String, newIcon: Int) async throws {
+        let update = UserProfileUpdate(icon: newIcon)
         
+        let updatedProfile: UserProfile = try await performRequest(
+            endpoint: "/api/user/profile",
+            method: "PATCH",
+            body: update,
+            requiresAuth: true
+        )
+        
+        
+        // 🎯 Print the updated profile
+        print("=== API Update Icon Response ===")
+        print("Profile ID: \(updatedProfile.id)")
+        print("New Icon: \(updatedProfile.icon ?? -1)")
+        print("=============================\n")
+        
+        return updatedProfile
     }
+    */
+    
 }
 
 
