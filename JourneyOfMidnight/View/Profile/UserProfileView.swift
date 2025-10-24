@@ -20,8 +20,10 @@ struct UserProfileView: View {
                     .foregroundStyle(.blue.opacity(0.5))
                     .frame(width: 450, height: 300)
                     .cornerRadius(20)
-                    .border(Color(.blue), width: 8)
-                    .cornerRadius(20)
+                    .overlay (
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.blue, lineWidth: 8)
+                    )
                 
                 VStack {
                     // ✅ Show loading state
