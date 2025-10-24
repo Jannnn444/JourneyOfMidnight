@@ -37,32 +37,50 @@ struct UserProfileView: View {
                     }
                     // ✅ Show profile data when available
                     else if let profile = authViewModel.userProfile {
-                        HStack {
-                            VStack(alignment: .center, spacing: 12) {
+                        HStack(alignment: .top) {
+                            VStack(alignment: .leading, spacing: 12) {
                                 ZStack {
                                     
+                                    /*
                                     Rectangle()
                                         .frame(width: 100, height: 100)
                                         .foregroundStyle(.pink)
                                         .cornerRadius(12)
+                                     */
                                    
                                     Button(action: {
-                                        isOpenCharacterIcon = true
+                                        isOpenCharacterIcon.toggle()
                                     }) {
                                         Image(myIoon)
                                             .resizable()
                                             .frame(width: 100, height: 100)
                                     }
                                     
-                                }
+                                }.frame(width: 170, height: 100)  //set constrain for Zstack area
                                 
                                 // expand area for choose head icon
                                 VStack {
                                     if isOpenCharacterIcon {
                                         Rectangle()
-                                            .frame(width: 130, height: 60)
+                                            .frame(width: 150, height: 60)
                                             .foregroundStyle(.black.opacity(0.7))
                                             .cornerRadius(12)
+                                            .overlay() {
+                                                HStack {
+                                                    
+                                                    Image("wizard")
+                                                        .resizable()
+                                                        .frame(width: 30, height: 30)
+                                                    
+                                                    Image("bard")
+                                                        .resizable()
+                                                        .frame(width: 30, height: 30)
+                                                    
+                                                    Image("king")
+                                                        .resizable()
+                                                        .frame(width: 30, height: 30)
+                                                }
+                                            }
                                     }
                                 }
                            
