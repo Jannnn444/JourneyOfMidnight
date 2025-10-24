@@ -1,13 +1,18 @@
--- Journey Through Midnight
+## Journey Through Midnight
 
---- Architectural Decisions
+### Architectural Decisions
 
----- Swift UI
+The architecture of this application follows
 
+### Swift UI
 
----- Keychain
+The app use swiftUI
+---
+
+### Keychain
 
 We use keychain to handle auth tokens.
 
+---
 
 
