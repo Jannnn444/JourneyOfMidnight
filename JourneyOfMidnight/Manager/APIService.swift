@@ -10,16 +10,12 @@ import SwiftUI
 // MARK: - API Service
 class APIService {
     static let shared = APIService()
-    
-//    private let baseURL = "http://\(mobileIP):4333"
+//  private let baseURL = "http://\(mobileIP):4333"
     private let baseURL = "http://\(officeIP):4333"
-    
     private let keychainManager = KeychainManager.shared
-    
     private init() {}
     
     // MARK: - Token Management
-    
     private func saveTokens(accessToken: String, refreshToken: String) {
         keychainManager.save(key: "access_token", value: accessToken)
         keychainManager.save(key: "refresh_token", value: refreshToken)
@@ -35,7 +31,6 @@ class APIService {
     }
     
     // MARK: - Network Request Helper
-    
     private func performRequest<T: Decodable>(
         endpoint: String,
         method: String,
@@ -45,7 +40,6 @@ class APIService {
         guard let url = URL(string: baseURL + endpoint) else {
             throw APIError.invalidURL
         }
-        
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -142,7 +136,11 @@ class APIService {
         return profile
     }
     
-   /* func updateUserIcon(userId: String, newIcon: Int) async throws {
+    
+   /* 
+    -- WAIT TILL THERE'S REAL API TO IMPLEMENT ON IT --
+    
+    func updateUserIcon(userId: String, newIcon: Int) async throws {
         let update = UserProfileUpdate(icon: newIcon)
         
         let updatedProfile: UserProfile = try await performRequest(
