@@ -28,6 +28,8 @@ struct UserProfileView: View {
                         .stroke(Color.blue, lineWidth: 8)
                 )
             
+            
+            
             VStack {
                 // ✅ Show loading state
                 if authViewModel.isLoading {
@@ -178,21 +180,24 @@ struct UserProfileView: View {
                     }
                 }
                 
-                // MARK: Close to main page
-                Button(action: {
-                    cardManager.showProfile = false
-                    dismiss()
-                }) {
-                    Text("Close")
-                        .padding()
-                        .font(.caption)
-                        .foregroundStyle(.black)
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(12)
-                }
+
             }
             .frame(width: 450, height: 280) // constrain VStack to Rectangle size
             .padding()
+            
+            // MARK: Close to main page
+            Button(action: {
+                cardManager.showProfile = false
+                dismiss()
+            }) {
+                Text("Close")
+                    .padding()
+                    .font(.caption)
+                    .foregroundStyle(.black)
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(12)
+                    
+            }.offset(y: 130)
         }
         // ✅ Fetch profile when view appears
         .task {

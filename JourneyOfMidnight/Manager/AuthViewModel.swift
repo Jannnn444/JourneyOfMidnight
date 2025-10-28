@@ -5,17 +5,10 @@
 //  Created by Hualiteq International on 2025/10/9.
 //
 
-//
-//  AuthViewModel.swift
-//  JourneyOfMidnight
-//
-//  Created by Hualiteq International on 2025/10/9
-//
-
 import SwiftUI
 
-class AuthViewModel: ObservableObject {  // ✅ Changed from @Observable
-    @Published var isLoading = false  // ✅ Added @Published
+class AuthViewModel: ObservableObject { 
+    @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var succeedSignUpMessage: String?
     @Published var succeedSignInMessage: String?
