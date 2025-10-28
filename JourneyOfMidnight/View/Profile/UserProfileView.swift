@@ -13,7 +13,7 @@ struct UserProfileView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State var isOpenCharacterIcon: Bool = false
-    @State var myIcon: String = "villager"
+    @State var myIcon: String = "villager" //default
     
         var body: some View {
             ZStack {
@@ -116,7 +116,7 @@ struct UserProfileView: View {
                                 
                                 Text("Total Playtime: \(profile.totalPlaytime) minutes")
                                     .foregroundStyle(.gray)
-                                    .font(.subheadline)
+                                    .font(.caption2)
                                     .fontDesign(.monospaced)
                                 
                                 Text("Member since: \(formatDate(profile.createdAt).components(separatedBy: "T")[0])")
@@ -124,7 +124,7 @@ struct UserProfileView: View {
                                     .font(.caption)
                                     .fontDesign(.monospaced)
                                 
-                                Text(" ------------------------------- ")
+                                Text(" ----------------------- ")
                                     .foregroundStyle(.gray)
                                     .font(.caption)
                                     .fontDesign(.monospaced)
