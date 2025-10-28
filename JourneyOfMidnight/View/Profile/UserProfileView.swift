@@ -68,17 +68,33 @@ struct UserProfileView: View {
                                             .overlay() {
                                                 HStack {
                                                     
-                                                    Image("wizard")
-                                                        .resizable()
-                                                        .frame(width: 30, height: 30)
+                                                    Button(action: {
+                                                        myIcon = "wizard"
+                                                        cardManager.staticTempIcon = myIcon
+                                                    }) {
+                                                        Image("wizard")
+                                                            .resizable()
+                                                            .frame(width: 30, height: 30)
+                                                    }
+                                     
+                                                    Button(action: {
+                                                        myIcon = "bard"
+                                                        cardManager.staticTempIcon = myIcon
+                                                    }) {
+                                                        Image("bard")
+                                                            .resizable()
+                                                            .frame(width: 30, height: 30)
+                                                    }
                                                     
-                                                    Image("bard")
-                                                        .resizable()
-                                                        .frame(width: 30, height: 30)
-                                                    
-                                                    Image("king")
-                                                        .resizable()
-                                                        .frame(width: 30, height: 30)
+                                                    Button(action: {
+                                                        myIcon = "king"
+                                                        cardManager.staticTempIcon = myIcon
+                                                    }) {
+                                                        Image("king")
+                                                            .resizable()
+                                                            .frame(width: 30, height: 30)
+                                                    }
+
                                                 }
                                             }
                                     }
