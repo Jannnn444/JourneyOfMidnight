@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import SpriteKit
 
-class AuthViewModel: ObservableObject { 
+class AuthViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var succeedSignUpMessage: String?
@@ -15,6 +16,7 @@ class AuthViewModel: ObservableObject {
     @Published var isAuthenticated = false
     @Published var currentUser: User?
     @Published var userProfile: UserProfile?
+    @Published var isUsageItem: Bool = false
     
     private let apiService = APIService.shared
     
