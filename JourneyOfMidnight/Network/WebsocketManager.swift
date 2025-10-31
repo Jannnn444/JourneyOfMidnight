@@ -106,7 +106,6 @@ class WebSocketManager: NSObject, ObservableObject {
         
         webSocketTask?.cancel(with: .normalClosure, reason: nil)
         webSocketTask = nil
-        
         connectionState = .disconnected
         queueState = .notInQueue
         resetQueueStatus()

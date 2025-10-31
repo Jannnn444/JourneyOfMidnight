@@ -67,35 +67,3 @@ struct SimpleTemplateWithPopup: View {
     }
 }
 
-// MARK: - Example usage
-struct SimpleTemplateExample: View {
-    @State private var eventState: Events = .combat
-    @State private var gold: Gold = Gold(gold: 1000)
-    @State private var showPopup: Bool = false
-    
-    var body: some View {
-        SimpleTemplateWithPopup(
-            eventState: $eventState,
-            gold: $gold,
-            showPopup: showPopup,
-            mainContent: {
-                // Main content
-                EventCombat()
-            },
-            popupContent: {
-                // Popup content
-                Text("This is a popup!")
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-            }
-        )
-    }
-}
-
-// Preview provider
-struct SimpleTemplateWithPopup_Previews: PreviewProvider {
-    static var previews: some View {
-        SimpleTemplateExample()
-    }
-}

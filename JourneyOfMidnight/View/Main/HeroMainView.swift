@@ -18,7 +18,7 @@ struct HeroMainView: View {
     
     @State var selectedHeros: [Hero] = []
     @State var selectedEnemies: [Hero] = []
-//  @State var selectedItems: [VendorGoods] = [] // array for picking up atuffs?
+//  @State var selectedItems: [VendorGoods] = [] // array for picking up stuffs?
     @State var selectedItem: Item? = nil // when selected only need to show one item
     
     @State var eventState: Events

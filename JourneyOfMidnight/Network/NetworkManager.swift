@@ -73,7 +73,6 @@ class NetworkManager {
         }
         // initiate async request
         task.resume()
-        
     }
     
     

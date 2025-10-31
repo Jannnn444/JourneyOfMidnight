@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 // MARK: - Models
 
@@ -55,37 +54,6 @@ struct User: Codable, Identifiable {
     }
 }
 
-
-//struct UserUpdate: Codable {
-//    let id: String?
-//    let icon: Int?
-//    let email: String?
-//    let emailVerified: Bool?
-//    let isActive: Bool?
-//    let createdAt: String?
-//    let updatedAt: String?
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case id, icon, email
-//        case emailVerified = "email_verified"
-//        case isActive = "is_active"
-//        case createdAt = "created_at"
-//        case updatedAt = "updated_at"
-//    }
-//    
-//    init(icon: Int) {
-//        self.icon = icon
-//        self.email = nil
-//        self.id = nil
-//        self.emailVerified = nil
-//        self.isActive = nil
-//        self.createdAt = nil
-//        self.updatedAt = nil
-//    }
-//}
-
-
-
 struct UserProfile: Codable, Identifiable {
     let id: String
     let userId: String
@@ -126,7 +94,6 @@ struct UserProfileUpdate: Codable {
 }
 
 // MARK: - API Error
-
 enum APIError: LocalizedError {
     case invalidURL
     case invalidResponse
@@ -197,12 +164,3 @@ class KeychainManager {
     }
 }
 
-
-/*
-           MARK: TODO LIST
-   -------------------------------
- 
-   1. Config data to correct syntax
-   2. Design the personal profile
- 
- */

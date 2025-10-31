@@ -152,3 +152,5 @@ enum EffectTypes {
     case Faith
     case Charisma
 }
+
+
