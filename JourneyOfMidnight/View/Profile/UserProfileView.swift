@@ -2,18 +2,18 @@
 //  UserProfileView.swift
 //  JourneyOfMidnight
 //
-//  Created by Jan    on 2025/9/27.
+//  Created by Jan on 2025/9/27.
 //
 
 import SwiftUI
 
 struct UserProfileView: View {
     @ObservedObject var cardManager = CardManager.shared
-    @ObservedObject var authViewModel: AuthViewModel  // ✅ Receive it as parameter
+    @ObservedObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) private var dismiss
-    
     @State var isOpenCharacterIcon: Bool = false
-    @State var myIcon: String = "villager" //default
+    @State var myIcon: String = "villager"
+    @State var myItem: String = "Default Items"
     
     var body: some View {
         ZStack() {
@@ -28,8 +28,6 @@ struct UserProfileView: View {
                         .stroke(Color.blue, lineWidth: 8)
                 )
             
-            
-            
             VStack {
                 // ✅ Show loading state
                 if authViewModel.isLoading {
@@ -37,6 +35,7 @@ struct UserProfileView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                         .scaleEffect(1.5)
                 }
+                
                 // ✅ Show profile data when available
                 else if let profile = authViewModel.userProfile {
                     HStack() {
@@ -99,10 +98,9 @@ struct UserProfileView: View {
                                         }
                                         .offset(y: 80)  // ✅ Push it down below the main icon
                                 }
-                            }
-                            .frame(width: 180, height: 250)  //set constrain for Zstack area
-                            
-                        }.padding()
+                            }.frame(width: 180, height: 250)
+                        }
+                        .padding()
                         
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Username")
@@ -116,7 +114,6 @@ struct UserProfileView: View {
                                 .font(.title2)
                                 .fontDesign(.monospaced)
                                 .bold()
-                            
                             
                             Text("Reputation")
                                 .foregroundStyle(.blue)
@@ -179,8 +176,6 @@ struct UserProfileView: View {
                         .cornerRadius(8)
                     }
                 }
-                
-
             }
             .frame(width: 450, height: 280) // constrain VStack to Rectangle size
             .padding()
@@ -199,7 +194,6 @@ struct UserProfileView: View {
                     
             }.offset(y: 130)
         }
-        // ✅ Fetch profile when view appears
         .task {
             await authViewModel.fetchUserProfile()
         }
@@ -215,3 +209,4 @@ struct UserProfileView: View {
         return dateString
     }
 }
+
