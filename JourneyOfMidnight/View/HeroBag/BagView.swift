@@ -301,3 +301,7 @@ private func heroImage(for heroClass: HeroClassName) -> String {
     case .templar: return "templar"
     }
 }
+
+
+
+

@@ -160,7 +160,6 @@ class CardManager: ObservableObject {
     }
 }
 
-
     // MARK: - CardManager Extension for Attack Functions
     extension CardManager {
         

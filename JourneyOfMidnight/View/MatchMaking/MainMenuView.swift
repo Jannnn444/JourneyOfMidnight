@@ -132,9 +132,8 @@ struct MainMenuView: View {
                                     cardManager.isLoggedIn = false
                                 }
                             }) {
-//                                MenuButton(text: "Leave", icon: "door.left.hand.closed")
-                                Image(systemName: "door.left.hand.closed")
-                                    .font(.title)
+                                MenuButton(text: "Leave", icon: "door.left.hand.closed")
+                            
                                 
                             }
                         } //HStack
@@ -167,7 +166,6 @@ struct MainMenuView: View {
                             // Additional hero popup that needs to be at the ZStack level
                             CardHeroSetViewWSkill(
                                 selectedHeros: $selectedHeros
-                               
                             )
                         }
                         
@@ -199,13 +197,10 @@ struct MainMenuView: View {
                             // Additional hero popup that needs to be at the ZStack level
                             CardHeroSetViewWSkill(
                                 selectedHeros: $selectedHeros
-                              
                             )
                         }
                     }
-                
-                
-                // Add back button to return to main menu
+                // Add back button to return to main menu    
                 VStack {
                     HStack {
                         Button(action: {
