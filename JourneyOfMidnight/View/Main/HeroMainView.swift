@@ -83,13 +83,6 @@ struct CombatEventExample: View {
                 ZStack {
                 // Main combat event content
                 EventCombat()
-                
-                // Enemy cards
-//                EnemyCardSet(
-//                    selectedEnemies: $selectedEnemies,
-//                    showDetailSkillViewEnemi: $showDetailSkillViewEnemi,
-//                    showMoreDetailEnemi: $showMoreDetailEnemi
-//                )
             },
             eventState: $eventState,
             gold: $gold

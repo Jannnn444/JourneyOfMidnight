@@ -132,7 +132,10 @@ struct MainMenuView: View {
                                     cardManager.isLoggedIn = false
                                 }
                             }) {
-                                MenuButton(text: "Leave", icon: "door.left.hand.closed")
+//                                MenuButton(text: "Leave", icon: "door.left.hand.closed")
+                                Image(systemName: "door.left.hand.closed")
+                                    .font(.title)
+                                
                             }
                         } //HStack
                     }

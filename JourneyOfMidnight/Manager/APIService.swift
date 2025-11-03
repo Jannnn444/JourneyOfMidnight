@@ -150,7 +150,6 @@ class APIService {
             requiresAuth: true
         )
         
-        
         // 🎯 Print the updated profile
         print("=== API Update Icon Response ===")
         print("Profile ID: \(updatedProfile.id)")
