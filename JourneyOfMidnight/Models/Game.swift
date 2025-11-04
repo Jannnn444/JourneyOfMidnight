@@ -153,3 +153,30 @@ enum EffectTypes {
     case Charisma
 }
 
+struct CombatResult {
+    let message: String
+    let damage: Int
+    var targetDefeated: Bool = false
+    var statusApplied: StatusEffect? = nil
+    var comboTriggered: String? = nil
+}
+
+enum StatusEffect: Equatable {
+    case burning(turnLeft: Int, damagePerTurn: Int)
+    case frozen(turnsLeft: Int)
+    case poisoned(turnsLeft: Int, damagePerTurn: Int)
+    case stunned(turnsLeft: Int)
+    case blessed(turnLeft: Int, healPerTurn: Int)
+    case shielded(turnLeft: Int, damageReduction: Int)
+    
+    var displayName: String {
+        switch self {
+        case .burning: return "🔥 Burning"
+        case .frozen: return "❄️ Frozen"
+        case .poisoned: return "☠️ Poisoned"
+        case .stunned: return "💫 Stunned"
+        case .blessed: return "✨ Blessed"
+        case .shielded: return "🛡️ Shielded"
+        }
+    }
+}

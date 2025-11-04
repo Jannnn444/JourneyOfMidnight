@@ -179,7 +179,31 @@ class CardManager: ObservableObject {
     }
 }
 
-    // MARK: - CardManager Extension for Attack Functions
+
+extension CardManager {
+    // MARK: - 1. Initiative System (Speed-Based Turn Order)
+    func calculateInitiative(for hero: Hero) -> Int {
+        let baseSpeed = hero.attributes.Agility
+        let randomFactor = Int.random(in: 1...6) // D6 roll
+        return baseSpeed + randomFactor
+    }
+    
+    // MARK: - 2. Skill execution with Effects
+    func executeSkill(queued: QueuedSkill) {
+        // --- TBD on Claude ---
+    }
+    
+}
+
+
+
+
+
+
+
+
+    // MARK: - CardManager Extension for Attack Functions (Don't use!)
+/*
     extension CardManager {
         // Calculate Attack Power
         func calculateAttackPower(for character: Hero) -> Int {
@@ -219,4 +243,4 @@ class CardManager: ObservableObject {
             return message
         }
     }
- 
+ */
