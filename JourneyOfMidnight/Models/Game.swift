@@ -153,16 +153,3 @@ enum EffectTypes {
     case Charisma
 }
 
-enum CombatPhase {
-    case planning    // Players arrange skills
-    case execution   // Skills trigger in sequence
-    case resolution  // Calculate damage/effects
-}
-
-struct SkillAction {
-    let skill: Skill
-    let caster: Hero
-    let target: Hero
-    let initiative: Int  // Speed-based order
-}
-

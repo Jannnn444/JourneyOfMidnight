@@ -30,6 +30,25 @@ class CardManager: ObservableObject {
     @Published var isLoggedIn: Bool = false
     @Published var staticTempIcon: String = ""
     
+    // MARK: Combat Flow Design
+    @Published var combatPhase: CombatPhase = .planning
+    @Published var playerSkillQueue = []
+    
+    enum CombatPhase {
+        case planning       // Drag skills to queue
+        case confirmation   // Review your choices
+        case execution      // Watch skills resolve
+        case resolution     // check win/lose
+    }
+    
+    struct QueuedSkill: Identifiable {
+        let id = UUID()
+        let skill: Skill
+        let caster: Hero
+        var target: Hero?
+        let initiative: Int  // Speed determines order
+    }
+    
     // MARK: 📦 Board
     let boardWidth: CGFloat = 650
     let boardHeight: CGFloat = 150
@@ -81,7 +100,7 @@ class CardManager: ObservableObject {
                 skills: [Skill(name: "Flower", power: 8, size: .small)],
                 inventory: [
                     Item(name: "cat", intro: "brutal killer", price: 50, size: .medium),
-                    Item(name: "holybook", intro: "Handwritten", price: 20,size: .small)],
+                    Item(name: "holybook", intro: "Handwritten", price: 20,size: .small)],          // 2 items is a hero
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "apple", intro: "Food", price: 20, size: .small)],
                 heroLoad: .hero,
@@ -93,7 +112,7 @@ class CardManager: ObservableObject {
                 heroClass: HeroClass(name: .rogue, level: 50, life: 80),
                 attributes: Attributes(Strength: 5, Intelligence: 5, Wisdom: 5, Agility: 5, Vitality: 5, Faith: 5, Charisma: 5),
                 skills: [Skill(name: "WolveCry", power: 5, size: .small)],
-                inventory: [Item(name: "wands", intro: "Nature source is needed",price: 20, size: .small), /*Item(name: "Handbook", intro: "Handwritten")*/],
+                inventory: [Item(name: "wands", intro: "Nature source is needed",price: 20, size: .small)],
                 stats: Stats(health: 100, endurance: 500),
                 bag: [Item(name: "doggo", intro: "Sleepy pal", price: 10, size: .medium)],
                 heroLoad: .follower,
@@ -122,7 +141,7 @@ class CardManager: ObservableObject {
                  skills: [Skill(name: "Holy", power: 5, size: .large),
                           Skill(name: "lightling", power: 3, size: .small)],
                  inventory: [Item(name: "holybook", intro: "Spirit", price: 20, size: .small),
-                             Item(name: "cross", intro: "Belief", price: 20, size: .small)],
+                             Item(name: "cross", intro: "Belief", price: 20, size: .small)],         // 2 items is a hero
                  stats: Stats(health: 100, endurance: 500),
                  bag: [Item(name: "apple", intro: "Food", price: 5, size: .small)],
                  heroLoad: .hero,
@@ -162,7 +181,6 @@ class CardManager: ObservableObject {
 
     // MARK: - CardManager Extension for Attack Functions
     extension CardManager {
-        
         // Calculate Attack Power
         func calculateAttackPower(for character: Hero) -> Int {
             var totalAttack = 0
