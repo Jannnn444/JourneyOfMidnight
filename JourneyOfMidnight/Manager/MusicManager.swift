@@ -37,7 +37,6 @@ class MusicManager: ObservableObject {
     }
     
     // MARK: - Audio Session Setup
-    
     private func setupAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)

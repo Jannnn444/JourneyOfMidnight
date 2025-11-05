@@ -30,9 +30,13 @@ class CardManager: ObservableObject {
     @Published var isLoggedIn: Bool = false
     @Published var staticTempIcon: String = ""
     
-    // MARK: Combat Flow Design
-    @Published var combatPhase: CombatPhase = .planning
-    @Published var playerSkillQueue = []
+    // MARK: - Combat System Properties (ADD THESE)
+        @Published var combatPhase: CombatPhase = .planning
+        @Published var playerSkillQueue: [QueuedSkill] = []
+        @Published var enemySkillQueue: [QueuedSkill] = []
+        @Published var combatLog: [String] = []
+        @Published var currentTurn: Int = 1
+    
     
     enum CombatPhase {
         case planning       // Drag skills to queue
@@ -181,6 +185,7 @@ class CardManager: ObservableObject {
 
 
 extension CardManager {
+    
     // MARK: - 1. Initiative System (Speed-Based Turn Order)
     func calculateInitiative(for hero: Hero) -> Int {
         let baseSpeed = hero.attributes.Agility
@@ -188,59 +193,143 @@ extension CardManager {
         return baseSpeed + randomFactor
     }
     
-    // MARK: - 2. Skill execution with Effects
-    func executeSkill(queued: QueuedSkill) {
-        // --- TBD on Claude ---
+    // MARK: - 2. Get Size Multiplier (MOVED BEFORE executeSkill)
+    func getSizeMultiplier(_ size: itemSizes) -> Double {
+        switch size {
+        case .small: return 1.0
+        case .medium: return 1.5
+        case .large: return 2.5
+        }
     }
     
-}
-
-
-
-
-
-
-
-
-    // MARK: - CardManager Extension for Attack Functions (Don't use!)
-/*
-    extension CardManager {
-        // Calculate Attack Power
-        func calculateAttackPower(for character: Hero) -> Int {
-            var totalAttack = 0
-            
-            // Base attack from attributes (using Strength as primary)
-            totalAttack += character.attributes.Strength
-            
-            // Add skill power (sum of all skills or highest skill)
-            let skillPower = character.skills.map { $0.power }.max() ?? 0
-            totalAttack += skillPower
-            
-            // Add item bonuses (you can expand this based on item effects)
-            totalAttack += character.inventory.count * 2
-            
-            return max(1, totalAttack) // Minimum 1 damage
+    // MARK: - 3. Skill Execution with Effects
+    func executeSkill(queued: QueuedSkill) -> CombatResult {
+        guard var target = queued.target else {
+            return CombatResult(message: "No target selected", damage: 0)
         }
         
-        // Single hero attack function
-        func heroAttack(heroIndex: Int, enemyIndex: Int) -> String {
-            guard heroIndex < myHeroCards.count,
-                  enemyIndex < myEnemyCards.count else {
-                return "Invalid target"
+        let skill = queued.skill
+        let caster = queued.caster
+        
+        // Calculate damage based on skill power + attributes
+        var damage = skill.power
+        
+        // Add attribute modifiers (since you don't have SkillType, use skill power only)
+        // You can add Intelligence/Strength bonus based on hero class instead
+        switch caster.heroClass.name {
+        case .wizard, .priest, .templar:
+            damage += caster.attributes.Intelligence / 2  // Magic users
+        case .fighter, .duelist:
+            damage += caster.attributes.Strength / 2      // Physical fighters
+        case .rogue:
+            damage += caster.attributes.Agility / 2       // Agile attackers
+        }
+        
+        // Apply skill size multiplier
+        let sizeMultiplier = getSizeMultiplier(skill.size)
+        damage = Int(Double(damage) * sizeMultiplier)
+        
+        // Apply damage
+        if damage > 0 {
+            target.stats.health = max(0, target.stats.health - damage)
+            let defeated = target.stats.health <= 0
+            let message = "\(caster.heroClass.name.rawValue) uses \(skill.name)! \(target.heroClass.name.rawValue) takes \(damage) damage!"
+            
+            return CombatResult(
+                message: message,
+                damage: damage,
+                targetDefeated: defeated
+            )
+        }
+        
+        // Default: skill used but no damage
+        return CombatResult(
+            message: "\(caster.heroClass.name.rawValue) uses \(skill.name)!",
+            damage: 0,
+            targetDefeated: false
+        )
+    }
+    
+    // MARK: - 4. Full Turn Resolution
+    func resolveCombatTurn() {
+        combatPhase = .execution
+        combatLog.removeAll()
+        
+        // Combine all queued skills
+        var allActions = playerSkillQueue + enemySkillQueue
+        
+        // Sort by initiative (highest goes first)
+        allActions.sort { $0.initiative > $1.initiative }
+        
+        // Execute each skill in order
+        for action in allActions {
+            let result = executeSkill(queued: action)
+            combatLog.append(result.message)
+            
+            // Check if combat should end
+            if checkVictoryCondition() {
+                combatPhase = .resolution
+                return
+            }
+        }
+        
+        // Clear queues for next turn
+        playerSkillQueue.removeAll()
+        enemySkillQueue.removeAll()
+        currentTurn += 1
+        combatPhase = .planning
+    }
+    
+    // MARK: - 5. Victory/Defeat Checking
+    func checkVictoryCondition() -> Bool {
+        let heroesAlive = myHeroCards.filter { $0.stats.health > 0 }
+        let enemiesAlive = myEnemyCards.filter { $0.stats.health > 0 }
+        
+        if enemiesAlive.isEmpty {
+            combatLog.append("🎉 Victory! All enemies defeated!")
+            return true
+        }
+        
+        if heroesAlive.isEmpty {
+            combatLog.append("💀 Defeat! All heroes have fallen!")
+            return true
+        }
+        
+        return false
+    }
+    
+    // MARK: - 6. AI Enemy Turn (Simple)
+    func executeEnemyTurn() {
+        // Simple AI: Each enemy picks random skill and targets random hero
+        for enemy in myEnemyCards where enemy.stats.health > 0 {
+            guard let randomSkill = enemy.activeSkills.randomElement(),
+                  let randomTarget = myHeroCards.filter({ $0.stats.health > 0 }).randomElement() else {
+                continue
             }
             
-            let attackingHero = myHeroCards[heroIndex]
-            let attackPower = calculateAttackPower(for: attackingHero)
+            let initiative = calculateInitiative(for: enemy)
+            let queuedSkill = QueuedSkill(
+                skill: randomSkill as! Skill,
+                caster: enemy,
+                target: randomTarget,
+                initiative: initiative
+            )
             
-            myEnemyCards[enemyIndex].stats.health = max(0, myEnemyCards[enemyIndex].stats.health - attackPower)
-            
-            let message = "\(attackingHero.heroClass.name.rawValue) attacks for \(attackPower) damage!"
-            
-            if myEnemyCards[enemyIndex].stats.health <= 0 {
-                return message + " \(myEnemyCards[enemyIndex].heroClass.name.rawValue) defeated!"
-            }
-            
-            return message
+            enemySkillQueue.append(queuedSkill)
         }
     }
- */
+}
+
+// MARK: - Combat Result Model (WITH CUSTOM INITIALIZER)
+struct CombatResult {
+    let message: String
+    let damage: Int
+    let targetDefeated: Bool
+    
+    // Custom initializer with default value for targetDefeated
+    init(message: String, damage: Int, targetDefeated: Bool = false) {
+        self.message = message
+        self.damage = damage
+        self.targetDefeated = targetDefeated
+    }
+}

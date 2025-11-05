@@ -153,13 +153,7 @@ enum EffectTypes {
     case Charisma
 }
 
-struct CombatResult {
-    let message: String
-    let damage: Int
-    var targetDefeated: Bool = false
-    var statusApplied: StatusEffect? = nil
-    var comboTriggered: String? = nil
-}
+
 
 enum StatusEffect: Equatable {
     case burning(turnLeft: Int, damagePerTurn: Int)
@@ -179,4 +173,21 @@ enum StatusEffect: Equatable {
         case .shielded: return "🛡️ Shielded"
         }
     }
+}
+
+// MARK: - Combat Phase Enum
+enum CombatPhase {
+    case planning      // Drag skills to queue
+    case confirmation  // Review your choices
+    case execution     // Watch skills resolve
+    case resolution    // Check win/lose
+}
+
+// MARK: - Queued Skill Model
+struct QueuedSkill: Identifiable {
+    let id = UUID()
+    let skill: Skill
+    let caster: Hero
+    var target: Hero?
+    let initiative: Int // Speed determines order
 }

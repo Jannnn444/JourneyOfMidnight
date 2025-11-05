@@ -273,76 +273,7 @@ struct EventScreenTemplate: View {
     }
     
     private func executeBattleSequence() {
-        var battleRound = 1
-        let maxRounds = 10 // Prevent infinite loops
-        
-        func executeRound() {
-            guard battleRound <= maxRounds,
-                  cardManager.myHeroCards.contains(where: { $0.stats.health > 0 }),
-                  cardManager.myEnemyCards.contains(where: { $0.stats.health > 0 }) else {
-                // Battle ended
-                finalizeBattle()
-                return
-            }
-            
-            battleLog.append("\n--- Round \(battleRound) ---")
-            
-            // Heroes attack
-            for (heroIndex, hero) in cardManager.myHeroCards.enumerated() {
-                guard hero.stats.health > 0 else { continue }
-                
-                if let enemyIndex = cardManager.myEnemyCards.firstIndex(where: { $0.stats.health > 0 }) {
-                    let damage = cardManager.calculateAttackPower(for: hero)
-                    cardManager.myEnemyCards[enemyIndex].stats.health = max(0, cardManager.myEnemyCards[enemyIndex].stats.health - damage)
-                    
-                    battleLog.append("\(hero.heroClass.name.rawValue) attacks \(cardManager.myEnemyCards[enemyIndex].heroClass.name.rawValue) for \(damage) damage!")
-                    
-                    if cardManager.myEnemyCards[enemyIndex].stats.health <= 0 {
-                        battleLog.append("\(cardManager.myEnemyCards[enemyIndex].heroClass.name.rawValue) has been defeated!")
-                        handleEnemyDefeat(enemyIndex: enemyIndex)
-                    }
-                }
-            }
-            
-            // Check if all enemies defeated
-            if cardManager.myEnemyCards.allSatisfy({ $0.stats.health <= 0 }) {
-                battleLog.append("\n🎉 Victory! All enemies defeated!")
-                finalizeBattle()
-                return
-            }
-            
-            // Enemies counter-attack
-            for (enemyIndex, enemy) in cardManager.myEnemyCards.enumerated() {
-                guard enemy.stats.health > 0 else { continue }
-                
-                if let heroIndex = cardManager.myHeroCards.firstIndex(where: { $0.stats.health > 0 }) {
-                    let damage = cardManager.calculateAttackPower(for: enemy)
-                    cardManager.myHeroCards[heroIndex].stats.health = max(0, cardManager.myHeroCards[heroIndex].stats.health - damage)
-                    
-                    battleLog.append("\(enemy.heroClass.name.rawValue) attacks \(cardManager.myHeroCards[heroIndex].heroClass.name.rawValue) for \(damage) damage!")
-                    
-                    if cardManager.myHeroCards[heroIndex].stats.health <= 0 {
-                        battleLog.append("\(cardManager.myHeroCards[heroIndex].heroClass.name.rawValue) has fallen!")
-                    }
-                }
-            }
-            
-            // Check if all heroes defeated
-            if cardManager.myHeroCards.allSatisfy({ $0.stats.health <= 0 }) {
-                battleLog.append("\n💀 Defeat! All heroes have fallen!")
-                finalizeBattle()
-                return
-            }
-            
-            battleRound += 1
-            
-            // Continue to next round with delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                executeRound()
-            }
-        }
-        
-        executeRound()
+  
     }
     
     private func handleEnemyDefeat(enemyIndex: Int) {
