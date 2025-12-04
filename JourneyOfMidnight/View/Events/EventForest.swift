@@ -26,11 +26,9 @@ struct EventForest: View {
                     .fontDesign(.monospaced)
                     .foregroundStyle(.black)
             } .padding()
-//              .background(Color.white.opacity(0.8))
-                .cornerRadius(10)
+              .cornerRadius(10)
             
             VStack(alignment: .leading) {
-                
                 if !cardManager.stories.isEmpty {
                     let currentStory = cardManager.stories[selectedStoryIndex]
                     
@@ -38,7 +36,6 @@ struct EventForest: View {
                         showOptions.toggle()
                         showTopic.toggle()
                     }) {
-                        
                         if showTopic {
                             Text(currentStory.topic)
                                 .font(.headline)

@@ -33,7 +33,7 @@ class MusicManager: ObservableObject {
     private var wasPlayingBeforeDisable = false
     
     private init() {
-        setupAudioSession()
+        setupAudioSession() //sentir la mas sencion y gratitude o necesidad
     }
     
     // MARK: - Audio Session Setup
@@ -62,7 +62,6 @@ class MusicManager: ObservableObject {
     }
     
     // MARK: - Background Music
-    
     func playBackgroundMusic(fileName: String, fileExtension: String = "mp3") {
         currentMusicFileName = fileName
         

@@ -8,7 +8,7 @@
 import Foundation
 
 class CardManager: ObservableObject {
-    // put static let shared, and makke it observable object
+    // put static let shared, and make it observable object
     static let shared = CardManager()
     
     @Published var skillName: String = ""
@@ -36,7 +36,6 @@ class CardManager: ObservableObject {
         @Published var enemySkillQueue: [QueuedSkill] = []
         @Published var combatLog: [String] = []
         @Published var currentTurn: Int = 1
-    
     
     enum CombatPhase {
         case planning       // Drag skills to queue
@@ -68,8 +67,7 @@ class CardManager: ObservableObject {
     // MARK: 🎲 Ability Box
     let abilityBoxWidth: CGFloat =  40
     let abilityBoxHeight: CGFloat = 40
-    
-    
+        
     // NOTE: When myCardHeroCards.items.count == 2 -->>> Hero, else is Followes !
     // Hero -->>>>>>> 2 items 2 skills
     // Follower -->>> 1 items 1 skills
@@ -185,7 +183,6 @@ class CardManager: ObservableObject {
 
 
 extension CardManager {
-    
     // MARK: - 1. Initiative System (Speed-Based Turn Order)
     func calculateInitiative(for hero: Hero) -> Int {
         let baseSpeed = hero.attributes.Agility
